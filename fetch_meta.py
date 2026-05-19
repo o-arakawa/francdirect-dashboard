@@ -1,48 +1,53 @@
-"""
-Meta Ads API データ取得スクリプト — FrancDirect
-GitHub Actions から 6時間おきに実行される
-"""
-
 import os
 import json
 import requests
 from datetime import datetime, timezone
 
 ACCESS_TOKEN   = os.environ["META_ACCESS_TOKEN"]
-AD_ACCOUNT_ID  = os.environ["META_AD_ACCOUNT_ID"]    # 727273939454651
-CAMPAIGN_ID    = os.environ["META_CAMPAIGN_ID"]       # 120243061348860707
+AD_ACCOUNT_ID  = os.environ["META_AD_ACCOUNT_ID"]
+CAMPAIGN_ID    = os.environ["META_CAMPAIGN_ID"]
 CV_ACTION_TYPE = os.environ.get("META_CV_ACTION", "lead")
 API_VER        = "v21.0"
+BASE_URL       = f"https://graph.facebook.com/{API_VER}/act_{AD_ACCOUNT_ID}/insights"
+FIELDS         = "spend,reach,impressions,clicks,cpm,ctr,cpc,actions,campaign_name"
 
-ACCOUNT_URL  = f"https://graph.facebook.com/{API_VER}/act_{AD_ACCOUNT_ID}/insights"
-CAMPAIGN_URL = f"https://graph.facebook.com/{API_VER}/{CAMPAIGN_ID}/insights"
-FIELDS       = "spend,reach,impressions,clicks,cpm,ctr,cpc,actions,action_values"
-
-def get_action_value(actions_list, action_type):
+def get_cv(actions_list, action_type):
     if not actions_list:
         return 0
     for a in actions_list:
         if a.get("action_type") == action_type:
-            return float(a.get("value", 0))
+            return int(float(a.get("value", 0)))
     return 0
 
-def fetch(url, params):
-    r = requests.get(url, params={**params, "access_token": ACCESS_TOKEN})
-    r.raise_for_status()
+def fetch(params):
+    r = requests.get(BASE_URL, params={**params, "access_token": ACCESS_TOKEN})
     body = r.json()
     if "error" in body:
-        raise RuntimeError(f"Meta API エラー: {body['error'].get('message','')}")
+        raise RuntimeError(f"Meta API Error: {body['error']['message']}")
     return body
 
-# ── 対象キャンペーンのサマリー（過去 30 日） ─────────────────────────
-print(f"📡 キャンペーン {CAMPAIGN_ID} のデータを取得中...")
+print("📡 Meta Ads データを取得中...")
 
-sum_raw = fetch(CAMPAIGN_URL, {
+# サマリー（キャンペーン絞り込み）
+sum_raw = fetch({
     "fields": FIELDS,
     "date_preset": "last_30d",
+    "level": "campaign",
+    "filtering": f'[{{"field":"campaign.id","operator":"EQUAL","value":"{CAMPAIGN_ID}"}}]',
 })
-s = sum_raw.get("data", [{}])[0]
 
+rows = sum_raw.get("data", [])
+if not rows:
+    # フィルタが効かない場合はアカウント全体を取得
+    print("⚠️ キャンペーン絞り込み結果なし → アカウント全体で取得")
+    sum_raw = fetch({
+        "fields": "spend,reach,impressions,clicks,cpm,ctr,cpc,actions",
+        "date_preset": "last_30d",
+        "level": "account",
+    })
+    rows = sum_raw.get("data", [{}])
+
+s = rows[0] if rows else {}
 summary = {
     "spend":       round(float(s.get("spend", 0))),
     "reach":       int(s.get("reach", 0)),
@@ -51,17 +56,18 @@ summary = {
     "cpm":         round(float(s.get("cpm", 0)), 2),
     "ctr":         round(float(s.get("ctr", 0)), 2),
     "cpc":         round(float(s.get("cpc", 0)), 2),
-    "conversions": int(get_action_value(s.get("actions"), CV_ACTION_TYPE)),
+    "conversions": get_cv(s.get("actions"), CV_ACTION_TYPE),
 }
 summary["cpa"] = (
     round(summary["spend"] / summary["conversions"])
     if summary["conversions"] > 0 else None
 )
 
-# ── 日次内訳（過去 30 日） ───────────────────────────────────────────
-daily_raw = fetch(CAMPAIGN_URL, {
-    "fields": FIELDS,
+# 日次
+daily_raw = fetch({
+    "fields": "spend,reach,impressions,clicks,cpm,actions",
     "date_preset": "last_30d",
+    "level": "account",
     "time_increment": 1,
 })
 daily = []
@@ -73,12 +79,12 @@ for d in daily_raw.get("data", []):
         "impressions": int(d.get("impressions", 0)),
         "clicks":      int(d.get("clicks", 0)),
         "cpm":         round(float(d.get("cpm", 0)), 2),
-        "conversions": int(get_action_value(d.get("actions"), CV_ACTION_TYPE)),
+        "conversions": get_cv(d.get("actions"), CV_ACTION_TYPE),
     })
 
-# ── 広告セット別内訳 ─────────────────────────────────────────────────
-adset_raw = fetch(CAMPAIGN_URL, {
-    "fields": "adset_name," + FIELDS,
+# 広告セット別
+adset_raw = fetch({
+    "fields": "adset_name,spend,reach,impressions,clicks,cpm,ctr,cpc,actions",
     "date_preset": "last_30d",
     "level": "adset",
 })
@@ -92,21 +98,19 @@ for a in adset_raw.get("data", []):
         "clicks":      int(a.get("clicks", 0)),
         "ctr":         round(float(a.get("ctr", 0)), 2),
         "cpc":         round(float(a.get("cpc", 0)), 2),
-        "conversions": int(get_action_value(a.get("actions"), CV_ACTION_TYPE)),
+        "conversions": get_cv(a.get("actions"), CV_ACTION_TYPE),
     })
 
-# ── 出力 ─────────────────────────────────────────────────────────────
 output = {
-    "last_updated":  datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-    "campaign_id":   CAMPAIGN_ID,
-    "cv_action":     CV_ACTION_TYPE,
-    "summary":       summary,
-    "daily":         daily,
-    "adsets":        adsets,
+    "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "campaign_id":  CAMPAIGN_ID,
+    "cv_action":    CV_ACTION_TYPE,
+    "summary":      summary,
+    "daily":        daily,
+    "adsets":       adsets,
 }
 
 with open("data.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-print(f"✅ data.json を更新しました")
-print(f"   広告費: ¥{summary['spend']:,}  CV: {summary['conversions']}件  CPA: ¥{summary['cpa'] or '—'}")
+print(f"✅ 完了 | 広告費: ¥{summary['spend']:,}  CV: {summary['conversions']}件")
