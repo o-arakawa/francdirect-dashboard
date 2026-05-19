@@ -1,52 +1,345 @@
 {
-  "last_updated": "2026-05-19T06:00:00Z",
+  "last_updated": "2026-05-19T03:49:32Z",
+  "campaign_id": "120243061348860707",
   "cv_action": "lead",
   "summary": {
-    "spend": 148200,
-    "reach": 42300,
-    "impressions": 178500,
-    "clicks": 3150,
-    "cpm": 830,
-    "ctr": 1.76,
-    "cpc": 47.1,
-    "conversions": 82,
-    "cpa": 1807
+    "spend": 123431,
+    "reach": 22805,
+    "impressions": 71389,
+    "clicks": 3063,
+    "cpm": 1728.99,
+    "ctr": 4.29,
+    "cpc": 40.3,
+    "conversions": 0,
+    "cpa": null
   },
   "daily": [
-    {"date":"2026-04-20","spend":4800,"reach":1380,"impressions":5800,"clicks":102,"cpm":827,"conversions":2},
-    {"date":"2026-04-21","spend":5100,"reach":1450,"impressions":6100,"clicks":110,"cpm":836,"conversions":3},
-    {"date":"2026-04-22","spend":4600,"reach":1320,"impressions":5600,"clicks":98,"cpm":821,"conversions":2},
-    {"date":"2026-04-23","spend":5300,"reach":1490,"impressions":6300,"clicks":115,"cpm":841,"conversions":3},
-    {"date":"2026-04-24","spend":5800,"reach":1600,"impressions":6800,"clicks":125,"cpm":853,"conversions":4},
-    {"date":"2026-04-25","spend":4900,"reach":1400,"impressions":5900,"clicks":105,"cpm":830,"conversions":3},
-    {"date":"2026-04-26","spend":4400,"reach":1280,"impressions":5300,"clicks":93,"cpm":830,"conversions":2},
-    {"date":"2026-04-27","spend":5000,"reach":1420,"impressions":6000,"clicks":108,"cpm":833,"conversions":3},
-    {"date":"2026-04-28","spend":5200,"reach":1470,"impressions":6200,"clicks":113,"cpm":839,"conversions":3},
-    {"date":"2026-04-29","spend":4700,"reach":1350,"impressions":5700,"clicks":100,"cpm":824,"conversions":2},
-    {"date":"2026-04-30","spend":5400,"reach":1510,"impressions":6400,"clicks":118,"cpm":843,"conversions":3},
-    {"date":"2026-05-01","spend":6100,"reach":1700,"impressions":7200,"clicks":132,"cpm":847,"conversions":4},
-    {"date":"2026-05-02","spend":5600,"reach":1580,"impressions":6700,"clicks":122,"cpm":836,"conversions":3},
-    {"date":"2026-05-03","spend":4800,"reach":1380,"impressions":5800,"clicks":104,"cpm":827,"conversions":2},
-    {"date":"2026-05-04","spend":5000,"reach":1420,"impressions":6000,"clicks":108,"cpm":833,"conversions":3},
-    {"date":"2026-05-05","spend":5300,"reach":1490,"impressions":6300,"clicks":115,"cpm":841,"conversions":3},
-    {"date":"2026-05-06","spend":4900,"reach":1400,"impressions":5900,"clicks":105,"cpm":830,"conversions":3},
-    {"date":"2026-05-07","spend":5100,"reach":1450,"impressions":6100,"clicks":111,"cpm":836,"conversions":3},
-    {"date":"2026-05-08","spend":5500,"reach":1550,"impressions":6600,"clicks":120,"cpm":833,"conversions":4},
-    {"date":"2026-05-09","spend":4700,"reach":1350,"impressions":5700,"clicks":101,"cpm":824,"conversions":2},
-    {"date":"2026-05-10","spend":5200,"reach":1470,"impressions":6200,"clicks":113,"cpm":839,"conversions":3},
-    {"date":"2026-05-11","spend":5800,"reach":1600,"impressions":6900,"clicks":126,"cpm":841,"conversions":4},
-    {"date":"2026-05-12","spend":4600,"reach":1320,"impressions":5600,"clicks":99,"cpm":821,"conversions":2},
-    {"date":"2026-05-13","spend":5000,"reach":1420,"impressions":6000,"clicks":109,"cpm":833,"conversions":3},
-    {"date":"2026-05-14","spend":5300,"reach":1490,"impressions":6300,"clicks":116,"cpm":841,"conversions":3},
-    {"date":"2026-05-15","spend":5700,"reach":1590,"impressions":6800,"clicks":124,"cpm":838,"conversions":4},
-    {"date":"2026-05-16","spend":4900,"reach":1400,"impressions":5900,"clicks":107,"cpm":830,"conversions":3},
-    {"date":"2026-05-17","spend":5100,"reach":1450,"impressions":6100,"clicks":112,"cpm":836,"conversions":3},
-    {"date":"2026-05-18","spend":5400,"reach":1510,"impressions":6400,"clicks":118,"cpm":843,"conversions":3},
-    {"date":"2026-05-19","spend":2800,"reach":800,"impressions":3300,"clicks":58,"cpm":848,"conversions":1}
+    {
+      "date": "2026-04-19",
+      "spend": 13741,
+      "reach": 3448,
+      "impressions": 4926,
+      "clicks": 258,
+      "cpm": 2789.48,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-20",
+      "spend": 5601,
+      "reach": 2049,
+      "impressions": 2879,
+      "clicks": 161,
+      "cpm": 1945.47,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-21",
+      "spend": 5993,
+      "reach": 2825,
+      "impressions": 3577,
+      "clicks": 179,
+      "cpm": 1675.43,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-22",
+      "spend": 4840,
+      "reach": 2691,
+      "impressions": 3275,
+      "clicks": 142,
+      "cpm": 1477.86,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-23",
+      "spend": 4203,
+      "reach": 2437,
+      "impressions": 2964,
+      "clicks": 136,
+      "cpm": 1418.02,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-24",
+      "spend": 3736,
+      "reach": 1867,
+      "impressions": 2230,
+      "clicks": 105,
+      "cpm": 1675.34,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-25",
+      "spend": 4295,
+      "reach": 2137,
+      "impressions": 2701,
+      "clicks": 103,
+      "cpm": 1590.15,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-26",
+      "spend": 5095,
+      "reach": 2412,
+      "impressions": 3086,
+      "clicks": 157,
+      "cpm": 1651.0,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-27",
+      "spend": 4934,
+      "reach": 2352,
+      "impressions": 2832,
+      "clicks": 135,
+      "cpm": 1742.23,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-28",
+      "spend": 4653,
+      "reach": 2023,
+      "impressions": 2507,
+      "clicks": 88,
+      "cpm": 1856.0,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-29",
+      "spend": 5226,
+      "reach": 2330,
+      "impressions": 2818,
+      "clicks": 150,
+      "cpm": 1854.51,
+      "conversions": 0
+    },
+    {
+      "date": "2026-04-30",
+      "spend": 5226,
+      "reach": 2541,
+      "impressions": 3120,
+      "clicks": 118,
+      "cpm": 1675.0,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-01",
+      "spend": 5206,
+      "reach": 2767,
+      "impressions": 3229,
+      "clicks": 120,
+      "cpm": 1612.26,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-02",
+      "spend": 4647,
+      "reach": 2469,
+      "impressions": 2977,
+      "clicks": 103,
+      "cpm": 1560.97,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-03",
+      "spend": 1647,
+      "reach": 841,
+      "impressions": 904,
+      "clicks": 42,
+      "cpm": 1821.9,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-07",
+      "spend": 0,
+      "reach": 0,
+      "impressions": 0,
+      "clicks": 0,
+      "cpm": 0.0,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-08",
+      "spend": 1996,
+      "reach": 995,
+      "impressions": 1189,
+      "clicks": 58,
+      "cpm": 1678.72,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-09",
+      "spend": 5132,
+      "reach": 2742,
+      "impressions": 3446,
+      "clicks": 168,
+      "cpm": 1489.26,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-10",
+      "spend": 4408,
+      "reach": 2203,
+      "impressions": 2635,
+      "clicks": 126,
+      "cpm": 1672.87,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-11",
+      "spend": 4398,
+      "reach": 2262,
+      "impressions": 2697,
+      "clicks": 122,
+      "cpm": 1630.7,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-12",
+      "spend": 5177,
+      "reach": 2553,
+      "impressions": 3051,
+      "clicks": 117,
+      "cpm": 1696.82,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-13",
+      "spend": 20971,
+      "reach": 7749,
+      "impressions": 11607,
+      "clicks": 497,
+      "cpm": 1806.75,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-14",
+      "spend": 66278,
+      "reach": 19004,
+      "impressions": 26539,
+      "clicks": 739,
+      "cpm": 2497.38,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-15",
+      "spend": 52245,
+      "reach": 19828,
+      "impressions": 28017,
+      "clicks": 648,
+      "cpm": 1864.76,
+      "conversions": 0
+    },
+    {
+      "date": "2026-05-16",
+      "spend": 41997,
+      "reach": 17041,
+      "impressions": 23341,
+      "clicks": 633,
+      "cpm": 1799.28,
+      "conversions": 0
+    }
   ],
-  "campaigns": [
-    {"name":"読書会 5月 — リターゲ","spend":62000,"reach":18000,"impressions":74000,"clicks":1320,"ctr":1.78,"cpc":47.0,"conversions":35},
-    {"name":"読書会 5月 — 新規","spend":52000,"reach":16000,"impressions":64000,"clicks":1100,"ctr":1.72,"cpc":47.3,"conversions":28},
-    {"name":"読書会 5月 — LINE誘導","spend":34200,"reach":8300,"impressions":40500,"clicks":730,"ctr":1.80,"cpc":46.8,"conversions":19}
+  "adsets": [
+    {
+      "name": "260414_FB_LEAD_ブロード01_LP01(画像1)",
+      "spend": 1246,
+      "reach": 377,
+      "impressions": 395,
+      "clicks": 10,
+      "ctr": 2.53,
+      "cpc": 124.6,
+      "conversions": 0
+    },
+    {
+      "name": "260414_FB_LEAD_ブロード01_LP01(画像2)",
+      "spend": 2639,
+      "reach": 380,
+      "impressions": 414,
+      "clicks": 26,
+      "ctr": 6.28,
+      "cpc": 101.5,
+      "conversions": 0
+    },
+    {
+      "name": "260414_FB_LEAD_ブロード01_LP01(画像3)",
+      "spend": 1163,
+      "reach": 212,
+      "impressions": 234,
+      "clicks": 12,
+      "ctr": 5.13,
+      "cpc": 96.92,
+      "conversions": 0
+    },
+    {
+      "name": "260414_FB_LEAD_ブロード01_LP01(画像4)",
+      "spend": 2533,
+      "reach": 307,
+      "impressions": 436,
+      "clicks": 34,
+      "ctr": 7.8,
+      "cpc": 74.5,
+      "conversions": 0
+    },
+    {
+      "name": "260416_ブロード(thank)_画像01~03",
+      "spend": 51796,
+      "reach": 13239,
+      "impressions": 30392,
+      "clicks": 1359,
+      "ctr": 4.47,
+      "cpc": 38.11,
+      "conversions": 0
+    },
+    {
+      "name": "260416_ブロード(normal)_画像01~03",
+      "spend": 45760,
+      "reach": 12470,
+      "impressions": 27868,
+      "clicks": 1247,
+      "ctr": 4.47,
+      "cpc": 36.7,
+      "conversions": 0
+    },
+    {
+      "name": "20260513_ブロード(normal)_画像01",
+      "spend": 230819,
+      "reach": 54242,
+      "impressions": 110879,
+      "clicks": 3104,
+      "ctr": 2.8,
+      "cpc": 74.36,
+      "conversions": 0
+    },
+    {
+      "name": "260513_ブロード(normal)_画像01~03",
+      "spend": 12508,
+      "reach": 4838,
+      "impressions": 6434,
+      "clicks": 225,
+      "ctr": 3.5,
+      "cpc": 55.59,
+      "conversions": 0
+    },
+    {
+      "name": "2600513_ブロード(thank)_画像01~03",
+      "spend": 13367,
+      "reach": 4657,
+      "impressions": 6695,
+      "clicks": 232,
+      "ctr": 3.47,
+      "cpc": 57.62,
+      "conversions": 0
+    },
+    {
+      "name": "20260518_ブロード(normal)_画像01",
+      "spend": 31756,
+      "reach": 9218,
+      "impressions": 14426,
+      "clicks": 584,
+      "ctr": 4.05,
+      "cpc": 54.38,
+      "conversions": 0
+    }
   ]
 }
