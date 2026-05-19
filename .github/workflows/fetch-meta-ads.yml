@@ -1,40 +1,202 @@
-name: Fetch Meta Ads Data — FrancDirect
+"""
+Meta Ads API + MyASP CV (Google Sheet) — FrancDirect専用
+キャンペーンID でフィルタリングして他クライアントのデータを除外
+"""
 
-on:
-  schedule:
-    - cron: "0 0,6,12,18 * * *"
-  workflow_dispatch:
+import os, json, csv, io, requezsts
+from datetime import datetime, timezone, date
 
-permissions:
-  contents: write
+ACCESS_TOKEN   = os.environ["META_ACCESS_TOKEN"]
+AD_ACCOUNT_ID  = os.environ["META_AD_ACCOUNT_ID"]
+CAMPAIGN_ID    = os.environ["META_CAMPAIGN_ID"]
+SHEET_CSV_URL  = os.environ.get("SHEET_CSV_URL", "")
+API_VER        = "v21.0"
+BASE            = f"https://graph.facebook.com/{API_VER}/act_{AD_ACCOUNT_ID}/insights"
 
-jobs:
-  fetch:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+# キャンペーンIDで絞り込むフィルター（他クライアントを除外）
+CAMP_FILTER = f'[{{"field":"campaign.id","operator":"EQUAL","value":"{CAMPAIGN_ID}"}}]'
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+FIELDS       = "spend,reach,impressions,clicks,cpm,ctr,cpc,actions"
+ADSET_FIELDS = "adset_name,spend,reach,impressions,clicks,cpm,ctr,cpc,actions"
 
-      - name: Install dependencies
-        run: pip install requests
+def meta(params):
+    r = requests.get(BASE, params={**params, "access_token": ACCESS_TOKEN})
+    body = r.json()
+    if "error" in body:
+        raise RuntimeError(f"Meta API: {body['error']['message']}")
+    return body.get("data", [])
 
-      - name: Fetch Meta Ads API
-        env:
-          META_ACCESS_TOKEN:  ${{ secrets.META_ACCESS_TOKEN }}
-          META_AD_ACCOUNT_ID: ${{ secrets.META_AD_ACCOUNT_ID }}
-          META_CAMPAIGN_ID:   ${{ secrets.META_CAMPAIGN_ID }}
-          META_CV_ACTION:     ${{ secrets.META_CV_ACTION }}
-        run: python fetch_meta.py
+def cv_from_actions(actions, atype="lead"):
+    for a in (actions or []):
+        if a.get("action_type") == atype:
+            return int(float(a.get("value", 0)))
+    return 0
 
-      - name: Commit & Push data.json
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json
-          git diff --staged --quiet || git commit -m "chore: update Meta Ads data [skip ci]"
-          git push
+def row_to_summary(s):
+    return {
+        "spend":       round(float(s.get("spend", 0))),
+        "reach":       int(s.get("reach", 0)),
+        "impressions": int(s.get("impressions", 0)),
+        "clicks":      int(s.get("clicks", 0)),
+        "cpm":         round(float(s.get("cpm", 0)), 2),
+        "ctr":         round(float(s.get("ctr", 0)), 2),
+        "cpc":         round(float(s.get("cpc", 0)), 2),
+        "cv_meta":     cv_from_actions(s.get("actions")),
+        "cv_myasp":    0,
+    }
+
+# ── Google Sheet から MyASP CV ────────────────────────────────────────
+cv_by_date = {}
+if SHEET_CSV_URL:
+    try:
+        print("📊 Google Sheet から CV データを取得中...")
+        r = requests.get(SHEET_CSV_URL, timeout=10)
+        r.raise_for_status()
+        reader = csv.DictReader(io.StringIO(r.text))
+        for row in reader:
+            d = (row.get("日付") or row.get("date") or "").strip()
+            if not d:
+                continue
+            myasp = int(float(row.get("MyASP_CV") or row.get("myasp_cv") or 0))
+            line  = int(float(row.get("LINE_CV")  or row.get("line_cv")  or 0))
+            cv_by_date[d] = {"myasp": myasp, "line": line}
+        print(f"   {len(cv_by_date)} 日分取得")
+    except Exception as e:
+        print(f"⚠️ Sheet 読み込み失敗（スキップ）: {e}")
+
+def cv_myasp_for(date_str):
+    e = cv_by_date.get(date_str, {})
+    return e.get("myasp", 0) + e.get("line", 0)
+
+def cv_myasp_range(start, end):
+    return sum(
+        v.get("myasp", 0) + v.get("line", 0)
+        for d, v in cv_by_date.items() if start <= d <= end
+    )
+
+# ── Meta: 各期間サマリー（FrancDirectのみ） ───────────────────────────
+today_str   = date.today().strftime("%Y-%m-%d")
+month_start = date.today().strftime("%Y-%m-01")
+day30_start = (date.today().replace(day=1).__class__.fromordinal(
+    date.today().toordinal() - 29)).strftime("%Y-%m-%d")
+
+def fetch_summary(preset):
+    rows = meta({
+        "fields":    FIELDS,
+        "date_preset": preset,
+        "level":     "campaign",        # キャンペーン単位で取得
+        "filtering": CAMP_FILTER,       # FrancDirectのみ
+    })
+    # 複数行返る場合は合算（通常は1行）
+    if not rows:
+        return row_to_summary({})
+    merged = {
+        "spend": sum(float(r.get("spend",0)) for r in rows),
+        "reach": sum(int(r.get("reach",0)) for r in rows),
+        "impressions": sum(int(r.get("impressions",0)) for r in rows),
+        "clicks": sum(int(r.get("clicks",0)) for r in rows),
+        "cpm": 0, "ctr": 0, "cpc": 0, "actions": [],
+    }
+    # インプレッションベースで加重平均
+    total_imp = merged["impressions"]
+    if total_imp > 0:
+        merged["cpm"] = round(merged["spend"] / total_imp * 1000, 2)
+    if merged["reach"] > 0:
+        merged["ctr"] = round(merged["clicks"] / merged["impressions"] * 100, 2) if total_imp > 0 else 0
+    if merged["clicks"] > 0:
+        merged["cpc"] = round(merged["spend"] / merged["clicks"], 2)
+    # CV はすべての行から合算
+    cv = sum(cv_from_actions(r.get("actions")) for r in rows)
+    merged["cv_meta"] = cv
+    merged["cv_myasp"] = 0
+    return {k: merged[k] for k in ["spend","reach","impressions","clicks","cpm","ctr","cpc","cv_meta","cv_myasp"]}
+
+def fetch_adsets(preset):
+    rows = meta({
+        "fields":    ADSET_FIELDS,
+        "date_preset": preset,
+        "level":     "adset",
+        "filtering": CAMP_FILTER,       # FrancDirectのみ
+    })
+    result = []
+    for a in rows:
+        result.append({
+            "name":        a.get("adset_name", "—"),
+            "spend":       round(float(a.get("spend", 0))),
+            "reach":       int(a.get("reach", 0)),
+            "impressions": int(a.get("impressions", 0)),
+            "clicks":      int(a.get("clicks", 0)),
+            "ctr":         round(float(a.get("ctr", 0)), 2),
+            "cpc":         round(float(a.get("cpc", 0)), 2),
+            "cv_meta":     cv_from_actions(a.get("actions")),
+            "cv_myasp":    0,
+        })
+    return sorted(result, key=lambda x: x["spend"], reverse=True)
+
+print(f"📡 FrancDirect (キャンペーンID: {CAMPAIGN_ID}) のデータを取得中...")
+
+s_today  = fetch_summary("today")
+s_month  = fetch_summary("this_month")
+s_30d    = fetch_summary("last_30d")
+s_total  = fetch_summary("maximum")
+
+# MyASP CV 補完
+s_today["cv_myasp"] = cv_myasp_for(today_str)
+s_month["cv_myasp"] = cv_myasp_range(month_start, today_str)
+s_30d["cv_myasp"]   = cv_myasp_range(day30_start, today_str)
+s_total["cv_myasp"] = sum(v.get("myasp",0)+v.get("line",0) for v in cv_by_date.values())
+
+for s in [s_today, s_month, s_30d, s_total]:
+    cv = s["cv_myasp"] or s["cv_meta"]
+    s["cpa"] = round(s["spend"] / cv) if cv > 0 else None
+
+# 広告セット
+adsets_today = fetch_adsets("today")
+adsets_month = fetch_adsets("this_month")
+adsets_30d   = fetch_adsets("last_30d")
+
+# 日次（FrancDirectのみ）
+daily_raw = meta({
+    "fields":       FIELDS,
+    "date_preset":  "last_30d",
+    "level":        "campaign",
+    "filtering":    CAMP_FILTER,
+    "time_increment": 1,
+})
+daily = []
+for d in daily_raw:
+    ds = d.get("date_start", "")
+    daily.append({
+        "date":        ds,
+        "spend":       round(float(d.get("spend", 0))),
+        "reach":       int(d.get("reach", 0)),
+        "impressions": int(d.get("impressions", 0)),
+        "clicks":      int(d.get("clicks", 0)),
+        "cpm":         round(float(d.get("cpm", 0)), 2),
+        "cv_meta":     cv_from_actions(d.get("actions")),
+        "cv_myasp":    cv_myasp_for(ds),
+    })
+
+output = {
+    "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "campaign_id":  CAMPAIGN_ID,
+    "today":        s_today,
+    "this_month":   s_month,
+    "last_30d":     s_30d,
+    "total":        s_total,
+    "adsets": {
+        "today":      adsets_today,
+        "this_month": adsets_month,
+        "last_30d":   adsets_30d,
+    },
+    "daily":   daily,
+    "cv_log":  [{"date": k, **v} for k, v in sorted(cv_by_date.items())],
+}
+
+with open("data.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
+
+print("✅ 完了（FrancDirectのみ集計）")
+print(f"   今日    : ¥{s_today['spend']:,}  MyASP CV:{s_today['cv_myasp']}")
+print(f"   今月    : ¥{s_month['spend']:,}  MyASP CV:{s_month['cv_myasp']}")
+print(f"   トータル: ¥{s_total['spend']:,}  MyASP CV:{s_total['cv_myasp']}")
