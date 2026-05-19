@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrancDirect — Meta 広告ダッシュボード</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --gold: #C4A35A;
+  --gold-dim: rgba(196,163,90,0.15);
+  --dark: #09080A;
+  --surface: #110F13;
+  --surface2: #181519;
+  --text: #F4ECDB;
+  --muted: rgba(244,236,219,0.50);
+  --border: rgba(196,163,90,0.18);
+  --green: #4CAF7D;
+  --blue: #7B9EB8;
+}
+body { background:var(--dark); color:var(--text); font-family:'Shippori Mincho',serif; min-height:100vh; }
+.wrap { max-width:1080px; margin:0 auto; padding:0 2rem; }
+hr.rule { border:none; border-top:.5px solid var(--border); }
+
+/* ── Header ── */
+header { padding:1.6rem 0; }
+.hdr  { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.8rem; }
+.brand-logo {
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  color:var(--text);
+  text-transform:uppercase;
+}
+.brand-sub { font-size:.6rem; letter-spacing:.22em; color:var(--muted); margin-top:4px; text-transform:uppercase; }
+.hdr-right { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+.last-upd { font-size:.65rem; letter-spacing:.06em; color:var(--muted); }
+.refresh-btn {
+  font-size:.65rem; letter-spacing:.12em; color:var(--gold);
+  border:.5px solid rgba(196,163,90,.4); background:none;
+  padding:5px 14px; cursor:pointer; font-family:inherit; transition:.15s;
+}
+.refresh-btn:hover { background:var(--gold-dim); }
+.live-dot { width:7px; height:7px; border-radius:50%; background:#4CAF7D; display:inline-block; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+/* ── Period selector ── */
+.period-bar { display:flex; gap:2px; background:var(--border); width:fit-content; margin:1.4rem 0; }
+.period-btn {
+  font-size:.65rem; letter-spacing:.1em; padding:6px 18px; background:var(--surface);
+  color:var(--muted); border:none; cursor:pointer; font-family:inherit;
+  transition:.15s; text-transform:uppercase;
+}
+.period-btn.active { background:var(--gold-dim); color:var(--gold); }
+.period-btn:hover:not(.active) { color:var(--text); }
+
+/* ── KPI grid ── */
+.kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:2px; background:var(--border); margin-bottom:2px; }
+.kpi { background:var(--surface); padding:1.6rem 1.3rem; }
+.kpi-label { font-size:.6rem; letter-spacing:.14em; color:var(--muted); text-transform:uppercase; margin-bottom:.65rem; }
+.kpi-value { font-family:'Playfair Display',serif; font-size:1.85rem; color:var(--gold); font-weight:700; line-height:1; }
+.kpi-sub   { font-size:.63rem; color:var(--muted); margin-top:.4rem; }
+.kpi.accent { background:var(--surface2); }
+.kpi.accent .kpi-value { color:var(--text); font-size:2rem; }
+
+/* ── Charts ── */
+.grid-2-1 { display:grid; grid-template-columns:2fr 1fr; gap:2px; background:var(--border); margin-bottom:2px; }
+.chart-box { background:var(--surface); padding:1.8rem 1.6rem; }
+.chart-full { background:var(--surface); padding:1.8rem 1.6rem; margin-bottom:2px; }
+.chart-title { font-size:.68rem; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:1.2rem; }
+
+/* ── Adset table ── */
+.table-box { background:var(--surface); padding:1.8rem 1.6rem; margin-bottom:2px; }
+.sec-label { font-size:.58rem; letter-spacing:.38em; color:var(--gold); text-transform:uppercase; margin-bottom:1.4rem; }
+table { width:100%; border-collapse:collapse; font-size:.8rem; }
+th {
+  font-size:.58rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted); font-weight:400; padding:.55rem .7rem;
+  border-bottom:.5px solid var(--border); text-align:right;
+}
+th:first-child { text-align:left; }
+td { padding:.8rem .7rem; border-bottom:.5px solid rgba(196,163,90,.07); text-align:right; }
+td:first-child { text-align:left; color:var(--muted); font-size:.75rem; max-width:200px; }
+tr:last-child td { border-bottom:none; }
+.td-name { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:190px; }
+.cv-pill {
+  display:inline-block; background:rgba(76,175,125,.14);
+  color:#4CAF7D; font-size:.62rem; padding:2px 9px; letter-spacing:.05em;
+}
+
+/* ── Loading / Error ── */
+#loading {
+  position:fixed; inset:0; background:var(--dark);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:1rem; z-index:999; transition:opacity .4s;
+}
+#loading .ld-logo { font-family:'Playfair Display',serif; font-size:1.8rem; letter-spacing:.2em; color:var(--text); text-transform:uppercase; }
+#loading .ld-sub  { font-size:.65rem; letter-spacing:.35em; color:var(--gold); text-transform:uppercase; animation:pulse 1.5s infinite; }
+.error-box { background:rgba(224,92,92,.08); border:.5px solid rgba(224,92,92,.3); color:#E05C5C; padding:1.4rem; margin:1.5rem 0; font-size:.82rem; line-height:1.9; }
+
+/* ── Footer ── */
+footer { padding:1.4rem 0; }
+.ftr { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; }
+footer p { font-size:.65rem; color:rgba(244,236,219,.2); letter-spacing:.04em; }
+
+@media(max-width:640px) {
+  .grid-2-1 { grid-template-columns:1fr; }
+  .kpi-grid { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<div id="loading">
+  <div class="ld-logo">FrancDirect</div>
+  <div class="ld-sub">Loading&nbsp;&nbsp;Meta&nbsp;&nbsp;Ads</div>
+</div>
+
+<div class="wrap">
+  <header>
+    <div class="hdr">
+      <div>
+        <div class="brand-logo">FrancDirect</div>
+        <div class="brand-sub">Meta 広告ダッシュボード</div>
+      </div>
+      <div class="hdr-right">
+        <span class="last-upd" id="updated-at">—</span>
+        <button class="refresh-btn" onclick="loadData()">↻ 更新</button>
+        <span class="live-dot" title="6時間おき自動更新"></span>
+      </div>
+    </div>
+  </header>
+  <hr class="rule">
+
+  <!-- Period buttons -->
+  <div class="period-bar" id="period-bar">
+    <button class="period-btn active" data-preset="last_7d">7日</button>
+    <button class="period-btn active2" data-preset="last_30d">30日</button>
+    <button class="period-btn" data-preset="last_90d">90日</button>
+  </div>
+
+  <div id="error-area"></div>
+
+  <!-- KPI cards -->
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-label">広告費</div><div class="kpi-value" id="k-spend">—</div><div class="kpi-sub">Spend（円）</div></div>
+    <div class="kpi"><div class="kpi-label">リーチ</div><div class="kpi-value" id="k-reach">—</div><div class="kpi-sub">ユニーク人数</div></div>
+    <div class="kpi"><div class="kpi-label">インプレッション</div><div class="kpi-value" id="k-imp">—</div><div class="kpi-sub">表示回数</div></div>
+    <div class="kpi"><div class="kpi-label">クリック</div><div class="kpi-value" id="k-clicks">—</div><div class="kpi-sub">CTR <span id="k-ctr">—</span>%</div></div>
+    <div class="kpi"><div class="kpi-label">CPM</div><div class="kpi-value" id="k-cpm">—</div><div class="kpi-sub">1,000表示あたり</div></div>
+    <div class="kpi accent"><div class="kpi-label">実 CV</div><div class="kpi-value" id="k-cv">—</div><div class="kpi-sub">CPA ¥<span id="k-cpa">—</span></div></div>
+  </div>
+
+  <!-- Daily spend + CV / Donut -->
+  <div class="grid-2-1">
+    <div class="chart-box">
+      <div class="chart-title">日次 広告費 &amp; CV</div>
+      <canvas id="chart-daily" height="190"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">広告セット 配分</div>
+      <canvas id="chart-donut" height="190"></canvas>
+    </div>
+  </div>
+
+  <!-- Reach + Clicks trend -->
+  <div class="chart-full">
+    <div class="chart-title">リーチ &amp; クリック 推移</div>
+    <canvas id="chart-reach" height="120"></canvas>
+  </div>
+
+  <!-- Adset table -->
+  <div class="table-box">
+    <p class="sec-label">広告セット別詳細</p>
+    <table>
+      <thead><tr>
+        <th>広告セット名</th>
+        <th>広告費</th>
+        <th>リーチ</th>
+        <th>クリック</th>
+        <th>CTR</th>
+        <th>CPC</th>
+        <th>CV</th>
+      </tr></thead>
+      <tbody id="adset-tbody"></tbody>
+    </table>
+  </div>
+
+  <hr class="rule">
+  <footer>
+    <div class="ftr">
+      <p>FrancDirect &mdash; Meta Ads Dashboard</p>
+      <p>データソース: Meta Ads API &nbsp;|&nbsp; キャンペーン: FrancDirect &nbsp;|&nbsp; 6時間おき自動更新</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+const GOLD='#C4A35A', MUTED='rgba(244,236,219,0.3)', GREEN='#4CAF7D', BLUE='#7B9EB8', GRID='rgba(196,163,90,0.09)';
+Chart.defaults.color=MUTED; Chart.defaults.font.family="'Shippori Mincho', serif";
+let dailyChart, donutChart, reachChart, allData=null;
+
+const fmt   = (n,d=0)=>n==null?'—':Number(n).toLocaleString('ja-JP',{maximumFractionDigits:d});
+const fmtK  = n=>{ if(n==null)return'—'; if(n>=10000)return(n/10000).toFixed(1)+'万'; if(n>=1000)return(n/1000).toFixed(1)+'K'; return String(n); };
+const jst   = iso=>{ const d=new Date(iso); const h=d.getUTCHours()+9; const day=new Date(d); day.setUTCHours(h>=24?h-24:h); return `${day.getUTCFullYear()}/${String(day.getUTCMonth()+1).padStart(2,'0')}/${String(day.getUTCDate()).padStart(2,'0')} ${String(h>=24?h-24:h).padStart(2,'0')}:00 JST`; };
+
+function sliceDaily(daily, preset) {
+  if (!daily || !daily.length) return daily;
+  const days = preset==='last_7d'?7:preset==='last_90d'?90:30;
+  return daily.slice(-days);
+}
+
+function renderKPI(s) {
+  document.getElementById('k-spend').textContent  = '¥'+fmtK(s.spend);
+  document.getElementById('k-reach').textContent  = fmtK(s.reach);
+  document.getElementById('k-imp').textContent    = fmtK(s.impressions);
+  document.getElementById('k-clicks').textContent = fmtK(s.clicks);
+  document.getElementById('k-ctr').textContent    = s.ctr;
+  document.getElementById('k-cpm').textContent    = '¥'+fmt(s.cpm,0);
+  document.getElementById('k-cv').textContent     = s.conversions+'件';
+  document.getElementById('k-cpa').textContent    = s.cpa?fmt(s.cpa,0):'—';
+}
+
+function buildDailyChart(daily) {
+  const ctx=document.getElementById('chart-daily');
+  if(dailyChart)dailyChart.destroy();
+  const labels=daily.map(d=>d.date.slice(5));
+  dailyChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[
+    {label:'広告費(¥)',data:daily.map(d=>d.spend),backgroundColor:'rgba(196,163,90,0.22)',borderColor:GOLD,borderWidth:1,yAxisID:'y'},
+    {label:'CV',data:daily.map(d=>d.conversions),type:'line',borderColor:GREEN,backgroundColor:'rgba(76,175,125,0.12)',borderWidth:1.5,pointRadius:3,pointBackgroundColor:GREEN,fill:true,yAxisID:'y2'}
+  ]},options:{responsive:true,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{boxWidth:11,font:{size:10}}}},
+    scales:{
+      x:{grid:{color:GRID},ticks:{maxTicksLimit:10,font:{size:9}}},
+      y:{grid:{color:GRID},ticks:{callback:v=>'¥'+fmtK(v),font:{size:9}},title:{display:true,text:'広告費',font:{size:9}}},
+      y2:{position:'right',grid:{display:false},ticks:{stepSize:1,font:{size:9}},title:{display:true,text:'CV',font:{size:9}}}
+    }}});
+}
+
+function buildDonut(adsets) {
+  const ctx=document.getElementById('chart-donut');
+  if(donutChart)donutChart.destroy();
+  const pal=['#C4A35A','#7B9EB8','#4CAF7D','#B87B6A','#A07CB8'];
+  donutChart=new Chart(ctx,{type:'doughnut',data:{
+    labels:adsets.map(a=>a.name.length>14?a.name.slice(0,14)+'…':a.name),
+    datasets:[{data:adsets.map(a=>a.spend),backgroundColor:pal.map(p=>p+'88'),borderColor:pal,borderWidth:1}]
+  },options:{responsive:true,cutout:'60%',
+    plugins:{legend:{position:'bottom',labels:{boxWidth:9,font:{size:9},padding:8}}}}});
+}
+
+function buildReachChart(daily) {
+  const ctx=document.getElementById('chart-reach');
+  if(reachChart)reachChart.destroy();
+  const labels=daily.map(d=>d.date.slice(5));
+  reachChart=new Chart(ctx,{type:'line',data:{labels,datasets:[
+    {label:'リーチ',data:daily.map(d=>d.reach),borderColor:BLUE,backgroundColor:'rgba(123,158,184,0.07)',borderWidth:1.5,pointRadius:2,fill:true,yAxisID:'y'},
+    {label:'クリック',data:daily.map(d=>d.clicks),borderColor:GOLD,backgroundColor:'rgba(196,163,90,0.07)',borderWidth:1.5,pointRadius:2,fill:true,yAxisID:'y2'}
+  ]},options:{responsive:true,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{labels:{boxWidth:11,font:{size:10}}}},
+    scales:{
+      x:{grid:{color:GRID},ticks:{maxTicksLimit:10,font:{size:9}}},
+      y:{grid:{color:GRID},ticks:{callback:v=>fmtK(v),font:{size:9}},title:{display:true,text:'リーチ',font:{size:9}}},
+      y2:{position:'right',grid:{display:false},ticks:{font:{size:9}},title:{display:true,text:'クリック',font:{size:9}}}
+    }}});
+}
+
+function renderAdsets(adsets) {
+  document.getElementById('adset-tbody').innerHTML=adsets.map(a=>`
+    <tr>
+      <td><span class="td-name" title="${a.name}">${a.name}</span></td>
+      <td>¥${fmt(a.spend)}</td>
+      <td>${fmtK(a.reach)}</td>
+      <td>${fmt(a.clicks)}</td>
+      <td>${a.ctr}%</td>
+      <td>¥${fmt(a.cpc,0)}</td>
+      <td><span class="cv-pill">${a.conversions}件</span></td>
+    </tr>`).join('');
+}
+
+function renderAll(d, preset='last_30d') {
+  document.getElementById('updated-at').textContent='最終更新: '+jst(d.last_updated);
+  renderKPI(d.summary);
+  const sliced=sliceDaily(d.daily, preset);
+  buildDailyChart(sliced);
+  buildReachChart(sliced);
+  buildDonut(d.adsets);
+  renderAdsets(d.adsets);
+}
+
+async function loadData() {
+  try {
+    const res=await fetch('data.json?t='+Date.now());
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    allData=await res.json();
+    const active=document.querySelector('.period-btn.active');
+    renderAll(allData, active?.dataset.preset||'last_30d');
+    document.getElementById('error-area').innerHTML='';
+  } catch(e) {
+    document.getElementById('error-area').innerHTML=
+      `<div class="error-box">データ読み込みに失敗しました。GitHub Actions の設定を確認してください。<br>詳細: ${e.message}</div>`;
+  } finally {
+    const el=document.getElementById('loading');
+    el.style.opacity='0';
+    setTimeout(()=>el.style.display='none',400);
+  }
+}
+
+// Period buttons
+document.getElementById('period-bar').addEventListener('click', e=>{
+  const btn=e.target.closest('.period-btn');
+  if(!btn||!allData)return;
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAll(allData, btn.dataset.preset);
+});
+
+loadData();
+setTimeout(()=>location.reload(), 6*60*60*1000);
+</script>
+</body>
+</html>
