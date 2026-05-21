@@ -1,26 +1,26 @@
 {
-  "last_updated": "2026-05-21T08:08:23Z",
+  "last_updated": "2026-05-21T10:10:43Z",
   "campaign_id": "120243061348860707",
   "today": {
-    "spend": 2410.0,
-    "reach": 1166,
-    "impressions": 1333,
-    "clicks": 59,
-    "cpm": 1807.95,
-    "ctr": 4.43,
-    "cpc": 40.85,
+    "spend": 2908.0,
+    "reach": 1404,
+    "impressions": 1615,
+    "clicks": 68,
+    "cpm": 1800.62,
+    "ctr": 4.21,
+    "cpc": 42.76,
     "cv_meta": 0,
     "cv_myasp": 0,
     "cpa": null
   },
   "this_month": {
-    "spend": 76290.0,
-    "reach": 17678,
-    "impressions": 42823,
-    "clicks": 1686,
-    "cpm": 1781.52,
-    "ctr": 3.94,
-    "cpc": 45.25,
+    "spend": 76788.0,
+    "reach": 17755,
+    "impressions": 43105,
+    "clicks": 1695,
+    "cpm": 1781.42,
+    "ctr": 3.93,
+    "cpc": 45.3,
     "cv_meta": 0,
     "cv_myasp": 0,
     "cpa": null
@@ -38,13 +38,13 @@
     "cpa": null
   },
   "total": {
-    "spend": 141449.0,
-    "reach": 24857,
-    "impressions": 81085,
-    "clicks": 3496,
-    "cpm": 1744.45,
+    "spend": 141947.0,
+    "reach": 24882,
+    "impressions": 81367,
+    "clicks": 3505,
+    "cpm": 1744.53,
     "ctr": 4.31,
-    "cpc": 40.46,
+    "cpc": 40.5,
     "cv_meta": 0,
     "cv_myasp": 0,
     "cpa": null
@@ -53,22 +53,86 @@
     "today": [
       {
         "name": "2600513_ブロード(thank)_画像01~03",
-        "spend": 1239,
-        "reach": 604,
-        "impressions": 648,
-        "clicks": 28,
-        "ctr": 4.32,
-        "cpc": 44.25,
+        "spend": 1492,
+        "reach": 728,
+        "impressions": 797,
+        "clicks": 31,
+        "ctr": 3.89,
+        "cpc": 48.13,
         "cv_meta": 0
       },
       {
         "name": "260513_ブロード(normal)_画像01~03",
-        "spend": 1171,
-        "reach": 623,
-        "impressions": 685,
-        "clicks": 31,
-        "ctr": 4.53,
-        "cpc": 37.77,
+        "spend": 1416,
+        "reach": 747,
+        "impressions": 818,
+        "clicks": 37,
+        "ctr": 4.52,
+        "cpc": 38.27,
+        "cv_meta": 0
+      }
+    ],
+    "yesterday": [
+      {
+        "name": "2600513_ブロード(thank)_画像01~03",
+        "spend": 2533,
+        "reach": 1232,
+        "impressions": 1347,
+        "clicks": 65,
+        "ctr": 4.83,
+        "cpc": 38.97,
+        "cv_meta": 0
+      },
+      {
+        "name": "260513_ブロード(normal)_画像01~03",
+        "spend": 2461,
+        "reach": 1122,
+        "impressions": 1269,
+        "clicks": 37,
+        "ctr": 2.92,
+        "cpc": 66.51,
+        "cv_meta": 0
+      }
+    ],
+    "last_week": [
+      {
+        "name": "2600513_ブロード(thank)_画像01~03",
+        "spend": 18649,
+        "reach": 6110,
+        "impressions": 9514,
+        "clicks": 347,
+        "ctr": 3.65,
+        "cpc": 53.74,
+        "cv_meta": 0
+      },
+      {
+        "name": "260513_ブロード(normal)_画像01~03",
+        "spend": 17637,
+        "reach": 6284,
+        "impressions": 9152,
+        "clicks": 324,
+        "ctr": 3.54,
+        "cpc": 54.44,
+        "cv_meta": 0
+      },
+      {
+        "name": "260416_ブロード(thank)_画像01~03",
+        "spend": 503,
+        "reach": 254,
+        "impressions": 263,
+        "clicks": 9,
+        "ctr": 3.42,
+        "cpc": 55.89,
+        "cv_meta": 0
+      },
+      {
+        "name": "260416_ブロード(normal)_画像01~03",
+        "spend": 466,
+        "reach": 241,
+        "impressions": 258,
+        "clicks": 8,
+        "ctr": 3.1,
+        "cpc": 58.25,
         "cv_meta": 0
       }
     ],
@@ -85,22 +149,22 @@
       },
       {
         "name": "2600513_ブロード(thank)_画像01~03",
-        "spend": 19888,
-        "reach": 6428,
-        "impressions": 10162,
-        "clicks": 375,
-        "ctr": 3.69,
-        "cpc": 53.03,
+        "spend": 20141,
+        "reach": 6502,
+        "impressions": 10311,
+        "clicks": 378,
+        "ctr": 3.67,
+        "cpc": 53.28,
         "cv_meta": 0
       },
       {
         "name": "260513_ブロード(normal)_画像01~03",
-        "spend": 18808,
-        "reach": 6686,
-        "impressions": 9837,
-        "clicks": 355,
-        "ctr": 3.61,
-        "cpc": 52.98,
+        "spend": 19053,
+        "reach": 6736,
+        "impressions": 9970,
+        "clicks": 361,
+        "ctr": 3.62,
+        "cpc": 52.78,
         "cv_meta": 0
       },
       {
