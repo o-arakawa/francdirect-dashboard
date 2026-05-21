@@ -19,6 +19,10 @@ CAMP_FILTER       = f'[{{"field":"campaign.id","operator":"EQUAL","value":"{CAMP
 FIELDS            = "spend,reach,impressions,clicks,cpm,ctr,cpc,actions"
 ADSET_FIELDS      = "adset_name,spend,reach,impressions,clicks,cpm,ctr,cpc,actions"
 JST               = ZoneInfo("Asia/Tokyo")
+META_CV_SHEET_GIDS = {
+    "normal": "1453222225",  # ブロード(normal)_画像01~03
+    "thank":  "1220836676",  # ブロード(thank)_画像01~03
+}
 
 def meta(params):
     r = requests.get(BASE, params={**params, "access_token": ACCESS_TOKEN}, timeout=30)
@@ -81,27 +85,60 @@ def parse_sheet_date(value):
     year = today.year if "today" in globals() else datetime.now(JST).year
     return f"{year}-{int(m.group(1)):02d}-{int(m.group(2)):02d}"
 
+def spreadsheet_id_from_url(url):
+    m = re.search(r"/spreadsheets/d/([^/]+)", url or "")
+    return m.group(1) if m else ""
+
+def csv_url_for_gid(spreadsheet_id, gid):
+    return f"https://docs.google.com/spreadsheets/d/{spreadsheet_id}/export?format=csv&gid={gid}"
+
+def adset_key(name):
+    text = str(name or "").lower()
+    if "thank" in text:
+        return "thank"
+    if "normal" in text:
+        return "normal"
+    return ""
+
+def cv_from_csv_text(text):
+    rows = list(csv.reader(io.StringIO(text)))
+    if not rows:
+        return {}
+    headers = [norm_key(h) for h in rows[0]]
+    date_idx = next((i for i, h in enumerate(headers) if h in ("日付", "date", "")), 0)
+    cv_idx = next((i for i, h in enumerate(headers) if h in ("myasp_cv", "myaspcv", "メルマガ登録者")), None)
+    if cv_idx is None:
+        return {}
+    values = {}
+    for row in rows[1:]:
+        d = parse_sheet_date(row[date_idx] if date_idx < len(row) else "")
+        if not d:
+            continue
+        values[d] = num(row[cv_idx]) if cv_idx < len(row) else 0
+    return values
+
 # ── Google Sheet から CV データ ─────────────────────────────────────────
 cv_by_date = {}
+cv_by_adset_key_date = {}
 if SHEET_CSV_URL:
     try:
         print("📊 Google Sheet から CV データを取得中...")
-        r = requests.get(SHEET_CSV_URL, timeout=10)
-        r.raise_for_status()
-        rows = list(csv.reader(io.StringIO(r.text)))
-        if not rows:
-            raise RuntimeError("Sheet CSV is empty")
-        headers = [norm_key(h) for h in rows[0]]
-        date_idx = next((i for i, h in enumerate(headers) if h in ("日付", "date")), 0)
-        myasp_idx = next((i for i, h in enumerate(headers) if h in ("myasp_cv", "myaspcv", "メルマガ登録者")), None)
-        line_idx = next((i for i, h in enumerate(headers) if h in ("line_cv", "linecv")), None)
-        for row in rows[1:]:
-            d = parse_sheet_date(row[date_idx] if date_idx < len(row) else "")
-            if not d:
-                continue
-            myasp = num(row[myasp_idx]) if myasp_idx is not None and myasp_idx < len(row) else 0
-            line  = num(row[line_idx]) if line_idx is not None and line_idx < len(row) else 0
-            cv_by_date[d] = {"myasp": myasp, "line": line}
+        spreadsheet_id = spreadsheet_id_from_url(SHEET_CSV_URL)
+        sources = []
+        if spreadsheet_id:
+            sources = [(key, csv_url_for_gid(spreadsheet_id, gid)) for key, gid in META_CV_SHEET_GIDS.items()]
+        else:
+            sources = [("total", SHEET_CSV_URL)]
+
+        for key, url in sources:
+            r = requests.get(url, timeout=10)
+            r.raise_for_status()
+            by_date = cv_from_csv_text(r.text)
+            cv_by_adset_key_date[key] = by_date
+            for d, cv in by_date.items():
+                current = cv_by_date.setdefault(d, {"myasp": 0, "line": 0})
+                current["myasp"] += cv
+
         print(f"   {len(cv_by_date)} 日分取得")
     except Exception as e:
         print(f"⚠️ Sheet 読み込み失敗（スキップ）: {e}")
@@ -115,6 +152,18 @@ def cv_myasp_range(start, end):
         v.get("myasp", 0) + v.get("line", 0)
         for d, v in cv_by_date.items() if start <= d <= end
     )
+
+def cv_myasp_for_adset(name, date_str):
+    key = adset_key(name)
+    if not key:
+        return 0
+    return cv_by_adset_key_date.get(key, {}).get(date_str, 0)
+
+def cv_myasp_range_for_adset(name, start, end):
+    key = adset_key(name)
+    if not key:
+        return 0
+    return sum(cv for d, cv in cv_by_adset_key_date.get(key, {}).items() if start <= d <= end)
 
 # ── YouTube データ（GAS Web App）─────────────────────────────────────
 youtube_data = {"daily": [], "yesterday": None, "this_month": None}
@@ -170,7 +219,16 @@ def fetch_adsets(preset):
         "fields": ADSET_FIELDS, "date_preset": preset,
         "level": "adset", "filtering": CAMP_FILTER,
     })
-    return normalize_adsets(rows)
+    start, end = None, None
+    if preset == "today":
+        start = end = today_str
+    elif preset == "yesterday":
+        start = end = yesterday_str
+    elif preset == "this_month":
+        start, end = month_start, today_str
+    elif preset == "last_30d":
+        start, end = day30_start, today_str
+    return normalize_adsets(rows, start, end)
 
 def fetch_adsets_range(start, end):
     rows = meta({
@@ -179,13 +237,18 @@ def fetch_adsets_range(start, end):
         "level": "adset",
         "filtering": CAMP_FILTER,
     })
-    return normalize_adsets(rows)
+    return normalize_adsets(rows, start, end)
 
-def normalize_adsets(rows):
+def normalize_adsets(rows, start=None, end=None):
     result = []
     for a in rows:
+        name = a.get("adset_name", "—")
+        if start and end:
+            cv_myasp = cv_myasp_range_for_adset(name, start, end)
+        else:
+            cv_myasp = 0
         result.append({
-            "name":        a.get("adset_name", "—"),
+            "name":        name,
             "spend":       round(float(a.get("spend", 0))),
             "reach":       int(a.get("reach", 0)),
             "impressions": int(a.get("impressions", 0)),
@@ -194,6 +257,7 @@ def normalize_adsets(rows):
             "ctr":         round(float(a.get("ctr", 0)), 2),
             "cpc":         round(float(a.get("cpc", 0)), 2),
             "cv_meta":     cv_from_actions(a.get("actions")),
+            "cv_myasp":    cv_myasp,
         })
     return sorted(result, key=lambda x: x["spend"], reverse=True)
 
