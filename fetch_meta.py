@@ -1,530 +1,424 @@
- GET / 500 in 156ms
- GET / 500 in 3ms
- GET / 500 in 28ms
- GET /_next/static/chunks/fallback/webpack.js 500 in 6ms
- GET /_next/static/chunks/fallback/main.js 500 in 8ms
- GET /_next/static/chunks/fallback/react-refresh.js 500 in 6ms
- GET /_next/static/chunks/fallback/pages/_app.js 500 in 10ms
- GET /_next/static/chunks/fallback/pages/_error.js 500 in 10ms
-^C
-o.arakawa@osamunoMacBook-Pro ad-meeting-mvp % npm run dev
+"""
+Meta Ads API + YouTube (GAS) + MyASP CV — FrancDirect専用
+YouTube データは Google Apps Script Web App から取得
+"""
 
+import os, json, csv, io, re, requests
+from datetime import datetime, timezone, timedelta
+from zoneinfo import ZoneInfo
 
-> ad-meeting-mvp@0.1.0 dev
-> next dev
-
- ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
-  ▲ Next.js 14.2.23
-  - Local:        http://localhost:3000
-  - Environments: .env
-
- ✓ Starting...
- ✓ Ready in 1341ms
- ○ Compiling / ...
- ⨯ ./app/globals.css
-Module parse failed: Unexpected character '@' (1:0)
-> @tailwind base;
-| @tailwind components;
-| @tailwind utilities;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected character '@' (1:0)
-> @tailwind base;
-| @tailwind components;
-| @tailwind utilities;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected character '@' (1:0)
-> @tailwind base;
-| @tailwind components;
-| @tailwind utilities;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET / 500 in 1762ms
- GET / 500 in 11ms
- GET / 500 in 9ms
-
-warn - The `content` option in your Tailwind CSS configuration is missing or empty.
-warn - Configure your content sources or your generated CSS will be missing styles.
-warn - https://tailwindcss.com/docs/content-configuration
- ✓ Compiled /_error in 167ms (440 modules)
- GET / 500 in 7ms
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:0)
-> *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-| 
-| body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #17202a; font-size: 14px; line-height: 1.6; }
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 125ms
- GET / 500 in 8ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 5ms
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:0)
-> *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-| 
-| body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #17202a; font-size: 14px; line-height: 1.6; }
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 84ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 6ms
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:0)
-> *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-| 
-| body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #17202a; font-size: 14px; line-height: 1.6; }
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 243ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 16ms
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:0)
-> *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-| 
-| body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #17202a; font-size: 14px; line-height: 1.6; }
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 103ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 5ms
-[Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'
+ACCESS_TOKEN      = os.environ["META_ACCESS_TOKEN"]
+AD_ACCOUNT_ID     = os.environ["META_AD_ACCOUNT_ID"]
+CAMPAIGN_ID       = os.environ["META_CAMPAIGN_ID"]
+CV_ACTION         = os.environ.get("META_CV_ACTION", "lead")
+SHEET_CSV_URL     = os.environ.get("SHEET_CSV_URL", "")
+GAS_YOUTUBE_URL   = os.environ.get("GAS_YOUTUBE_URL", "")
+API_VER           = "v21.0"
+BASE              = f"https://graph.facebook.com/{API_VER}/act_{AD_ACCOUNT_ID}/insights"
+CAMP_FILTER       = f'[{{"field":"campaign.id","operator":"EQUAL","value":"{CAMPAIGN_ID}"}}]'
+FIELDS            = "spend,reach,impressions,clicks,cpm,ctr,cpc,actions"
+ADSET_FIELDS      = "adset_name,spend,reach,impressions,clicks,cpm,ctr,cpc,actions"
+JST               = ZoneInfo("Asia/Tokyo")
+META_CV_SPREADSHEET_ID = os.environ.get("META_CV_SPREADSHEET_ID", "1SsfV2nELpb_dZJy9HEXjUIpewx-oy0Zp5rnjRiS0UiU")
+META_CV_SHEET_GIDS = {
+    "normal": "1453222225",  # ブロード(normal)_画像01~03
+    "thank":  "1220836676",  # ブロード(thank)_画像01~03
+    "total":  "1728626971",  # Meta報告ブロック
 }
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'
+
+def meta(params):
+    r = requests.get(BASE, params={**params, "access_token": ACCESS_TOKEN}, timeout=30)
+    r.raise_for_status()
+    body = r.json()
+    if "error" in body:
+        raise RuntimeError(f"Meta API: {body['error']['message']}")
+    data = body.get("data", [])
+    next_url = body.get("paging", {}).get("next")
+    while next_url:
+        r = requests.get(next_url, timeout=30)
+        r.raise_for_status()
+        body = r.json()
+        if "error" in body:
+            raise RuntimeError(f"Meta API: {body['error']['message']}")
+        data.extend(body.get("data", []))
+        next_url = body.get("paging", {}).get("next")
+    return data
+
+def cv_from_actions(actions, atype=CV_ACTION):
+    for a in (actions or []):
+        if a.get("action_type") == atype:
+            return int(float(a.get("value", 0)))
+    return 0
+
+def row_to_summary(s):
+    return {
+        "spend":       round(float(s.get("spend", 0))),
+        "reach":       int(s.get("reach", 0)),
+        "impressions": int(s.get("impressions", 0)),
+        "clicks":      int(s.get("clicks", 0)),
+        "cpm":         round(float(s.get("cpm", 0)), 2),
+        "ctr":         round(float(s.get("ctr", 0)), 2),
+        "cpc":         round(float(s.get("cpc", 0)), 2),
+        "cv_meta":     cv_from_actions(s.get("actions")),
+        "cv_myasp":    0,
+    }
+
+def num(value):
+    text = str(value or "").replace(",", "").replace("¥", "").replace("%", "").strip()
+    if text in ("", "-"):
+        return 0
+    try:
+        return int(float(text))
+    except ValueError:
+        return 0
+
+def norm_key(value):
+    return re.sub(r"\s+", "", str(value or "").replace("\n", "")).lower()
+
+def parse_sheet_date(value):
+    text = str(value or "").strip()
+    if not text or text == "合計" or "合計" in text:
+        return ""
+    if re.match(r"^\d{4}-\d{1,2}-\d{1,2}$", text):
+        return text
+    m = re.match(r"^(?:\d{4}年)?(\d{1,2})月(\d{1,2})日", text)
+    if not m:
+        return ""
+    year = today.year if "today" in globals() else datetime.now(JST).year
+    return f"{year}-{int(m.group(1)):02d}-{int(m.group(2)):02d}"
+
+def spreadsheet_id_from_url(url):
+    m = re.search(r"/spreadsheets/d/([A-Za-z0-9_-]{20,})", url or "")
+    return m.group(1) if m else ""
+
+def csv_url_for_gid(spreadsheet_id, gid):
+    return f"https://docs.google.com/spreadsheets/d/{spreadsheet_id}/export?format=csv&gid={gid}"
+
+def adset_key(name):
+    text = str(name or "").lower()
+    if "thank" in text:
+        return "thank"
+    if "normal" in text:
+        return "normal"
+    return ""
+
+def csv_rows_to_cv_by_date(rows):
+    if not rows:
+        return {}
+    headers = [norm_key(h) for h in rows[0]]
+    date_idx = next((i for i, h in enumerate(headers) if h in ("日付", "date", "")), 0)
+    cv_idx = next((i for i, h in enumerate(headers) if h in ("myasp_cv", "myaspcv", "メルマガ登録者")), None)
+    if cv_idx is None:
+        return {}
+    values = {}
+    for row in rows[1:]:
+        d = parse_sheet_date(row[date_idx] if date_idx < len(row) else "")
+        if not d:
+            continue
+        values[d] = num(row[cv_idx]) if cv_idx < len(row) else 0
+    return values
+
+def cv_from_csv_text(text):
+    rows = list(csv.reader(io.StringIO(text)))
+    if not rows:
+        return {}
+    headers = [norm_key(h) for h in rows[0]]
+    cv_idx = next((i for i, h in enumerate(headers) if h in ("myasp_cv", "myaspcv", "メルマガ登録者")), None)
+    if cv_idx is not None:
+        return csv_rows_to_cv_by_date(rows)
+
+    # Some Google Sheets CSV exports can include leading blank rows/columns.
+    # Detect the actual header row containing メルマガ登録者, then parse below it.
+    for i, row in enumerate(rows[:20]):
+        normalized = [norm_key(c) for c in row]
+        if "メルマガ登録者" in normalized:
+            return csv_rows_to_cv_by_date(rows[i:])
+    return {}
+
+# ── Google Sheet から CV データ ─────────────────────────────────────────
+cv_by_date = {}
+cv_by_adset_key_date = {}
+if SHEET_CSV_URL or META_CV_SPREADSHEET_ID:
+    try:
+        print("📊 Google Sheet から CV データを取得中...")
+        spreadsheet_id = spreadsheet_id_from_url(SHEET_CSV_URL) or META_CV_SPREADSHEET_ID
+        sources = [(key, csv_url_for_gid(spreadsheet_id, gid)) for key, gid in META_CV_SHEET_GIDS.items()]
+
+        for key, url in sources:
+            try:
+                r = requests.get(url, timeout=10)
+                r.raise_for_status()
+                by_date = cv_from_csv_text(r.text)
+            except Exception as e:
+                print(f"⚠️ {key} CV 読み込み失敗: {e}")
+                by_date = {}
+            cv_by_adset_key_date[key] = by_date
+            print(f"   {key}: {len(by_date)} 日分")
+
+        if cv_by_adset_key_date.get("total"):
+            for d, cv in cv_by_adset_key_date["total"].items():
+                cv_by_date[d] = {"myasp": cv, "line": 0}
+        else:
+            for key in ("normal", "thank"):
+                for d, cv in cv_by_adset_key_date.get(key, {}).items():
+                    current = cv_by_date.setdefault(d, {"myasp": 0, "line": 0})
+                    current["myasp"] += cv
+
+        if not cv_by_date and SHEET_CSV_URL:
+            print("   normal/thank が読めないため、SHEET_CSV_URL の合計CVを使用します")
+            r = requests.get(SHEET_CSV_URL, timeout=10)
+            r.raise_for_status()
+            by_date = cv_from_csv_text(r.text)
+            cv_by_adset_key_date["total"] = by_date
+            for d, cv in by_date.items():
+                cv_by_date[d] = {"myasp": cv, "line": 0}
+
+        print(f"   {len(cv_by_date)} 日分取得")
+    except Exception as e:
+        print(f"⚠️ Sheet 読み込み失敗（スキップ）: {e}")
+
+def cv_myasp_for(date_str):
+    e = cv_by_date.get(date_str, {})
+    return e.get("myasp", 0) + e.get("line", 0)
+
+def cv_myasp_range(start, end):
+    return sum(
+        v.get("myasp", 0) + v.get("line", 0)
+        for d, v in cv_by_date.items() if start <= d <= end
+    )
+
+def cv_myasp_for_adset(name, date_str):
+    key = adset_key(name)
+    if not key:
+        return 0
+    return cv_by_adset_key_date.get(key, {}).get(date_str, 0)
+
+def cv_myasp_range_for_adset(name, start, end):
+    key = adset_key(name)
+    if not key:
+        return 0
+    return sum(cv for d, cv in cv_by_adset_key_date.get(key, {}).items() if start <= d <= end)
+
+# ── YouTube データ（GAS Web App）─────────────────────────────────────
+youtube_data = {"daily": [], "yesterday": None, "this_month": None}
+if GAS_YOUTUBE_URL:
+    try:
+        print("📺 YouTube データを GAS から取得中...")
+        r = requests.get(GAS_YOUTUBE_URL, timeout=30)
+        r.raise_for_status()
+        youtube_data = r.json()
+        if "error" in youtube_data:
+            print(f"⚠️ GAS エラー: {youtube_data['error']}")
+            youtube_data = {"daily": [], "yesterday": None, "this_month": None}
+        else:
+            print(f"   YouTube: {len(youtube_data.get('daily', []))} 日分取得")
+    except Exception as e:
+        print(f"⚠️ YouTube データ取得失敗（スキップ）: {e}")
+else:
+    print("⚠️ GAS_YOUTUBE_URL 未設定 — YouTube データなし")
+
+# ── Meta: 各期間サマリー ──────────────────────────────────────────────
+today       = datetime.now(JST).date()
+today_str   = today.strftime("%Y-%m-%d")
+month_start = today.strftime("%Y-%m-01")
+day30_start = (today - timedelta(days=29)).strftime("%Y-%m-%d")
+
+def fetch_summary(preset):
+    rows = meta({
+        "fields": FIELDS, "date_preset": preset,
+        "level": "campaign", "filtering": CAMP_FILTER,
+    })
+    if not rows:
+        return row_to_summary({})
+    merged = {
+        "spend": sum(float(r.get("spend",0)) for r in rows),
+        "reach": sum(int(r.get("reach",0)) for r in rows),
+        "impressions": sum(int(r.get("impressions",0)) for r in rows),
+        "clicks": sum(int(r.get("clicks",0)) for r in rows),
+        "cpm": 0, "ctr": 0, "cpc": 0, "actions": [],
+    }
+    total_imp = merged["impressions"]
+    if total_imp > 0:
+        merged["cpm"] = round(merged["spend"] / total_imp * 1000, 2)
+        merged["ctr"] = round(merged["clicks"] / total_imp * 100, 2)
+    if merged["clicks"] > 0:
+        merged["cpc"] = round(merged["spend"] / merged["clicks"], 2)
+    cv = sum(cv_from_actions(r.get("actions")) for r in rows)
+    merged["cv_meta"] = cv
+    merged["cv_myasp"] = 0
+    return {k: merged[k] for k in ["spend","reach","impressions","clicks","cpm","ctr","cpc","cv_meta","cv_myasp"]}
+
+def fetch_adsets(preset):
+    rows = meta({
+        "fields": ADSET_FIELDS, "date_preset": preset,
+        "level": "adset", "filtering": CAMP_FILTER,
+    })
+    start, end = None, None
+    if preset == "today":
+        start = end = today_str
+    elif preset == "yesterday":
+        start = end = yesterday_str
+    elif preset == "this_month":
+        start, end = month_start, today_str
+    elif preset == "last_30d":
+        start, end = day30_start, today_str
+    return normalize_adsets(rows, start, end)
+
+def fetch_adsets_range(start, end):
+    rows = meta({
+        "fields": ADSET_FIELDS,
+        "time_range": json.dumps({"since": start, "until": end}),
+        "level": "adset",
+        "filtering": CAMP_FILTER,
+    })
+    return normalize_adsets(rows, start, end)
+
+def normalize_adsets(rows, start=None, end=None):
+    result = []
+    for a in rows:
+        name = a.get("adset_name", "—")
+        if start and end:
+            cv_myasp = cv_myasp_range_for_adset(name, start, end)
+        else:
+            cv_myasp = 0
+        result.append({
+            "name":        name,
+            "spend":       round(float(a.get("spend", 0))),
+            "reach":       int(a.get("reach", 0)),
+            "impressions": int(a.get("impressions", 0)),
+            "clicks":      int(a.get("clicks", 0)),
+            "cpm":         round(float(a.get("cpm", 0)), 2),
+            "ctr":         round(float(a.get("ctr", 0)), 2),
+            "cpc":         round(float(a.get("cpc", 0)), 2),
+            "cv_meta":     cv_from_actions(a.get("actions")),
+            "cv_myasp":    cv_myasp,
+        })
+    return sorted(result, key=lambda x: x["spend"], reverse=True)
+
+print(f"📡 Meta (キャンペーンID: {CAMPAIGN_ID}) のデータを取得中...")
+
+s_today  = fetch_summary("today")
+s_month  = fetch_summary("this_month")
+s_30d    = fetch_summary("last_30d")
+s_total  = fetch_summary("maximum")
+yesterday_str = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+last_week_start = (today - timedelta(days=7)).strftime("%Y-%m-%d")
+
+s_today["cv_myasp"] = cv_myasp_for(today_str)
+s_month["cv_myasp"] = cv_myasp_range(month_start, today_str)
+s_30d["cv_myasp"]   = cv_myasp_range(day30_start, today_str)
+s_total["cv_myasp"] = sum(v.get("myasp",0)+v.get("line",0) for v in cv_by_date.values())
+
+for s in [s_today, s_month, s_30d, s_total]:
+    cv = s["cv_myasp"] or s["cv_meta"]
+    s["cpa"] = round(s["spend"] / cv) if cv > 0 else None
+
+adsets_today = fetch_adsets("today")
+adsets_yesterday = fetch_adsets("yesterday")
+adsets_last_week = fetch_adsets_range(last_week_start, yesterday_str)
+adsets_month = fetch_adsets("this_month")
+adsets_30d   = fetch_adsets("last_30d")
+
+# Meta 日次データ
+daily_raw = meta({
+    "fields": FIELDS, "date_preset": "last_90d",
+    "level": "campaign", "filtering": CAMP_FILTER,
+    "time_increment": 1,
+})
+daily = []
+for d in daily_raw:
+    ds = d.get("date_start", "")
+    daily.append({
+        "date":        ds,
+        "spend":       round(float(d.get("spend", 0))),
+        "reach":       int(d.get("reach", 0)),
+        "impressions": int(d.get("impressions", 0)),
+        "clicks":      int(d.get("clicks", 0)),
+        "cpm":         round(float(d.get("cpm", 0)), 2),
+        "cv_meta":     cv_from_actions(d.get("actions")),
+        "cv_myasp":    cv_myasp_for(ds),
+    })
+
+# ── 昨日の合算データ ──────────────────────────────────────────────────
+meta_yday = next((d for d in daily if d["date"] == yesterday_str), None)
+yt_yday   = youtube_data.get("yesterday")
+
+def make_combined(m, y):
+    if not m and not y:
+        return None
+    m = m or {}
+    y = y or {}
+    spend = m.get("spend",0) + y.get("spend",0)
+    imp   = m.get("impressions",0) + y.get("impressions",0)
+    clk   = m.get("clicks",0) + y.get("clicks",0)
+    mail  = m.get("cv_myasp",0) + y.get("mail",0)
+    return {
+        "spend":       spend,
+        "impressions": imp,
+        "clicks":      clk,
+        "mail":        mail,
+        "cpm":         round(spend / imp * 1000) if imp > 0 else 0,
+        "cpc":         round(spend / clk)        if clk > 0 else 0,
+        "cpa":         round(spend / mail)        if mail > 0 else None,
+    }
+
+combined_yesterday = make_combined(meta_yday, yt_yday)
+
+# ── 合算日次（チャート用）────────────────────────────────────────────
+yt_daily_map = {d["date"]: d for d in youtube_data.get("daily", [])}
+combined_daily = []
+all_dates = sorted(set([d["date"] for d in daily] + list(yt_daily_map.keys())))
+for ds in all_dates:
+    m = next((d for d in daily if d["date"] == ds), {})
+    y = yt_daily_map.get(ds, {})
+    spend = m.get("spend",0) + y.get("spend",0)
+    imp   = m.get("impressions",0) + y.get("impressions",0)
+    clk   = m.get("clicks",0) + y.get("clicks",0)
+    mail  = m.get("cv_myasp",0) + y.get("mail",0)
+    combined_daily.append({
+        "date":       ds,
+        "spend":      spend,
+        "impressions":imp,
+        "clicks":     clk,
+        "mail":       mail,
+        "meta_spend": m.get("spend",0),
+        "yt_spend":   y.get("spend",0),
+    })
+
+# ── 出力 ─────────────────────────────────────────────────────────────
+output = {
+    "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "campaign_id":  CAMPAIGN_ID,
+    "today":        s_today,
+    "this_month":   s_month,
+    "last_30d":     s_30d,
+    "total":        s_total,
+    "adsets": {
+        "today":     adsets_today,
+        "yesterday": adsets_yesterday,
+        "last_week": adsets_last_week,
+        "this_month":adsets_month,
+        "last_30d":  adsets_30d,
+    },
+    "daily":          daily,
+    "cv_log":         [{"date": k, **v} for k, v in sorted(cv_by_date.items())],
+    "youtube":        youtube_data,
+    "yesterday": {
+        "date":     yesterday_str,
+        "meta":     meta_yday,
+        "youtube":  yt_yday,
+        "combined": combined_yesterday,
+    },
+    "combined_daily": combined_daily,
 }
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'
-}
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'
-çCC^C
-o.arakawa@osamunoMacBook-Pro ad-meeting-mvp % npm run dev
 
+with open("data.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
 
-> ad-meeting-mvp@0.1.0 dev
-> next dev
-
- ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
-  ▲ Next.js 14.2.23
-  - Local:        http://localhost:3000
-  - Environments: .env
-
- ✓ Starting...
- ✓ Ready in 934ms
- ○ Compiling /_not-found ...
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:0)
-> *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-| 
-| body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #17202a; font-size: 14px; line-height: 1.6; }
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:0)
-> *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-| 
-| body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #17202a; font-size: 14px; line-height: 1.6; }
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 1462ms
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:0)
-> *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-| 
-| body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f6f8fb; color: #17202a; font-size: 14px; line-height: 1.6; }
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET / 500 in 66ms
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:146)
-> html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li, form, input, textarea, select, button, nav, main, section, article, details, summary {
-|   box-sizing: border-box;
-|   margin: 0;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 144ms
- GET / 500 in 4ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 3ms
-[Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/1.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/1.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/1.pack.gz'
-}
-[Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/3.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/3.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/3.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/3.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/3.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/3.pack.gz'
-}
-[Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'
-}
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/1.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/1.pack.gz'
-^C
-o.arakawa@osamunoMacBook-Pro ad-meeting-mvp % npm run dev
-
-
-> ad-meeting-mvp@0.1.0 dev
-> next dev
-
- ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
-  ▲ Next.js 14.2.23
-  - Local:        http://localhost:3000
-  - Environments: .env
-
- ✓ Starting...
- ✓ Ready in 1437ms
- ○ Compiling / ...
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:146)
-> html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li, form, input, textarea, select, button, nav, main, section, article, details, summary {
-|   box-sizing: border-box;
-|   margin: 0;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:146)
-> html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li, form, input, textarea, select, button, nav, main, section, article, details, summary {
-|   box-sizing: border-box;
-|   margin: 0;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:146)
-> html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li, form, input, textarea, select, button, nav, main, section, article, details, summary {
-|   box-sizing: border-box;
-|   margin: 0;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 1787ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 116ms
- GET / 500 in 4ms
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development-fallback/0.pack.gz'
-^C
-o.arakawa@osamunoMacBook-Pro ad-meeting-mvp % rm -rf .next
-
-o.arakawa@osamunoMacBook-Pro ad-meeting-mvp % npm run dev
-
-
-> ad-meeting-mvp@0.1.0 dev
-> next dev
-
- ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
-  ▲ Next.js 14.2.23
-  - Local:        http://localhost:3000
-  - Environments: .env
-
- ✓ Starting...
- ✓ Ready in 965ms
- ○ Compiling /_not-found ...
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:146)
-> html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li, form, input, textarea, select, button, nav, main, section, article, details, summary {
-|   box-sizing: border-box;
-|   margin: 0;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:146)
-> html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, ul, li, form, input, textarea, select, button, nav, main, section, article, details, summary {
-|   box-sizing: border-box;
-|   margin: 0;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ✓ Compiled / in 53ms (426 modules)
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 1596ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 210ms
- GET / 500 in 4ms
- GET / 500 in 21ms
- GET / 500 in 8ms
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:5)
-> body {
-|   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-|   background: #f6f8fb;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 169ms
- GET / 500 in 6ms
- ⚠ Fast Refresh had to perform a full reload due to a runtime error.
- GET / 500 in 6ms
-[Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/0.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/0.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/0.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/0.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/0.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/0.pack.gz'
-}
-[Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/0.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/0.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/0.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/0.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/0.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/0.pack.gz'
-}
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/server-development/0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development/0.pack.gz'
-^C
-o.arakawa@osamunoMacBook-Pro ad-meeting-mvp % npm run dev
-
-
-> ad-meeting-mvp@0.1.0 dev
-> next dev
-
- ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
-  ▲ Next.js 14.2.23
-  - Local:        http://localhost:3000
-  - Environments: .env
-
- ✓ Starting...
- ✓ Ready in 1008ms
- ○ Compiling /_not-found ...
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:5)
-> body {
-|   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-|   background: #f6f8fb;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:5)
-> body {
-|   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-|   background: #f6f8fb;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ✓ Compiled / in 38ms (426 modules)
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 1862ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 246ms
- GET / 500 in 4ms
- GET / 500 in 10ms
-^C
-o.arakawa@osamunoMacBook-Pro ad-meeting-mvp % npm install
-
-npm warn EBADENGINE Unsupported engine {
-npm warn EBADENGINE   package: 'eslint-visitor-keys@5.0.1',
-npm warn EBADENGINE   required: { node: '^20.19.0 || ^22.13.0 || >=24' },
-npm warn EBADENGINE   current: { node: 'v22.12.0', npm: '10.9.0' }
-npm warn EBADENGINE }
-npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
-npm warn deprecated next@14.2.23: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
-
-added 67 packages, and audited 68 packages in 16s
-
-9 packages are looking for funding
-  run `npm fund` for details
-
-2 vulnerabilities (1 moderate, 1 critical)
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
-o.arakawa@osamunoMacBook-Pro ad-meeting-mvp % npm run dev
-
-
-> ad-meeting-mvp@0.1.0 dev
-> next dev
-
- ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
-  ▲ Next.js 14.2.23
-  - Local:        http://localhost:3000
-  - Environments: .env
-
- ✓ Starting...
-It looks like you're trying to use TypeScript but do not have the required package(s) installed.
-Installing dependencies
-
-If you are not trying to use TypeScript, please remove the tsconfig.json file from your package root (and any TypeScript files in your pages directory).
-
-
-Installing devDependencies (npm):
-- typescript
-- @types/react
-
-npm warn EBADENGINE Unsupported engine {
-npm warn EBADENGINE   package: 'eslint-visitor-keys@5.0.1',
-npm warn EBADENGINE   required: { node: '^20.19.0 || ^22.13.0 || >=24' },
-npm warn EBADENGINE   current: { node: 'v22.12.0', npm: '10.9.0' }
-npm warn EBADENGINE }
-npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
-npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
-npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
-npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
-npm warn deprecated glob@10.3.10: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
-npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
-
-added 353 packages, and audited 421 packages in 2s
-
-156 packages are looking for funding
-  run `npm fund` for details
-
-5 vulnerabilities (1 moderate, 3 high, 1 critical)
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
-
- ✓ Ready in 5s
- ○ Compiling / ...
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:5)
-> body {
-|   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-|   background: #f6f8fb;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:5)
-> body {
-|   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-|   background: #f6f8fb;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- ⨯ ./app/globals.css
-Module parse failed: Unexpected token (1:5)
-> body {
-|   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-|   background: #f6f8fb;
-
-Import trace for requested module:
-./app/globals.css
-./app/layout.tsx
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 2334ms
- ⚠ Fast Refresh had to perform a full reload due to a runtime error.
- GET / 500 in 168ms
- GET / 500 in 5ms
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development-fallback/0.pack.gz_' -> '/Users/o.arakawa/projects/ad-meeting-mvp/.next/cache/webpack/client-development-fallback/0.pack.gz'
- ⨯ ./app/globals.css
-Module not found: Can't resolve '/Users/o.arakawa/projects/ad-meeting-mvp/app/globals.css'
-
-https://nextjs.org/docs/messages/module-not-found
- GET /_next/static/webpack/53b1ffa83c7b7de7.webpack.hot-update.json 500 in 140ms
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- GET / 500 in 8ms
+print("✅ 完了")
+print(f"   Meta今月  : ¥{s_month['spend']:,}  MyASP CV:{s_month['cv_myasp']}")
+yt_m = youtube_data.get("this_month")
+if yt_m:
+    print(f"   YouTube今月: ¥{yt_m.get('spend',0):,}  メルマガ:{yt_m.get('mail',0)}")
+if combined_yesterday:
+    print(f"   昨日合算  : ¥{combined_yesterday['spend']:,}  メール:{combined_yesterday.get('mail',0)}")
