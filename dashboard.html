@@ -135,7 +135,7 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">今日 消化金額（YouTube + Meta）</div><canvas id="chart-today" height="130"></canvas></div>
   <div class="table-box">
     <p class="sec" style="margin-top:0">媒体 / 広告セット別（今日）</p>
-    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
     <tbody id="t-adset-tbody"></tbody></table>
   </div>
 </div>
@@ -177,7 +177,7 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">昨日 消化金額（YouTube + Meta）</div><canvas id="chart-yesterday" height="130"></canvas></div>
   <div class="table-box">
     <p class="sec" style="margin-top:0">媒体 / 広告セット別（昨日）</p>
-    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
     <tbody id="y-adset-tbody"></tbody></table>
   </div>
 </div>
@@ -195,7 +195,7 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">先週 日次 消化金額（YouTube + Meta）</div><canvas id="chart-week" height="130"></canvas></div>
   <div class="table-box">
     <p class="sec" style="margin-top:0">媒体 / 広告セット別（先週）</p>
-    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
     <tbody id="w-adset-tbody"></tbody></table>
   </div>
 </div>
@@ -238,7 +238,7 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">日次 消化金額（今月）</div><canvas id="chart-month" height="130"></canvas></div>
   <div class="table-box">
     <p class="sec" style="margin-top:0">媒体 / 広告セット別（今月）</p>
-    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
     <tbody id="m-adset-tbody"></tbody></table>
   </div>
 </div>
@@ -508,14 +508,15 @@ function metaAggregateRow(name,row){
 }
 
 function ytRowsFor(period,ytSummary){
-  const detail=gasData.adsets?.[period]||gasData.ad_groups?.[period]||gasData.adGroups?.[period]||gasData.campaigns?.[period]||[];
+  const detail=gasData.asset_groups?.[period]||gasData.assetGroups?.[period]||gasData.adsets?.[period]||gasData.ad_groups?.[period]||gasData.adGroups?.[period]||gasData.campaigns?.[period]||[];
   const rows=Array.isArray(detail)&&detail.length?detail:[ytSummary].filter(Boolean);
   return rows.map(r=>({
     source:'YouTube',
-    name:r.name||r.adset_name||r.ad_group_name||r.campaign_name||'YouTube 合計（GAS）',
+    name:r.name||r.asset_group_name||r.assetGroupName||r.adset_name||r.ad_group_name||r.campaign_name||'YouTube 合計（GAS）',
     spend:r.spend||0,
     reach:r.impressions||r.reach||0,
     clicks:r.clicks||0,
+    cpm:r.cpm||calcCpm(r.spend||0,r.impressions||r.reach||0),
     ctr:r.ctr!=null?r.ctr:((r.impressions||0)>0?(r.clicks||0)/(r.impressions||0)*100:0),
     cpc:r.cpc||calcCpc(r.spend||0,r.clicks||0),
     cv:r.mail||r.cv||0
@@ -529,6 +530,7 @@ function metaRowsFor(adsets){
     spend:a.spend||0,
     reach:a.reach||a.impressions||0,
     clicks:a.clicks||0,
+    cpm:a.cpm||calcCpm(a.spend||0,a.impressions||a.reach||0),
     ctr:a.ctr!=null?a.ctr:((a.impressions||0)>0?(a.clicks||0)/(a.impressions||0)*100:0),
     cpc:a.cpc||calcCpc(a.spend||0,a.clicks||0),
     cv:a.cv_meta||a.cv_myasp||0
@@ -541,8 +543,8 @@ function renderAdsets(tbodyId,period,metaAdsets,ytSummary){
   tbody.innerHTML=rows.length?rows.map(r=>`<tr>
     <td><span class="tdname" title="${escapeHtml(r.source+' / '+r.name)}">${escapeHtml(r.source+' / '+r.name)}</span></td>
     <td>${yen(r.spend)}</td><td>${fmtInt(r.reach)}</td><td>${fmtInt(r.clicks)}</td>
-    <td>${fmt(r.ctr,2)}%</td><td>${yen(r.cpc)}</td><td><span class="cv-pill">${fmtInt(r.cv)}件</span></td>
-  </tr>`).join(''):`<tr class="empty-row"><td colspan="7">表示できる広告セットデータがありません</td></tr>`;
+    <td>${yen(r.cpm)}</td><td>${fmt(r.ctr,2)}%</td><td>${yen(r.cpc)}</td><td><span class="cv-pill">${fmtInt(r.cv)}件</span></td>
+  </tr>`).join(''):`<tr class="empty-row"><td colspan="8">表示できる広告セットデータがありません</td></tr>`;
 }
 
 // ===== データ読み込み =====
