@@ -96,15 +96,52 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
 <hr class="rule">
 
 <div class="period-bar" id="period-bar">
-  <button class="period-btn active" data-view="yesterday">昨日</button>
+  <button class="period-btn active" data-view="today">今日</button>
+  <button class="period-btn" data-view="yesterday">昨日</button>
+  <button class="period-btn" data-view="last_week">先週</button>
   <button class="period-btn" data-view="this_month">今月</button>
-  <button class="period-btn" data-view="last_30d">30日間</button>
 </div>
 <div id="error-area"></div>
 
+<!-- 今日 -->
+<div class="view active" id="view-today">
+  <div class="sec">今日（YouTube + Meta）</div>
+  <div class="kpi-grid">
+    <div class="kpi accent"><div class="kpi-label">消化金額</div><div class="kpi-value" id="td2-spend">—</div><div class="kpi-sub">YouTube + Meta</div></div>
+    <div class="kpi"><div class="kpi-label">表示回数</div><div class="kpi-value" id="td2-imp">—</div></div>
+    <div class="kpi"><div class="kpi-label">クリック数</div><div class="kpi-value" id="td2-clicks">—</div><div class="kpi-sub">CPM ¥<span id="td2-cpm">—</span></div></div>
+    <div class="kpi"><div class="kpi-label">CPC</div><div class="kpi-value" id="td2-cpc">—</div><div class="kpi-sub">クリック単価</div></div>
+    <div class="kpi accent"><div class="kpi-label">メルマガ登録</div><div class="kpi-value" id="td2-mail">—</div><div class="kpi-sub">CPA ¥<span id="td2-cpa">—</span></div></div>
+  </div>
+  <div class="two-col">
+    <div class="panel yt">
+      <div class="panel-title">YouTube <span class="badge badge-yt">Google Ads</span></div>
+      <div class="mini-grid">
+        <div><div class="mk-label">消化金額</div><div class="mk-val" id="yt2-spend">—</div></div>
+        <div><div class="mk-label">表示回数</div><div class="mk-val" id="yt2-imp">—</div></div>
+        <div><div class="mk-label">クリック</div><div class="mk-val" id="yt2-clicks">—</div></div>
+        <div><div class="mk-label">CPM</div><div class="mk-val" id="yt2-cpm">—</div></div>
+        <div><div class="mk-label">CPC</div><div class="mk-val" id="yt2-cpc">—</div></div>
+        <div><div class="mk-label">メルマガ</div><div class="mk-val" id="yt2-mail">—</div></div>
+      </div>
+    </div>
+    <div class="panel fb">
+      <div class="panel-title">Meta <span class="badge badge-fb">Facebook / Instagram</span></div>
+      <div class="mini-grid">
+        <div><div class="mk-label">消化金額</div><div class="mk-val" id="mt2-spend">—</div></div>
+        <div><div class="mk-label">リーチ</div><div class="mk-val" id="mt2-reach">—</div></div>
+        <div><div class="mk-label">クリック</div><div class="mk-val" id="mt2-clicks">—</div></div>
+        <div><div class="mk-label">CPM</div><div class="mk-val" id="mt2-cpm">—</div></div>
+        <div><div class="mk-label">CPC</div><div class="mk-val" id="mt2-cpc">—</div></div>
+        <div><div class="mk-label">CV（Meta）</div><div class="mk-val" id="mt2-cv">—</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- 昨日 -->
-<div class="view active" id="view-yesterday">
-  <div class="sec">合算（YouTube + Meta）</div>
+<div class="view" id="view-yesterday">
+  <div class="sec">昨日（YouTube + Meta）</div>
   <div class="kpi-grid">
     <div class="kpi accent"><div class="kpi-label">消化金額</div><div class="kpi-value" id="cy-spend">—</div><div class="kpi-sub">YouTube + Meta</div></div>
     <div class="kpi"><div class="kpi-label">表示回数</div><div class="kpi-value" id="cy-imp">—</div></div>
@@ -136,6 +173,19 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
       </div>
     </div>
   </div>
+</div>
+
+<!-- 先週 -->
+<div class="view" id="view-last_week">
+  <div class="sec">先週（7日間）</div>
+  <div class="kpi-grid">
+    <div class="kpi accent"><div class="kpi-label">消化金額</div><div class="kpi-value" id="lw-spend">—</div><div class="kpi-sub">YouTube + Meta</div></div>
+    <div class="kpi"><div class="kpi-label">表示回数</div><div class="kpi-value" id="lw-imp">—</div></div>
+    <div class="kpi"><div class="kpi-label">クリック数</div><div class="kpi-value" id="lw-clicks">—</div><div class="kpi-sub">CPM ¥<span id="lw-cpm">—</span></div></div>
+    <div class="kpi"><div class="kpi-label">CPC</div><div class="kpi-value" id="lw-cpc">—</div><div class="kpi-sub">クリック単価</div></div>
+    <div class="kpi accent"><div class="kpi-label">メルマガ登録</div><div class="kpi-value" id="lw-mail">—</div><div class="kpi-sub">CPA ¥<span id="lw-cpa">—</span></div></div>
+  </div>
+  <div class="chart-full"><div class="chart-title">先週 日次 消化金額（YouTube + Meta）</div><canvas id="chart-week" height="130"></canvas></div>
 </div>
 
 <!-- 今月 -->
@@ -176,33 +226,10 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">日次 消化金額（今月）</div><canvas id="chart-month" height="130"></canvas></div>
 </div>
 
-<!-- 30日間 -->
-<div class="view" id="view-last_30d">
-  <div class="sec">過去 30 日間</div>
-  <div class="kpi-grid">
-    <div class="kpi accent"><div class="kpi-label">消化金額</div><div class="kpi-value" id="td-spend">—</div><div class="kpi-sub">YouTube + Meta</div></div>
-    <div class="kpi"><div class="kpi-label">表示回数</div><div class="kpi-value" id="td-imp">—</div></div>
-    <div class="kpi"><div class="kpi-label">クリック数</div><div class="kpi-value" id="td-clicks">—</div></div>
-    <div class="kpi"><div class="kpi-label">CPM</div><div class="kpi-value" id="td-cpm">—</div></div>
-    <div class="kpi"><div class="kpi-label">CPC</div><div class="kpi-value" id="td-cpc">—</div></div>
-    <div class="kpi accent"><div class="kpi-label">Meta CV</div><div class="kpi-value" id="td-cv">—</div><div class="kpi-sub">CPA ¥<span id="td-cpa">—</span></div></div>
-  </div>
-  <div class="grid21">
-    <div class="chart-box"><div class="chart-title">日次 消化金額 YouTube vs Meta</div><canvas id="chart-daily" height="200"></canvas></div>
-    <div class="chart-box"><div class="chart-title">Meta 広告セット配分</div><canvas id="chart-donut" height="200"></canvas></div>
-  </div>
-  <div class="chart-full"><div class="chart-title">クリック推移（合算）</div><canvas id="chart-clicks" height="120"></canvas></div>
-  <div class="table-box">
-    <p class="sec" style="margin-top:0">Meta 広告セット別</p>
-    <table><thead><tr><th>広告セット名</th><th>広告費</th><th>リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
-    <tbody id="adset-tbody"></tbody></table>
-  </div>
-</div>
-
 <hr class="rule">
 <footer><div class="ftr">
   <p>FrancDirect — YouTube + Meta Ads Dashboard</p>
-  <p>Meta Ads API + Google Ads（GAS） | 6時間おき自動更新</p>
+  <p>Meta Ads API + Google Ads（GAS） | 1時間おき自動更新</p>
 </div></footer>
 </div>
 
@@ -215,16 +242,121 @@ const fmtK=n=>{if(n==null)return'—';if(n>=10000)return(n/10000).toFixed(1)+'�
 const yen=n=>n==null?'—':'¥'+fmtK(n);
 const jst=iso=>{const d=new Date(iso);const h=d.getUTCHours()+9;const day=new Date(d);day.setUTCHours(h>=24?h-24:h);return`${day.getUTCFullYear()}/${String(day.getUTCMonth()+1).padStart(2,'0')}/${String(day.getUTCDate()).padStart(2,'0')} ${String(h>=24?h-24:h).padStart(2,'0')}:00 JST`};
 const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+const calcCpm=(spend,imp)=>imp>0?Math.round(spend/imp*1000):null;
+const calcCpc=(spend,clk)=>clk>0?Math.round(spend/clk):null;
+
+// 今日のISO日付（JST）
+function todayISO(){
+  const now=new Date();
+  const jstOffset=9*60;
+  const jstMs=now.getTime()+jstOffset*60*1000;
+  const d=new Date(jstMs);
+  return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0');
+}
+
+// 昨日のISO日付（JST）
+function yesterdayISO(){
+  const now=new Date();
+  const jstMs=now.getTime()+9*60*60*1000-24*60*60*1000;
+  const d=new Date(jstMs);
+  return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0');
+}
+
+// combined_daily から特定日を集計
+function getDayData(d, dateStr){
+  const row=(d.combined_daily||[]).find(r=>r.date===dateStr)||null;
+  return row;
+}
+
+// combined_daily から日付範囲を集計
+function sumRange(d, days){
+  const today=todayISO();
+  const cutMs=new Date(today).getTime()-days*24*60*60*1000;
+  const rows=(d.combined_daily||[]).filter(r=>new Date(r.date).getTime()>=cutMs && r.date<today);
+  return aggregateRows(rows);
+}
+
+function aggregateRows(rows){
+  const spend=rows.reduce((s,r)=>s+(r.spend||0),0);
+  const imp=rows.reduce((s,r)=>s+(r.impressions||0),0);
+  const clk=rows.reduce((s,r)=>s+(r.clicks||0),0);
+  const mail=rows.reduce((s,r)=>s+(r.mail||0),0);
+  const cpa=rows.reduce((s,r)=>s+(r.cpa||0),0);
+  return {spend,impressions:imp,clicks:clk,mail,
+    cpm:calcCpm(spend,imp),cpc:calcCpc(spend,clk),
+    cpa:mail>0?Math.round(spend/mail):null};
+}
+
+function renderDayView(d, dateStr, prefix, ytPrefix, mtPrefix){
+  // combined_dailyから当日データ取得
+  const row=getDayData(d,dateStr);
+  const spend=row?row.spend:null;
+  const imp=row?row.impressions:null;
+  const clk=row?row.clicks:null;
+  const mail=row?row.mail:null;
+  const cpm=row&&imp>0?Math.round(row.spend/imp*1000):null;
+  const cpc=row&&clk>0?Math.round(row.spend/clk):null;
+  const cpa=mail>0?Math.round(spend/mail):null;
+
+  set(prefix+'-spend',yen(spend));
+  set(prefix+'-imp',fmtK(imp));
+  set(prefix+'-clicks',fmtK(clk));
+  set(prefix+'-cpm',cpm!=null?fmt(cpm):'—');
+  set(prefix+'-cpc',yen(cpc));
+  set(prefix+'-mail',(mail||0)+'件');
+  set(prefix+'-cpa',cpa!=null?fmt(cpa):'—');
+
+  // YouTube個別（d.yesterday or d.today から取得）
+  const src = dateStr===yesterdayISO() ? (d.yesterday||{}) : (d.today||{});
+  const y=src.youtube||{};
+  const m=src.meta||{};
+
+  if(ytPrefix){
+    set(ytPrefix+'-spend',yen(y.spend));
+    set(ytPrefix+'-imp',fmtK(y.impressions));
+    set(ytPrefix+'-clicks',fmtK(y.clicks));
+    set(ytPrefix+'-cpm',y.impressions>0?yen(Math.round((y.spend||0)/y.impressions*1000)):'—');
+    set(ytPrefix+'-cpc',yen(y.cpc));
+    set(ytPrefix+'-mail',(y.mail||0)+'件');
+  }
+  if(mtPrefix){
+    const cv_m=(m.cv_myasp||0)||(m.cv_meta||0);
+    set(mtPrefix+'-spend',yen(m.spend));
+    set(mtPrefix+'-reach',fmtK(m.reach));
+    set(mtPrefix+'-clicks',fmtK(m.clicks));
+    set(mtPrefix+'-cpm',m.impressions>0?yen(Math.round((m.spend||0)/(m.impressions||1)*1000)):yen(Math.round(m.cpm||0)));
+    set(mtPrefix+'-cpc',yen(Math.round(m.cpc||0)));
+    set(mtPrefix+'-cv',cv_m+'件');
+  }
+}
 
 function renderYesterday(d){
-  const c=d.yesterday?.combined||{},y=d.yesterday?.youtube||{},m=d.yesterday?.meta||{};
-  set('cy-spend',yen(c.spend));set('cy-imp',fmtK(c.impressions));set('cy-clicks',fmtK(c.clicks));
-  set('cy-cpm',fmt(c.cpm));set('cy-cpc',yen(c.cpc));set('cy-mail',(c.mail||0)+'件');set('cy-cpa',c.cpa?fmt(c.cpa):'—');
-  set('yy-spend',yen(y.spend));set('yy-imp',fmtK(y.impressions));set('yy-clicks',fmtK(y.clicks));
-  set('yy-cpm',yen(y.cpm));set('yy-cpc',yen(y.cpc));set('yy-mail',(y.mail||0)+'件');
-  const cv_m=(m.cv_myasp||0)||(m.cv_meta||0);
-  set('my-spend',yen(m.spend));set('my-reach',fmtK(m.reach));set('my-clicks',fmtK(m.clicks));
-  set('my-cpm',yen(Math.round(m.cpm||0)));set('my-cpc',yen(Math.round(m.cpc||0)));set('my-cv',cv_m+'件');
+  renderDayView(d, yesterdayISO(), 'cy', 'yy', 'my');
+}
+
+function renderToday(d){
+  // 今日のデータはまだGASに入っていない場合が多いので combined_daily から
+  const dateStr=todayISO();
+  renderDayView(d, dateStr, 'td2', 'yt2', 'mt2');
+}
+
+function renderLastWeek(d){
+  const today=todayISO();
+  const todayMs=new Date(today).getTime();
+  // 先週月曜〜日曜、または単純に直近7日間（今日を除く）
+  const rows=(d.combined_daily||[]).filter(r=>{
+    const ms=new Date(r.date).getTime();
+    return ms>=todayMs-7*24*60*60*1000 && r.date<today;
+  });
+  const agg=aggregateRows(rows);
+  set('lw-spend',yen(agg.spend));
+  set('lw-imp',fmtK(agg.impressions));
+  set('lw-clicks',fmtK(agg.clicks));
+  set('lw-cpm',agg.cpm!=null?fmt(agg.cpm):'—');
+  set('lw-cpc',yen(agg.cpc));
+  set('lw-mail',(agg.mail||0)+'件');
+  set('lw-cpa',agg.cpa!=null?fmt(agg.cpa):'—');
+  buildChart('week', rows, 'bar');
 }
 
 function renderThisMonth(d){
@@ -238,23 +370,9 @@ function renderThisMonth(d){
   set('ym-cpm',yen(yt.cpm));set('ym-cpc',yen(yt.cpc));set('ym-mail',(yt.mail||0)+'件');
   set('mms-spend',yen(mt.spend));set('mms-reach',fmtK(mt.reach));set('mms-clicks',fmtK(mt.clicks));
   set('mms-cpm',yen(Math.round(mt.cpm||0)));set('mms-cpc',yen(Math.round(mt.cpc||0)));set('mms-cv',cv_m+'件');
-  buildChart('month',buildMonthData(d),'bar');
-}
-
-function buildMonthData(d){
-  const now=new Date(),ym=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
-  return(d.combined_daily||[]).filter(r=>r.date.startsWith(ym));
-}
-
-function renderLast30d(d){
-  const cd=(d.combined_daily||[]).slice(-30);
-  const spend=cd.reduce((s,r)=>s+r.spend,0),imp=cd.reduce((s,r)=>s+r.impressions,0),clk=cd.reduce((s,r)=>s+r.clicks,0);
-  const mt=d.last_30d||{},cv_m=(mt.cv_myasp||0)||(mt.cv_meta||0);
-  set('td-spend',yen(spend));set('td-imp',fmtK(imp));set('td-clicks',fmtK(clk));
-  set('td-cpm',imp>0?yen(Math.round(spend/imp*1000)):'—');set('td-cpc',clk>0?yen(Math.round(spend/clk)):'—');
-  set('td-cv',cv_m+'件');set('td-cpa',mt.cpa?fmt(mt.cpa):'—');
-  buildStackedChart('daily',cd);buildDonut(d.adsets?.last_30d||[]);buildClicksChart(cd);
-  renderAdsets(d.adsets?.last_30d||[]);
+  const now=new Date(),ym2=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+  const monthRows=(d.combined_daily||[]).filter(r=>r.date.startsWith(ym2));
+  buildChart('month',monthRows,'bar');
 }
 
 function buildChart(key,cd,type){
@@ -267,47 +385,12 @@ function buildChart(key,cd,type){
   scales:{x:{stacked:true,grid:{color:GRID},ticks:{font:{size:9},maxTicksLimit:15}},y:{stacked:true,grid:{color:GRID},ticks:{callback:v=>'¥'+fmtK(v),font:{size:9}}}}}});
 }
 
-function buildStackedChart(key,cd){
-  const ctx=document.getElementById('chart-'+key);if(!ctx)return;
-  if(CH[key])CH[key].destroy();
-  CH[key]=new Chart(ctx,{type:'bar',data:{labels:cd.map(r=>r.date.slice(5)),datasets:[
-    {label:'YouTube',data:cd.map(r=>r.yt_spend||0),backgroundColor:'rgba(123,158,184,0.5)',borderColor:BLUE,borderWidth:1,stack:'s'},
-    {label:'Meta',data:cd.map(r=>r.meta_spend||0),backgroundColor:'rgba(196,163,90,0.4)',borderColor:GOLD,borderWidth:1,stack:'s'},
-  ]},options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{boxWidth:11,font:{size:10}}}},
-  scales:{x:{stacked:true,grid:{color:GRID},ticks:{maxTicksLimit:10,font:{size:9}}},y:{stacked:true,grid:{color:GRID},ticks:{callback:v=>'¥'+fmtK(v),font:{size:9}}}}}});
-}
-
-function buildDonut(adsets){
-  const ctx=document.getElementById('chart-donut');if(!ctx)return;
-  if(CH.donut)CH.donut.destroy();
-  const pal=['#C4A35A','#7B9EB8','#4CAF7D','#B87B6A','#A07CB8'];
-  CH.donut=new Chart(ctx,{type:'doughnut',data:{labels:adsets.map(a=>a.name.length>14?a.name.slice(0,14)+'…':a.name),
-  datasets:[{data:adsets.map(a=>a.spend),backgroundColor:pal.map(p=>p+'88'),borderColor:pal,borderWidth:1}]},
-  options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{boxWidth:9,font:{size:9},padding:8}}}}});
-}
-
-function buildClicksChart(cd){
-  const ctx=document.getElementById('chart-clicks');if(!ctx)return;
-  if(CH.clicks)CH.clicks.destroy();
-  CH.clicks=new Chart(ctx,{type:'line',data:{labels:cd.map(r=>r.date.slice(5)),
-  datasets:[{label:'クリック（合算）',data:cd.map(r=>r.clicks),borderColor:GOLD,backgroundColor:'rgba(196,163,90,0.07)',borderWidth:1.5,pointRadius:2,fill:true}]},
-  options:{responsive:true,plugins:{legend:{labels:{boxWidth:11,font:{size:10}}}},
-  scales:{x:{grid:{color:GRID},ticks:{maxTicksLimit:10,font:{size:9}}},y:{grid:{color:GRID},ticks:{font:{size:9}}}}}});
-}
-
-function renderAdsets(adsets){
-  document.getElementById('adset-tbody').innerHTML=adsets.map(a=>`<tr>
-    <td><span class="tdname" title="${a.name}">${a.name}</span></td>
-    <td>¥${fmt(a.spend)}</td><td>${fmtK(a.reach)}</td><td>${fmt(a.clicks)}</td>
-    <td>${a.ctr}%</td><td>¥${fmt(a.cpc,0)}</td><td><span class="cv-pill">${a.cv_meta||0}件</span></td>
-  </tr>`).join('');
-}
-
 function renderAll(d,view){
-  document.getElementById('updated-at').textContent='最終更新: '+jst(d.last_updated);
+  if(d.last_updated) document.getElementById('updated-at').textContent='最終更新: '+jst(d.last_updated);
+  if(view==='today')      renderToday(d);
   if(view==='yesterday')  renderYesterday(d);
+  if(view==='last_week')  renderLastWeek(d);
   if(view==='this_month') renderThisMonth(d);
-  if(view==='last_30d')   renderLast30d(d);
 }
 
 async function loadData(){
@@ -315,7 +398,7 @@ async function loadData(){
     const res=await fetch('data.json?t='+Date.now());
     if(!res.ok)throw new Error(`HTTP ${res.status}`);
     allData=await res.json();
-    const view=document.querySelector('.period-btn.active')?.dataset.view||'yesterday';
+    const view=document.querySelector('.period-btn.active')?.dataset.view||'today';
     renderAll(allData,view);
     document.getElementById('error-area').innerHTML='';
   }catch(e){
@@ -336,7 +419,8 @@ document.getElementById('period-bar').addEventListener('click',e=>{
 });
 
 loadData();
-setTimeout(()=>location.reload(),6*60*60*1000);
+// 1時間おき自動更新
+setTimeout(()=>location.reload(),60*60*1000);
 </script>
 </body>
 </html>
