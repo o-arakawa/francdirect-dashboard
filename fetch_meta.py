@@ -19,6 +19,7 @@ CAMP_FILTER       = f'[{{"field":"campaign.id","operator":"EQUAL","value":"{CAMP
 FIELDS            = "spend,reach,impressions,clicks,cpm,ctr,cpc,actions"
 ADSET_FIELDS      = "adset_name,spend,reach,impressions,clicks,cpm,ctr,cpc,actions"
 JST               = ZoneInfo("Asia/Tokyo")
+META_CV_SPREADSHEET_ID = os.environ.get("META_CV_SPREADSHEET_ID", "1SsfV2nELpb_dZJy9HEXjUIpewx-oy0Zp5rnjRiS0UiU")
 META_CV_SHEET_GIDS = {
     "normal": "1453222225",  # ブロード(normal)_画像01~03
     "thank":  "1220836676",  # ブロード(thank)_画像01~03
@@ -86,7 +87,7 @@ def parse_sheet_date(value):
     return f"{year}-{int(m.group(1)):02d}-{int(m.group(2)):02d}"
 
 def spreadsheet_id_from_url(url):
-    m = re.search(r"/spreadsheets/d/([^/]+)", url or "")
+    m = re.search(r"/spreadsheets/d/([A-Za-z0-9_-]{20,})", url or "")
     return m.group(1) if m else ""
 
 def csv_url_for_gid(spreadsheet_id, gid):
@@ -120,24 +121,34 @@ def cv_from_csv_text(text):
 # ── Google Sheet から CV データ ─────────────────────────────────────────
 cv_by_date = {}
 cv_by_adset_key_date = {}
-if SHEET_CSV_URL:
+if SHEET_CSV_URL or META_CV_SPREADSHEET_ID:
     try:
         print("📊 Google Sheet から CV データを取得中...")
-        spreadsheet_id = spreadsheet_id_from_url(SHEET_CSV_URL)
-        sources = []
-        if spreadsheet_id:
-            sources = [(key, csv_url_for_gid(spreadsheet_id, gid)) for key, gid in META_CV_SHEET_GIDS.items()]
-        else:
-            sources = [("total", SHEET_CSV_URL)]
+        spreadsheet_id = spreadsheet_id_from_url(SHEET_CSV_URL) or META_CV_SPREADSHEET_ID
+        sources = [(key, csv_url_for_gid(spreadsheet_id, gid)) for key, gid in META_CV_SHEET_GIDS.items()]
 
         for key, url in sources:
-            r = requests.get(url, timeout=10)
-            r.raise_for_status()
-            by_date = cv_from_csv_text(r.text)
+            try:
+                r = requests.get(url, timeout=10)
+                r.raise_for_status()
+                by_date = cv_from_csv_text(r.text)
+            except Exception as e:
+                print(f"⚠️ {key} CV 読み込み失敗: {e}")
+                by_date = {}
             cv_by_adset_key_date[key] = by_date
+            print(f"   {key}: {len(by_date)} 日分")
             for d, cv in by_date.items():
                 current = cv_by_date.setdefault(d, {"myasp": 0, "line": 0})
                 current["myasp"] += cv
+
+        if not cv_by_date and SHEET_CSV_URL:
+            print("   normal/thank が読めないため、SHEET_CSV_URL の合計CVを使用します")
+            r = requests.get(SHEET_CSV_URL, timeout=10)
+            r.raise_for_status()
+            by_date = cv_from_csv_text(r.text)
+            cv_by_adset_key_date["total"] = by_date
+            for d, cv in by_date.items():
+                cv_by_date[d] = {"myasp": cv, "line": 0}
 
         print(f"   {len(cv_by_date)} 日分取得")
     except Exception as e:
