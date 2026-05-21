@@ -98,3 +98,181 @@ if GAS_YOUTUBE_URL:
             print(f"⚠️ GAS エラー: {youtube_data['error']}")
             youtube_data = {"daily": [], "yesterday": None, "this_month": None}
         else:
+            print(f"   YouTube: {len(youtube_data.get('daily', []))} 日分取得")
+    except Exception as e:
+        print(f"⚠️ YouTube データ取得失敗（スキップ）: {e}")
+else:
+    print("⚠️ GAS_YOUTUBE_URL 未設定 — YouTube データなし")
+
+# ── Meta: 各期間サマリー ──────────────────────────────────────────────
+today       = datetime.now(JST).date()
+today_str   = today.strftime("%Y-%m-%d")
+month_start = today.strftime("%Y-%m-01")
+day30_start = (today - timedelta(days=29)).strftime("%Y-%m-%d")
+
+def fetch_summary(preset):
+    rows = meta({
+        "fields": FIELDS, "date_preset": preset,
+        "level": "campaign", "filtering": CAMP_FILTER,
+    })
+    if not rows:
+        return row_to_summary({})
+    merged = {
+        "spend": sum(float(r.get("spend",0)) for r in rows),
+        "reach": sum(int(r.get("reach",0)) for r in rows),
+        "impressions": sum(int(r.get("impressions",0)) for r in rows),
+        "clicks": sum(int(r.get("clicks",0)) for r in rows),
+        "cpm": 0, "ctr": 0, "cpc": 0, "actions": [],
+    }
+    total_imp = merged["impressions"]
+    if total_imp > 0:
+        merged["cpm"] = round(merged["spend"] / total_imp * 1000, 2)
+        merged["ctr"] = round(merged["clicks"] / total_imp * 100, 2)
+    if merged["clicks"] > 0:
+        merged["cpc"] = round(merged["spend"] / merged["clicks"], 2)
+    cv = sum(cv_from_actions(r.get("actions")) for r in rows)
+    merged["cv_meta"] = cv
+    merged["cv_myasp"] = 0
+    return {k: merged[k] for k in ["spend","reach","impressions","clicks","cpm","ctr","cpc","cv_meta","cv_myasp"]}
+
+def fetch_adsets(preset):
+    rows = meta({
+        "fields": ADSET_FIELDS, "date_preset": preset,
+        "level": "adset", "filtering": CAMP_FILTER,
+    })
+    result = []
+    for a in rows:
+        result.append({
+            "name":        a.get("adset_name", "—"),
+            "spend":       round(float(a.get("spend", 0))),
+            "reach":       int(a.get("reach", 0)),
+            "impressions": int(a.get("impressions", 0)),
+            "clicks":      int(a.get("clicks", 0)),
+            "ctr":         round(float(a.get("ctr", 0)), 2),
+            "cpc":         round(float(a.get("cpc", 0)), 2),
+            "cv_meta":     cv_from_actions(a.get("actions")),
+        })
+    return sorted(result, key=lambda x: x["spend"], reverse=True)
+
+print(f"📡 Meta (キャンペーンID: {CAMPAIGN_ID}) のデータを取得中...")
+
+s_today  = fetch_summary("today")
+s_month  = fetch_summary("this_month")
+s_30d    = fetch_summary("last_30d")
+s_total  = fetch_summary("maximum")
+
+s_today["cv_myasp"] = cv_myasp_for(today_str)
+s_month["cv_myasp"] = cv_myasp_range(month_start, today_str)
+s_30d["cv_myasp"]   = cv_myasp_range(day30_start, today_str)
+s_total["cv_myasp"] = sum(v.get("myasp",0)+v.get("line",0) for v in cv_by_date.values())
+
+for s in [s_today, s_month, s_30d, s_total]:
+    cv = s["cv_myasp"] or s["cv_meta"]
+    s["cpa"] = round(s["spend"] / cv) if cv > 0 else None
+
+adsets_today = fetch_adsets("today")
+adsets_month = fetch_adsets("this_month")
+adsets_30d   = fetch_adsets("last_30d")
+
+# Meta 日次データ
+daily_raw = meta({
+    "fields": FIELDS, "date_preset": "last_90d",
+    "level": "campaign", "filtering": CAMP_FILTER,
+    "time_increment": 1,
+})
+daily = []
+for d in daily_raw:
+    ds = d.get("date_start", "")
+    daily.append({
+        "date":        ds,
+        "spend":       round(float(d.get("spend", 0))),
+        "reach":       int(d.get("reach", 0)),
+        "impressions": int(d.get("impressions", 0)),
+        "clicks":      int(d.get("clicks", 0)),
+        "cpm":         round(float(d.get("cpm", 0)), 2),
+        "cv_meta":     cv_from_actions(d.get("actions")),
+        "cv_myasp":    cv_myasp_for(ds),
+    })
+
+# ── 昨日の合算データ ──────────────────────────────────────────────────
+yesterday_str = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+meta_yday = next((d for d in daily if d["date"] == yesterday_str), None)
+yt_yday   = youtube_data.get("yesterday")
+
+def make_combined(m, y):
+    if not m and not y:
+        return None
+    m = m or {}
+    y = y or {}
+    spend = m.get("spend",0) + y.get("spend",0)
+    imp   = m.get("impressions",0) + y.get("impressions",0)
+    clk   = m.get("clicks",0) + y.get("clicks",0)
+    mail  = m.get("cv_myasp",0) + y.get("mail",0)
+    return {
+        "spend":       spend,
+        "impressions": imp,
+        "clicks":      clk,
+        "mail":        mail,
+        "cpm":         round(spend / imp * 1000) if imp > 0 else 0,
+        "cpc":         round(spend / clk)        if clk > 0 else 0,
+        "cpa":         round(spend / mail)        if mail > 0 else None,
+    }
+
+combined_yesterday = make_combined(meta_yday, yt_yday)
+
+# ── 合算日次（チャート用）────────────────────────────────────────────
+yt_daily_map = {d["date"]: d for d in youtube_data.get("daily", [])}
+combined_daily = []
+all_dates = sorted(set([d["date"] for d in daily] + list(yt_daily_map.keys())))
+for ds in all_dates:
+    m = next((d for d in daily if d["date"] == ds), {})
+    y = yt_daily_map.get(ds, {})
+    spend = m.get("spend",0) + y.get("spend",0)
+    imp   = m.get("impressions",0) + y.get("impressions",0)
+    clk   = m.get("clicks",0) + y.get("clicks",0)
+    mail  = m.get("cv_myasp",0) + y.get("mail",0)
+    combined_daily.append({
+        "date":       ds,
+        "spend":      spend,
+        "impressions":imp,
+        "clicks":     clk,
+        "mail":       mail,
+        "meta_spend": m.get("spend",0),
+        "yt_spend":   y.get("spend",0),
+    })
+
+# ── 出力 ─────────────────────────────────────────────────────────────
+output = {
+    "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "campaign_id":  CAMPAIGN_ID,
+    "today":        s_today,
+    "this_month":   s_month,
+    "last_30d":     s_30d,
+    "total":        s_total,
+    "adsets": {
+        "today":     adsets_today,
+        "this_month":adsets_month,
+        "last_30d":  adsets_30d,
+    },
+    "daily":          daily,
+    "cv_log":         [{"date": k, **v} for k, v in sorted(cv_by_date.items())],
+    "youtube":        youtube_data,
+    "yesterday": {
+        "date":     yesterday_str,
+        "meta":     meta_yday,
+        "youtube":  yt_yday,
+        "combined": combined_yesterday,
+    },
+    "combined_daily": combined_daily,
+}
+
+with open("data.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
+
+print("✅ 完了")
+print(f"   Meta今月  : ¥{s_month['spend']:,}  MyASP CV:{s_month['cv_myasp']}")
+yt_m = youtube_data.get("this_month")
+if yt_m:
+    print(f"   YouTube今月: ¥{yt_m.get('spend',0):,}  メルマガ:{yt_m.get('mail',0)}")
+if combined_yesterday:
+    print(f"   昨日合算  : ¥{combined_yesterday['spend']:,}  メール:{combined_yesterday.get('mail',0)}")
