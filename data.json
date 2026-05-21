@@ -1,26 +1,26 @@
 {
-  "last_updated": "2026-05-21T02:19:30Z",
+  "last_updated": "2026-05-21T08:08:23Z",
   "campaign_id": "120243061348860707",
   "today": {
-    "spend": 1432.0,
-    "reach": 685,
-    "impressions": 766,
-    "clicks": 33,
-    "cpm": 1869.45,
-    "ctr": 4.31,
-    "cpc": 43.39,
+    "spend": 2410.0,
+    "reach": 1166,
+    "impressions": 1333,
+    "clicks": 59,
+    "cpm": 1807.95,
+    "ctr": 4.43,
+    "cpc": 40.85,
     "cv_meta": 0,
     "cv_myasp": 0,
     "cpa": null
   },
   "this_month": {
-    "spend": 75312.0,
-    "reach": 17536,
-    "impressions": 42256,
-    "clicks": 1660,
-    "cpm": 1782.28,
-    "ctr": 3.93,
-    "cpc": 45.37,
+    "spend": 76290.0,
+    "reach": 17678,
+    "impressions": 42823,
+    "clicks": 1686,
+    "cpm": 1781.52,
+    "ctr": 3.94,
+    "cpc": 45.25,
     "cv_meta": 0,
     "cv_myasp": 0,
     "cpa": null
@@ -38,13 +38,13 @@
     "cpa": null
   },
   "total": {
-    "spend": 140471.0,
-    "reach": 24701,
-    "impressions": 80518,
-    "clicks": 3470,
-    "cpm": 1744.59,
+    "spend": 141449.0,
+    "reach": 24857,
+    "impressions": 81085,
+    "clicks": 3496,
+    "cpm": 1744.45,
     "ctr": 4.31,
-    "cpc": 40.48,
+    "cpc": 40.46,
     "cv_meta": 0,
     "cv_myasp": 0,
     "cpa": null
@@ -53,22 +53,22 @@
     "today": [
       {
         "name": "2600513_ブロード(thank)_画像01~03",
-        "spend": 780,
-        "reach": 384,
-        "impressions": 404,
-        "clicks": 16,
-        "ctr": 3.96,
-        "cpc": 48.75,
+        "spend": 1239,
+        "reach": 604,
+        "impressions": 648,
+        "clicks": 28,
+        "ctr": 4.32,
+        "cpc": 44.25,
         "cv_meta": 0
       },
       {
         "name": "260513_ブロード(normal)_画像01~03",
-        "spend": 652,
-        "reach": 330,
-        "impressions": 362,
-        "clicks": 17,
-        "ctr": 4.7,
-        "cpc": 38.35,
+        "spend": 1171,
+        "reach": 623,
+        "impressions": 685,
+        "clicks": 31,
+        "ctr": 4.53,
+        "cpc": 37.77,
         "cv_meta": 0
       }
     ],
@@ -85,16 +85,1112 @@
       },
       {
         "name": "2600513_ブロード(thank)_画像01~03",
-        "spend": 19429,
-        "reach": 6326,
-        "impressions": 9918,
-        "clicks": 363,
-        "ctr": 3.66,
-        "cpc": 53.52,
+        "spend": 19888,
+        "reach": 6428,
+        "impressions": 10162,
+        "clicks": 375,
+        "ctr": 3.69,
+        "cpc": 53.03,
         "cv_meta": 0
       },
       {
         "name": "260513_ブロード(normal)_画像01~03",
-        "spend": 18289,
-        "reach": 6517,
+        "spend": 18808,
+        "reach": 6686,
+        "impressions": 9837,
+        "clicks": 355,
+        "ctr": 3.61,
+        "cpc": 52.98,
+        "cv_meta": 0
+      },
+      {
+        "name": "260416_ブロード(normal)_画像01~03",
+        "spend": 17387,
+        "reach": 6880,
+        "impressions": 10753,
+        "clicks": 446,
+        "ctr": 4.15,
+        "cpc": 38.98,
+        "cv_meta": 0
+      }
+    ],
+    "last_30d": [
+      {
+        "name": "260416_ブロード(thank)_画像01~03",
+        "spend": 45700,
+        "reach": 12317,
+        "impressions": 27077,
+        "clicks": 1184,
+        "ctr": 4.37,
+        "cpc": 38.6,
+        "cv_meta": 0
+      },
+      {
+        "name": "260416_ブロード(normal)_画像01~03",
+        "spend": 40095,
+        "reach": 11625,
+        "impressions": 24857,
+        "clicks": 1085,
+        "ctr": 4.36,
+        "cpc": 36.95,
+        "cv_meta": 0
+      },
+      {
+        "name": "2600513_ブロード(thank)_画像01~03",
+        "spend": 18649,
+        "reach": 6110,
         "impressions": 9514,
+        "clicks": 347,
+        "ctr": 3.65,
+        "cpc": 53.74,
+        "cv_meta": 0
+      },
+      {
+        "name": "260513_ブロード(normal)_画像01~03",
+        "spend": 17637,
+        "reach": 6284,
+        "impressions": 9152,
+        "clicks": 324,
+        "ctr": 3.54,
+        "cpc": 54.44,
+        "cv_meta": 0
+      }
+    ]
+  },
+  "daily": [
+    {
+      "date": "2026-04-17",
+      "spend": 366,
+      "reach": 180,
+      "impressions": 194,
+      "clicks": 4,
+      "cpm": 1886.6,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-18",
+      "spend": 4831,
+      "reach": 1856,
+      "impressions": 2632,
+      "clicks": 156,
+      "cpm": 1835.49,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-19",
+      "spend": 6160,
+      "reach": 2303,
+      "impressions": 3447,
+      "clicks": 176,
+      "cpm": 1787.06,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-20",
+      "spend": 5601,
+      "reach": 2049,
+      "impressions": 2879,
+      "clicks": 161,
+      "cpm": 1945.47,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-21",
+      "spend": 5993,
+      "reach": 2825,
+      "impressions": 3577,
+      "clicks": 179,
+      "cpm": 1675.43,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-22",
+      "spend": 4840,
+      "reach": 2691,
+      "impressions": 3275,
+      "clicks": 142,
+      "cpm": 1477.86,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-23",
+      "spend": 4203,
+      "reach": 2437,
+      "impressions": 2964,
+      "clicks": 136,
+      "cpm": 1418.02,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-24",
+      "spend": 3736,
+      "reach": 1867,
+      "impressions": 2230,
+      "clicks": 105,
+      "cpm": 1675.34,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-25",
+      "spend": 4295,
+      "reach": 2137,
+      "impressions": 2701,
+      "clicks": 103,
+      "cpm": 1590.15,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-26",
+      "spend": 5095,
+      "reach": 2412,
+      "impressions": 3086,
+      "clicks": 157,
+      "cpm": 1651.0,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-27",
+      "spend": 4934,
+      "reach": 2352,
+      "impressions": 2832,
+      "clicks": 135,
+      "cpm": 1742.23,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-28",
+      "spend": 4653,
+      "reach": 2023,
+      "impressions": 2507,
+      "clicks": 88,
+      "cpm": 1856.0,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-29",
+      "spend": 5226,
+      "reach": 2330,
+      "impressions": 2818,
+      "clicks": 150,
+      "cpm": 1854.51,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-04-30",
+      "spend": 5226,
+      "reach": 2541,
+      "impressions": 3120,
+      "clicks": 118,
+      "cpm": 1675.0,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-01",
+      "spend": 5206,
+      "reach": 2767,
+      "impressions": 3229,
+      "clicks": 120,
+      "cpm": 1612.26,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-02",
+      "spend": 4647,
+      "reach": 2469,
+      "impressions": 2977,
+      "clicks": 103,
+      "cpm": 1560.97,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-03",
+      "spend": 1647,
+      "reach": 841,
+      "impressions": 904,
+      "clicks": 42,
+      "cpm": 1821.9,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-07",
+      "spend": 0,
+      "reach": 0,
+      "impressions": 0,
+      "clicks": 0,
+      "cpm": 0.0,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-08",
+      "spend": 1996,
+      "reach": 995,
+      "impressions": 1189,
+      "clicks": 58,
+      "cpm": 1678.72,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-09",
+      "spend": 5132,
+      "reach": 2742,
+      "impressions": 3446,
+      "clicks": 168,
+      "cpm": 1489.26,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-10",
+      "spend": 4408,
+      "reach": 2203,
+      "impressions": 2635,
+      "clicks": 126,
+      "cpm": 1672.87,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-11",
+      "spend": 4398,
+      "reach": 2262,
+      "impressions": 2697,
+      "clicks": 122,
+      "cpm": 1630.7,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-12",
+      "spend": 5177,
+      "reach": 2553,
+      "impressions": 3051,
+      "clicks": 117,
+      "cpm": 1696.82,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-13",
+      "spend": 4014,
+      "reach": 1900,
+      "impressions": 2175,
+      "clicks": 83,
+      "cpm": 1845.52,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-14",
+      "spend": 4226,
+      "reach": 1760,
+      "impressions": 2013,
+      "clicks": 62,
+      "cpm": 2099.35,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-15",
+      "spend": 5888,
+      "reach": 2376,
+      "impressions": 2750,
+      "clicks": 94,
+      "cpm": 2141.09,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-16",
+      "spend": 4720,
+      "reach": 1867,
+      "impressions": 2224,
+      "clicks": 79,
+      "cpm": 2122.3,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-17",
+      "spend": 6279,
+      "reach": 2735,
+      "impressions": 3338,
+      "clicks": 146,
+      "cpm": 1881.07,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-18",
+      "spend": 5731,
+      "reach": 2765,
+      "impressions": 3325,
+      "clicks": 93,
+      "cpm": 1723.61,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-19",
+      "spend": 5417,
+      "reach": 2363,
+      "impressions": 2921,
+      "clicks": 112,
+      "cpm": 1854.5,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    {
+      "date": "2026-05-20",
+      "spend": 4994,
+      "reach": 2204,
+      "impressions": 2616,
+      "clicks": 102,
+      "cpm": 1909.02,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    }
+  ],
+  "cv_log": [],
+  "youtube": {
+    "daily": [
+      {
+        "date": "2026-04-17",
+        "spend": 0,
+        "impressions": 5,
+        "cpm": 0,
+        "clicks": 0,
+        "cpc": 0,
+        "mail": 0,
+        "cpa": 0
+      },
+      {
+        "date": "2026-04-18",
+        "spend": 3,
+        "impressions": 55,
+        "cpm": 55,
+        "clicks": 1,
+        "cpc": 3,
+        "mail": 1,
+        "cpa": 3
+      },
+      {
+        "date": "2026-04-19",
+        "spend": 9385,
+        "impressions": 19428,
+        "cpm": 483,
+        "clicks": 143,
+        "cpc": 66,
+        "mail": 6,
+        "cpa": 1564
+      },
+      {
+        "date": "2026-04-20",
+        "spend": 10283,
+        "impressions": 6785,
+        "cpm": 1516,
+        "clicks": 164,
+        "cpc": 63,
+        "mail": 4,
+        "cpa": 2571
+      },
+      {
+        "date": "2026-04-21",
+        "spend": 5251,
+        "impressions": 2430,
+        "cpm": 2161,
+        "clicks": 66,
+        "cpc": 80,
+        "mail": 9,
+        "cpa": 583
+      },
+      {
+        "date": "2026-04-22",
+        "spend": 3940,
+        "impressions": 925,
+        "cpm": 4259,
+        "clicks": 54,
+        "cpc": 73,
+        "mail": 5,
+        "cpa": 788
+      },
+      {
+        "date": "2026-04-23",
+        "spend": 3992,
+        "impressions": 1177,
+        "cpm": 3392,
+        "clicks": 61,
+        "cpc": 65,
+        "mail": 6,
+        "cpa": 665
+      },
+      {
+        "date": "2026-04-24",
+        "spend": 4879,
+        "impressions": 2484,
+        "cpm": 1964,
+        "clicks": 119,
+        "cpc": 41,
+        "mail": 8,
+        "cpa": 610
+      },
+      {
+        "date": "2026-04-25",
+        "spend": 5731,
+        "impressions": 3000,
+        "cpm": 1910,
+        "clicks": 134,
+        "cpc": 43,
+        "mail": 3,
+        "cpa": 1910
+      },
+      {
+        "date": "2026-04-26",
+        "spend": 3586,
+        "impressions": 3185,
+        "cpm": 1126,
+        "clicks": 94,
+        "cpc": 38,
+        "mail": 12,
+        "cpa": 299
+      },
+      {
+        "date": "2026-04-27",
+        "spend": 8528,
+        "impressions": 11590,
+        "cpm": 736,
+        "clicks": 291,
+        "cpc": 29,
+        "mail": 7,
+        "cpa": 1218
+      },
+      {
+        "date": "2026-04-28",
+        "spend": 3724,
+        "impressions": 4074,
+        "cpm": 914,
+        "clicks": 126,
+        "cpc": 30,
+        "mail": 6,
+        "cpa": 621
+      },
+      {
+        "date": "2026-04-29",
+        "spend": 7213,
+        "impressions": 14254,
+        "cpm": 506,
+        "clicks": 248,
+        "cpc": 29,
+        "mail": 4,
+        "cpa": 1803
+      },
+      {
+        "date": "2026-04-30",
+        "spend": 3349,
+        "impressions": 7668,
+        "cpm": 437,
+        "clicks": 107,
+        "cpc": 31,
+        "mail": 3,
+        "cpa": 1116
+      },
+      {
+        "date": "2026-05-01",
+        "spend": 4182,
+        "impressions": 7762,
+        "cpm": 539,
+        "clicks": 111,
+        "cpc": 38,
+        "mail": 3,
+        "cpa": 1394
+      },
+      {
+        "date": "2026-05-02",
+        "spend": 3111,
+        "impressions": 8113,
+        "cpm": 383,
+        "clicks": 101,
+        "cpc": 31,
+        "mail": 6,
+        "cpa": 519
+      },
+      {
+        "date": "2026-05-03",
+        "spend": 5181,
+        "impressions": 16028,
+        "cpm": 323,
+        "clicks": 210,
+        "cpc": 25,
+        "mail": 2,
+        "cpa": 2591
+      },
+      {
+        "date": "2026-05-04",
+        "spend": 4684,
+        "impressions": 15129,
+        "cpm": 310,
+        "clicks": 136,
+        "cpc": 34,
+        "mail": 5,
+        "cpa": 937
+      },
+      {
+        "date": "2026-05-05",
+        "spend": 8101,
+        "impressions": 24426,
+        "cpm": 332,
+        "clicks": 185,
+        "cpc": 44,
+        "mail": 0,
+        "cpa": 0
+      },
+      {
+        "date": "2026-05-06",
+        "spend": 3859,
+        "impressions": 13005,
+        "cpm": 297,
+        "clicks": 85,
+        "cpc": 45,
+        "mail": 1,
+        "cpa": 3859
+      },
+      {
+        "date": "2026-05-07",
+        "spend": 5196,
+        "impressions": 19484,
+        "cpm": 267,
+        "clicks": 84,
+        "cpc": 62,
+        "mail": 3,
+        "cpa": 1732
+      },
+      {
+        "date": "2026-05-08",
+        "spend": 3125,
+        "impressions": 9068,
+        "cpm": 345,
+        "clicks": 62,
+        "cpc": 50,
+        "mail": 5,
+        "cpa": 625
+      },
+      {
+        "date": "2026-05-09",
+        "spend": 5376,
+        "impressions": 16418,
+        "cpm": 327,
+        "clicks": 103,
+        "cpc": 52,
+        "mail": 4,
+        "cpa": 1344
+      },
+      {
+        "date": "2026-05-10",
+        "spend": 6296,
+        "impressions": 12035,
+        "cpm": 523,
+        "clicks": 102,
+        "cpc": 62,
+        "mail": 2,
+        "cpa": 3148
+      },
+      {
+        "date": "2026-05-11",
+        "spend": 7338,
+        "impressions": 17647,
+        "cpm": 416,
+        "clicks": 159,
+        "cpc": 46,
+        "mail": 1,
+        "cpa": 7338
+      },
+      {
+        "date": "2026-05-12",
+        "spend": 6701,
+        "impressions": 10977,
+        "cpm": 610,
+        "clicks": 140,
+        "cpc": 48,
+        "mail": 0,
+        "cpa": 0
+      },
+      {
+        "date": "2026-05-13",
+        "spend": 3074,
+        "impressions": 7185,
+        "cpm": 428,
+        "clicks": 125,
+        "cpc": 25,
+        "mail": 1,
+        "cpa": 3074
+      },
+      {
+        "date": "2026-05-14",
+        "spend": 4525,
+        "impressions": 10952,
+        "cpm": 413,
+        "clicks": 150,
+        "cpc": 30,
+        "mail": 1,
+        "cpa": 4525
+      },
+      {
+        "date": "2026-05-15",
+        "spend": 4549,
+        "impressions": 7328,
+        "cpm": 621,
+        "clicks": 109,
+        "cpc": 42,
+        "mail": 1,
+        "cpa": 4549
+      },
+      {
+        "date": "2026-05-16",
+        "spend": 4483,
+        "impressions": 7169,
+        "cpm": 625,
+        "clicks": 99,
+        "cpc": 45,
+        "mail": 3,
+        "cpa": 1494
+      },
+      {
+        "date": "2026-05-17",
+        "spend": 5778,
+        "impressions": 8187,
+        "cpm": 706,
+        "clicks": 120,
+        "cpc": 48,
+        "mail": 4,
+        "cpa": 1445
+      },
+      {
+        "date": "2026-05-18",
+        "spend": 4762,
+        "impressions": 8935,
+        "cpm": 533,
+        "clicks": 119,
+        "cpc": 40,
+        "mail": 2,
+        "cpa": 2381
+      },
+      {
+        "date": "2026-05-19",
+        "spend": 3465,
+        "impressions": 4496,
+        "cpm": 771,
+        "clicks": 71,
+        "cpc": 49,
+        "mail": 2,
+        "cpa": 1733
+      },
+      {
+        "date": "2026-05-20",
+        "spend": 2228,
+        "impressions": 2220,
+        "cpm": 1004,
+        "clicks": 30,
+        "cpc": 74,
+        "mail": 2,
+        "cpa": 1114
+      },
+      {
+        "date": "2026-05-21",
+        "spend": 1157,
+        "impressions": 917,
+        "cpm": 1262,
+        "clicks": 24,
+        "cpc": 48,
+        "mail": 0,
+        "cpa": 0
+      }
+    ],
+    "yesterday": {
+      "date": "2026-05-20",
+      "spend": 2228,
+      "impressions": 2220,
+      "cpm": 1004,
+      "clicks": 30,
+      "cpc": 74,
+      "mail": 2,
+      "cpa": 1114
+    },
+    "this_month": {
+      "spend": 97171,
+      "impressions": 227481,
+      "cpm": 427,
+      "clicks": 2325,
+      "cpc": 42,
+      "mail": 48,
+      "cpa": 2024
+    },
+    "yesterday_date": "2026-05-20"
+  },
+  "yesterday": {
+    "date": "2026-05-20",
+    "meta": {
+      "date": "2026-05-20",
+      "spend": 4994,
+      "reach": 2204,
+      "impressions": 2616,
+      "clicks": 102,
+      "cpm": 1909.02,
+      "cv_meta": 0,
+      "cv_myasp": 0
+    },
+    "youtube": {
+      "date": "2026-05-20",
+      "spend": 2228,
+      "impressions": 2220,
+      "cpm": 1004,
+      "clicks": 30,
+      "cpc": 74,
+      "mail": 2,
+      "cpa": 1114
+    },
+    "combined": {
+      "spend": 7222,
+      "impressions": 4836,
+      "clicks": 132,
+      "mail": 2,
+      "cpm": 1493,
+      "cpc": 55,
+      "cpa": 3611
+    }
+  },
+  "combined_daily": [
+    {
+      "date": "2026-04-17",
+      "spend": 366,
+      "impressions": 199,
+      "clicks": 4,
+      "mail": 0,
+      "meta_spend": 366,
+      "yt_spend": 0
+    },
+    {
+      "date": "2026-04-18",
+      "spend": 4834,
+      "impressions": 2687,
+      "clicks": 157,
+      "mail": 1,
+      "meta_spend": 4831,
+      "yt_spend": 3
+    },
+    {
+      "date": "2026-04-19",
+      "spend": 15545,
+      "impressions": 22875,
+      "clicks": 319,
+      "mail": 6,
+      "meta_spend": 6160,
+      "yt_spend": 9385
+    },
+    {
+      "date": "2026-04-20",
+      "spend": 15884,
+      "impressions": 9664,
+      "clicks": 325,
+      "mail": 4,
+      "meta_spend": 5601,
+      "yt_spend": 10283
+    },
+    {
+      "date": "2026-04-21",
+      "spend": 11244,
+      "impressions": 6007,
+      "clicks": 245,
+      "mail": 9,
+      "meta_spend": 5993,
+      "yt_spend": 5251
+    },
+    {
+      "date": "2026-04-22",
+      "spend": 8780,
+      "impressions": 4200,
+      "clicks": 196,
+      "mail": 5,
+      "meta_spend": 4840,
+      "yt_spend": 3940
+    },
+    {
+      "date": "2026-04-23",
+      "spend": 8195,
+      "impressions": 4141,
+      "clicks": 197,
+      "mail": 6,
+      "meta_spend": 4203,
+      "yt_spend": 3992
+    },
+    {
+      "date": "2026-04-24",
+      "spend": 8615,
+      "impressions": 4714,
+      "clicks": 224,
+      "mail": 8,
+      "meta_spend": 3736,
+      "yt_spend": 4879
+    },
+    {
+      "date": "2026-04-25",
+      "spend": 10026,
+      "impressions": 5701,
+      "clicks": 237,
+      "mail": 3,
+      "meta_spend": 4295,
+      "yt_spend": 5731
+    },
+    {
+      "date": "2026-04-26",
+      "spend": 8681,
+      "impressions": 6271,
+      "clicks": 251,
+      "mail": 12,
+      "meta_spend": 5095,
+      "yt_spend": 3586
+    },
+    {
+      "date": "2026-04-27",
+      "spend": 13462,
+      "impressions": 14422,
+      "clicks": 426,
+      "mail": 7,
+      "meta_spend": 4934,
+      "yt_spend": 8528
+    },
+    {
+      "date": "2026-04-28",
+      "spend": 8377,
+      "impressions": 6581,
+      "clicks": 214,
+      "mail": 6,
+      "meta_spend": 4653,
+      "yt_spend": 3724
+    },
+    {
+      "date": "2026-04-29",
+      "spend": 12439,
+      "impressions": 17072,
+      "clicks": 398,
+      "mail": 4,
+      "meta_spend": 5226,
+      "yt_spend": 7213
+    },
+    {
+      "date": "2026-04-30",
+      "spend": 8575,
+      "impressions": 10788,
+      "clicks": 225,
+      "mail": 3,
+      "meta_spend": 5226,
+      "yt_spend": 3349
+    },
+    {
+      "date": "2026-05-01",
+      "spend": 9388,
+      "impressions": 10991,
+      "clicks": 231,
+      "mail": 3,
+      "meta_spend": 5206,
+      "yt_spend": 4182
+    },
+    {
+      "date": "2026-05-02",
+      "spend": 7758,
+      "impressions": 11090,
+      "clicks": 204,
+      "mail": 6,
+      "meta_spend": 4647,
+      "yt_spend": 3111
+    },
+    {
+      "date": "2026-05-03",
+      "spend": 6828,
+      "impressions": 16932,
+      "clicks": 252,
+      "mail": 2,
+      "meta_spend": 1647,
+      "yt_spend": 5181
+    },
+    {
+      "date": "2026-05-04",
+      "spend": 4684,
+      "impressions": 15129,
+      "clicks": 136,
+      "mail": 5,
+      "meta_spend": 0,
+      "yt_spend": 4684
+    },
+    {
+      "date": "2026-05-05",
+      "spend": 8101,
+      "impressions": 24426,
+      "clicks": 185,
+      "mail": 0,
+      "meta_spend": 0,
+      "yt_spend": 8101
+    },
+    {
+      "date": "2026-05-06",
+      "spend": 3859,
+      "impressions": 13005,
+      "clicks": 85,
+      "mail": 1,
+      "meta_spend": 0,
+      "yt_spend": 3859
+    },
+    {
+      "date": "2026-05-07",
+      "spend": 5196,
+      "impressions": 19484,
+      "clicks": 84,
+      "mail": 3,
+      "meta_spend": 0,
+      "yt_spend": 5196
+    },
+    {
+      "date": "2026-05-08",
+      "spend": 5121,
+      "impressions": 10257,
+      "clicks": 120,
+      "mail": 5,
+      "meta_spend": 1996,
+      "yt_spend": 3125
+    },
+    {
+      "date": "2026-05-09",
+      "spend": 10508,
+      "impressions": 19864,
+      "clicks": 271,
+      "mail": 4,
+      "meta_spend": 5132,
+      "yt_spend": 5376
+    },
+    {
+      "date": "2026-05-10",
+      "spend": 10704,
+      "impressions": 14670,
+      "clicks": 228,
+      "mail": 2,
+      "meta_spend": 4408,
+      "yt_spend": 6296
+    },
+    {
+      "date": "2026-05-11",
+      "spend": 11736,
+      "impressions": 20344,
+      "clicks": 281,
+      "mail": 1,
+      "meta_spend": 4398,
+      "yt_spend": 7338
+    },
+    {
+      "date": "2026-05-12",
+      "spend": 11878,
+      "impressions": 14028,
+      "clicks": 257,
+      "mail": 0,
+      "meta_spend": 5177,
+      "yt_spend": 6701
+    },
+    {
+      "date": "2026-05-13",
+      "spend": 7088,
+      "impressions": 9360,
+      "clicks": 208,
+      "mail": 1,
+      "meta_spend": 4014,
+      "yt_spend": 3074
+    },
+    {
+      "date": "2026-05-14",
+      "spend": 8751,
+      "impressions": 12965,
+      "clicks": 212,
+      "mail": 1,
+      "meta_spend": 4226,
+      "yt_spend": 4525
+    },
+    {
+      "date": "2026-05-15",
+      "spend": 10437,
+      "impressions": 10078,
+      "clicks": 203,
+      "mail": 1,
+      "meta_spend": 5888,
+      "yt_spend": 4549
+    },
+    {
+      "date": "2026-05-16",
+      "spend": 9203,
+      "impressions": 9393,
+      "clicks": 178,
+      "mail": 3,
+      "meta_spend": 4720,
+      "yt_spend": 4483
+    },
+    {
+      "date": "2026-05-17",
+      "spend": 12057,
+      "impressions": 11525,
+      "clicks": 266,
+      "mail": 4,
+      "meta_spend": 6279,
+      "yt_spend": 5778
+    },
+    {
+      "date": "2026-05-18",
+      "spend": 10493,
+      "impressions": 12260,
+      "clicks": 212,
+      "mail": 2,
+      "meta_spend": 5731,
+      "yt_spend": 4762
+    },
+    {
+      "date": "2026-05-19",
+      "spend": 8882,
+      "impressions": 7417,
+      "clicks": 183,
+      "mail": 2,
+      "meta_spend": 5417,
+      "yt_spend": 3465
+    },
+    {
+      "date": "2026-05-20",
+      "spend": 7222,
+      "impressions": 4836,
+      "clicks": 132,
+      "mail": 2,
+      "meta_spend": 4994,
+      "yt_spend": 2228
+    },
+    {
+      "date": "2026-05-21",
+      "spend": 1157,
+      "impressions": 917,
+      "clicks": 24,
+      "mail": 0,
+      "meta_spend": 0,
+      "yt_spend": 1157
+    }
+  ]
+}
