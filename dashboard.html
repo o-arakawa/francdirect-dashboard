@@ -98,3 +98,447 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
 <div id="error-area"></div>
 
 <!-- 今日 -->
+<div class="view active" id="view-today">
+  <div class="sec">今日（YouTube + Meta）</div>
+  <div class="kpi-grid">
+    <div class="kpi accent"><div class="kpi-label">消化金額</div><div class="kpi-value" id="t-spend">—</div><div class="kpi-sub">YouTube + Meta</div></div>
+    <div class="kpi"><div class="kpi-label">表示回数</div><div class="kpi-value" id="t-imp">—</div></div>
+    <div class="kpi"><div class="kpi-label">クリック数</div><div class="kpi-value" id="t-clicks">—</div><div class="kpi-sub">CPM ¥<span id="t-cpm">—</span></div></div>
+    <div class="kpi"><div class="kpi-label">CPC</div><div class="kpi-value" id="t-cpc">—</div><div class="kpi-sub">クリック単価</div></div>
+    <div class="kpi accent"><div class="kpi-label">メルマガ登録</div><div class="kpi-value" id="t-mail">—</div><div class="kpi-sub">CPA ¥<span id="t-cpa">—</span></div></div>
+  </div>
+  <div class="two-col">
+    <div class="panel yt">
+      <div class="panel-title">YouTube <span class="badge badge-yt">Google Ads</span></div>
+      <div class="mini-grid">
+        <div><div class="mk-label">消化金額</div><div class="mk-val" id="ty-spend">—</div></div>
+        <div><div class="mk-label">表示回数</div><div class="mk-val" id="ty-imp">—</div></div>
+        <div><div class="mk-label">クリック</div><div class="mk-val" id="ty-clicks">—</div></div>
+        <div><div class="mk-label">CPM</div><div class="mk-val" id="ty-cpm">—</div></div>
+        <div><div class="mk-label">CPC</div><div class="mk-val" id="ty-cpc">—</div></div>
+        <div><div class="mk-label">メルマガ</div><div class="mk-val" id="ty-mail">—</div></div>
+      </div>
+    </div>
+    <div class="panel fb">
+      <div class="panel-title">Meta <span class="badge badge-fb">Facebook / Instagram</span></div>
+      <div class="mini-grid">
+        <div><div class="mk-label">消化金額</div><div class="mk-val" id="tm-spend">—</div></div>
+        <div><div class="mk-label">リーチ</div><div class="mk-val" id="tm-reach">—</div></div>
+        <div><div class="mk-label">クリック</div><div class="mk-val" id="tm-clicks">—</div></div>
+        <div><div class="mk-label">CPM</div><div class="mk-val" id="tm-cpm">—</div></div>
+        <div><div class="mk-label">CPC</div><div class="mk-val" id="tm-cpc">—</div></div>
+        <div><div class="mk-label">CV（Meta）</div><div class="mk-val" id="tm-cv">—</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 昨日 -->
+<div class="view" id="view-yesterday">
+  <div class="sec">昨日（YouTube + Meta）</div>
+  <div class="kpi-grid">
+    <div class="kpi accent"><div class="kpi-label">消化金額</div><div class="kpi-value" id="y-spend">—</div><div class="kpi-sub">YouTube + Meta</div></div>
+    <div class="kpi"><div class="kpi-label">表示回数</div><div class="kpi-value" id="y-imp">—</div></div>
+    <div class="kpi"><div class="kpi-label">クリック数</div><div class="kpi-value" id="y-clicks">—</div><div class="kpi-sub">CPM ¥<span id="y-cpm">—</span></div></div>
+    <div class="kpi"><div class="kpi-label">CPC</div><div class="kpi-value" id="y-cpc">—</div><div class="kpi-sub">クリック単価</div></div>
+    <div class="kpi accent"><div class="kpi-label">メルマガ登録</div><div class="kpi-value" id="y-mail">—</div><div class="kpi-sub">CPA ¥<span id="y-cpa">—</span></div></div>
+  </div>
+  <div class="two-col">
+    <div class="panel yt">
+      <div class="panel-title">YouTube <span class="badge badge-yt">Google Ads</span></div>
+      <div class="mini-grid">
+        <div><div class="mk-label">消化金額</div><div class="mk-val" id="yy-spend">—</div></div>
+        <div><div class="mk-label">表示回数</div><div class="mk-val" id="yy-imp">—</div></div>
+        <div><div class="mk-label">クリック</div><div class="mk-val" id="yy-clicks">—</div></div>
+        <div><div class="mk-label">CPM</div><div class="mk-val" id="yy-cpm">—</div></div>
+        <div><div class="mk-label">CPC</div><div class="mk-val" id="yy-cpc">—</div></div>
+        <div><div class="mk-label">メルマガ</div><div class="mk-val" id="yy-mail">—</div></div>
+      </div>
+    </div>
+    <div class="panel fb">
+      <div class="panel-title">Meta <span class="badge badge-fb">Facebook / Instagram</span></div>
+      <div class="mini-grid">
+        <div><div class="mk-label">消化金額</div><div class="mk-val" id="ym-spend">—</div></div>
+        <div><div class="mk-label">リーチ</div><div class="mk-val" id="ym-reach">—</div></div>
+        <div><div class="mk-label">クリック</div><div class="mk-val" id="ym-clicks">—</div></div>
+        <div><div class="mk-label">CPM</div><div class="mk-val" id="ym-cpm">—</div></div>
+        <div><div class="mk-label">CPC</div><div class="mk-val" id="ym-cpc">—</div></div>
+        <div><div class="mk-label">CV（Meta）</div><div class="mk-val" id="ym-cv">—</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 先週 -->
+<div class="view" id="view-last_week">
+  <div class="sec">先週（直近7日間）</div>
+  <div class="kpi-grid">
+    <div class="kpi accent"><div class="kpi-label">消化金額</div><div class="kpi-value" id="w-spend">—</div><div class="kpi-sub">YouTube + Meta</div></div>
+    <div class="kpi"><div class="kpi-label">表示回数</div><div class="kpi-value" id="w-imp">—</div></div>
+    <div class="kpi"><div class="kpi-label">クリック数</div><div class="kpi-value" id="w-clicks">—</div><div class="kpi-sub">CPM ¥<span id="w-cpm">—</span></div></div>
+    <div class="kpi"><div class="kpi-label">CPC</div><div class="kpi-value" id="w-cpc">—</div><div class="kpi-sub">クリック単価</div></div>
+    <div class="kpi accent"><div class="kpi-label">メルマガ登録</div><div class="kpi-value" id="w-mail">—</div><div class="kpi-sub">CPA ¥<span id="w-cpa">—</span></div></div>
+  </div>
+  <div class="chart-full"><div class="chart-title">先週 日次 消化金額（YouTube + Meta）</div><canvas id="chart-week" height="130"></canvas></div>
+</div>
+
+<!-- 今月 -->
+<div class="view" id="view-this_month">
+  <div class="sec">今月合計</div>
+  <div class="kpi-grid">
+    <div class="kpi accent"><div class="kpi-label">消化金額</div><div class="kpi-value" id="m-spend">—</div><div class="kpi-sub">YouTube + Meta</div></div>
+    <div class="kpi"><div class="kpi-label">表示回数</div><div class="kpi-value" id="m-imp">—</div></div>
+    <div class="kpi"><div class="kpi-label">クリック数</div><div class="kpi-value" id="m-clicks">—</div></div>
+    <div class="kpi"><div class="kpi-label">CPM</div><div class="kpi-value" id="m-cpm">—</div></div>
+    <div class="kpi"><div class="kpi-label">CPC</div><div class="kpi-value" id="m-cpc">—</div></div>
+    <div class="kpi accent"><div class="kpi-label">メルマガ登録</div><div class="kpi-value" id="m-mail">—</div><div class="kpi-sub">CPA ¥<span id="m-cpa">—</span></div></div>
+  </div>
+  <div class="two-col">
+    <div class="panel yt">
+      <div class="panel-title">YouTube 今月</div>
+      <div class="mini-grid">
+        <div><div class="mk-label">消化金額</div><div class="mk-val" id="my-spend">—</div></div>
+        <div><div class="mk-label">表示回数</div><div class="mk-val" id="my-imp">—</div></div>
+        <div><div class="mk-label">クリック</div><div class="mk-val" id="my-clicks">—</div></div>
+        <div><div class="mk-label">CPM</div><div class="mk-val" id="my-cpm">—</div></div>
+        <div><div class="mk-label">CPC</div><div class="mk-val" id="my-cpc">—</div></div>
+        <div><div class="mk-label">メルマガ</div><div class="mk-val" id="my-mail">—</div></div>
+      </div>
+    </div>
+    <div class="panel fb">
+      <div class="panel-title">Meta 今月</div>
+      <div class="mini-grid">
+        <div><div class="mk-label">消化金額</div><div class="mk-val" id="mm-spend">—</div></div>
+        <div><div class="mk-label">リーチ</div><div class="mk-val" id="mm-reach">—</div></div>
+        <div><div class="mk-label">クリック</div><div class="mk-val" id="mm-clicks">—</div></div>
+        <div><div class="mk-label">CPM</div><div class="mk-val" id="mm-cpm">—</div></div>
+        <div><div class="mk-label">CPC</div><div class="mk-val" id="mm-cpc">—</div></div>
+        <div><div class="mk-label">CV</div><div class="mk-val" id="mm-cv">—</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="chart-full"><div class="chart-title">日次 消化金額（今月）</div><canvas id="chart-month" height="130"></canvas></div>
+  <div class="table-box">
+    <p class="sec" style="margin-top:0">Meta 広告セット別（今月）</p>
+    <table><thead><tr><th>広告セット名</th><th>広告費</th><th>リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <tbody id="adset-tbody"></tbody></table>
+  </div>
+</div>
+
+<hr class="rule">
+<footer><div class="ftr">
+  <p>FrancDirect — YouTube + Meta Ads Dashboard</p>
+  <p>Meta Ads API + Google Ads（GAS） | 1時間おき自動更新</p>
+</div></footer>
+</div>
+
+<script>
+// ===== GAS URL（YouTube報告ブロック） =====
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxG_HOUWVsAWxRz0hqG1LBdmFSFtd1ocR2VEhyBL2cltYBtgtoFwjFuOz_YfHfH4QU/exec';
+
+const GOLD='#C4A35A',MUTED='rgba(244,236,219,0.3)',BLUE='#7B9EB8',GRID='rgba(196,163,90,0.09)';
+const chartReady=typeof Chart!=='undefined';
+if(chartReady){Chart.defaults.color=MUTED;Chart.defaults.font.family="'Shippori Mincho',serif";}
+let CH={};
+
+// ===== ユーティリティ =====
+const fmt=(n,d=0)=>n==null||isNaN(n)?'—':Number(n).toLocaleString('ja-JP',{maximumFractionDigits:d});
+const fmtK=n=>{if(n==null||isNaN(n))return'—';if(n>=10000)return(n/10000).toFixed(1)+'万';if(n>=1000)return(n/1000).toFixed(1)+'K';return String(Math.round(n))};
+const yen=n=>(n==null||isNaN(n)||n===0)?'—':'¥'+fmtK(n);
+const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+const calcCpm=(s,i)=>i>0?Math.round(s/i*1000):null;
+const calcCpc=(s,c)=>c>0?Math.round(s/c):null;
+const calcCpa=(s,m)=>m>0?Math.round(s/m):null;
+
+// JST今日の日付文字列
+function todayJST(){
+  const d=new Date(new Date().getTime()+9*3600*1000);
+  return d.toISOString().slice(0,10);
+}
+function yesterdayJST(){
+  const d=new Date(new Date().getTime()+9*3600*1000-86400*1000);
+  return d.toISOString().slice(0,10);
+}
+
+// data.jsonのdailyから日付で検索
+function findMetaDaily(metaData, dateStr){
+  return (metaData.daily||[]).find(r=>r.date===dateStr)||null;
+}
+
+// GASのdailyから日付で検索
+function findYtDaily(gasData, dateStr){
+  return (gasData.daily||[]).find(r=>r.date===dateStr)||null;
+}
+const metaCv=r=>(r?.cv_myasp||0)+(r?.cv_meta||0);
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// ===== 今日タブ =====
+function renderToday(metaData, gasData){
+  const today=todayJST();
+  const m=metaData.today||{};
+  // YouTube: GASのdailyから今日を検索
+  const yt=findYtDaily(gasData,today)||{};
+
+  const spend=(m.spend||0)+(yt.spend||0);
+  const imp=(m.impressions||0)+(yt.impressions||0);
+  const clk=(m.clicks||0)+(yt.clicks||0);
+  const mail=metaCv(m)+(yt.mail||0);
+
+  set('t-spend',yen(spend));
+  set('t-imp',fmtK(imp));
+  set('t-clicks',fmtK(clk));
+  set('t-cpm',imp>0?fmt(calcCpm(spend,imp)):'—');
+  set('t-cpc',yen(calcCpc(spend,clk)));
+  set('t-mail',mail+'件');
+  set('t-cpa',mail>0?fmt(calcCpa(spend,mail)):'—');
+
+  // YouTube panel
+  set('ty-spend',yen(yt.spend));
+  set('ty-imp',fmtK(yt.impressions));
+  set('ty-clicks',fmtK(yt.clicks));
+  set('ty-cpm',yt.impressions>0?yen(calcCpm(yt.spend,yt.impressions)):'—');
+  set('ty-cpc',yen(yt.cpc));
+  set('ty-mail',(yt.mail||0)+'件');
+
+  // Meta panel
+  const cv_m=metaCv(m);
+  set('tm-spend',yen(m.spend));
+  set('tm-reach',fmtK(m.reach));
+  set('tm-clicks',fmtK(m.clicks));
+  set('tm-cpm',m.impressions>0?yen(calcCpm(m.spend,m.impressions)):yen(m.cpm));
+  set('tm-cpc',yen(Math.round(m.cpc||0)));
+  set('tm-cv',cv_m+'件');
+}
+
+// ===== 昨日タブ =====
+function renderYesterday(metaData, gasData){
+  const yday=yesterdayJST();
+
+  // Meta: daily配列から検索、なければyesterday.metaを使用
+  const mRaw=findMetaDaily(metaData,yday)||(metaData.yesterday?.meta)||{};
+  // YouTube: GASのyesterdayまたはdaily検索
+  const ytRaw=gasData.yesterday||findYtDaily(gasData,yday)||{};
+
+  const ms=mRaw.spend||0, mi=mRaw.impressions||0, mc=mRaw.clicks||0;
+  const ys=ytRaw.spend||0, yi=ytRaw.impressions||0, yc=ytRaw.clicks||0;
+  const mail=metaCv(mRaw)+(ytRaw.mail||0);
+
+  const spend=ms+ys, imp=mi+yi, clk=mc+yc;
+
+  set('y-spend',yen(spend));
+  set('y-imp',fmtK(imp));
+  set('y-clicks',fmtK(clk));
+  set('y-cpm',imp>0?fmt(calcCpm(spend,imp)):'—');
+  set('y-cpc',yen(calcCpc(spend,clk)));
+  set('y-mail',mail+'件');
+  set('y-cpa',mail>0?fmt(calcCpa(spend,mail)):'—');
+
+  // YouTube panel
+  set('yy-spend',yen(ytRaw.spend));
+  set('yy-imp',fmtK(ytRaw.impressions));
+  set('yy-clicks',fmtK(ytRaw.clicks));
+  set('yy-cpm',ytRaw.impressions>0?yen(calcCpm(ytRaw.spend,ytRaw.impressions)):yen(ytRaw.cpm));
+  set('yy-cpc',yen(ytRaw.cpc));
+  set('yy-mail',(ytRaw.mail||0)+'件');
+
+  // Meta panel
+  const cv_m=metaCv(mRaw);
+  set('ym-spend',yen(mRaw.spend));
+  set('ym-reach',fmtK(mRaw.reach));
+  set('ym-clicks',fmtK(mRaw.clicks));
+  set('ym-cpm',mi>0?yen(calcCpm(ms,mi)):yen(mRaw.cpm));
+  set('ym-cpc',yen(Math.round(mRaw.cpc||0)));
+  set('ym-cv',cv_m+'件');
+}
+
+// ===== 先週タブ =====
+function renderLastWeek(metaData, gasData){
+  const today=todayJST();
+  const todayMs=new Date(today).getTime();
+  const cutMs=todayMs-7*86400*1000;
+
+  // Meta daily集計（今日を除く7日間）
+  const metaRows=(metaData.daily||[]).filter(r=>{
+    const ms=new Date(r.date).getTime();
+    return ms>=cutMs && r.date<today;
+  });
+  const ms_s=metaRows.reduce((s,r)=>s+(r.spend||0),0);
+  const ms_i=metaRows.reduce((s,r)=>s+(r.impressions||0),0);
+  const ms_c=metaRows.reduce((s,r)=>s+(r.clicks||0),0);
+  const ms_m=metaRows.reduce((s,r)=>s+metaCv(r),0);
+
+  // YouTube daily集計
+  const ytRows=(gasData.daily||[]).filter(r=>{
+    const ms=new Date(r.date).getTime();
+    return ms>=cutMs && r.date<today;
+  });
+  const ys_s=ytRows.reduce((s,r)=>s+(r.spend||0),0);
+  const ys_i=ytRows.reduce((s,r)=>s+(r.impressions||0),0);
+  const ys_c=ytRows.reduce((s,r)=>s+(r.clicks||0),0);
+  const ys_m=ytRows.reduce((s,r)=>s+(r.mail||0),0);
+
+  const spend=ms_s+ys_s, imp=ms_i+ys_i, clk=ms_c+ys_c;
+
+  set('w-spend',yen(spend));
+  set('w-imp',fmtK(imp));
+  set('w-clicks',fmtK(clk));
+  set('w-cpm',imp>0?fmt(calcCpm(spend,imp)):'—');
+  set('w-cpc',yen(calcCpc(spend,clk)));
+  const mail=ms_m+ys_m;
+  set('w-mail',mail+'件');
+  set('w-cpa',mail>0?fmt(calcCpa(spend,mail)):'—');
+
+  // チャート用データ作成（全日付をマージ）
+  const allDates=[...new Set([...metaRows.map(r=>r.date),...ytRows.map(r=>r.date)])].sort();
+  const chartRows=allDates.map(date=>{
+    const mr=metaRows.find(r=>r.date===date)||{};
+    const yr=ytRows.find(r=>r.date===date)||{};
+    return{date,meta_spend:mr.spend||0,yt_spend:yr.spend||0};
+  });
+  buildStackedChart('week',chartRows);
+}
+
+// ===== 今月タブ =====
+function renderThisMonth(metaData, gasData){
+  const m=metaData.this_month||{};
+  const yt=gasData.this_month||{};
+
+  const spend=(m.spend||0)+(yt.spend||0);
+  const imp=(m.impressions||0)+(yt.impressions||0);
+  const clk=(m.clicks||0)+(yt.clicks||0);
+  const cv_m=metaCv(m);
+  const mail=cv_m+(yt.mail||0);
+
+  set('m-spend',yen(spend));
+  set('m-imp',fmtK(imp));
+  set('m-clicks',fmtK(clk));
+  set('m-cpm',imp>0?yen(calcCpm(spend,imp)):'—');
+  set('m-cpc',yen(calcCpc(spend,clk)));
+  set('m-mail',mail+'件');
+  set('m-cpa',mail>0?fmt(calcCpa(spend,mail)):'—');
+
+  // YouTube panel
+  set('my-spend',yen(yt.spend));
+  set('my-imp',fmtK(yt.impressions));
+  set('my-clicks',fmtK(yt.clicks));
+  set('my-cpm',yt.impressions>0?yen(calcCpm(yt.spend,yt.impressions)):yen(yt.cpm));
+  set('my-cpc',yen(yt.cpc));
+  set('my-mail',(mail)+'件');
+
+  // Meta panel
+  set('mm-spend',yen(m.spend));
+  set('mm-reach',fmtK(m.reach));
+  set('mm-clicks',fmtK(m.clicks));
+  set('mm-cpm',m.impressions>0?yen(calcCpm(m.spend,m.impressions)):yen(m.cpm));
+  set('mm-cpc',yen(Math.round(m.cpc||0)));
+  set('mm-cv',cv_m+'件');
+
+  // チャート：今月のMeta dailyとYouTube dailyをマージ
+  const nowStr=todayJST().slice(0,7); // YYYY-MM
+  const metaMonth=(metaData.daily||[]).filter(r=>r.date.startsWith(nowStr));
+  const ytMonth=(gasData.daily||[]).filter(r=>r.date.startsWith(nowStr));
+  const allDates=[...new Set([...metaMonth.map(r=>r.date),...ytMonth.map(r=>r.date)])].sort();
+  const chartRows=allDates.map(date=>{
+    const mr=metaMonth.find(r=>r.date===date)||{};
+    const yr=ytMonth.find(r=>r.date===date)||{};
+    return{date,meta_spend:mr.spend||0,yt_spend:yr.spend||0};
+  });
+  buildStackedChart('month',chartRows);
+
+  // 広告セットテーブル
+  renderAdsets(metaData.adsets?.this_month||[]);
+}
+
+// ===== チャート =====
+function buildStackedChart(key,cd){
+  const ctx=document.getElementById('chart-'+key);if(!ctx)return;
+  if(!chartReady){
+    ctx.replaceWith(Object.assign(document.createElement('div'),{className:'error-box',textContent:'グラフを読み込めませんでした。数値データは表示されています。'}));
+    return;
+  }
+  if(CH[key])CH[key].destroy();
+  CH[key]=new Chart(ctx,{type:'bar',data:{
+    labels:cd.map(r=>r.date.slice(5)),
+    datasets:[
+      {label:'YouTube',data:cd.map(r=>r.yt_spend||0),backgroundColor:'rgba(123,158,184,0.5)',borderColor:BLUE,borderWidth:1,stack:'s'},
+      {label:'Meta',data:cd.map(r=>r.meta_spend||0),backgroundColor:'rgba(196,163,90,0.4)',borderColor:GOLD,borderWidth:1,stack:'s'},
+    ]
+  },options:{responsive:true,interaction:{mode:'index',intersect:false},
+  plugins:{legend:{labels:{boxWidth:11,font:{size:10}}}},
+  scales:{x:{stacked:true,grid:{color:GRID},ticks:{font:{size:9},maxTicksLimit:15}},
+  y:{stacked:true,grid:{color:GRID},ticks:{callback:v=>'¥'+fmtK(v),font:{size:9}}}}}});
+}
+
+function renderAdsets(adsets){
+  document.getElementById('adset-tbody').innerHTML=(adsets||[]).map(a=>`<tr>
+    <td><span class="tdname" title="${escapeHtml(a.name)}">${escapeHtml(a.name)}</span></td>
+    <td>¥${fmt(a.spend)}</td><td>${fmtK(a.reach)}</td><td>${fmt(a.clicks)}</td>
+    <td>${a.ctr||0}%</td><td>¥${fmt(a.cpc,0)}</td><td><span class="cv-pill">${a.cv_meta||0}件</span></td>
+  </tr>`).join('');
+}
+
+// ===== データ読み込み =====
+let metaData={}, gasData={};
+
+async function loadData(){
+  try{
+    // data.json（Meta）とGAS（YouTube）を並行取得
+    const [metaRes, gasRes] = await Promise.allSettled([
+      fetch('data.json?t='+Date.now()).then(r=>r.json()),
+      fetch(GAS_URL+'?t='+Date.now()).then(r=>r.json())
+    ]);
+
+    metaData = metaRes.status==='fulfilled' ? metaRes.value : {};
+    const gasFromPage = gasRes.status==='fulfilled' ? gasRes.value : null;
+    gasData = gasFromPage?.daily?.length ? gasFromPage : (metaData.youtube || {});
+
+    const warnings=[];
+    if(metaRes.status!=='fulfilled') warnings.push('Metaデータを読み込めませんでした');
+    if(gasRes.status!=='fulfilled' && !(metaData.youtube?.daily||[]).length) warnings.push('YouTubeデータを読み込めませんでした');
+
+    if(metaData.last_updated){
+      const d=new Date(metaData.last_updated);
+      const jst=new Date(d.getTime()+9*3600*1000);
+      document.getElementById('updated-at').textContent=
+        '最終更新: '+jst.toISOString().slice(0,16).replace('T',' ')+' JST';
+    }
+
+    document.getElementById('error-area').innerHTML=warnings.length
+      ? `<div class="error-box">${warnings.join('<br>')}</div>`
+      : '';
+    const view=document.querySelector('.period-btn.active')?.dataset.view||'today';
+    renderView(view);
+
+  }catch(e){
+    document.getElementById('error-area').innerHTML=
+      `<div class="error-box">データ読み込みに失敗しました。<br>詳細: ${e.message}</div>`;
+  }finally{
+    const el=document.getElementById('loading');
+    el.style.opacity='0';
+    setTimeout(()=>el.style.display='none',400);
+  }
+}
+
+function renderView(view){
+  if(view==='today')      renderToday(metaData, gasData);
+  if(view==='yesterday')  renderYesterday(metaData, gasData);
+  if(view==='last_week')  renderLastWeek(metaData, gasData);
+  if(view==='this_month') renderThisMonth(metaData, gasData);
+}
+
+document.getElementById('period-bar').addEventListener('click',e=>{
+  const btn=e.target.closest('.period-btn');if(!btn)return;
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  btn.classList.add('active');
+  const view=btn.dataset.view;
+  document.getElementById('view-'+view)?.classList.add('active');
+  renderView(view);
+});
+
+loadData();
+// 1時間おき自動更新
+setTimeout(()=>location.reload(), 60*60*1000);
+</script>
+</body>
+</html>
