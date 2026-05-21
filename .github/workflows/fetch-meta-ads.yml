@@ -29,6 +29,7 @@ jobs:
           META_AD_ACCOUNT_ID: ${{ secrets.META_AD_ACCOUNT_ID }}
           META_CAMPAIGN_ID:   ${{ secrets.META_CAMPAIGN_ID }}
           SHEET_CSV_URL:      ${{ secrets.SHEET_CSV_URL }}
+          GAS_YOUTUBE_URL:    ${{ secrets.GAS_YOUTUBE_URL }}
         run: python fetch_meta.py
 
       - name: Commit & Push data.json
