@@ -3,7 +3,7 @@ Meta Ads API + YouTube (GAS) + MyASP CV — FrancDirect専用
 YouTube データは Google Apps Script Web App から取得
 """
 
-import os, json, csv, io, requests
+import os, json, csv, io, re, requests
 from datetime import datetime, timezone, timedelta
 from zoneinfo import ZoneInfo
 
@@ -57,20 +57,50 @@ def row_to_summary(s):
         "cv_myasp":    0,
     }
 
-# ── Google Sheet から MyASP CV ─────────────────────────────────────────
+def num(value):
+    text = str(value or "").replace(",", "").replace("¥", "").replace("%", "").strip()
+    if text in ("", "-"):
+        return 0
+    try:
+        return int(float(text))
+    except ValueError:
+        return 0
+
+def norm_key(value):
+    return re.sub(r"\s+", "", str(value or "").replace("\n", "")).lower()
+
+def parse_sheet_date(value):
+    text = str(value or "").strip()
+    if not text or text == "合計" or "合計" in text:
+        return ""
+    if re.match(r"^\d{4}-\d{1,2}-\d{1,2}$", text):
+        return text
+    m = re.match(r"^(?:\d{4}年)?(\d{1,2})月(\d{1,2})日", text)
+    if not m:
+        return ""
+    year = today.year if "today" in globals() else datetime.now(JST).year
+    return f"{year}-{int(m.group(1)):02d}-{int(m.group(2)):02d}"
+
+# ── Google Sheet から CV データ ─────────────────────────────────────────
 cv_by_date = {}
 if SHEET_CSV_URL:
     try:
         print("📊 Google Sheet から CV データを取得中...")
         r = requests.get(SHEET_CSV_URL, timeout=10)
         r.raise_for_status()
-        reader = csv.DictReader(io.StringIO(r.text))
-        for row in reader:
-            d = (row.get("日付") or row.get("date") or "").strip()
+        rows = list(csv.reader(io.StringIO(r.text)))
+        if not rows:
+            raise RuntimeError("Sheet CSV is empty")
+        headers = [norm_key(h) for h in rows[0]]
+        date_idx = next((i for i, h in enumerate(headers) if h in ("日付", "date")), 0)
+        myasp_idx = next((i for i, h in enumerate(headers) if h in ("myasp_cv", "myaspcv", "メルマガ登録者")), None)
+        line_idx = next((i for i, h in enumerate(headers) if h in ("line_cv", "linecv")), None)
+        for row in rows[1:]:
+            d = parse_sheet_date(row[date_idx] if date_idx < len(row) else "")
             if not d:
                 continue
-            myasp = int(float(row.get("MyASP_CV") or row.get("myasp_cv") or 0))
-            line  = int(float(row.get("LINE_CV")  or row.get("line_cv")  or 0))
+            myasp = num(row[myasp_idx]) if myasp_idx is not None and myasp_idx < len(row) else 0
+            line  = num(row[line_idx]) if line_idx is not None and line_idx < len(row) else 0
             cv_by_date[d] = {"myasp": myasp, "line": line}
         print(f"   {len(cv_by_date)} 日分取得")
     except Exception as e:
@@ -160,6 +190,7 @@ def normalize_adsets(rows):
             "reach":       int(a.get("reach", 0)),
             "impressions": int(a.get("impressions", 0)),
             "clicks":      int(a.get("clicks", 0)),
+            "cpm":         round(float(a.get("cpm", 0)), 2),
             "ctr":         round(float(a.get("ctr", 0)), 2),
             "cpc":         round(float(a.get("cpc", 0)), 2),
             "cv_meta":     cv_from_actions(a.get("actions")),
@@ -185,7 +216,7 @@ for s in [s_today, s_month, s_30d, s_total]:
     s["cpa"] = round(s["spend"] / cv) if cv > 0 else None
 
 adsets_today = fetch_adsets("today")
-adsets_yesterday = fetch_adsets_range(yesterday_str, yesterday_str)
+adsets_yesterday = fetch_adsets("yesterday")
 adsets_last_week = fetch_adsets_range(last_week_start, yesterday_str)
 adsets_month = fetch_adsets("this_month")
 adsets_30d   = fetch_adsets("last_30d")
