@@ -10,7 +10,7 @@ ACCESS_TOKEN      = os.environ["META_ACCESS_TOKEN"]
 AD_ACCOUNT_ID     = os.environ["META_AD_ACCOUNT_ID"]
 CAMPAIGN_ID       = os.environ["META_CAMPAIGN_ID"]
 SHEET_CSV_URL     = os.environ.get("SHEET_CSV_URL", "")
-GAS_YOUTUBE_URL   = os.environ.get("GAS_YOUTUBE_URL", "")   # ← 新規追加
+GAS_YOUTUBE_URL   = os.environ.get("GAS_YOUTUBE_URL", "")
 API_VER           = "v21.0"
 BASE              = f"https://graph.facebook.com/{API_VER}/act_{AD_ACCOUNT_ID}/insights"
 CAMP_FILTER       = f'[{{"field":"campaign.id","operator":"EQUAL","value":"{CAMPAIGN_ID}"}}]'
@@ -161,7 +161,7 @@ adsets_30d   = fetch_adsets("last_30d")
 
 # Meta 日次データ
 daily_raw = meta({
-    "fields": FIELDS, "date_preset": "last_60d",
+    "fields": FIELDS, "date_preset": "last_90d",
     "level": "campaign", "filtering": CAMP_FILTER,
     "time_increment": 1,
 })
@@ -230,7 +230,6 @@ for ds in all_dates:
 output = {
     "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     "campaign_id":  CAMPAIGN_ID,
-    # Meta（既存 - 後方互換）
     "today":        s_today,
     "this_month":   s_month,
     "last_30d":     s_30d,
@@ -240,18 +239,15 @@ output = {
         "this_month":adsets_month,
         "last_30d":  adsets_30d,
     },
-    "daily":        daily,
-    "cv_log":       [{"date": k, **v} for k, v in sorted(cv_by_date.items())],
-    # YouTube（新規）
-    "youtube":      youtube_data,
-    # 昨日の合算（新規）
+    "daily":          daily,
+    "cv_log":         [{"date": k, **v} for k, v in sorted(cv_by_date.items())],
+    "youtube":        youtube_data,
     "yesterday": {
         "date":     yesterday_str,
         "meta":     meta_yday,
         "youtube":  yt_yday,
         "combined": combined_yesterday,
     },
-    # 合算日次（新規）
     "combined_daily": combined_daily,
 }
 
