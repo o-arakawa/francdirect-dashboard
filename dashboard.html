@@ -533,7 +533,7 @@ function metaRowsFor(adsets){
     cpm:a.cpm||calcCpm(a.spend||0,a.impressions||a.reach||0),
     ctr:a.ctr!=null?a.ctr:((a.impressions||0)>0?(a.clicks||0)/(a.impressions||0)*100:0),
     cpc:a.cpc||calcCpc(a.spend||0,a.clicks||0),
-    cv:a.cv_meta||a.cv_myasp||0
+    cv:(a.cv_meta||0)+(a.cv_myasp||0)
   }));
 }
 
