@@ -199,23 +199,66 @@ def cv_myasp_range_for_adset(name, start, end):
         return 0
     return sum(cv for d, cv in cv_by_adset_key_date.get(key, {}).items() if start <= d <= end)
 
-# ── YouTube データ（GAS Web App）─────────────────────────────────────
-youtube_data = {"daily": [], "yesterday": None, "this_month": None}
+# ── GAS から YouTube + Meta CV + 講座購入者(koza) データ ──────────────
+youtube_data   = {"daily": [], "yesterday": None, "this_month": None}
+koza_meta_date = {}   # Meta 講座購入者 by date
+koza_yt_date   = {}   # YouTube 講座購入者 by date
+
 if GAS_YOUTUBE_URL:
     try:
-        print("📺 YouTube データを GAS から取得中...")
+        print("📺 GAS から YouTube + Meta CV データを取得中...")
         r = requests.get(GAS_YOUTUBE_URL, timeout=30)
         r.raise_for_status()
-        youtube_data = r.json()
-        if "error" in youtube_data:
-            print(f"⚠️ GAS エラー: {youtube_data['error']}")
-            youtube_data = {"daily": [], "yesterday": None, "this_month": None}
+        gas_resp = r.json()
+
+        if "error" in gas_resp:
+            print(f"⚠️ GAS エラー: {gas_resp['error']}")
         else:
-            print(f"   YouTube: {len(youtube_data.get('daily', []))} 日分取得")
+            if "youtube" in gas_resp:
+                # ── YouTube ──────────────────────────────────────────
+                youtube_data = gas_resp.get("youtube", youtube_data)
+                print(f"   YouTube: {len(youtube_data.get('daily', []))} 日分取得")
+
+                # ── YouTube CV (by_adset) ─────────────────────────────
+                yt_cv = gas_resp.get("youtube_cv", {})
+                if yt_cv:
+                    koza_yt_date = yt_cv.get("koza_by_date", {})
+                    # by_adset は今後 dashboard で使えるよう保持
+                    by_adset_yt = yt_cv.get("by_adset", {})
+                    print(f"   YouTube CV: {len(yt_cv.get('by_date',{}))} 日分")
+
+                # ── Meta CV (N列・S列) ────────────────────────────────
+                meta_cv = gas_resp.get("meta_cv", {})
+                if meta_cv:
+                    by_date  = meta_cv.get("by_date", {})
+                    by_adset = meta_cv.get("by_adset", {})
+                    koza_meta_date = meta_cv.get("koza_by_date", {})
+                    if by_date:
+                        cv_by_date.clear()
+                        for d, cv in by_date.items():
+                            # by_adset の mail/koza 形式にも対応
+                            cv_val = cv if isinstance(cv, int) else (cv.get("mail", 0) if isinstance(cv, dict) else int(cv))
+                            cv_by_date[d] = {"myasp": cv_val, "line": 0}
+                    for key in ("normal", "thank"):
+                        raw = by_adset.get(key, {})
+                        # 各日の値が {mail, koza} dict の場合は mail だけ抽出
+                        cv_by_adset_key_date[key] = {
+                            d: (v.get("mail", 0) if isinstance(v, dict) else int(v or 0))
+                            for d, v in raw.items()
+                        }
+                    total_cv = sum(v.get("myasp", 0) for v in cv_by_date.values())
+                    total_koza = sum(koza_meta_date.values())
+                    print(f"   Meta CV (GAS): {len(cv_by_date)} 日分, mail合計={total_cv}, 講座購入者合計={total_koza}")
+                else:
+                    print("   Meta CV: GAS レスポンスに meta_cv なし（CSV フォールバック使用）")
+            else:
+                # 旧フォーマット（YouTube データのみ、後方互換）
+                youtube_data = gas_resp
+                print(f"   YouTube: {len(youtube_data.get('daily', []))} 日分取得")
     except Exception as e:
-        print(f"⚠️ YouTube データ取得失敗（スキップ）: {e}")
+        print(f"⚠️ GAS データ取得失敗（スキップ）: {e}")
 else:
-    print("⚠️ GAS_YOUTUBE_URL 未設定 — YouTube データなし")
+    print("⚠️ GAS_YOUTUBE_URL 未設定 — YouTube / Meta CV データなし")
 
 # ── Meta: 各期間サマリー ──────────────────────────────────────────────
 today       = datetime.now(JST).date()
@@ -386,6 +429,18 @@ for ds in all_dates:
     })
 
 # ── 出力 ─────────────────────────────────────────────────────────────
+
+# 講座購入者 今月合算
+def koza_range(koza_dict, start, end):
+    return sum(v for d, v in koza_dict.items() if start <= d <= end)
+
+koza_meta_month  = koza_range(koza_meta_date, month_start, today_str)
+koza_yt_month    = koza_range(koza_yt_date,   month_start, today_str)
+koza_meta_today  = koza_meta_date.get(today_str, 0)
+koza_yt_today    = koza_yt_date.get(today_str, 0)
+koza_meta_yday_v = koza_meta_date.get(yesterday_str, 0)
+koza_yt_yday_v   = koza_yt_date.get(yesterday_str, 0)
+
 output = {
     "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     "campaign_id":  CAMPAIGN_ID,
@@ -410,6 +465,26 @@ output = {
         "combined": combined_yesterday,
     },
     "combined_daily": combined_daily,
+    # 講座購入者 (S列) サマリー
+    "koza": {
+        "meta": {
+            "today":      koza_meta_today,
+            "yesterday":  koza_meta_yday_v,
+            "this_month": koza_meta_month,
+            "by_date":    koza_meta_date,
+        },
+        "youtube": {
+            "today":      koza_yt_today,
+            "yesterday":  koza_yt_yday_v,
+            "this_month": koza_yt_month,
+            "by_date":    koza_yt_date,
+        },
+        "combined": {
+            "today":      koza_meta_today + koza_yt_today,
+            "yesterday":  koza_meta_yday_v + koza_yt_yday_v,
+            "this_month": koza_meta_month + koza_yt_month,
+        },
+    },
 }
 
 with open("data.json", "w", encoding="utf-8") as f:
