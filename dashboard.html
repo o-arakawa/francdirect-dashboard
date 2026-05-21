@@ -58,8 +58,9 @@ th:first-child{text-align:left}
 td{padding:.75rem .7rem;border-bottom:.5px solid rgba(196,163,90,.07);text-align:right}
 td:first-child{text-align:left;color:var(--muted);font-size:.73rem}
 tr:last-child td{border-bottom:none}
-.tdname{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:190px}
+.tdname{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:260px}
 .cv-pill{display:inline-block;background:rgba(76,175,125,.14);color:#4CAF7D;font-size:.6rem;padding:2px 8px}
+.empty-row td{text-align:left;color:var(--muted)}
 .view{display:none}.view.active{display:block}
 #loading{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;z-index:999;transition:opacity .4s}
 #loading .ld-logo{font-family:'Playfair Display',serif;font-size:1.8rem;letter-spacing:.2em;text-transform:uppercase}
@@ -131,6 +132,12 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
       </div>
     </div>
   </div>
+  <div class="chart-full"><div class="chart-title">今日 消化金額（YouTube + Meta）</div><canvas id="chart-today" height="130"></canvas></div>
+  <div class="table-box">
+    <p class="sec" style="margin-top:0">媒体 / 広告セット別（今日）</p>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <tbody id="t-adset-tbody"></tbody></table>
+  </div>
 </div>
 
 <!-- 昨日 -->
@@ -167,6 +174,12 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
       </div>
     </div>
   </div>
+  <div class="chart-full"><div class="chart-title">昨日 消化金額（YouTube + Meta）</div><canvas id="chart-yesterday" height="130"></canvas></div>
+  <div class="table-box">
+    <p class="sec" style="margin-top:0">媒体 / 広告セット別（昨日）</p>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <tbody id="y-adset-tbody"></tbody></table>
+  </div>
 </div>
 
 <!-- 先週 -->
@@ -180,6 +193,11 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
     <div class="kpi accent"><div class="kpi-label">メルマガ登録</div><div class="kpi-value" id="w-mail">—</div><div class="kpi-sub">CPA ¥<span id="w-cpa">—</span></div></div>
   </div>
   <div class="chart-full"><div class="chart-title">先週 日次 消化金額（YouTube + Meta）</div><canvas id="chart-week" height="130"></canvas></div>
+  <div class="table-box">
+    <p class="sec" style="margin-top:0">媒体 / 広告セット別（先週）</p>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <tbody id="w-adset-tbody"></tbody></table>
+  </div>
 </div>
 
 <!-- 今月 -->
@@ -219,9 +237,9 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   </div>
   <div class="chart-full"><div class="chart-title">日次 消化金額（今月）</div><canvas id="chart-month" height="130"></canvas></div>
   <div class="table-box">
-    <p class="sec" style="margin-top:0">Meta 広告セット別（今月）</p>
-    <table><thead><tr><th>広告セット名</th><th>広告費</th><th>リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
-    <tbody id="adset-tbody"></tbody></table>
+    <p class="sec" style="margin-top:0">媒体 / 広告セット別（今月）</p>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <tbody id="m-adset-tbody"></tbody></table>
   </div>
 </div>
 
@@ -243,8 +261,8 @@ let CH={};
 
 // ===== ユーティリティ =====
 const fmt=(n,d=0)=>n==null||isNaN(n)?'—':Number(n).toLocaleString('ja-JP',{maximumFractionDigits:d});
-const fmtK=n=>{if(n==null||isNaN(n))return'—';if(n>=10000)return(n/10000).toFixed(1)+'万';if(n>=1000)return(n/1000).toFixed(1)+'K';return String(Math.round(n))};
-const yen=n=>(n==null||isNaN(n)||n===0)?'—':'¥'+fmtK(n);
+const fmtInt=n=>n==null||isNaN(n)?'—':Number(Math.round(n)).toLocaleString('ja-JP');
+const yen=n=>(n==null||isNaN(n))?'—':'¥'+fmtInt(n);
 const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
 const calcCpm=(s,i)=>i>0?Math.round(s/i*1000):null;
 const calcCpc=(s,c)=>c>0?Math.round(s/c):null;
@@ -285,8 +303,8 @@ function renderToday(metaData, gasData){
   const mail=metaCv(m)+(yt.mail||0);
 
   set('t-spend',yen(spend));
-  set('t-imp',fmtK(imp));
-  set('t-clicks',fmtK(clk));
+  set('t-imp',fmtInt(imp));
+  set('t-clicks',fmtInt(clk));
   set('t-cpm',imp>0?fmt(calcCpm(spend,imp)):'—');
   set('t-cpc',yen(calcCpc(spend,clk)));
   set('t-mail',mail+'件');
@@ -294,8 +312,8 @@ function renderToday(metaData, gasData){
 
   // YouTube panel
   set('ty-spend',yen(yt.spend));
-  set('ty-imp',fmtK(yt.impressions));
-  set('ty-clicks',fmtK(yt.clicks));
+  set('ty-imp',fmtInt(yt.impressions));
+  set('ty-clicks',fmtInt(yt.clicks));
   set('ty-cpm',yt.impressions>0?yen(calcCpm(yt.spend,yt.impressions)):'—');
   set('ty-cpc',yen(yt.cpc));
   set('ty-mail',(yt.mail||0)+'件');
@@ -303,11 +321,13 @@ function renderToday(metaData, gasData){
   // Meta panel
   const cv_m=metaCv(m);
   set('tm-spend',yen(m.spend));
-  set('tm-reach',fmtK(m.reach));
-  set('tm-clicks',fmtK(m.clicks));
+  set('tm-reach',fmtInt(m.reach));
+  set('tm-clicks',fmtInt(m.clicks));
   set('tm-cpm',m.impressions>0?yen(calcCpm(m.spend,m.impressions)):yen(m.cpm));
   set('tm-cpc',yen(Math.round(m.cpc||0)));
   set('tm-cv',cv_m+'件');
+  buildStackedChart('today',[{date:today,meta_spend:m.spend||0,yt_spend:yt.spend||0}]);
+  renderAdsets('t-adset-tbody','today',metaData.adsets?.today||[],yt);
 }
 
 // ===== 昨日タブ =====
@@ -326,8 +346,8 @@ function renderYesterday(metaData, gasData){
   const spend=ms+ys, imp=mi+yi, clk=mc+yc;
 
   set('y-spend',yen(spend));
-  set('y-imp',fmtK(imp));
-  set('y-clicks',fmtK(clk));
+  set('y-imp',fmtInt(imp));
+  set('y-clicks',fmtInt(clk));
   set('y-cpm',imp>0?fmt(calcCpm(spend,imp)):'—');
   set('y-cpc',yen(calcCpc(spend,clk)));
   set('y-mail',mail+'件');
@@ -335,8 +355,8 @@ function renderYesterday(metaData, gasData){
 
   // YouTube panel
   set('yy-spend',yen(ytRaw.spend));
-  set('yy-imp',fmtK(ytRaw.impressions));
-  set('yy-clicks',fmtK(ytRaw.clicks));
+  set('yy-imp',fmtInt(ytRaw.impressions));
+  set('yy-clicks',fmtInt(ytRaw.clicks));
   set('yy-cpm',ytRaw.impressions>0?yen(calcCpm(ytRaw.spend,ytRaw.impressions)):yen(ytRaw.cpm));
   set('yy-cpc',yen(ytRaw.cpc));
   set('yy-mail',(ytRaw.mail||0)+'件');
@@ -344,11 +364,13 @@ function renderYesterday(metaData, gasData){
   // Meta panel
   const cv_m=metaCv(mRaw);
   set('ym-spend',yen(mRaw.spend));
-  set('ym-reach',fmtK(mRaw.reach));
-  set('ym-clicks',fmtK(mRaw.clicks));
+  set('ym-reach',fmtInt(mRaw.reach));
+  set('ym-clicks',fmtInt(mRaw.clicks));
   set('ym-cpm',mi>0?yen(calcCpm(ms,mi)):yen(mRaw.cpm));
   set('ym-cpc',yen(Math.round(mRaw.cpc||0)));
   set('ym-cv',cv_m+'件');
+  buildStackedChart('yesterday',[{date:yday,meta_spend:ms,yt_spend:ys}]);
+  renderAdsets('y-adset-tbody','yesterday',metaData.adsets?.yesterday||[metaAggregateRow('Meta 合計（昨日）',mRaw)],ytRaw);
 }
 
 // ===== 先週タブ =====
@@ -380,8 +402,8 @@ function renderLastWeek(metaData, gasData){
   const spend=ms_s+ys_s, imp=ms_i+ys_i, clk=ms_c+ys_c;
 
   set('w-spend',yen(spend));
-  set('w-imp',fmtK(imp));
-  set('w-clicks',fmtK(clk));
+  set('w-imp',fmtInt(imp));
+  set('w-clicks',fmtInt(clk));
   set('w-cpm',imp>0?fmt(calcCpm(spend,imp)):'—');
   set('w-cpc',yen(calcCpc(spend,clk)));
   const mail=ms_m+ys_m;
@@ -396,6 +418,7 @@ function renderLastWeek(metaData, gasData){
     return{date,meta_spend:mr.spend||0,yt_spend:yr.spend||0};
   });
   buildStackedChart('week',chartRows);
+  renderAdsets('w-adset-tbody','last_week',metaData.adsets?.last_week||[metaAggregateRow('Meta 合計（先週）',{spend:ms_s,reach:ms_i,impressions:ms_i,clicks:ms_c,cv_meta:ms_m})],periodSummary(ytRows,'YouTube 合計（先週）'));
 }
 
 // ===== 今月タブ =====
@@ -410,8 +433,8 @@ function renderThisMonth(metaData, gasData){
   const mail=cv_m+(yt.mail||0);
 
   set('m-spend',yen(spend));
-  set('m-imp',fmtK(imp));
-  set('m-clicks',fmtK(clk));
+  set('m-imp',fmtInt(imp));
+  set('m-clicks',fmtInt(clk));
   set('m-cpm',imp>0?yen(calcCpm(spend,imp)):'—');
   set('m-cpc',yen(calcCpc(spend,clk)));
   set('m-mail',mail+'件');
@@ -419,16 +442,16 @@ function renderThisMonth(metaData, gasData){
 
   // YouTube panel
   set('my-spend',yen(yt.spend));
-  set('my-imp',fmtK(yt.impressions));
-  set('my-clicks',fmtK(yt.clicks));
+  set('my-imp',fmtInt(yt.impressions));
+  set('my-clicks',fmtInt(yt.clicks));
   set('my-cpm',yt.impressions>0?yen(calcCpm(yt.spend,yt.impressions)):yen(yt.cpm));
   set('my-cpc',yen(yt.cpc));
-  set('my-mail',(mail)+'件');
+  set('my-mail',(yt.mail||0)+'件');
 
   // Meta panel
   set('mm-spend',yen(m.spend));
-  set('mm-reach',fmtK(m.reach));
-  set('mm-clicks',fmtK(m.clicks));
+  set('mm-reach',fmtInt(m.reach));
+  set('mm-clicks',fmtInt(m.clicks));
   set('mm-cpm',m.impressions>0?yen(calcCpm(m.spend,m.impressions)):yen(m.cpm));
   set('mm-cpc',yen(Math.round(m.cpc||0)));
   set('mm-cv',cv_m+'件');
@@ -445,8 +468,7 @@ function renderThisMonth(metaData, gasData){
   });
   buildStackedChart('month',chartRows);
 
-  // 広告セットテーブル
-  renderAdsets(metaData.adsets?.this_month||[]);
+  renderAdsets('m-adset-tbody','this_month',metaData.adsets?.this_month||[],yt);
 }
 
 // ===== チャート =====
@@ -466,15 +488,61 @@ function buildStackedChart(key,cd){
   },options:{responsive:true,interaction:{mode:'index',intersect:false},
   plugins:{legend:{labels:{boxWidth:11,font:{size:10}}}},
   scales:{x:{stacked:true,grid:{color:GRID},ticks:{font:{size:9},maxTicksLimit:15}},
-  y:{stacked:true,grid:{color:GRID},ticks:{callback:v=>'¥'+fmtK(v),font:{size:9}}}}}});
+  y:{stacked:true,grid:{color:GRID},ticks:{callback:v=>'¥'+fmtInt(v),font:{size:9}}}}}});
 }
 
-function renderAdsets(adsets){
-  document.getElementById('adset-tbody').innerHTML=(adsets||[]).map(a=>`<tr>
-    <td><span class="tdname" title="${escapeHtml(a.name)}">${escapeHtml(a.name)}</span></td>
-    <td>¥${fmt(a.spend)}</td><td>${fmtK(a.reach)}</td><td>${fmt(a.clicks)}</td>
-    <td>${a.ctr||0}%</td><td>¥${fmt(a.cpc,0)}</td><td><span class="cv-pill">${a.cv_meta||0}件</span></td>
-  </tr>`).join('');
+function periodSummary(rows,name){
+  const list=rows||[];
+  const spend=list.reduce((s,r)=>s+(r.spend||0),0);
+  const impressions=list.reduce((s,r)=>s+(r.impressions||0),0);
+  const clicks=list.reduce((s,r)=>s+(r.clicks||0),0);
+  const mail=list.reduce((s,r)=>s+(r.mail||0),0);
+  return{name,spend,impressions,clicks,mail,cpc:calcCpc(spend,clicks),ctr:impressions>0?clicks/impressions*100:0};
+}
+
+function metaAggregateRow(name,row){
+  const impressions=row?.impressions||row?.reach||0;
+  const clicks=row?.clicks||0;
+  const spend=row?.spend||0;
+  return{name,spend,reach:row?.reach||impressions,impressions,clicks,ctr:impressions>0?clicks/impressions*100:(row?.ctr||0),cpc:row?.cpc||calcCpc(spend,clicks),cv_meta:metaCv(row)};
+}
+
+function ytRowsFor(period,ytSummary){
+  const detail=gasData.adsets?.[period]||gasData.ad_groups?.[period]||gasData.adGroups?.[period]||gasData.campaigns?.[period]||[];
+  const rows=Array.isArray(detail)&&detail.length?detail:[ytSummary].filter(Boolean);
+  return rows.map(r=>({
+    source:'YouTube',
+    name:r.name||r.adset_name||r.ad_group_name||r.campaign_name||'YouTube 合計（GAS）',
+    spend:r.spend||0,
+    reach:r.impressions||r.reach||0,
+    clicks:r.clicks||0,
+    ctr:r.ctr!=null?r.ctr:((r.impressions||0)>0?(r.clicks||0)/(r.impressions||0)*100:0),
+    cpc:r.cpc||calcCpc(r.spend||0,r.clicks||0),
+    cv:r.mail||r.cv||0
+  }));
+}
+
+function metaRowsFor(adsets){
+  return (adsets||[]).filter(Boolean).map(a=>({
+    source:'Meta',
+    name:a.name||a.adset_name||'Meta 合計',
+    spend:a.spend||0,
+    reach:a.reach||a.impressions||0,
+    clicks:a.clicks||0,
+    ctr:a.ctr!=null?a.ctr:((a.impressions||0)>0?(a.clicks||0)/(a.impressions||0)*100:0),
+    cpc:a.cpc||calcCpc(a.spend||0,a.clicks||0),
+    cv:a.cv_meta||a.cv_myasp||0
+  }));
+}
+
+function renderAdsets(tbodyId,period,metaAdsets,ytSummary){
+  const tbody=document.getElementById(tbodyId);if(!tbody)return;
+  const rows=[...ytRowsFor(period,ytSummary),...metaRowsFor(metaAdsets)].filter(r=>r.spend||r.reach||r.clicks||r.cv);
+  tbody.innerHTML=rows.length?rows.map(r=>`<tr>
+    <td><span class="tdname" title="${escapeHtml(r.source+' / '+r.name)}">${escapeHtml(r.source+' / '+r.name)}</span></td>
+    <td>${yen(r.spend)}</td><td>${fmtInt(r.reach)}</td><td>${fmtInt(r.clicks)}</td>
+    <td>${fmt(r.ctr,2)}%</td><td>${yen(r.cpc)}</td><td><span class="cv-pill">${fmtInt(r.cv)}件</span></td>
+  </tr>`).join(''):`<tr class="empty-row"><td colspan="7">表示できる広告セットデータがありません</td></tr>`;
 }
 
 // ===== データ読み込み =====
