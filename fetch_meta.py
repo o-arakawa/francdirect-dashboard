@@ -140,6 +140,18 @@ def fetch_adsets(preset):
         "fields": ADSET_FIELDS, "date_preset": preset,
         "level": "adset", "filtering": CAMP_FILTER,
     })
+    return normalize_adsets(rows)
+
+def fetch_adsets_range(start, end):
+    rows = meta({
+        "fields": ADSET_FIELDS,
+        "time_range": json.dumps({"since": start, "until": end}),
+        "level": "adset",
+        "filtering": CAMP_FILTER,
+    })
+    return normalize_adsets(rows)
+
+def normalize_adsets(rows):
     result = []
     for a in rows:
         result.append({
@@ -160,6 +172,8 @@ s_today  = fetch_summary("today")
 s_month  = fetch_summary("this_month")
 s_30d    = fetch_summary("last_30d")
 s_total  = fetch_summary("maximum")
+yesterday_str = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+last_week_start = (today - timedelta(days=7)).strftime("%Y-%m-%d")
 
 s_today["cv_myasp"] = cv_myasp_for(today_str)
 s_month["cv_myasp"] = cv_myasp_range(month_start, today_str)
@@ -171,6 +185,8 @@ for s in [s_today, s_month, s_30d, s_total]:
     s["cpa"] = round(s["spend"] / cv) if cv > 0 else None
 
 adsets_today = fetch_adsets("today")
+adsets_yesterday = fetch_adsets_range(yesterday_str, yesterday_str)
+adsets_last_week = fetch_adsets_range(last_week_start, yesterday_str)
 adsets_month = fetch_adsets("this_month")
 adsets_30d   = fetch_adsets("last_30d")
 
@@ -195,7 +211,6 @@ for d in daily_raw:
     })
 
 # ── 昨日の合算データ ──────────────────────────────────────────────────
-yesterday_str = (today - timedelta(days=1)).strftime("%Y-%m-%d")
 meta_yday = next((d for d in daily if d["date"] == yesterday_str), None)
 yt_yday   = youtube_data.get("yesterday")
 
@@ -251,6 +266,8 @@ output = {
     "total":        s_total,
     "adsets": {
         "today":     adsets_today,
+        "yesterday": adsets_yesterday,
+        "last_week": adsets_last_week,
         "this_month":adsets_month,
         "last_30d":  adsets_30d,
     },
