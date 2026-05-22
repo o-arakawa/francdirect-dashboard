@@ -620,23 +620,55 @@ function ytRowsFor(period,ytSummary){
   }));
 }
 
-function metaRowsFor(adsets){
-  return (adsets||[]).filter(Boolean).map(a=>({
-    source:'Meta',
-    name:a.name||a.adset_name||'Meta 合計',
-    spend:a.spend||0,
-    reach:a.reach||a.impressions||0,
-    clicks:a.clicks||0,
-    cpm:a.cpm||calcCpm(a.spend||0,a.impressions||a.reach||0),
-    ctr:a.ctr!=null?a.ctr:((a.impressions||0)>0?(a.clicks||0)/(a.impressions||0)*100:0),
-    cpc:a.cpc||calcCpc(a.spend||0,a.clicks||0),
-    cv:(a.cv_meta||0)+(a.cv_myasp||0)
-  }));
+function metaKind(name){
+  const s=String(name||'').toLowerCase();
+  if(s.includes('normal'))return'normal';
+  if(s.includes('thank'))return'thank';
+  return'total';
+}
+
+function metaCvForKind(kind,start,end){
+  const byAdset=gasPayload?.meta_cv?.by_adset||{};
+  if(kind==='normal')return sumDateMap(Object.fromEntries(Object.entries(byAdset.normal||{}).map(([d,v])=>[d,v?.mail||0])),start,end);
+  if(kind==='thank')return sumDateMap(Object.fromEntries(Object.entries(byAdset.thank||{}).map(([d,v])=>[d,v?.mail||0])),start,end);
+  return sumDateMap(gasPayload?.meta_cv?.by_date,start,end);
+}
+
+function metaRowsFor(adsets,start,end){
+  const groups={};
+  (adsets||[]).filter(Boolean).forEach(a=>{
+    const kind=metaKind(a.name||a.adset_name);
+    const label=kind==='normal'?'ブロード(normal)_画像01~03':kind==='thank'?'ブロード(thank)_画像01~03':(a.name||a.adset_name||'Meta 合計');
+    if(!groups[kind])groups[kind]={source:'Meta',name:label,spend:0,reach:0,impressions:0,clicks:0,cv:0};
+    groups[kind].spend+=a.spend||0;
+    groups[kind].reach+=a.reach||a.impressions||0;
+    groups[kind].impressions+=a.impressions||a.reach||0;
+    groups[kind].clicks+=a.clicks||0;
+    groups[kind].cv+=(a.cv_meta||0)+(a.cv_myasp||0);
+  });
+  return Object.entries(groups).map(([kind,r])=>{
+    const sheetCv=metaCvForKind(kind,start,end);
+    return{
+      ...r,
+      cpm:calcCpm(r.spend,r.impressions||r.reach),
+      ctr:(r.impressions||0)>0?r.clicks/r.impressions*100:0,
+      cpc:calcCpc(r.spend,r.clicks),
+      cv:sheetCv||r.cv
+    };
+  });
 }
 
 function renderAdsets(tbodyId,period,metaAdsets,ytSummary){
   const tbody=document.getElementById(tbodyId);if(!tbody)return;
-  const rows=[...ytRowsFor(period,ytSummary),...metaRowsFor(metaAdsets)].filter(r=>r.spend||r.reach||r.clicks||r.cv);
+  const today=todayJST();
+  const ranges={
+    today:[today,today],
+    yesterday:[yesterdayJST(),yesterdayJST()],
+    last_week:[dateOffset(-7),dateOffset(-1)],
+    this_month:[today.slice(0,7)+'-01',today]
+  };
+  const [start,end]=ranges[period]||[today,today];
+  const rows=[...ytRowsFor(period,ytSummary),...metaRowsFor(metaAdsets,start,end)].filter(r=>r.spend||r.reach||r.clicks||r.cv);
   tbody.innerHTML=rows.length?rows.map(r=>`<tr>
     <td><span class="tdname" title="${escapeHtml(r.source+' / '+r.name)}">${escapeHtml(r.source+' / '+r.name)}</span></td>
     <td>${yen(r.spend)}</td><td>${fmtInt(r.reach)}</td><td>${fmtInt(r.clicks)}</td>
