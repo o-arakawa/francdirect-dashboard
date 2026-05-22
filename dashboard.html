@@ -22,7 +22,7 @@ header{padding:1.6rem 0}
 .refresh-btn:hover{background:var(--gold-dim)}
 .live-dot{width:7px;height:7px;border-radius:50%;background:#4CAF7D;display:inline-block;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.period-bar{display:flex;gap:2px;background:var(--border);width:fit-content;margin:1.4rem 0}
+.period-bar{display:flex;gap:2px;background:var(--border);width:fit-content;margin:1.4rem 0;flex-wrap:wrap}
 .period-btn{font-size:.65rem;letter-spacing:.1em;padding:6px 18px;background:var(--surface);color:var(--muted);border:none;cursor:pointer;font-family:inherit;text-transform:uppercase}
 .period-btn.active{background:var(--gold-dim);color:var(--gold)}
 .period-btn:hover:not(.active){color:var(--text)}
@@ -291,6 +291,50 @@ function yesterdayJST(){
   return d.toISOString().slice(0,10);
 }
 
+function jpDateLabel(dateStr){
+  const d=new Date(dateStr+'T00:00:00+09:00');
+  const w='日月火水木金土'[d.getDay()];
+  return `${d.getMonth()+1}月${d.getDate()}日(${w})`;
+}
+
+function monthLabel(dateStr){
+  const d=new Date(dateStr+'T00:00:00+09:00');
+  return `${d.getMonth()+1}月`;
+}
+
+function updatePeriodLabels(){
+  const today=todayJST();
+  const yday=yesterdayJST();
+  const weekStart=dateOffset(-7);
+  const weekEnd=dateOffset(-1);
+  const month=monthLabel(today);
+  const setText=(sel,text)=>{const el=document.querySelector(sel);if(el)el.textContent=text};
+
+  setText('[data-view="today"]',jpDateLabel(today));
+  setText('[data-view="yesterday"]',jpDateLabel(yday));
+  setText('[data-view="last_week"]',`${jpDateLabel(weekStart)}〜${jpDateLabel(weekEnd)}`);
+  setText('[data-view="this_month"]',month);
+
+  setText('#view-today > .sec',`${jpDateLabel(today)}（YouTube + Meta）`);
+  setText('#view-yesterday > .sec',`${jpDateLabel(yday)}（YouTube + Meta）`);
+  setText('#view-last_week > .sec',`${jpDateLabel(weekStart)}〜${jpDateLabel(weekEnd)}`);
+  setText('#view-this_month > .sec',`${month}合計`);
+
+  setText('#view-today .chart-title',`${jpDateLabel(today)} 消化金額（YouTube + Meta）`);
+  setText('#view-yesterday .chart-title',`${jpDateLabel(yday)} 消化金額（YouTube + Meta）`);
+  setText('#view-last_week .chart-title',`${jpDateLabel(weekStart)}〜${jpDateLabel(weekEnd)} 日次消化金額`);
+  setText('#view-this_month .chart-title',`${month} 日次消化金額`);
+
+  const tables=document.querySelectorAll('.table-box > .sec');
+  if(tables[0])tables[0].textContent=`媒体 / 広告セット別（${jpDateLabel(today)}）`;
+  if(tables[1])tables[1].textContent=`媒体 / 広告セット別（${jpDateLabel(yday)}）`;
+  if(tables[2])tables[2].textContent=`媒体 / 広告セット別（${jpDateLabel(weekStart)}〜${jpDateLabel(weekEnd)}）`;
+  if(tables[3])tables[3].textContent=`媒体 / 広告セット別（${month}）`;
+
+  setText('#view-this_month .panel.yt .panel-title',`YouTube ${month}`);
+  setText('#view-this_month .panel.fb .panel-title',`Meta ${month}`);
+}
+
 // data.jsonのdailyから日付で検索
 function findMetaDaily(metaData, dateStr){
   return (metaData.daily||[]).find(r=>r.date===dateStr)||null;
@@ -300,7 +344,13 @@ function findMetaDaily(metaData, dateStr){
 function findYtDaily(gasData, dateStr){
   return (gasData.daily||[]).find(r=>r.date===dateStr)||null;
 }
+const asNum=v=>v==null||v===''||isNaN(Number(v))?0:Number(v);
 const metaCv=r=>(r?.cv_myasp||0)+(r?.cv_meta||0);
+const gasMetaCv=date=>asNum(gasPayload?.meta_cv?.by_date?.[date]);
+const gasMetaKoza=date=>asNum(gasPayload?.meta_cv?.koza_by_date?.[date]);
+const gasYtKoza=date=>asNum(gasPayload?.youtube_cv?.koza_by_date?.[date]);
+const sumDateMap=(map,start,end)=>Object.entries(map||{}).filter(([d])=>d>=start&&d<=end).reduce((s,[,v])=>s+asNum(v),0);
+const metaCvFor=(row,date)=>metaCv(row)||gasMetaCv(date);
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 // ===== 今日タブ =====
@@ -313,7 +363,8 @@ function renderToday(metaData, gasData){
   const spend=(m.spend||0)+(yt.spend||0);
   const imp=(m.impressions||0)+(yt.impressions||0);
   const clk=(m.clicks||0)+(yt.clicks||0);
-  const mail=metaCv(m)+(yt.mail||0);
+  const cv_m=metaCvFor(m,today);
+  const mail=cv_m+(yt.mail||0);
 
   set('t-spend',yen(spend));
   set('t-imp',fmtInt(imp));
@@ -332,20 +383,21 @@ function renderToday(metaData, gasData){
   set('ty-mail',(yt.mail||0)+'件');
 
   // Meta panel
-  const cv_m=metaCv(m);
   set('tm-spend',yen(m.spend));
   set('tm-reach',fmtInt(m.reach));
   set('tm-clicks',fmtInt(m.clicks));
   set('tm-cpm',m.impressions>0?yen(calcCpm(m.spend,m.impressions)):yen(m.cpm));
-  set('tm-cpc',yen(Math.round(m.cpc||0)));
+  set('tm-cpc',yen(m.clicks>0?calcCpc(m.spend,m.clicks):m.cpc));
   set('tm-cv',cv_m+'件');
 
   // 講座購入者 (S列)
   const koza = metaData.koza || {};
-  const kozaToday = (koza.combined?.today) || (koza.meta?.today||0) + (koza.youtube?.today||0);
+  const kozaMetaToday = (koza.meta?.today||0) || gasMetaKoza(today);
+  const kozaYtToday = (koza.youtube?.today||0) || gasYtKoza(today);
+  const kozaToday = (koza.combined?.today) || kozaMetaToday + kozaYtToday;
   set('t-koza', kozaToday > 0 ? kozaToday+'件' : '—');
-  set('ty-koza', (koza.youtube?.today||0) > 0 ? (koza.youtube.today)+'件' : '—');
-  set('tm-koza', (koza.meta?.today||0) > 0 ? (koza.meta.today)+'件' : '—');
+  set('ty-koza', kozaYtToday > 0 ? kozaYtToday+'件' : '—');
+  set('tm-koza', kozaMetaToday > 0 ? kozaMetaToday+'件' : '—');
   buildStackedChart('today',[{date:today,meta_spend:m.spend||0,yt_spend:yt.spend||0}]);
   renderAdsets('t-adset-tbody','today',metaData.adsets?.today||[],yt);
 }
@@ -361,7 +413,8 @@ function renderYesterday(metaData, gasData){
 
   const ms=mRaw.spend||0, mi=mRaw.impressions||0, mc=mRaw.clicks||0;
   const ys=ytRaw.spend||0, yi=ytRaw.impressions||0, yc=ytRaw.clicks||0;
-  const mail=metaCv(mRaw)+(ytRaw.mail||0);
+  const cv_m=metaCvFor(mRaw,yday);
+  const mail=cv_m+(ytRaw.mail||0);
 
   const spend=ms+ys, imp=mi+yi, clk=mc+yc;
 
@@ -382,17 +435,18 @@ function renderYesterday(metaData, gasData){
   set('yy-mail',(ytRaw.mail||0)+'件');
 
   // Meta panel
-  const cv_m=metaCv(mRaw);
   set('ym-spend',yen(mRaw.spend));
   set('ym-reach',fmtInt(mRaw.reach));
   set('ym-clicks',fmtInt(mRaw.clicks));
   set('ym-cpm',mi>0?yen(calcCpm(ms,mi)):yen(mRaw.cpm));
-  set('ym-cpc',yen(Math.round(mRaw.cpc||0)));
+  set('ym-cpc',yen(mc>0?calcCpc(ms,mc):mRaw.cpc));
   set('ym-cv',cv_m+'件');
 
   // 講座購入者
   const koza = metaData.koza || {};
-  const kozaYday = (koza.combined?.yesterday) || (koza.meta?.yesterday||0) + (koza.youtube?.yesterday||0);
+  const kozaMetaYday = (koza.meta?.yesterday||0) || gasMetaKoza(yday);
+  const kozaYtYday = (koza.youtube?.yesterday||0) || gasYtKoza(yday);
+  const kozaYday = (koza.combined?.yesterday) || kozaMetaYday + kozaYtYday;
   set('y-koza', kozaYday > 0 ? kozaYday+'件' : '—');
   buildStackedChart('yesterday',[{date:yday,meta_spend:ms,yt_spend:ys}]);
   renderAdsets('y-adset-tbody','yesterday',metaData.adsets?.yesterday||[metaAggregateRow('Meta 合計（昨日）',mRaw)],ytRaw);
@@ -412,7 +466,7 @@ function renderLastWeek(metaData, gasData){
   const ms_s=metaRows.reduce((s,r)=>s+(r.spend||0),0);
   const ms_i=metaRows.reduce((s,r)=>s+(r.impressions||0),0);
   const ms_c=metaRows.reduce((s,r)=>s+(r.clicks||0),0);
-  const ms_m=metaRows.reduce((s,r)=>s+metaCv(r),0);
+  const ms_m=metaRows.reduce((s,r)=>s+metaCvFor(r,r.date),0);
 
   // YouTube daily集計
   const ytRows=(gasData.daily||[]).filter(r=>{
@@ -447,8 +501,8 @@ function renderLastWeek(metaData, gasData){
   const koza = metaData.koza || {};
   const lastWeekStart = dateOffset(-7);
   const lastWeekEnd = dateOffset(-1);
-  const kozaMetaWeek = Object.entries(koza.meta?.by_date||{}).filter(([d])=>d>=lastWeekStart&&d<=lastWeekEnd).reduce((s,[,v])=>s+v,0);
-  const kozaYtWeek = Object.entries(koza.youtube?.by_date||{}).filter(([d])=>d>=lastWeekStart&&d<=lastWeekEnd).reduce((s,[,v])=>s+v,0);
+  const kozaMetaWeek = sumDateMap(koza.meta?.by_date,lastWeekStart,lastWeekEnd)||sumDateMap(gasPayload?.meta_cv?.koza_by_date,lastWeekStart,lastWeekEnd);
+  const kozaYtWeek = sumDateMap(koza.youtube?.by_date,lastWeekStart,lastWeekEnd)||sumDateMap(gasPayload?.youtube_cv?.koza_by_date,lastWeekStart,lastWeekEnd);
   set('w-koza', (kozaMetaWeek+kozaYtWeek) > 0 ? (kozaMetaWeek+kozaYtWeek)+'件' : '—');
   buildStackedChart('week',chartRows);
   renderAdsets('w-adset-tbody','last_week',metaData.adsets?.last_week||[metaAggregateRow('Meta 合計（先週）',{spend:ms_s,reach:ms_i,impressions:ms_i,clicks:ms_c,cv_meta:ms_m})],periodSummary(ytRows,'YouTube 合計（先週）'));
@@ -462,7 +516,9 @@ function renderThisMonth(metaData, gasData){
   const spend=(m.spend||0)+(yt.spend||0);
   const imp=(m.impressions||0)+(yt.impressions||0);
   const clk=(m.clicks||0)+(yt.clicks||0);
-  const cv_m=metaCv(m);
+  const nowStr=todayJST().slice(0,7); // YYYY-MM
+  const monthStart=nowStr+'-01';
+  const cv_m=metaCv(m)||sumDateMap(gasPayload?.meta_cv?.by_date,monthStart,todayJST());
   const mail=cv_m+(yt.mail||0);
 
   set('m-spend',yen(spend));
@@ -486,11 +542,10 @@ function renderThisMonth(metaData, gasData){
   set('mm-reach',fmtInt(m.reach));
   set('mm-clicks',fmtInt(m.clicks));
   set('mm-cpm',m.impressions>0?yen(calcCpm(m.spend,m.impressions)):yen(m.cpm));
-  set('mm-cpc',yen(Math.round(m.cpc||0)));
+  set('mm-cpc',yen((m.clicks||0)>0?calcCpc(m.spend,m.clicks):m.cpc));
   set('mm-cv',cv_m+'件');
 
   // チャート：今月のMeta dailyとYouTube dailyをマージ
-  const nowStr=todayJST().slice(0,7); // YYYY-MM
   const metaMonth=(metaData.daily||[]).filter(r=>r.date.startsWith(nowStr));
   const ytMonth=(gasData.daily||[]).filter(r=>r.date.startsWith(nowStr));
   const allDates=[...new Set([...metaMonth.map(r=>r.date),...ytMonth.map(r=>r.date)])].sort();
@@ -502,10 +557,12 @@ function renderThisMonth(metaData, gasData){
 
   // 講座購入者（今月）
   const koza = metaData.koza || {};
-  const kozaMonth = (koza.combined?.this_month) || (koza.meta?.this_month||0) + (koza.youtube?.this_month||0);
+  const kozaMetaMonth = (koza.meta?.this_month||0)||sumDateMap(gasPayload?.meta_cv?.koza_by_date,monthStart,todayJST());
+  const kozaYtMonth = (koza.youtube?.this_month||0)||sumDateMap(gasPayload?.youtube_cv?.koza_by_date,monthStart,todayJST());
+  const kozaMonth = (koza.combined?.this_month) || kozaMetaMonth + kozaYtMonth;
   set('m-koza', kozaMonth > 0 ? kozaMonth+'件' : '—');
-  set('my-koza', (koza.youtube?.this_month||0) > 0 ? (koza.youtube.this_month)+'件' : '—');
-  set('mm-koza', (koza.meta?.this_month||0) > 0 ? (koza.meta.this_month)+'件' : '—');
+  set('my-koza', kozaYtMonth > 0 ? kozaYtMonth+'件' : '—');
+  set('mm-koza', kozaMetaMonth > 0 ? kozaMetaMonth+'件' : '—');
   buildStackedChart('month',chartRows);
 
   renderAdsets('m-adset-tbody','this_month',metaData.adsets?.this_month||[],yt);
@@ -588,7 +645,7 @@ function renderAdsets(tbodyId,period,metaAdsets,ytSummary){
 }
 
 // ===== データ読み込み =====
-let metaData={}, gasData={};
+let metaData={}, gasData={}, gasPayload={};
 
 async function loadData(){
   try{
@@ -600,7 +657,9 @@ async function loadData(){
 
     metaData = metaRes.status==='fulfilled' ? metaRes.value : {};
     const gasFromPage = gasRes.status==='fulfilled' ? gasRes.value : null;
-    gasData = gasFromPage?.daily?.length ? gasFromPage : (metaData.youtube || {});
+    gasPayload = gasFromPage || {};
+    const gasYoutube = gasFromPage?.youtube || gasFromPage;
+    gasData = gasYoutube?.daily?.length ? gasYoutube : (metaData.youtube || {});
 
     const warnings=[];
     if(metaRes.status!=='fulfilled') warnings.push('Metaデータを読み込めませんでした');
@@ -646,6 +705,7 @@ document.getElementById('period-bar').addEventListener('click',e=>{
   renderView(view);
 });
 
+updatePeriodLabels();
 loadData();
 // 1時間おき自動更新
 setTimeout(()=>location.reload(), 60*60*1000);
