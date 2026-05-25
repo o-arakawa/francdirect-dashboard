@@ -52,6 +52,46 @@ header{padding:1.6rem 0}
 .chart-box{background:var(--surface);padding:1.6rem}
 .chart-title{font-size:.65rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem}
 .table-box{background:var(--surface);padding:1.6rem;margin-bottom:2px}
+.strategy-box{background:var(--surface);padding:1.4rem 1.6rem;margin-bottom:2px;border:.5px solid var(--border)}
+.strategy-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.strategy-title{font-size:.62rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+.strategy-sub{font-size:.64rem;color:var(--muted);margin-top:.35rem;line-height:1.7}
+.goal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:2px;background:rgba(196,163,90,.16);margin-bottom:1rem}
+.goal-cell{background:#0d0c0f;padding:.9rem .95rem;min-height:82px}
+.goal-label{font-size:.52rem;letter-spacing:.13em;color:var(--muted);text-transform:uppercase;margin-bottom:.4rem}
+.goal-value{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--text)}
+.goal-diff{font-size:.58rem;color:var(--muted);margin-top:.25rem}
+.goal-diff.good{color:#4CAF7D}.goal-diff.bad{color:#E05C5C}.goal-diff.warn{color:#D0A84C}
+.diagnosis-list{display:grid;gap:2px;background:rgba(196,163,90,.1);margin-bottom:1rem}
+.diagnosis-item{background:#0d0c0f;padding:.85rem 1rem;display:grid;grid-template-columns:86px 1fr;gap:.8rem;align-items:start}
+.diagnosis-tag{font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.diagnosis-copy{font-size:.72rem;line-height:1.75;color:var(--text)}
+.brief-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2px;background:rgba(196,163,90,.12)}
+.brief-card{background:#0d0c0f;padding:1rem}
+.brief-role{font-size:.54rem;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:.55rem}
+.brief-copy{font-size:.7rem;line-height:1.8;color:var(--text)}
+.expert-box{background:var(--surface);padding:1.4rem 1.6rem;margin-bottom:2px;border:.5px solid var(--border)}
+.expert-tabs{display:flex;gap:2px;flex-wrap:wrap;background:rgba(196,163,90,.14);margin:1rem 0}
+.expert-tab{border:none;background:#0d0c0f;color:var(--muted);font-family:inherit;font-size:.58rem;letter-spacing:.08em;padding:.65rem .8rem;cursor:pointer}
+.expert-tab.active{background:var(--gold-dim);color:var(--gold)}
+.expert-panel{display:grid;grid-template-columns:1.05fr 1fr;gap:2px;background:rgba(196,163,90,.12)}
+.expert-card{background:#0d0c0f;padding:1rem}
+.expert-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:.35rem}
+.expert-role{font-size:.64rem;line-height:1.8;color:var(--muted);margin-bottom:1rem}
+.expert-section{font-size:.54rem;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin:.9rem 0 .45rem}
+.expert-list{display:grid;gap:.45rem}
+.expert-item{font-size:.7rem;line-height:1.75;color:var(--text);border-bottom:.5px solid rgba(196,163,90,.08);padding-bottom:.45rem}
+.expert-output{background:rgba(76,175,125,.08);border:.5px solid rgba(76,175,125,.22);padding:.85rem;color:#bfe6d2;font-size:.7rem;line-height:1.8}
+.ask-box{background:var(--surface);padding:1.4rem 1.6rem;margin-bottom:2px;border:.5px solid var(--border)}
+.ask-form{display:grid;grid-template-columns:1fr auto;gap:2px;background:rgba(196,163,90,.16);margin:1rem 0}
+.ask-input{width:100%;border:none;background:#0d0c0f;color:var(--text);font-family:inherit;font-size:.78rem;padding:.85rem 1rem;outline:none}
+.ask-btn{border:none;background:var(--gold-dim);color:var(--gold);font-family:inherit;font-size:.62rem;letter-spacing:.14em;padding:0 1.2rem;cursor:pointer;white-space:nowrap}
+.quick-questions{display:flex;gap:2px;flex-wrap:wrap;margin-bottom:1rem}
+.quick-question{border:.5px solid rgba(196,163,90,.24);background:#0d0c0f;color:var(--muted);font-family:inherit;font-size:.58rem;padding:.45rem .7rem;cursor:pointer}
+.answer-grid{display:grid;gap:2px;background:rgba(196,163,90,.12)}
+.answer-card{background:#0d0c0f;padding:1rem}
+.answer-role{font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem}
+.answer-copy{font-size:.72rem;line-height:1.85;color:var(--text)}
 table{width:100%;border-collapse:collapse;font-size:.78rem}
 th{font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:400;padding:.5rem .7rem;border-bottom:.5px solid var(--border);text-align:right}
 th:first-child{text-align:left}
@@ -69,7 +109,7 @@ tr:last-child td{border-bottom:none}
 footer{padding:1.4rem 0}
 .ftr{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
 footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
-@media(max-width:700px){.grid21,.two-col{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}.mini-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.grid21,.two-col,.expert-panel,.ask-form{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}.mini-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -97,6 +137,46 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <button class="period-btn" data-view="this_month">今月</button>
 </div>
 <div id="error-area"></div>
+
+<div class="strategy-box">
+  <div class="strategy-head">
+    <div>
+      <div class="strategy-title">Goals / PMO Decision</div>
+      <div class="strategy-sub" id="strategy-period">—</div>
+    </div>
+    <div class="strategy-sub">目標との差分から、改善優先度・制作指示・入稿判断を自動整理</div>
+  </div>
+  <div class="goal-grid" id="goal-grid"></div>
+  <div class="diagnosis-list" id="diagnosis-list"></div>
+  <div class="brief-grid" id="brief-grid"></div>
+</div>
+
+<div class="expert-box">
+  <div class="strategy-head">
+    <div>
+      <div class="strategy-title">PMO / Marketing Promotion Dept.</div>
+      <div class="strategy-sub" id="expert-period">—</div>
+    </div>
+    <div class="strategy-sub">PMO配下で、広告運用・CR制作・LP改善・数値分析を横断して成果導線を改善</div>
+  </div>
+  <div class="expert-tabs" id="expert-tabs"></div>
+  <div class="expert-panel" id="expert-panel"></div>
+</div>
+
+<div class="ask-box">
+  <div class="strategy-head">
+    <div>
+      <div class="strategy-title">Ask PMO</div>
+      <div class="strategy-sub">質問すると、PMOと各チームが現在の数値を前提に回答します</div>
+    </div>
+  </div>
+  <div class="ask-form">
+    <input class="ask-input" id="ask-input" placeholder="例：CPAが悪い理由は？ / 次に作るCRは？ / LPのどこを直す？">
+    <button class="ask-btn" id="ask-btn" type="button">質問する</button>
+  </div>
+  <div class="quick-questions" id="quick-questions"></div>
+  <div class="answer-grid" id="answer-grid"></div>
+</div>
 
 <!-- 今日 -->
 <div class="view active" id="view-today">
@@ -352,6 +432,312 @@ const gasYtKoza=date=>asNum(gasPayload?.youtube_cv?.koza_by_date?.[date]);
 const sumDateMap=(map,start,end)=>Object.entries(map||{}).filter(([d])=>d>=start&&d<=end).reduce((s,[,v])=>s+asNum(v),0);
 const metaCvFor=(row,date)=>metaCv(row)||gasMetaCv(date);
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const DEFAULT_GOALS={
+  daily:{mail:10,cpa:1500,cpm:1600,cpc:45,ctr:3.5,purchase:1,cv_gap_rate:0.25},
+  weekly:{mail:70,cpa:1500,cpm:1600,cpc:45,ctr:3.5,purchase:5,cv_gap_rate:0.25},
+  monthly:{mail:300,cpa:1500,cpm:1600,cpc:45,ctr:3.5,purchase:20,cv_gap_rate:0.25}
+};
+let goalData=DEFAULT_GOALS;
+let currentExpert='pmo';
+
+const EXPERTS=[
+  {id:'pmo',title:'PMO',role:'マーケティング推進部を統括し、広告費を成果導線へ変える',watch:['目標CPAとの差分','CV不足数','計測乖離','CR/LP/運用の優先順位'],output:'部門別の優先順位、担当者への指示、今日の実行タスク'},
+  {id:'strategy',title:'①戦略設計チーム',role:'広告を回す前に、誰に・何を・どう見せるかを決める',watch:['ターゲット','ペルソナ','訴求軸','広告コンセプト','媒体別KPI'],output:'ターゲットシート、訴求軸一覧、広告コンセプト、LP構成方針、月間KPI表'},
+  {id:'ad_ops',title:'②広告運用チーム',role:'Meta / Google / YouTube広告を配信し、良質なアクセスをLPへ送る',watch:['広告費','表示回数','CTR','CPC','CPM','CV数','CPA','媒体別CV'],output:'キャンペーン設計、広告セット作成、日予算調整、停止/増額判断、ABテスト'},
+  {id:'creative',title:'③広告CR制作チーム',role:'広告画像・動画・コピーを作り、勝ちクリエイティブを横展開する',watch:['CPM高騰','CTR低下','CPC悪化','normal/thank別CV','勝ちCRの共通点'],output:'広告画像、動画、広告コピー、サムネイル、バナー、制作ブリーフ'},
+  {id:'lp',title:'④LP制作・改善チーム',role:'広告の受け皿になるLPを作り、CVRを改善する',watch:['LPアクセス','CTAクリック','フォーム到達','CVR','離脱率','媒体別CVR','計測乖離'],output:'LP構成、FV改善案、コピー修正、CTA設計、フォーム改善、ABテスト案'},
+  {id:'analytics',title:'⑤数値分析・レポートチーム',role:'広告とLPの数字をまとめ、ボトルネックと改善ポイントを出す',watch:['広告費→表示→クリック→LP→CTA→CV→CPA','媒体別CPA','LP別CVR','日次/週次/月次推移'],output:'日次レポート、週次レポート、CPA/CVR分析、改善提案、ダッシュボード整備'}
+];
+
+function goalForView(view){
+  if(view==='last_week')return goalData.weekly||DEFAULT_GOALS.weekly;
+  if(view==='this_month')return goalData.monthly||DEFAULT_GOALS.monthly;
+  return goalData.daily||DEFAULT_GOALS.daily;
+}
+
+function viewRange(view){
+  const today=todayJST();
+  if(view==='yesterday')return[yesterdayJST(),yesterdayJST()];
+  if(view==='last_week')return[dateOffset(-7),dateOffset(-1)];
+  if(view==='this_month')return[today.slice(0,7)+'-01',today];
+  return[today,today];
+}
+
+function periodRows(start,end){
+  const metaRows=(metaData.daily||[]).filter(r=>r.date>=start&&r.date<=end);
+  const ytRows=(gasData.daily||[]).filter(r=>r.date>=start&&r.date<=end);
+  const metaSpend=metaRows.reduce((s,r)=>s+(r.spend||0),0);
+  const ytSpend=ytRows.reduce((s,r)=>s+(r.spend||0),0);
+  const metaImp=metaRows.reduce((s,r)=>s+(r.impressions||0),0);
+  const ytImp=ytRows.reduce((s,r)=>s+(r.impressions||0),0);
+  const metaClicks=metaRows.reduce((s,r)=>s+(r.clicks||0),0);
+  const ytClicks=ytRows.reduce((s,r)=>s+(r.clicks||0),0);
+  const metaSheetCv=sumDateMap(gasPayload?.meta_cv?.by_date,start,end)||metaRows.reduce((s,r)=>s+metaCv(r),0);
+  const metaApiCv=metaRows.reduce((s,r)=>s+(r.cv_meta||0),0);
+  const ytMail=ytRows.reduce((s,r)=>s+(r.mail||0),0);
+  const kozaMeta=sumDateMap(gasPayload?.meta_cv?.koza_by_date,start,end);
+  const kozaYt=sumDateMap(gasPayload?.youtube_cv?.koza_by_date,start,end);
+  const spend=metaSpend+ytSpend, imp=metaImp+ytImp, clicks=metaClicks+ytClicks, mail=metaSheetCv+ytMail;
+  return{spend,imp,clicks,mail,metaSheetCv,metaApiCv,ytMail,koza:kozaMeta+kozaYt,cpm:calcCpm(spend,imp),cpc:calcCpc(spend,clicks),ctr:imp>0?clicks/imp*100:0,cpa:calcCpa(spend,mail)};
+}
+
+function diffClass(actual,target,lowerIsBetter=true){
+  if(actual==null||target==null||target===0)return'warn';
+  if(lowerIsBetter)return actual<=target?'good':actual<=target*1.15?'warn':'bad';
+  return actual>=target?'good':actual>=target*.85?'warn':'bad';
+}
+
+function renderStrategy(view){
+  const [start,end]=viewRange(view);
+  const g=goalForView(view);
+  const m=periodRows(start,end);
+  const periodText=start===end?jpDateLabel(start):`${jpDateLabel(start)}〜${jpDateLabel(end)}`;
+  const cvGap=Math.abs((m.metaApiCv||0)-(m.metaSheetCv||0));
+  const cvGapRate=m.metaSheetCv>0?cvGap/m.metaSheetCv:(m.metaApiCv>0?1:0);
+  const goalGrid=document.getElementById('goal-grid');
+  const diagnosis=document.getElementById('diagnosis-list');
+  const brief=document.getElementById('brief-grid');
+  set('strategy-period',`${periodText} の目標進捗`);
+  const cells=[
+    ['メルマガ目標',`${fmtInt(m.mail)} / ${fmtInt(g.mail)}件`,m.mail-g.mail,diffClass(m.mail,g.mail,false)],
+    ['目標CPA',`${yen(m.cpa)} / ${yen(g.cpa)}`,m.cpa?m.cpa-g.cpa:null,diffClass(m.cpa,g.cpa,true)],
+    ['目標CPM',`${yen(m.cpm)} / ${yen(g.cpm)}`,m.cpm?m.cpm-g.cpm:null,diffClass(m.cpm,g.cpm,true)],
+    ['目標CPC',`${yen(m.cpc)} / ${yen(g.cpc)}`,m.cpc?m.cpc-g.cpc:null,diffClass(m.cpc,g.cpc,true)],
+    ['目標CTR',`${fmt(m.ctr,2)}% / ${fmt(g.ctr,2)}%`,m.ctr-g.ctr,diffClass(m.ctr,g.ctr,false)],
+    ['計測乖離',`${fmt(cvGapRate*100,1)}%`,cvGapRate-g.cv_gap_rate,diffClass(cvGapRate,g.cv_gap_rate,true)]
+  ];
+  goalGrid.innerHTML=cells.map(([label,value,diff,cls])=>`<div class="goal-cell"><div class="goal-label">${label}</div><div class="goal-value">${value}</div><div class="goal-diff ${cls}">${diff==null?'判定待ち':(diff>0?'+':'')+fmt(diff,typeof diff==='number'&&Math.abs(diff)<10?1:0)}</div></div>`).join('');
+
+  const issues=[];
+  if(m.mail<g.mail)issues.push(['CV不足',`目標まで ${fmtInt(g.mail-m.mail)} 件不足。配信量だけでなく、訴求別CVとLP通過を確認。`]);
+  if(m.cpa&&m.cpa>g.cpa)issues.push(['CPA悪化',`CPAが目標より ${yen(m.cpa-g.cpa)} 高い。CVR改善か、CPM/CPCの悪化要因を分解。`]);
+  if(m.cpm&&m.cpm>g.cpm)issues.push(['CR更新',`CPMが目標を超過。既存CRの疲弊、または競合上昇の可能性。新CRを2〜3本追加。`]);
+  if(m.cpc&&m.cpc>g.cpc)issues.push(['訴求調整',`CPCが高い。クリック前の期待値が弱い可能性。見出し・冒頭コピー・ターゲット角度を修正。`]);
+  if(m.ctr<g.ctr)issues.push(['CTR改善',`CTRが目標未達。ファーストビュー、ベネフィット、違和感の作り方を見直し。`]);
+  if(cvGapRate>g.cv_gap_rate)issues.push(['計測確認',`Meta管理画面CVとメルマガ登録の乖離が大きい。タグ、サンクス到達、MyASP反映、UTMを優先確認。`]);
+  if(!issues.length)issues.push(['継続判断',`主要指標は目標内。勝ち訴求の横展開と予算増額を検討。`]);
+  diagnosis.innerHTML=issues.map(([tag,copy])=>`<div class="diagnosis-item"><div class="diagnosis-tag">${tag}</div><div class="diagnosis-copy">${copy}</div></div>`).join('');
+
+  const primary=issues[0]?.[0]||'継続判断';
+  const briefs=[
+    ['PMO',primary==='計測確認'?'計測乖離を最優先で解消。改善完了まで媒体評価とMyASP実数を分けて判断。':'CPA・CPM・CTRの悪化要因を分解し、制作と運用の優先順位を決定。'],
+    ['Marketer',m.cpm>g.cpm?'CPM上昇要因を媒体別・訴求別に確認。thank/normalの勝ち筋を残し、新CRテスト設計を作成。':'勝ち訴求と弱い訴求を分け、予算配分と検証単位を整理。'],
+    ['Writer',m.ctr<g.ctr||m.cpc>g.cpc?'冒頭3秒で「自分ごと化」する原稿を3案作成。冷え・腸内環境・無料講座の接続を強化。':'反応が良い訴求を崩さず、切り口違いの原稿を追加。'],
+    ['Designer',m.cpm>g.cpm||m.ctr<g.ctr?'信頼感を保ちつつ、診断感・無料感・ベネフィットが一目で伝わるCRを作成。':'既存勝ちCRのトンマナを踏襲し、色・人物・訴求軸だけ変えた差分を制作。'],
+    ['入稿',`命名、URL、UTM、サンクス到達、MyASP反映を確認。公開前にCV計測のテスト登録を1件実施。`]
+  ];
+  brief.innerHTML=briefs.map(([role,copy])=>`<div class="brief-card"><div class="brief-role">${role}</div><div class="brief-copy">${copy}</div></div>`).join('');
+}
+
+function metricSignals(m,g){
+  const signals=[];
+  if(m.cpm&&m.cpm>g.cpm)signals.push(`CPM ${yen(m.cpm)} は目標 ${yen(g.cpm)} より高い。画像/冒頭コピーの鮮度低下、または同じ訴求の配信疲れを疑う。`);
+  if(m.cpc&&m.cpc>g.cpc)signals.push(`CPC ${yen(m.cpc)} は目標 ${yen(g.cpc)} を超過。クリック前の期待値が弱いので、見出しで「自分の悩み」と分かる言葉に寄せる。`);
+  if(m.ctr<g.ctr)signals.push(`CTR ${fmt(m.ctr,2)}% は目標 ${fmt(g.ctr,2)}% 未達。FVと広告の第一声を、悩み直球・意外性・無料講座の3軸で作り直す。`);
+  if(m.cpa&&m.cpa>g.cpa)signals.push(`CPA ${yen(m.cpa)} は目標 ${yen(g.cpa)} より高い。CR改善だけでなく、LPの登録フォーム直前コピーを修正対象に入れる。`);
+  if(m.mail<g.mail)signals.push(`CV ${fmtInt(m.mail)} 件で目標 ${fmtInt(g.mail)} 件に未達。配信量を増やす前に、CVが出ている訴求へ予算を寄せる。`);
+  if(!signals.length)signals.push(`主要指標は目標内。今の勝ち訴求を崩さず、同じ構造で別悩み・別ビジュアルへ横展開する。`);
+  return signals;
+}
+
+function metaKindStats(kind,start,end,period){
+  const adsetKey=period==='this_month'?'this_month':period==='today'?'today':period==='last_week'?'last_week':'yesterday';
+  const source=metaData.adsets?.[adsetKey]||metaData.adsets?.this_month||[];
+  const matched=(source||[]).filter(a=>metaKind(a.name||a.adset_name)===kind);
+  const spend=matched.reduce((s,a)=>s+(a.spend||0),0);
+  const reach=matched.reduce((s,a)=>s+(a.reach||a.impressions||0),0);
+  const impressions=matched.reduce((s,a)=>s+(a.impressions||a.reach||0),0);
+  const clicks=matched.reduce((s,a)=>s+(a.clicks||0),0);
+  const cv=metaCvForKind(kind,start,end);
+  return{kind,spend,reach,impressions,clicks,cv,cpa:calcCpa(spend,cv),cpc:calcCpc(spend,clicks),cpm:calcCpm(spend,impressions||reach),ctr:(impressions||0)>0?clicks/impressions*100:0};
+}
+
+function performanceContext(view,m,g,start,end){
+  const normal=metaKindStats('normal',start,end,view);
+  const thank=metaKindStats('thank',start,end,view);
+  const hasSplit=normal.spend||thank.spend||normal.cv||thank.cv;
+  const winner=normal.cv||thank.cv
+    ? ((normal.cpa||999999)<=(thank.cpa||999999)?normal:thank)
+    : ((normal.cpc||999999)<=(thank.cpc||999999)?normal:thank);
+  const loser=winner.kind==='normal'?thank:normal;
+  const label=k=>k==='normal'?'normal訴求':'thank訴求';
+  return{normal,thank,hasSplit,winner,loser,label};
+}
+
+function expertActions(id,m,g,ctx){
+  const crNeeded=(m.cpm&&m.cpm>g.cpm)||(m.ctr<g.ctr);
+  const cvrNeeded=(m.cpa&&m.cpa>g.cpa)||m.mail<g.mail;
+  const win=ctx.label(ctx.winner.kind);
+  const lose=ctx.label(ctx.loser.kind);
+  const winnerLine=ctx.hasSplit&&ctx.winner.cv
+    ? `${win} は ${fmtInt(ctx.winner.cv)}CV / CPA ${yen(ctx.winner.cpa)}。まずこの訴求構造を残す。`
+    : `${win} はクリック効率が相対的に良い。CVが薄い場合も、まず見出しとLP一致度を確認。`;
+  const loserLine=ctx.hasSplit
+    ? `${lose} は CV ${fmtInt(ctx.loser.cv)} / CPC ${yen(ctx.loser.cpc)} / CPM ${yen(ctx.loser.cpm)}。縮小・修正・別CR化の候補。`
+    : '広告セット別のCVが薄いので、まずnormal/thankのN列反映と費用配分を確認。';
+  const map={
+    pmo:[
+      `マーケティング推進ディレクターとして、今日の優先順位は「計測→CPA→CPM/CTR→LP」の順で決める。`,
+      winnerLine,
+      loserLine,
+      crNeeded?'CR制作チームへ新規6本、LPチームへFV改善1案、広告運用へ勝ち訴求寄せを同時に依頼する。':'勝ち訴求を崩さず、広告運用は10〜20%増額、CR制作は横展開3本、LPは文言整合だけ確認する。',
+      '数値分析チームには、翌朝までに「広告費→クリック→CV→CPA」の差分と、Meta CV / MyASP CVの乖離を日別で出させる。'
+    ],
+    strategy:[
+      `ターゲットは「冷え・腸内環境に悩む30〜50代女性」を第一候補に固定し、広告/LPの言葉をこの人物に寄せる。`,
+      `${win} が勝っている理由を、悩みの深さ・ベネフィット・安心感・無料講座の期待値に分解する。`,
+      `${lose} は訴求軸を捨てる前に、ペルソナの悩みが浅いのか、見せ方が弱いのかを分けて判断する。`,
+      '成果物は「ターゲット1枚」「訴求軸5本」「LPファーストビュー方針」「媒体別KPI」を作る。'
+    ],
+    ad_ops:[
+      winnerLine,
+      loserLine,
+      crNeeded?`CPMが目標超過なので、既存CRの増額は控えめにし、新CR投入後に ${win} と同じ予算条件で比較する。`:`勝ち訴求は日予算を10〜20%だけ増やし、CPAが崩れないか翌日確認する。`,
+      '入稿時は広告セット名に「訴求軸 / CR番号 / LP / 日付」を入れ、後で勝ち負けを追える命名にする。',
+      `明日の検証単位は「${win}の横展開CR 2本」対「${lose}の修正版CR 1本」に絞る。`
+    ],
+    creative:[
+      crNeeded?'新CRを6本作る。内訳は「悩み直球2本」「意外な原因2本」「無料講座ベネフィット1本」「信頼/実績1本」。':'勝ちCRの構図は残し、人物・背景色・見出しだけ変えた差分を3本作る。',
+      `${win} の勝ち要素をLPファーストビューに反映。広告で約束した悩みと言葉を、LP冒頭の見出しにも入れる。`,
+      'AIデザイナーへの指示は「30〜50代女性 / 健康感 / 清潔感 / 文字は最大18字 / 無料講座CTAを右下固定」で渡す。',
+      '作るパターンは、問題提起型・ベネフィット型・実績型・比較型・ストーリー型・限定オファー型から選ぶ。',
+      'CRチェック基準は、1秒で悩みが分かるか、3秒で無料講座の価値が分かるか、スマホで文字が読めるか。'
+    ],
+    lp:[
+      `Meta管理画面CVとMyASP登録の差分は、日別で「Meta CV / N列登録 / thank / normal」に分けて見る。乖離日はタグ発火を優先確認。`,
+      cvrNeeded?'LPの修正優先は、FV見出し→登録ボタン文言→フォーム直前の不安解消→サンクスページの順。':'LP導線は維持し、講座購入者への後続メール/LINE導線を強化する。',
+      'LPファーストビューには、広告と同じ悩みワード、無料講座で分かること、登録後の安心材料を入れる。',
+      'スマホ表示で、FV内に「誰向けか」「何が得られるか」「無料講座CTA」が入っているか確認する。',
+      'テスト登録を1件行い、Metaイベント・MyASP・LINE・スプレッドシートN列が同じ日に反映されるか確認。'
+    ],
+    analytics:[
+      '日次で「広告費→表示回数→クリック数→LPアクセス→CTAクリック→CV→CPA」を1本の流れで見る。',
+      `媒体別では、Meta CV ${fmtInt(m.metaSheetCv)}件 / YouTube CV ${fmtInt(m.ytMail)}件。差が大きい場合は媒体別CVRを分けて見る。`,
+      `計測乖離は Meta管理画面CV ${fmtInt(m.metaApiCv)}件 とN列登録 ${fmtInt(m.metaSheetCv)}件で確認する。差がある日はタグとMyASPを優先調査。`,
+      '週次レポートは「良かった広告セット」「悪かった広告セット」「LP改善点」「次に作るCR」を各1行で出す。',
+      'ダッシュボード担当は、目標CPA・目標CV・講座購入者CPAを固定表示にする。'
+    ]
+  };
+  return map[id]||[];
+}
+
+function renderExperts(view){
+  const [start,end]=viewRange(view);
+  const g=goalForView(view);
+  const m=periodRows(start,end);
+  const ctx=performanceContext(view,m,g,start,end);
+  const expert=EXPERTS.find(e=>e.id===currentExpert)||EXPERTS[0];
+  const periodText=start===end?jpDateLabel(start):`${jpDateLabel(start)}〜${jpDateLabel(end)}`;
+  set('expert-period',`${periodText} の専門家別アクション`);
+  document.getElementById('expert-tabs').innerHTML=EXPERTS.map(e=>`<button class="expert-tab ${e.id===expert.id?'active':''}" data-expert="${e.id}">${e.title}</button>`).join('');
+  const signals=metricSignals(m,g);
+  const actions=expertActions(expert.id,m,g,ctx);
+  const focus=ctx.hasSplit
+    ? `${ctx.label(ctx.winner.kind)}優先。${ctx.label(ctx.loser.kind)}は、CPA/CPC/CPMを見て修正または縮小。`
+    : '訴求別データが薄いため、まずnormal / thankのCVと費用を同じ表で確認。';
+  document.getElementById('expert-panel').innerHTML=`
+    <div class="expert-card">
+      <div class="expert-name">${expert.title}</div>
+      <div class="expert-role">${expert.role}</div>
+      <div class="expert-section">推奨フォーカス</div>
+      <div class="expert-output">${focus}</div>
+      <div class="expert-section">見る指標</div>
+      <div class="expert-list">${expert.watch.map(x=>`<div class="expert-item">${x}</div>`).join('')}</div>
+      <div class="expert-section">現在のシグナル</div>
+      <div class="expert-list">${signals.map(x=>`<div class="expert-item">${x}</div>`).join('')}</div>
+    </div>
+    <div class="expert-card">
+      <div class="expert-section">今日やること</div>
+      <div class="expert-list">${actions.map(x=>`<div class="expert-item">${x}</div>`).join('')}</div>
+      <div class="expert-section">成果物</div>
+      <div class="expert-output">${expert.output}</div>
+    </div>`;
+}
+
+function questionIntent(q){
+  const s=String(q||'').toLowerCase();
+  if(/cpa|単価|高い|悪い|理由/.test(s))return'cpa';
+  if(/cr|クリエイティブ|画像|動画|コピー|作/.test(s))return'creative';
+  if(/lp|フォーム|cvr|遷移|離脱|登録/.test(s))return'lp';
+  if(/乖離|meta|myasp|計測|タグ|cv/.test(s))return'tracking';
+  if(/予算|停止|増額|配信|広告セット/.test(s))return'ad_ops';
+  if(/目標|kpi|レポート|分析|見る/.test(s))return'analytics';
+  return'general';
+}
+
+function answerByTeam(intent,view){
+  const [start,end]=viewRange(view);
+  const g=goalForView(view);
+  const m=periodRows(start,end);
+  const ctx=performanceContext(view,m,g,start,end);
+  const win=ctx.label(ctx.winner.kind);
+  const lose=ctx.label(ctx.loser.kind);
+  const period=start===end?jpDateLabel(start):`${jpDateLabel(start)}〜${jpDateLabel(end)}`;
+  const base={
+    pmo:`${period} は、CPA ${yen(m.cpa)} / 目標 ${yen(g.cpa)}、CV ${fmtInt(m.mail)}件 / 目標 ${fmtInt(g.mail)}件です。判断順は、計測乖離 → CPA → CPM/CTR → LPです。まず数字がズレている場所を確定し、その後にCRとLPを同時に直します。`,
+    strategy:`勝ち筋は ${win} と見ます。${lose} はそのまま増額せず、誰に刺さっていないのかを分解します。ターゲットは「冷え・腸内環境に悩む30〜50代女性」に固定し、広告とLPの言葉を揃えてください。`,
+    ad_ops:`運用では ${win} を優先します。${lose} はCV ${fmtInt(ctx.loser.cv)}件 / CPC ${yen(ctx.loser.cpc)} / CPM ${yen(ctx.loser.cpm)} なので、増額ではなく修正または縮小候補です。次の検証は勝ち訴求横展開2本、負け訴求修正版1本に絞ります。`,
+    creative:`CRは「悩み直球」「意外な原因」「無料講座ベネフィット」「信頼/実績」に分けて作ります。文字は18字以内、スマホ1秒で悩みが分かる構成にしてください。CPMが高いなら見た目の鮮度、CTRが低いなら冒頭コピーが原因です。`,
+    lp:`LPは広告と同じ約束をファーストビューに置きます。修正順は、FV見出し → CTA文言 → フォーム直前の不安解消 → サンクスページ確認です。クリックが取れてCVしない場合、広告よりLP側のズレを優先して疑います。`,
+    analytics:`分析では、広告費 → 表示回数 → クリック数 → LPアクセス → CTAクリック → CV → CPA の順に落ちている場所を見ます。Meta管理画面CV ${fmtInt(m.metaApiCv)}件、N列登録 ${fmtInt(m.metaSheetCv)}件なので、差が大きい日はタグとMyASP反映を確認します。`
+  };
+  const variants={
+    cpa:{
+      pmo:`CPA悪化は「高いクリックを買っている」か「クリック後にCVしていない」かに分けます。今はCPA ${yen(m.cpa)} なので、CPC ${yen(m.cpc)} とCTR ${fmt(m.ctr,2)}% を先に見て、広告側かLP側かを切り分けます。`,
+      ad_ops:`広告運用では、CPCが高い広告セットを増額しません。${win} は残し、${lose} は日予算を抑えてCR修正版に差し替えます。停止判断はCVゼロかつCPC/CPMが高いものからです。`,
+      lp:`CPCが許容内なのにCPAが悪い場合、LPの登録導線が原因です。FVとフォーム直前コピーを直し、「なぜ今登録するのか」を明確にしてください。`
+    },
+    creative:{
+      creative:`次に作るCRは6本です。悩み直球2本、意外な原因2本、無料講座ベネフィット1本、信頼/実績1本。${win} の勝ち要素は残し、${lose} は見出しから変えてください。`,
+      strategy:`CRの前に訴求軸を固定します。「冷えの原因」「腸内環境」「自分に合う対策」「無料講座で分かること」の4軸で作るのが良いです。`,
+      ad_ops:`入稿ではCR番号を必ず名前に入れてください。勝ち負けを後から追えない入稿名は、改善スピードを落とします。`
+    },
+    lp:{
+      lp:`LPで最初に直すのはファーストビューです。広告で言った悩みワード、無料講座で分かること、登録後の安心材料をFV内に入れてください。次にCTA、フォーム直前、サンクスページの順です。`,
+      creative:`広告とLPの見た目がズレるとCVRが落ちます。CR制作時点でLPのFVと同じ言葉・同じ世界観に寄せてください。`,
+      analytics:`LP改善を見るには、LPアクセス数、CTAクリック率、フォーム到達率、CVRが必要です。今の広告データだけだとLP内の離脱箇所までは確定できません。`
+    },
+    tracking:{
+      analytics:`計測は最優先です。Meta管理画面CVとN列登録がズレる日は、タグ発火、サンクスページ到達、MyASP反映、日付ズレを順に確認します。数字がズレたままでは運用判断が危険です。`,
+      pmo:`PMO判断として、計測乖離が大きい日は広告停止より先に計測確認です。正しいCVが分からない状態では、勝ち広告を止めるリスクがあります。`,
+      lp:`テスト登録を1件行い、Metaイベント、MyASP、LINE、スプレッドシートN列が同じ日付で反映されるか確認してください。`
+    },
+    ad_ops:{
+      ad_ops:`予算は ${win} に寄せます。ただし一気に増やさず10〜20%ずつ。${lose} は改善CRを入れるまで増額しません。CVゼロでCPC/CPMが高い広告セットは停止候補です。`,
+      pmo:`PMOとしては、運用だけで解決しようとしないこと。広告運用、CR制作、LP改善を同日に動かす方がCPA改善は速いです。`
+    },
+    analytics:{
+      analytics:`見る順番は固定です。広告費、表示、クリック、LPアクセス、CTAクリック、CV、CPA。ここを順番に見れば、広告側の問題かLP側の問題かが分かります。`,
+      pmo:`目標未達なら、足りないCV数と許容CPAから逆算します。感覚ではなく「あと何件必要か」「いくらまで使えるか」で判断してください。`
+    }
+  };
+  const chosen=variants[intent]||{};
+  return[
+    ['PMO',chosen.pmo||base.pmo],
+    ['①戦略設計チーム',chosen.strategy||base.strategy],
+    ['②広告運用チーム',chosen.ad_ops||base.ad_ops],
+    ['③広告CR制作チーム',chosen.creative||base.creative],
+    ['④LP制作・改善チーム',chosen.lp||base.lp],
+    ['⑤数値分析・レポートチーム',chosen.analytics||base.analytics]
+  ];
+}
+
+function answerQuestion(q){
+  const view=document.querySelector('.period-btn.active')?.dataset.view||'today';
+  const question=String(q||'').trim();
+  if(!question)return;
+  const intent=questionIntent(question);
+  const answers=answerByTeam(intent,view);
+  document.getElementById('answer-grid').innerHTML=`
+    <div class="answer-card"><div class="answer-role">質問</div><div class="answer-copy">${escapeHtml(question)}</div></div>
+    ${answers.map(([role,copy])=>`<div class="answer-card"><div class="answer-role">${role}</div><div class="answer-copy">${escapeHtml(copy)}</div></div>`).join('')}`;
+}
+
+function renderQuickQuestions(){
+  const qs=['CPAが悪い理由は？','次に作るCRは？','LPのどこを直す？','Meta CVとMyASPの乖離は？','どの広告セットを伸ばす？','今日見るべき数値は？'];
+  document.getElementById('quick-questions').innerHTML=qs.map(q=>`<button class="quick-question" type="button" data-question="${escapeHtml(q)}">${q}</button>`).join('');
+}
 
 // ===== 今日タブ =====
 function renderToday(metaData, gasData){
@@ -682,12 +1068,14 @@ let metaData={}, gasData={}, gasPayload={};
 async function loadData(){
   try{
     // data.json（Meta）とGAS（YouTube）を並行取得
-    const [metaRes, gasRes] = await Promise.allSettled([
+    const [metaRes, gasRes, goalRes] = await Promise.allSettled([
       fetch('data.json?t='+Date.now()).then(r=>r.json()),
-      fetch(GAS_URL+'?t='+Date.now()).then(r=>r.json())
+      fetch(GAS_URL+'?t='+Date.now()).then(r=>r.json()),
+      fetch('goals.json?t='+Date.now()).then(r=>r.ok?r.json():DEFAULT_GOALS)
     ]);
 
     metaData = metaRes.status==='fulfilled' ? metaRes.value : {};
+    goalData = goalRes.status==='fulfilled' ? {...DEFAULT_GOALS,...goalRes.value} : DEFAULT_GOALS;
     const gasFromPage = gasRes.status==='fulfilled' ? gasRes.value : null;
     gasPayload = gasFromPage || {};
     const gasYoutube = gasFromPage?.youtube || gasFromPage;
@@ -725,6 +1113,8 @@ function renderView(view){
   if(view==='yesterday')  renderYesterday(metaData, gasData);
   if(view==='last_week')  renderLastWeek(metaData, gasData);
   if(view==='this_month') renderThisMonth(metaData, gasData);
+  renderStrategy(view);
+  renderExperts(view);
 }
 
 document.getElementById('period-bar').addEventListener('click',e=>{
@@ -737,6 +1127,28 @@ document.getElementById('period-bar').addEventListener('click',e=>{
   renderView(view);
 });
 
+document.getElementById('expert-tabs').addEventListener('click',e=>{
+  const btn=e.target.closest('.expert-tab');if(!btn)return;
+  currentExpert=btn.dataset.expert;
+  const view=document.querySelector('.period-btn.active')?.dataset.view||'today';
+  renderExperts(view);
+});
+
+document.getElementById('ask-btn').addEventListener('click',()=>{
+  answerQuestion(document.getElementById('ask-input').value);
+});
+
+document.getElementById('ask-input').addEventListener('keydown',e=>{
+  if(e.key==='Enter') answerQuestion(e.target.value);
+});
+
+document.getElementById('quick-questions').addEventListener('click',e=>{
+  const btn=e.target.closest('.quick-question');if(!btn)return;
+  document.getElementById('ask-input').value=btn.dataset.question;
+  answerQuestion(btn.dataset.question);
+});
+
+renderQuickQuestions();
 updatePeriodLabels();
 loadData();
 // 1時間おき自動更新
