@@ -1,0 +1,68 @@
+# FrancDirect 広告ダッシュボード
+
+YouTube / Meta 広告の数値を確認し、目標との差分から改善アクションまで整理するダッシュボードです。
+
+公開URL:
+
+https://o-arakawa.github.io/francdirect-dashboard/dashboard.html
+
+## まず見るファイル
+
+| ファイル | 役割 | 普段触るか |
+|---|---|---|
+| `dashboard.html` | ダッシュボード画面本体 | 画面を変える時だけ触る |
+| `goals.json` | 目標CPA / CPM / CPC / CTR / CV数 | 目標を変える時に触る |
+| `data.json` | 実績データ。GitHub Actions が自動更新 | 手動では触らない |
+| `fetch_meta.py` | Meta API / GAS から `data.json` を作る | データ取得を変える時だけ触る |
+| `github.gs` | Google Apps Script 側コードの控え | GASを更新する時に使う |
+| `SETUP.md` | 初期設定・運用手順 | 手順確認用 |
+
+## GitHubにアップするもの
+
+通常は以下だけでOKです。
+
+- `dashboard.html`
+- `goals.json`
+- `fetch_meta.py`
+- `github.gs`
+- `SETUP.md`
+
+`data.json` は自動更新されるため、基本的に手動更新しません。
+
+## 目標数値を変える場所
+
+`goals.json` を編集します。
+
+```json
+{
+  "daily": {
+    "mail": 10,
+    "cpa": 1500,
+    "cpm": 1600,
+    "cpc": 45,
+    "ctr": 3.5,
+    "purchase": 1,
+    "cv_gap_rate": 0.25
+  }
+}
+```
+
+## PMO / マーケティング推進部
+
+ダッシュボードには以下の判断ブロックがあります。
+
+```text
+PMO
+└─ マーケティング推進部
+    ├─ ①戦略設計チーム
+    ├─ ②広告運用チーム
+    ├─ ③広告CR制作チーム
+    ├─ ④LP制作・改善チーム
+    └─ ⑤数値分析・レポートチーム
+```
+
+目的は、単に数字を見ることではなく、広告費を成果につなげるための次の行動まで決めることです。
+
+## 不要なもの
+
+ZIPファイルや展開フォルダは作業用の予備です。GitHubには入れません。
