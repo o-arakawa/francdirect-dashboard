@@ -1,0 +1,29 @@
+{
+  "daily": {
+    "mail": 10,
+    "cpa": 1500,
+    "cpm": 1600,
+    "cpc": 45,
+    "ctr": 3.5,
+    "purchase": 1,
+    "cv_gap_rate": 0.25
+  },
+  "weekly": {
+    "mail": 70,
+    "cpa": 1500,
+    "cpm": 1600,
+    "cpc": 45,
+    "ctr": 3.5,
+    "purchase": 5,
+    "cv_gap_rate": 0.25
+  },
+  "monthly": {
+    "mail": 300,
+    "cpa": 1500,
+    "cpm": 1600,
+    "cpc": 45,
+    "ctr": 3.5,
+    "purchase": 20,
+    "cv_gap_rate": 0.25
+  }
+}
