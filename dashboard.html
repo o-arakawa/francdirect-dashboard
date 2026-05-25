@@ -51,7 +51,7 @@ header{padding:1.6rem 0}
 .grid21{display:grid;grid-template-columns:2fr 1fr;gap:2px;background:var(--border);margin-bottom:2px}
 .chart-box{background:var(--surface);padding:1.6rem}
 .chart-title{font-size:.65rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:1rem}
-.table-box{background:var(--surface);padding:1.6rem;margin-bottom:2px}
+.table-box{background:var(--surface);padding:1.6rem;margin-bottom:2px;overflow-x:auto}
 .strategy-box{background:var(--surface);padding:1.4rem 1.6rem;margin-bottom:2px;border:.5px solid var(--border)}
 .strategy-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
 .strategy-title{font-size:.62rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
@@ -100,6 +100,8 @@ td:first-child{text-align:left;color:var(--muted);font-size:.73rem}
 tr:last-child td{border-bottom:none}
 .tdname{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:260px}
 .cv-pill{display:inline-block;background:rgba(76,175,125,.14);color:#4CAF7D;font-size:.6rem;padding:2px 8px}
+.koza-pill{display:inline-block;background:rgba(196,163,90,.16);color:var(--gold);font-size:.6rem;padding:2px 8px}
+.koza-pill.zero{background:rgba(224,92,92,.08);color:#E05C5C}
 .empty-row td{text-align:left;color:var(--muted)}
 .view{display:none}.view.active{display:block}
 #loading{position:fixed;inset:0;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;z-index:999;transition:opacity .4s}
@@ -218,7 +220,7 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">今日 消化金額（YouTube + Meta）</div><canvas id="chart-today" height="130"></canvas></div>
   <div class="table-box">
     <p class="sec" style="margin-top:0">媒体 / 広告セット別（今日）</p>
-    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th><th>講座購入者</th></tr></thead>
     <tbody id="t-adset-tbody"></tbody></table>
   </div>
 </div>
@@ -261,7 +263,7 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">昨日 消化金額（YouTube + Meta）</div><canvas id="chart-yesterday" height="130"></canvas></div>
   <div class="table-box">
     <p class="sec" style="margin-top:0">媒体 / 広告セット別（昨日）</p>
-    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th><th>講座購入者</th></tr></thead>
     <tbody id="y-adset-tbody"></tbody></table>
   </div>
 </div>
@@ -280,7 +282,7 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">先週 日次 消化金額（YouTube + Meta）</div><canvas id="chart-week" height="130"></canvas></div>
   <div class="table-box">
     <p class="sec" style="margin-top:0">媒体 / 広告セット別（先週）</p>
-    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th><th>講座購入者</th></tr></thead>
     <tbody id="w-adset-tbody"></tbody></table>
   </div>
 </div>
@@ -326,7 +328,7 @@ footer p{font-size:.63rem;color:rgba(244,236,219,.2);letter-spacing:.04em}
   <div class="chart-full"><div class="chart-title">日次 消化金額（今月）</div><canvas id="chart-month" height="130"></canvas></div>
   <div class="table-box">
     <p class="sec" style="margin-top:0">媒体 / 広告セット別（今月）</p>
-    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th></tr></thead>
+    <table><thead><tr><th>媒体・広告セット名</th><th>広告費</th><th>表示/リーチ</th><th>クリック</th><th>CPM</th><th>CTR</th><th>CPC</th><th>CV</th><th>講座購入者</th></tr></thead>
     <tbody id="m-adset-tbody"></tbody></table>
   </div>
 </div>
@@ -980,7 +982,8 @@ function periodSummary(rows,name){
   const impressions=list.reduce((s,r)=>s+(r.impressions||0),0);
   const clicks=list.reduce((s,r)=>s+(r.clicks||0),0);
   const mail=list.reduce((s,r)=>s+(r.mail||0),0);
-  return{name,spend,impressions,clicks,mail,cpc:calcCpc(spend,clicks),ctr:impressions>0?clicks/impressions*100:0};
+  const koza=list.reduce((s,r)=>s+(r.koza||0),0);
+  return{name,spend,impressions,clicks,mail,koza,cpc:calcCpc(spend,clicks),ctr:impressions>0?clicks/impressions*100:0};
 }
 
 function metaAggregateRow(name,row){
@@ -1002,7 +1005,8 @@ function ytRowsFor(period,ytSummary){
     cpm:r.cpm||calcCpm(r.spend||0,r.impressions||r.reach||0),
     ctr:r.ctr!=null?r.ctr:((r.impressions||0)>0?(r.clicks||0)/(r.impressions||0)*100:0),
     cpc:r.cpc||calcCpc(r.spend||0,r.clicks||0),
-    cv:r.mail||r.cv||0
+    cv:r.mail||r.cv||0,
+    koza:r.koza||r.purchase||r.purchases||0
   }));
 }
 
@@ -1020,26 +1024,36 @@ function metaCvForKind(kind,start,end){
   return sumDateMap(gasPayload?.meta_cv?.by_date,start,end);
 }
 
+function metaKozaForKind(kind,start,end){
+  const byAdset=gasPayload?.meta_cv?.by_adset||{};
+  if(kind==='normal')return sumDateMap(Object.fromEntries(Object.entries(byAdset.normal||{}).map(([d,v])=>[d,v?.koza||0])),start,end);
+  if(kind==='thank')return sumDateMap(Object.fromEntries(Object.entries(byAdset.thank||{}).map(([d,v])=>[d,v?.koza||0])),start,end);
+  return sumDateMap(gasPayload?.meta_cv?.koza_by_date,start,end);
+}
+
 function metaRowsFor(adsets,start,end){
   const groups={};
   (adsets||[]).filter(Boolean).forEach(a=>{
     const kind=metaKind(a.name||a.adset_name);
     const label=kind==='normal'?'ブロード(normal)_画像01~03':kind==='thank'?'ブロード(thank)_画像01~03':(a.name||a.adset_name||'Meta 合計');
-    if(!groups[kind])groups[kind]={source:'Meta',name:label,spend:0,reach:0,impressions:0,clicks:0,cv:0};
+    if(!groups[kind])groups[kind]={source:'Meta',name:label,spend:0,reach:0,impressions:0,clicks:0,cv:0,koza:0};
     groups[kind].spend+=a.spend||0;
     groups[kind].reach+=a.reach||a.impressions||0;
     groups[kind].impressions+=a.impressions||a.reach||0;
     groups[kind].clicks+=a.clicks||0;
     groups[kind].cv+=(a.cv_meta||0)+(a.cv_myasp||0);
+    groups[kind].koza+=a.koza||a.purchase||a.purchases||0;
   });
   return Object.entries(groups).map(([kind,r])=>{
     const sheetCv=metaCvForKind(kind,start,end);
+    const sheetKoza=metaKozaForKind(kind,start,end);
     return{
       ...r,
       cpm:calcCpm(r.spend,r.impressions||r.reach),
       ctr:(r.impressions||0)>0?r.clicks/r.impressions*100:0,
       cpc:calcCpc(r.spend,r.clicks),
-      cv:sheetCv||r.cv
+      cv:sheetCv||r.cv,
+      koza:sheetKoza||r.koza
     };
   });
 }
@@ -1054,12 +1068,14 @@ function renderAdsets(tbodyId,period,metaAdsets,ytSummary){
     this_month:[today.slice(0,7)+'-01',today]
   };
   const [start,end]=ranges[period]||[today,today];
-  const rows=[...ytRowsFor(period,ytSummary),...metaRowsFor(metaAdsets,start,end)].filter(r=>r.spend||r.reach||r.clicks||r.cv);
+  const rows=[...ytRowsFor(period,ytSummary),...metaRowsFor(metaAdsets,start,end)].filter(r=>r.spend||r.reach||r.clicks||r.cv||r.koza);
   tbody.innerHTML=rows.length?rows.map(r=>`<tr>
     <td><span class="tdname" title="${escapeHtml(r.source+' / '+r.name)}">${escapeHtml(r.source+' / '+r.name)}</span></td>
     <td>${yen(r.spend)}</td><td>${fmtInt(r.reach)}</td><td>${fmtInt(r.clicks)}</td>
-    <td>${yen(r.cpm)}</td><td>${fmt(r.ctr,2)}%</td><td>${yen(r.cpc)}</td><td><span class="cv-pill">${fmtInt(r.cv)}件</span></td>
-  </tr>`).join(''):`<tr class="empty-row"><td colspan="8">表示できる広告セットデータがありません</td></tr>`;
+    <td>${yen(r.cpm)}</td><td>${fmt(r.ctr,2)}%</td><td>${yen(r.cpc)}</td>
+    <td><span class="cv-pill">${fmtInt(r.cv)}件</span></td>
+    <td><span class="koza-pill ${r.koza?'':'zero'}">${fmtInt(r.koza)}件</span></td>
+  </tr>`).join(''):`<tr class="empty-row"><td colspan="9">表示できる広告セットデータがありません</td></tr>`;
 }
 
 // ===== データ読み込み =====
