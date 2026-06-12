@@ -1,29 +1,29 @@
 {
-  "last_updated": "2026-06-12T04:53:56Z",
+  "last_updated": "2026-06-12T10:27:04Z",
   "campaign_id": "120243061348860707",
   "today": {
-    "spend": 1767.0,
-    "reach": 828,
-    "impressions": 925,
-    "clicks": 48,
-    "cpm": 1910.27,
-    "ctr": 5.19,
-    "cpc": 36.81,
+    "spend": 3027.0,
+    "reach": 1357,
+    "impressions": 1575,
+    "clicks": 68,
+    "cpm": 1921.9,
+    "ctr": 4.32,
+    "cpc": 44.51,
     "cv_meta": 0,
     "cv_myasp": 0,
     "cpa": null
   },
   "this_month": {
-    "spend": 56984.0,
-    "reach": 17520,
-    "impressions": 32577,
-    "clicks": 1274,
-    "cpm": 1749.21,
-    "ctr": 3.91,
-    "cpc": 44.73,
+    "spend": 58244.0,
+    "reach": 17788,
+    "impressions": 33227,
+    "clicks": 1294,
+    "cpm": 1752.91,
+    "ctr": 3.89,
+    "cpc": 45.01,
     "cv_meta": 0,
     "cv_myasp": 31,
-    "cpa": 1838
+    "cpa": 1879
   },
   "last_30d": {
     "spend": 150023.0,
@@ -38,40 +38,40 @@
     "cpa": 1596
   },
   "total": {
-    "spend": 249560.0,
-    "reach": 41158,
-    "impressions": 143482,
-    "clicks": 5923,
-    "cpm": 1739.31,
-    "ctr": 4.13,
-    "cpc": 42.13,
+    "spend": 250820.0,
+    "reach": 41360,
+    "impressions": 144132,
+    "clicks": 5943,
+    "cpm": 1740.21,
+    "ctr": 4.12,
+    "cpc": 42.2,
     "cv_meta": 0,
     "cv_myasp": 190,
-    "cpa": 1313
+    "cpa": 1320
   },
   "adsets": {
     "today": [
       {
-        "name": "260513_ブロード(normal)_画像01~03",
-        "spend": 906,
-        "reach": 448,
-        "impressions": 500,
-        "clicks": 28,
-        "cpm": 1812.0,
-        "ctr": 5.6,
-        "cpc": 32.36,
+        "name": "2600513_ブロード(thank)_画像01~03",
+        "spend": 1536,
+        "reach": 689,
+        "impressions": 760,
+        "clicks": 34,
+        "cpm": 2021.05,
+        "ctr": 4.47,
+        "cpc": 45.18,
         "cv_meta": 0,
         "cv_myasp": 0
       },
       {
-        "name": "2600513_ブロード(thank)_画像01~03",
-        "spend": 861,
-        "reach": 401,
-        "impressions": 425,
-        "clicks": 20,
-        "cpm": 2025.88,
-        "ctr": 4.71,
-        "cpc": 43.05,
+        "name": "260513_ブロード(normal)_画像01~03",
+        "spend": 1491,
+        "reach": 717,
+        "impressions": 815,
+        "clicks": 34,
+        "cpm": 1829.45,
+        "ctr": 4.17,
+        "cpc": 43.85,
         "cv_meta": 0,
         "cv_myasp": 0
       }
@@ -131,25 +131,25 @@
     "this_month": [
       {
         "name": "2600513_ブロード(thank)_画像01~03",
-        "spend": 28543,
-        "reach": 10523,
-        "impressions": 16039,
-        "clicks": 649,
-        "cpm": 1779.6,
+        "spend": 29218,
+        "reach": 10678,
+        "impressions": 16374,
+        "clicks": 663,
+        "cpm": 1784.41,
         "ctr": 4.05,
-        "cpc": 43.98,
+        "cpc": 44.07,
         "cv_meta": 0,
         "cv_myasp": 19
       },
       {
         "name": "260513_ブロード(normal)_画像01~03",
-        "spend": 28441,
-        "reach": 10963,
-        "impressions": 16538,
-        "clicks": 625,
-        "cpm": 1719.74,
-        "ctr": 3.78,
-        "cpc": 45.51,
+        "spend": 29026,
+        "reach": 11069,
+        "impressions": 16853,
+        "clicks": 631,
+        "cpm": 1722.3,
+        "ctr": 3.74,
+        "cpc": 46.0,
         "cv_meta": 0,
         "cv_myasp": 12
       }
@@ -6423,7 +6423,7 @@
       }
     ],
     "yesterday": {
-      "date": "2026-06-11",
+      "date": "2026-06-12",
       "spend": 0,
       "impressions": 0,
       "clicks": 0,
@@ -6458,7 +6458,7 @@
       "cv_myasp": 5
     },
     "youtube": {
-      "date": "2026-06-11",
+      "date": "2026-06-12",
       "spend": 0,
       "impressions": 0,
       "clicks": 0,
