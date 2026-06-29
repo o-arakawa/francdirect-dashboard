@@ -428,10 +428,11 @@ function findYtDaily(gasData, dateStr){
 }
 const asNum=v=>v==null||v===''||isNaN(Number(v))?0:Number(v);
 const metaCv=r=>(r?.cv_myasp||0)+(r?.cv_meta||0);
-const gasMetaCv=date=>asNum(gasPayload?.meta_cv?.by_date?.[date]);
-const gasMetaKoza=date=>asNum(gasPayload?.meta_cv?.koza_by_date?.[date]);
-const gasYtKoza=date=>asNum(gasPayload?.youtube_cv?.koza_by_date?.[date]);
-const sumDateMap=(map,start,end)=>Object.entries(map||{}).filter(([d])=>d>=start&&d<=end).reduce((s,[,v])=>s+asNum(v),0);
+const valueNum=v=>typeof v==='object'&&v!==null?asNum(v.mail||v.koza||0):asNum(v);
+const gasMetaCv=date=>valueNum(gasPayload?.meta_cv?.by_date?.[date]);
+const gasMetaKoza=date=>valueNum(gasPayload?.meta_cv?.koza_by_date?.[date]);
+const gasYtKoza=date=>valueNum(gasPayload?.youtube_cv?.koza_by_date?.[date]);
+const sumDateMap=(map,start,end)=>Object.entries(map||{}).filter(([d])=>d>=start&&d<=end).reduce((s,[,v])=>s+valueNum(v),0);
 const metaCvFor=(row,date)=>metaCv(row)||gasMetaCv(date);
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -478,8 +479,8 @@ function periodRows(start,end){
   const metaSheetCv=sumDateMap(gasPayload?.meta_cv?.by_date,start,end)||metaRows.reduce((s,r)=>s+metaCv(r),0);
   const metaApiCv=metaRows.reduce((s,r)=>s+(r.cv_meta||0),0);
   const ytMail=ytRows.reduce((s,r)=>s+(r.mail||0),0);
-  const kozaMeta=sumDateMap(gasPayload?.meta_cv?.koza_by_date,start,end);
-  const kozaYt=sumDateMap(gasPayload?.youtube_cv?.koza_by_date,start,end);
+  const kozaMeta=sumDateMap(gasPayload?.meta_cv?.koza_by_date,start,end)||sumDateMap(metaData.koza?.meta?.by_date,start,end);
+  const kozaYt=sumDateMap(gasPayload?.youtube_cv?.koza_by_date,start,end)||sumDateMap(metaData.koza?.youtube?.by_date,start,end);
   const spend=metaSpend+ytSpend, imp=metaImp+ytImp, clicks=metaClicks+ytClicks, mail=metaSheetCv+ytMail;
   return{spend,imp,clicks,mail,metaSheetCv,metaApiCv,ytMail,koza:kozaMeta+kozaYt,cpm:calcCpm(spend,imp),cpc:calcCpc(spend,clicks),ctr:imp>0?clicks/imp*100:0,cpa:calcCpa(spend,mail)};
 }
@@ -1017,18 +1018,41 @@ function metaKind(name){
   return'total';
 }
 
+function metaAdsetsForRange(start,end){
+  const today=todayJST();
+  const yday=yesterdayJST();
+  const monthStart=today.slice(0,7)+'-01';
+  const weekStart=dateOffset(-7);
+  const weekEnd=dateOffset(-1);
+  if(start===today&&end===today)return metaData.adsets?.today||[];
+  if(start===yday&&end===yday)return metaData.adsets?.yesterday||[];
+  if(start===weekStart&&end===weekEnd)return metaData.adsets?.last_week||[];
+  if(start===monthStart&&end===today)return metaData.adsets?.this_month||[];
+  return metaData.adsets?.last_30d||metaData.adsets?.this_month||[];
+}
+
 function metaCvForKind(kind,start,end){
   const byAdset=gasPayload?.meta_cv?.by_adset||{};
-  if(kind==='normal')return sumDateMap(Object.fromEntries(Object.entries(byAdset.normal||{}).map(([d,v])=>[d,v?.mail||0])),start,end);
-  if(kind==='thank')return sumDateMap(Object.fromEntries(Object.entries(byAdset.thank||{}).map(([d,v])=>[d,v?.mail||0])),start,end);
-  return sumDateMap(gasPayload?.meta_cv?.by_date,start,end);
+  let cv=0;
+  if(kind==='normal')cv=sumDateMap(Object.fromEntries(Object.entries(byAdset.normal||{}).map(([d,v])=>[d,v?.mail||0])),start,end);
+  else if(kind==='thank')cv=sumDateMap(Object.fromEntries(Object.entries(byAdset.thank||{}).map(([d,v])=>[d,v?.mail||0])),start,end);
+  else cv=sumDateMap(gasPayload?.meta_cv?.by_date,start,end);
+  if(cv)return cv;
+  return (metaAdsetsForRange(start,end)||[])
+    .filter(a=>kind==='total'||metaKind(a.name||a.adset_name)===kind)
+    .reduce((s,a)=>s+(a.cv_myasp||0)+(a.cv_meta||0),0);
 }
 
 function metaKozaForKind(kind,start,end){
   const byAdset=gasPayload?.meta_cv?.by_adset||{};
-  if(kind==='normal')return sumDateMap(Object.fromEntries(Object.entries(byAdset.normal||{}).map(([d,v])=>[d,v?.koza||0])),start,end);
-  if(kind==='thank')return sumDateMap(Object.fromEntries(Object.entries(byAdset.thank||{}).map(([d,v])=>[d,v?.koza||0])),start,end);
-  return sumDateMap(gasPayload?.meta_cv?.koza_by_date,start,end);
+  let koza=0;
+  if(kind==='normal')koza=sumDateMap(Object.fromEntries(Object.entries(byAdset.normal||{}).map(([d,v])=>[d,v?.koza||0])),start,end);
+  else if(kind==='thank')koza=sumDateMap(Object.fromEntries(Object.entries(byAdset.thank||{}).map(([d,v])=>[d,v?.koza||0])),start,end);
+  else koza=sumDateMap(gasPayload?.meta_cv?.koza_by_date,start,end);
+  if(koza)return koza;
+  return (metaAdsetsForRange(start,end)||[])
+    .filter(a=>kind==='total'||metaKind(a.name||a.adset_name)===kind)
+    .reduce((s,a)=>s+(a.koza||a.purchase||a.purchases||0),0);
 }
 
 function metaRowsFor(adsets,start,end){
