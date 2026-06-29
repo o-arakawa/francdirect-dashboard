@@ -1,6 +1,6 @@
 """
-Meta Ads API + YouTube (GAS) + MyASP CV — FrancDirect専用
-YouTube データは Google Apps Script Web App から取得
+Meta Ads API + Google Sheets CSV + MyASP CV — FrancDirect専用
+GAS が使えない場合でも、Google Sheets CSV からCV/YouTube数値を取得する
 """
 
 import os, json, csv, io, re, requests
@@ -24,6 +24,11 @@ META_CV_SHEET_GIDS = {
     "normal": "1453222225",  # ブロード(normal)_画像01~03
     "thank":  "1220836676",  # ブロード(thank)_画像01~03
     "total":  "1728626971",  # Meta報告ブロック
+}
+YOUTUBE_SHEET_GIDS = {
+    "normal": "631616865",   # Yt_LP▶︎NAH(通常)
+    "thank":  "823916960",   # Yt_LP▶︎NAH(thank[ムック])
+    "total":  "1747543527",  # YouTube報告ブロック
 }
 
 def meta(params):
@@ -64,7 +69,15 @@ def row_to_summary(s):
     }
 
 def num(value):
-    text = str(value or "").replace(",", "").replace("¥", "").replace("%", "").strip()
+    text = (
+        str(value or "")
+        .replace(",", "")
+        .replace("¥", "")
+        .replace("￥", "")
+        .replace("Â", "")
+        .replace("%", "")
+        .strip()
+    )
     if text in ("", "-"):
         return 0
     try:
@@ -94,6 +107,12 @@ def spreadsheet_id_from_url(url):
 def csv_url_for_gid(spreadsheet_id, gid):
     return f"https://docs.google.com/spreadsheets/d/{spreadsheet_id}/export?format=csv&gid={gid}"
 
+def fetch_csv_text(url):
+    r = requests.get(url, timeout=20)
+    r.raise_for_status()
+    # Google Sheets CSV は charset が付かず requests.text が文字化けすることがあるため固定で読む
+    return r.content.decode("utf-8-sig")
+
 def adset_key(name):
     text = str(name or "").lower()
     if "thank" in text:
@@ -102,76 +121,186 @@ def adset_key(name):
         return "normal"
     return ""
 
-def csv_rows_to_cv_by_date(rows):
+def csv_rows_from_text(text):
+    return list(csv.reader(io.StringIO(text or "")))
+
+def find_sheet_header_index(rows):
+    for i, row in enumerate(rows[:20]):
+        normalized = [norm_key(c) for c in row]
+        if (
+            "メルマガ登録者" in normalized
+            or "消化金額" in normalized
+            or "クリック数" in normalized
+        ):
+            return i
+    return 0
+
+def header_index(headers, candidates, fallback):
+    for candidate in candidates:
+        if candidate in headers:
+            return headers.index(candidate)
+    return fallback
+
+def cell(row, idx):
+    return row[idx] if idx is not None and idx < len(row) else ""
+
+def csv_rows_to_sheet_metrics(rows):
     if not rows:
-        return {}
-    headers = [norm_key(h) for h in rows[0]]
-    date_idx = next((i for i, h in enumerate(headers) if h in ("日付", "date", "")), 0)
-    cv_idx = next((i for i, h in enumerate(headers) if h in ("myasp_cv", "myaspcv", "メルマガ登録者")), None)
-    if cv_idx is None:
-        return {}
-    values = {}
-    for row in rows[1:]:
+        return {"mail_by_date": {}, "koza_by_date": {}, "daily": []}
+
+    header_i = find_sheet_header_index(rows)
+    headers = [norm_key(h) for h in rows[header_i]]
+    date_idx = header_index(headers, ("日付", "date"), 0)
+    spend_idx = header_index(headers, ("消化金額", "spend"), 1)
+    imp_idx = header_index(headers, ("表示回数", "impressions"), 2)
+    cpm_idx = header_index(headers, ("cpm",), 5)
+    click_idx = header_index(headers, ("クリック数", "clicks"), 6)
+    ctr_idx = header_index(headers, ("表示回数ctr", "ctr"), 7)
+    cpc_idx = header_index(headers, ("cpc",), 9)
+    mail_idx = header_index(headers, ("myasp_cv", "myaspcv", "メルマガ登録者"), 13)
+    koza_idx = header_index(headers, ("講座購入者",), 18)
+
+    mail_by_date = {}
+    koza_by_date = {}
+    daily = []
+
+    for row in rows[header_i + 1:]:
         d = parse_sheet_date(row[date_idx] if date_idx < len(row) else "")
         if not d:
             continue
-        values[d] = num(row[cv_idx]) if cv_idx < len(row) else 0
-    return values
+        spend = num(cell(row, spend_idx))
+        impressions = num(cell(row, imp_idx))
+        clicks = num(cell(row, click_idx))
+        mail = num(cell(row, mail_idx))
+        koza = num(cell(row, koza_idx))
+        cpm = num(cell(row, cpm_idx)) or (round(spend / impressions * 1000) if impressions > 0 else 0)
+        cpc = num(cell(row, cpc_idx)) or (round(spend / clicks) if clicks > 0 else 0)
+
+        mail_by_date[d] = mail
+        koza_by_date[d] = koza
+        if spend or impressions or clicks or mail or koza:
+            daily.append({
+                "date": d,
+                "spend": spend,
+                "impressions": impressions,
+                "clicks": clicks,
+                "cpm": cpm,
+                "ctr": num(cell(row, ctr_idx)),
+                "cpc": cpc,
+                "mail": mail,
+                "koza": koza,
+                "cpa": round(spend / mail) if mail > 0 else None,
+            })
+
+    daily.sort(key=lambda r: r["date"])
+    return {"mail_by_date": mail_by_date, "koza_by_date": koza_by_date, "daily": daily}
+
+def sheet_metrics_from_csv_text(text):
+    return csv_rows_to_sheet_metrics(csv_rows_from_text(text))
 
 def cv_from_csv_text(text):
-    rows = list(csv.reader(io.StringIO(text)))
-    if not rows:
-        return {}
-    headers = [norm_key(h) for h in rows[0]]
-    cv_idx = next((i for i, h in enumerate(headers) if h in ("myasp_cv", "myaspcv", "メルマガ登録者")), None)
-    if cv_idx is not None:
-        return csv_rows_to_cv_by_date(rows)
+    return sheet_metrics_from_csv_text(text)["mail_by_date"]
 
-    # Some Google Sheets CSV exports can include leading blank rows/columns.
-    # Detect the actual header row containing メルマガ登録者, then parse below it.
-    for i, row in enumerate(rows[:20]):
-        normalized = [norm_key(c) for c in row]
-        if "メルマガ登録者" in normalized:
-            return csv_rows_to_cv_by_date(rows[i:])
-    return {}
+def sum_date_values(dicts):
+    result = {}
+    for data in dicts:
+        for d, v in data.items():
+            result[d] = result.get(d, 0) + v
+    return result
+
+def sum_metric_rows(rows):
+    rows = rows or []
+    spend = sum(r.get("spend", 0) for r in rows)
+    impressions = sum(r.get("impressions", 0) for r in rows)
+    clicks = sum(r.get("clicks", 0) for r in rows)
+    mail = sum(r.get("mail", 0) for r in rows)
+    koza = sum(r.get("koza", 0) for r in rows)
+    return {
+        "spend": spend,
+        "impressions": impressions,
+        "clicks": clicks,
+        "mail": mail,
+        "koza": koza,
+        "cpm": round(spend / impressions * 1000) if impressions > 0 else 0,
+        "cpc": round(spend / clicks) if clicks > 0 else 0,
+        "cpa": round(spend / mail) if mail > 0 else None,
+    }
+
+def build_youtube_data_from_daily(daily_rows):
+    current = datetime.now(JST).date()
+    yday = (current - timedelta(days=1)).strftime("%Y-%m-%d")
+    month_start_local = current.strftime("%Y-%m-01")
+    today_local = current.strftime("%Y-%m-%d")
+    month_rows = [r for r in daily_rows if month_start_local <= r.get("date", "") <= today_local]
+    return {
+        "daily": daily_rows,
+        "yesterday": next((r for r in daily_rows if r.get("date") == yday), None),
+        "this_month": sum_metric_rows(month_rows) if month_rows else None,
+    }
 
 # ── Google Sheet から CV データ ─────────────────────────────────────────
 cv_by_date = {}
 cv_by_adset_key_date = {}
+koza_meta_date = {}
+koza_meta_adset_key_date = {}
+koza_yt_date = {}
+youtube_data = {"daily": [], "yesterday": None, "this_month": None}
+
 if SHEET_CSV_URL or META_CV_SPREADSHEET_ID:
     try:
-        print("📊 Google Sheet から CV データを取得中...")
+        print("📊 Google Sheet から CV / YouTube データを取得中...")
         spreadsheet_id = spreadsheet_id_from_url(SHEET_CSV_URL) or META_CV_SPREADSHEET_ID
         sources = [(key, csv_url_for_gid(spreadsheet_id, gid)) for key, gid in META_CV_SHEET_GIDS.items()]
 
         for key, url in sources:
             try:
-                r = requests.get(url, timeout=10)
-                r.raise_for_status()
-                by_date = cv_from_csv_text(r.text)
+                metrics = sheet_metrics_from_csv_text(fetch_csv_text(url))
+                by_date = metrics["mail_by_date"]
+                koza_by_date = metrics["koza_by_date"]
             except Exception as e:
                 print(f"⚠️ {key} CV 読み込み失敗: {e}")
                 by_date = {}
+                koza_by_date = {}
             cv_by_adset_key_date[key] = by_date
-            print(f"   {key}: {len(by_date)} 日分")
+            koza_meta_adset_key_date[key] = koza_by_date
+            print(f"   Meta {key}: mail {sum(by_date.values())}件 / 講座 {sum(koza_by_date.values())}件 / {len(by_date)}日分")
 
         if cv_by_adset_key_date.get("total"):
             for d, cv in cv_by_adset_key_date["total"].items():
                 cv_by_date[d] = {"myasp": cv, "line": 0}
+            koza_meta_date = dict(koza_meta_adset_key_date.get("total", {}))
         else:
             for key in ("normal", "thank"):
                 for d, cv in cv_by_adset_key_date.get(key, {}).items():
                     current = cv_by_date.setdefault(d, {"myasp": 0, "line": 0})
                     current["myasp"] += cv
+            koza_meta_date = sum_date_values([
+                koza_meta_adset_key_date.get("normal", {}),
+                koza_meta_adset_key_date.get("thank", {}),
+            ])
 
         if not cv_by_date and SHEET_CSV_URL:
             print("   normal/thank が読めないため、SHEET_CSV_URL の合計CVを使用します")
-            r = requests.get(SHEET_CSV_URL, timeout=10)
-            r.raise_for_status()
-            by_date = cv_from_csv_text(r.text)
+            metrics = sheet_metrics_from_csv_text(fetch_csv_text(SHEET_CSV_URL))
+            by_date = metrics["mail_by_date"]
             cv_by_adset_key_date["total"] = by_date
             for d, cv in by_date.items():
                 cv_by_date[d] = {"myasp": cv, "line": 0}
+            koza_meta_date = metrics["koza_by_date"]
+
+        try:
+            yt_total_metrics = sheet_metrics_from_csv_text(
+                fetch_csv_text(csv_url_for_gid(spreadsheet_id, YOUTUBE_SHEET_GIDS["total"]))
+            )
+            youtube_data = build_youtube_data_from_daily(yt_total_metrics["daily"])
+            koza_yt_date = yt_total_metrics["koza_by_date"]
+            yt_m = youtube_data.get("this_month") or {}
+            print(
+                f"   YouTube total: {len(youtube_data.get('daily', []))}日分 / "
+                f"今月 mail {yt_m.get('mail', 0)}件 / 講座 {yt_m.get('koza', 0)}件"
+            )
+        except Exception as e:
+            print(f"⚠️ YouTube CSV 読み込み失敗: {e}")
 
         print(f"   {len(cv_by_date)} 日分取得")
     except Exception as e:
@@ -199,11 +328,13 @@ def cv_myasp_range_for_adset(name, start, end):
         return 0
     return sum(cv for d, cv in cv_by_adset_key_date.get(key, {}).items() if start <= d <= end)
 
-# ── GAS から YouTube + Meta CV + 講座購入者(koza) データ ──────────────
-youtube_data   = {"daily": [], "yesterday": None, "this_month": None}
-koza_meta_date = {}   # Meta 講座購入者 by date
-koza_yt_date   = {}   # YouTube 講座購入者 by date
+def koza_range_for_adset(name, start, end):
+    key = adset_key(name)
+    if not key:
+        return 0
+    return sum(v for d, v in koza_meta_adset_key_date.get(key, {}).items() if start <= d <= end)
 
+# ── GAS から YouTube + Meta CV + 講座購入者(koza) データ ──────────────
 if GAS_YOUTUBE_URL:
     try:
         print("📺 GAS から YouTube + Meta CV データを取得中...")
@@ -216,13 +347,17 @@ if GAS_YOUTUBE_URL:
         else:
             if "youtube" in gas_resp:
                 # ── YouTube ──────────────────────────────────────────
-                youtube_data = gas_resp.get("youtube", youtube_data)
+                gas_youtube_data = gas_resp.get("youtube", {})
+                if gas_youtube_data.get("daily"):
+                    youtube_data = gas_youtube_data
                 print(f"   YouTube: {len(youtube_data.get('daily', []))} 日分取得")
 
                 # ── YouTube CV (by_adset) ─────────────────────────────
                 yt_cv = gas_resp.get("youtube_cv", {})
                 if yt_cv:
-                    koza_yt_date = yt_cv.get("koza_by_date", {})
+                    gas_koza_yt = yt_cv.get("koza_by_date", {})
+                    if gas_koza_yt:
+                        koza_yt_date = gas_koza_yt
                     # by_adset は今後 dashboard で使えるよう保持
                     by_adset_yt = yt_cv.get("by_adset", {})
                     print(f"   YouTube CV: {len(yt_cv.get('by_date',{}))} 日分")
@@ -232,7 +367,9 @@ if GAS_YOUTUBE_URL:
                 if meta_cv:
                     by_date  = meta_cv.get("by_date", {})
                     by_adset = meta_cv.get("by_adset", {})
-                    koza_meta_date = meta_cv.get("koza_by_date", {})
+                    gas_koza_meta = meta_cv.get("koza_by_date", {})
+                    if gas_koza_meta:
+                        koza_meta_date = gas_koza_meta
                     if by_date:
                         cv_by_date.clear()
                         for d, cv in by_date.items():
@@ -241,9 +378,15 @@ if GAS_YOUTUBE_URL:
                             cv_by_date[d] = {"myasp": cv_val, "line": 0}
                     for key in ("normal", "thank"):
                         raw = by_adset.get(key, {})
+                        if not raw:
+                            continue
                         # 各日の値が {mail, koza} dict の場合は mail だけ抽出
                         cv_by_adset_key_date[key] = {
                             d: (v.get("mail", 0) if isinstance(v, dict) else int(v or 0))
+                            for d, v in raw.items()
+                        }
+                        koza_meta_adset_key_date[key] = {
+                            d: (v.get("koza", 0) if isinstance(v, dict) else 0)
                             for d, v in raw.items()
                         }
                     total_cv = sum(v.get("myasp", 0) for v in cv_by_date.values())
@@ -253,12 +396,13 @@ if GAS_YOUTUBE_URL:
                     print("   Meta CV: GAS レスポンスに meta_cv なし（CSV フォールバック使用）")
             else:
                 # 旧フォーマット（YouTube データのみ、後方互換）
-                youtube_data = gas_resp
+                if gas_resp.get("daily"):
+                    youtube_data = gas_resp
                 print(f"   YouTube: {len(youtube_data.get('daily', []))} 日分取得")
     except Exception as e:
         print(f"⚠️ GAS データ取得失敗（スキップ）: {e}")
 else:
-    print("⚠️ GAS_YOUTUBE_URL 未設定 — YouTube / Meta CV データなし")
+    print("ℹ️ GAS_YOUTUBE_URL 未設定 — Google Sheet CSV データを使用します")
 
 # ── Meta: 各期間サマリー ──────────────────────────────────────────────
 today       = datetime.now(JST).date()
@@ -322,8 +466,10 @@ def normalize_adsets(rows, start=None, end=None):
         name = a.get("adset_name", "—")
         if start and end:
             cv_myasp = cv_myasp_range_for_adset(name, start, end)
+            koza = koza_range_for_adset(name, start, end)
         else:
             cv_myasp = 0
+            koza = 0
         result.append({
             "name":        name,
             "spend":       round(float(a.get("spend", 0))),
@@ -335,6 +481,7 @@ def normalize_adsets(rows, start=None, end=None):
             "cpc":         round(float(a.get("cpc", 0)), 2),
             "cv_meta":     cv_from_actions(a.get("actions")),
             "cv_myasp":    cv_myasp,
+            "koza":        koza,
         })
     return sorted(result, key=lambda x: x["spend"], reverse=True)
 
