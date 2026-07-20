@@ -2,11 +2,16 @@ name: Fetch Meta Ads Data — FrancDirect
 
 on:
   schedule:
-    - cron: "0 0,6,12,18 * * *"
+    # 10:10 JST に1日1回実行。Meta側の一時エラー時に通知が連発しないようにする。
+    - cron: "10 1 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: fetch-meta-ads
+  cancel-in-progress: false
 
 jobs:
   fetch:
@@ -28,6 +33,7 @@ jobs:
           META_ACCESS_TOKEN:  ${{ secrets.META_ACCESS_TOKEN }}
           META_AD_ACCOUNT_ID: ${{ secrets.META_AD_ACCOUNT_ID }}
           META_CAMPAIGN_ID:   ${{ secrets.META_CAMPAIGN_ID }}
+          META_CV_ACTION:     ${{ secrets.META_CV_ACTION }}
           SHEET_CSV_URL:      ${{ secrets.SHEET_CSV_URL }}
           GAS_YOUTUBE_URL:    ${{ secrets.GAS_YOUTUBE_URL }}
         run: python fetch_meta.py
