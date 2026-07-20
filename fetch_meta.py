@@ -31,20 +31,39 @@ YOUTUBE_SHEET_GIDS = {
     "total":  "1747543527",  # YouTube報告ブロック
 }
 
+def format_meta_error(body, status_code):
+    if isinstance(body, dict) and body.get("error"):
+        err = body["error"]
+        parts = [err.get("message", "Meta API error")]
+        if err.get("type"):
+            parts.append(f"type={err.get('type')}")
+        if err.get("code") is not None:
+            parts.append(f"code={err.get('code')}")
+        if err.get("error_subcode") is not None:
+            parts.append(f"subcode={err.get('error_subcode')}")
+        if err.get("fbtrace_id"):
+            parts.append(f"fbtrace_id={err.get('fbtrace_id')}")
+        return " / ".join(str(p) for p in parts if p)
+    return f"HTTP {status_code}: {str(body)[:500]}"
+
+def meta_get(url, params=None):
+    r = requests.get(url, params=params, timeout=30)
+    try:
+        body = r.json()
+    except ValueError:
+        body = r.text[:500]
+    if r.status_code >= 400:
+        raise RuntimeError(f"Meta API HTTP {r.status_code}: {format_meta_error(body, r.status_code)}")
+    if isinstance(body, dict) and "error" in body:
+        raise RuntimeError(f"Meta API: {format_meta_error(body, r.status_code)}")
+    return body
+
 def meta(params):
-    r = requests.get(BASE, params={**params, "access_token": ACCESS_TOKEN}, timeout=30)
-    r.raise_for_status()
-    body = r.json()
-    if "error" in body:
-        raise RuntimeError(f"Meta API: {body['error']['message']}")
+    body = meta_get(BASE, params={**params, "access_token": ACCESS_TOKEN})
     data = body.get("data", [])
     next_url = body.get("paging", {}).get("next")
     while next_url:
-        r = requests.get(next_url, timeout=30)
-        r.raise_for_status()
-        body = r.json()
-        if "error" in body:
-            raise RuntimeError(f"Meta API: {body['error']['message']}")
+        body = meta_get(next_url)
         data.extend(body.get("data", []))
         next_url = body.get("paging", {}).get("next")
     return data
@@ -485,49 +504,133 @@ def normalize_adsets(rows, start=None, end=None):
         })
     return sorted(result, key=lambda x: x["spend"], reverse=True)
 
-print(f"📡 Meta (キャンペーンID: {CAMPAIGN_ID}) のデータを取得中...")
-
-s_today  = fetch_summary("today")
-s_month  = fetch_summary("this_month")
-s_30d    = fetch_summary("last_30d")
-s_total  = fetch_summary("maximum")
 yesterday_str = (today - timedelta(days=1)).strftime("%Y-%m-%d")
 last_week_start = (today - timedelta(days=7)).strftime("%Y-%m-%d")
 
-s_today["cv_myasp"] = cv_myasp_for(today_str)
-s_month["cv_myasp"] = cv_myasp_range(month_start, today_str)
-s_30d["cv_myasp"]   = cv_myasp_range(day30_start, today_str)
-s_total["cv_myasp"] = sum(v.get("myasp",0)+v.get("line",0) for v in cv_by_date.values())
+def now_utc_str():
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-for s in [s_today, s_month, s_30d, s_total]:
-    cv = s["cv_myasp"] or s["cv_meta"]
-    s["cpa"] = round(s["spend"] / cv) if cv > 0 else None
+def empty_summary():
+    s = row_to_summary({})
+    s["cpa"] = None
+    return s
 
-adsets_today = fetch_adsets("today")
-adsets_yesterday = fetch_adsets("yesterday")
-adsets_last_week = fetch_adsets_range(last_week_start, yesterday_str)
-adsets_month = fetch_adsets("this_month")
-adsets_30d   = fetch_adsets("last_30d")
+def load_existing_output():
+    try:
+        with open("data.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data if isinstance(data, dict) else {}
+    except FileNotFoundError:
+        return {}
+    except Exception as e:
+        print(f"⚠️ 既存 data.json 読み込み失敗: {e}")
+        return {}
 
-# Meta 日次データ
-daily_raw = meta({
-    "fields": FIELDS, "date_preset": "last_90d",
-    "level": "campaign", "filtering": CAMP_FILTER,
-    "time_increment": 1,
-})
-daily = []
-for d in daily_raw:
-    ds = d.get("date_start", "")
-    daily.append({
-        "date":        ds,
-        "spend":       round(float(d.get("spend", 0))),
-        "reach":       int(d.get("reach", 0)),
-        "impressions": int(d.get("impressions", 0)),
-        "clicks":      int(d.get("clicks", 0)),
-        "cpm":         round(float(d.get("cpm", 0)), 2),
-        "cv_meta":     cv_from_actions(d.get("actions")),
-        "cv_myasp":    cv_myasp_for(ds),
+def write_json(output):
+    with open("data.json", "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+
+def write_fallback_output(error):
+    output = load_existing_output()
+    if not output:
+        output = {
+            "today": empty_summary(),
+            "this_month": empty_summary(),
+            "last_30d": empty_summary(),
+            "total": empty_summary(),
+            "adsets": {"today": [], "yesterday": [], "last_week": [], "this_month": [], "last_30d": []},
+            "daily": [],
+            "combined_daily": [],
+        }
+
+    output.setdefault("campaign_id", CAMPAIGN_ID)
+    output.setdefault("today", empty_summary())
+    output.setdefault("this_month", empty_summary())
+    output.setdefault("last_30d", empty_summary())
+    output.setdefault("total", empty_summary())
+    output.setdefault("adsets", {"today": [], "yesterday": [], "last_week": [], "this_month": [], "last_30d": []})
+    output.setdefault("daily", [])
+    output.setdefault("combined_daily", [])
+    output["youtube"] = youtube_data
+    output["cv_log"] = [{"date": k, **v} for k, v in sorted(cv_by_date.items())]
+    output["last_checked"] = now_utc_str()
+    output["meta_fetch_status"] = {
+        "ok": False,
+        "checked_at": output["last_checked"],
+        "message": str(error),
+        "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。",
+    }
+
+    koza_meta_month = sum(v for d, v in koza_meta_date.items() if month_start <= d <= today_str)
+    koza_yt_month = sum(v for d, v in koza_yt_date.items() if month_start <= d <= today_str)
+    output["koza"] = {
+        "meta": {
+            "today": koza_meta_date.get(today_str, 0),
+            "yesterday": koza_meta_date.get(yesterday_str, 0),
+            "this_month": koza_meta_month,
+            "by_date": koza_meta_date,
+        },
+        "youtube": {
+            "today": koza_yt_date.get(today_str, 0),
+            "yesterday": koza_yt_date.get(yesterday_str, 0),
+            "this_month": koza_yt_month,
+            "by_date": koza_yt_date,
+        },
+        "combined": {
+            "today": koza_meta_date.get(today_str, 0) + koza_yt_date.get(today_str, 0),
+            "yesterday": koza_meta_date.get(yesterday_str, 0) + koza_yt_date.get(yesterday_str, 0),
+            "this_month": koza_meta_month + koza_yt_month,
+        },
+    }
+    write_json(output)
+    print("⚠️ Meta API取得に失敗しました。data.json は前回のMeta数値を保持し、エラー状態だけ記録しました。")
+    print(f"   原因: {error}")
+
+print(f"📡 Meta (キャンペーンID: {CAMPAIGN_ID}) のデータを取得中...")
+
+try:
+    s_today  = fetch_summary("today")
+    s_month  = fetch_summary("this_month")
+    s_30d    = fetch_summary("last_30d")
+    s_total  = fetch_summary("maximum")
+
+    s_today["cv_myasp"] = cv_myasp_for(today_str)
+    s_month["cv_myasp"] = cv_myasp_range(month_start, today_str)
+    s_30d["cv_myasp"]   = cv_myasp_range(day30_start, today_str)
+    s_total["cv_myasp"] = sum(v.get("myasp",0)+v.get("line",0) for v in cv_by_date.values())
+
+    for s in [s_today, s_month, s_30d, s_total]:
+        cv = s["cv_myasp"] or s["cv_meta"]
+        s["cpa"] = round(s["spend"] / cv) if cv > 0 else None
+
+    adsets_today = fetch_adsets("today")
+    adsets_yesterday = fetch_adsets("yesterday")
+    adsets_last_week = fetch_adsets_range(last_week_start, yesterday_str)
+    adsets_month = fetch_adsets("this_month")
+    adsets_30d   = fetch_adsets("last_30d")
+
+    # Meta 日次データ
+    daily_raw = meta({
+        "fields": FIELDS, "date_preset": "last_90d",
+        "level": "campaign", "filtering": CAMP_FILTER,
+        "time_increment": 1,
     })
+    daily = []
+    for d in daily_raw:
+        ds = d.get("date_start", "")
+        daily.append({
+            "date":        ds,
+            "spend":       round(float(d.get("spend", 0))),
+            "reach":       int(d.get("reach", 0)),
+            "impressions": int(d.get("impressions", 0)),
+            "clicks":      int(d.get("clicks", 0)),
+            "cpm":         round(float(d.get("cpm", 0)), 2),
+            "cv_meta":     cv_from_actions(d.get("actions")),
+            "cv_myasp":    cv_myasp_for(ds),
+        })
+except Exception as e:
+    write_fallback_output(e)
+    raise SystemExit(0)
 
 # ── 昨日の合算データ ──────────────────────────────────────────────────
 meta_yday = next((d for d in daily if d["date"] == yesterday_str), None)
@@ -589,7 +692,9 @@ koza_meta_yday_v = koza_meta_date.get(yesterday_str, 0)
 koza_yt_yday_v   = koza_yt_date.get(yesterday_str, 0)
 
 output = {
-    "last_updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "last_updated": now_utc_str(),
+    "last_checked": now_utc_str(),
+    "meta_fetch_status": {"ok": True, "checked_at": now_utc_str(), "message": "Meta API取得成功"},
     "campaign_id":  CAMPAIGN_ID,
     "today":        s_today,
     "this_month":   s_month,
@@ -634,8 +739,7 @@ output = {
     },
 }
 
-with open("data.json", "w", encoding="utf-8") as f:
-    json.dump(output, f, ensure_ascii=False, indent=2)
+write_json(output)
 
 print("✅ 完了")
 print(f"   Meta今月  : ¥{s_month['spend']:,}  MyASP CV:{s_month['cv_myasp']}")
