@@ -2086,7 +2086,7 @@
     },
     {
       "date": "2026-08-03",
-      "myasp": 0,
+      "myasp": 8,
       "line": 0
     },
     {
@@ -4187,7 +4187,7 @@
       {
         "date": "2026-08-01",
         "spend": 1223,
-        "impressions": 9293,
+        "impressions": 9291,
         "clicks": 88,
         "mail": 2,
         "koza": 0,
@@ -4208,24 +4208,24 @@
       },
       {
         "date": "2026-08-03",
-        "spend": 333,
-        "impressions": 2276,
-        "clicks": 23,
-        "mail": 0,
+        "spend": 1299,
+        "impressions": 9546,
+        "clicks": 111,
+        "mail": 2,
         "koza": 0,
-        "cpm": 146,
-        "cpc": 14,
-        "cpa": null
+        "cpm": 136,
+        "cpc": 12,
+        "cpa": 650
       },
       {
         "date": "2026-08-04",
-        "spend": 0,
-        "impressions": 0,
-        "clicks": 0,
+        "spend": 820,
+        "impressions": 3426,
+        "clicks": 59,
         "mail": 0,
         "koza": 0,
-        "cpm": 0,
-        "cpc": 0,
+        "cpm": 239,
+        "cpc": 14,
         "cpa": null
       },
       {
@@ -6749,26 +6749,26 @@
       }
     ],
     "yesterday": {
-      "date": "2026-08-02",
-      "spend": 1437,
-      "impressions": 11746,
-      "clicks": 117,
-      "mail": 3,
+      "date": "2026-08-03",
+      "spend": 1299,
+      "impressions": 9546,
+      "clicks": 111,
+      "mail": 2,
       "koza": 0,
-      "cpm": 122,
+      "cpm": 136,
       "cpc": 12,
-      "cpa": 479
+      "cpa": 650
     },
     "this_month": {
       "date": null,
-      "spend": 2993,
-      "impressions": 23315,
-      "clicks": 228,
-      "mail": 5,
+      "spend": 4779,
+      "impressions": 34009,
+      "clicks": 375,
+      "mail": 7,
       "koza": 0,
-      "cpm": 128,
+      "cpm": 141,
       "cpc": 13,
-      "cpa": 599
+      "cpa": 683
     }
   },
   "yesterday": {
@@ -8375,11 +8375,11 @@
       "this_month": 0
     }
   },
-  "last_checked": "2026-08-03T04:41:38Z",
+  "last_checked": "2026-08-04T04:25:59Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-08-03T04:41:38Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Sunday, 02-Aug-26 21:41:38 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AF18F1Jb402lgsKc6iuUX9g",
+    "checked_at": "2026-08-04T04:25:59Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Monday, 03-Aug-26 21:25:59 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=ALUN8oc4Hbe7LPZOxOGteqo",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
