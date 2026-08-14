@@ -4318,24 +4318,24 @@
       },
       {
         "date": "2026-08-13",
-        "spend": 137,
-        "impressions": 144,
-        "clicks": 8,
+        "spend": 339,
+        "impressions": 289,
+        "clicks": 17,
         "mail": 0,
         "koza": 0,
-        "cpm": 951,
-        "cpc": 17,
+        "cpm": 1173,
+        "cpc": 20,
         "cpa": null
       },
       {
         "date": "2026-08-14",
-        "spend": 0,
-        "impressions": 0,
-        "clicks": 0,
+        "spend": 79,
+        "impressions": 47,
+        "clicks": 5,
         "mail": 0,
         "koza": 0,
-        "cpm": 0,
-        "cpc": 0,
+        "cpm": 1681,
+        "cpc": 16,
         "cpa": null
       },
       {
@@ -6749,26 +6749,26 @@
       }
     ],
     "yesterday": {
-      "date": "2026-08-12",
-      "spend": 783,
-      "impressions": 721,
-      "clicks": 38,
+      "date": "2026-08-13",
+      "spend": 339,
+      "impressions": 289,
+      "clicks": 17,
       "mail": 0,
       "koza": 0,
-      "cpm": 1086,
-      "cpc": 21,
+      "cpm": 1173,
+      "cpc": 20,
       "cpa": null
     },
     "this_month": {
       "date": null,
-      "spend": 8947,
-      "impressions": 42700,
-      "clicks": 572,
+      "spend": 9228,
+      "impressions": 42892,
+      "clicks": 586,
       "mail": 14,
       "koza": 0,
-      "cpm": 210,
+      "cpm": 215,
       "cpc": 16,
-      "cpa": 639
+      "cpa": 659
     }
   },
   "yesterday": {
@@ -8375,11 +8375,11 @@
       "this_month": 0
     }
   },
-  "last_checked": "2026-08-13T03:31:24Z",
+  "last_checked": "2026-08-14T03:29:14Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-08-13T03:31:24Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Wednesday, 12-Aug-26 20:31:24 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AiMcWf6ppvuifSDkaqe1PkB",
+    "checked_at": "2026-08-14T03:29:14Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Thursday, 13-Aug-26 20:29:14 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=A_PhX9_8HlZx--2eWKNM0KP",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
