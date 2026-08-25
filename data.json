@@ -2156,37 +2156,37 @@
     },
     {
       "date": "2026-08-17",
-      "myasp": 0,
+      "myasp": 2,
       "line": 0
     },
     {
       "date": "2026-08-18",
-      "myasp": 0,
+      "myasp": 4,
       "line": 0
     },
     {
       "date": "2026-08-19",
-      "myasp": 0,
+      "myasp": 3,
       "line": 0
     },
     {
       "date": "2026-08-20",
-      "myasp": 0,
+      "myasp": 3,
       "line": 0
     },
     {
       "date": "2026-08-21",
-      "myasp": 0,
+      "myasp": 2,
       "line": 0
     },
     {
       "date": "2026-08-22",
-      "myasp": 0,
+      "myasp": 4,
       "line": 0
     },
     {
       "date": "2026-08-23",
-      "myasp": 0,
+      "myasp": 4,
       "line": 0
     },
     {
@@ -4314,9 +4314,9 @@
         "cpm": 1336,
         "ctr": 6,
         "cpc": 21,
-        "mail": 0,
+        "mail": 2,
         "koza": 0,
-        "cpa": null
+        "cpa": 74
       },
       {
         "date": "2026-08-18",
@@ -4338,9 +4338,9 @@
         "cpm": 130,
         "ctr": 1,
         "cpc": 7,
-        "mail": 0,
+        "mail": 1,
         "koza": 0,
-        "cpa": null
+        "cpa": 37
       },
       {
         "date": "2026-08-20",
@@ -4357,26 +4357,26 @@
       {
         "date": "2026-08-21",
         "spend": 10067,
-        "impressions": 21550,
+        "impressions": 21549,
         "clicks": 390,
         "cpm": 467,
         "ctr": 1,
         "cpc": 26,
-        "mail": 0,
+        "mail": 4,
         "koza": 0,
-        "cpa": null
+        "cpa": 2517
       },
       {
         "date": "2026-08-22",
         "spend": 10034,
-        "impressions": 19806,
+        "impressions": 19805,
         "clicks": 339,
         "cpm": 507,
         "ctr": 1,
         "cpc": 30,
-        "mail": 0,
+        "mail": 4,
         "koza": 0,
-        "cpa": null
+        "cpa": 2508
       },
       {
         "date": "2026-08-23",
@@ -4386,44 +4386,56 @@
         "cpm": 458,
         "ctr": 1,
         "cpc": 24,
+        "mail": 1,
+        "koza": 0,
+        "cpa": 4660
+      },
+      {
+        "date": "2026-08-24",
+        "spend": 100,
+        "impressions": 168,
+        "clicks": 6,
+        "cpm": 595,
+        "ctr": 3,
+        "cpc": 17,
         "mail": 0,
         "koza": 0,
         "cpa": null
       },
       {
-        "date": "2026-08-24",
-        "spend": 36,
-        "impressions": 87,
-        "clicks": 1,
-        "cpm": 414,
-        "ctr": 1,
-        "cpc": 36,
+        "date": "2026-08-25",
+        "spend": 4,
+        "impressions": 14,
+        "clicks": 0,
+        "cpm": 286,
+        "ctr": 0,
+        "cpc": 0,
         "mail": 0,
         "koza": 0,
         "cpa": null
       }
     ],
     "yesterday": {
-      "date": "2026-08-23",
-      "spend": 4660,
-      "impressions": 10181,
-      "clicks": 194,
-      "cpm": 458,
-      "ctr": 1,
-      "cpc": 24,
+      "date": "2026-08-24",
+      "spend": 100,
+      "impressions": 168,
+      "clicks": 6,
+      "cpm": 595,
+      "ctr": 3,
+      "cpc": 17,
       "mail": 0,
       "koza": 0,
       "cpa": null
     },
     "this_month": {
-      "spend": 35571,
-      "impressions": 97162,
-      "clicks": 1588,
-      "mail": 21,
+      "spend": 35639,
+      "impressions": 97255,
+      "clicks": 1593,
+      "mail": 33,
       "koza": 1,
       "cpm": 366,
       "cpc": 22,
-      "cpa": 1694
+      "cpa": 1080
     }
   },
   "yesterday": {
@@ -6030,11 +6042,11 @@
       "this_month": 1
     }
   },
-  "last_checked": "2026-08-24T02:36:09Z",
+  "last_checked": "2026-08-25T02:22:05Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-08-24T02:36:09Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Sunday, 23-Aug-26 19:36:09 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=A4L-EotXeln-xjbrreK-c1Y",
+    "checked_at": "2026-08-25T02:22:05Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Monday, 24-Aug-26 19:22:04 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AltBKM1mWf6EPspvKPhB5Bm",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
