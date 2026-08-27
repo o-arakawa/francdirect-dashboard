@@ -4368,8 +4368,8 @@
       },
       {
         "date": "2026-08-22",
-        "spend": 10034,
-        "impressions": 19805,
+        "spend": 10033,
+        "impressions": 19804,
         "clicks": 339,
         "cpm": 507,
         "ctr": 1,
@@ -4416,10 +4416,22 @@
       },
       {
         "date": "2026-08-26",
-        "spend": 3,
-        "impressions": 24,
+        "spend": 45,
+        "impressions": 60,
+        "clicks": 5,
+        "cpm": 750,
+        "ctr": 8,
+        "cpc": 9,
+        "mail": 0,
+        "koza": 0,
+        "cpa": null
+      },
+      {
+        "date": "2026-08-27",
+        "spend": 1,
+        "impressions": 5,
         "clicks": 0,
-        "cpm": 125,
+        "cpm": 200,
         "ctr": 0,
         "cpc": 0,
         "mail": 0,
@@ -4428,26 +4440,26 @@
       }
     ],
     "yesterday": {
-      "date": "2026-08-25",
-      "spend": 14,
-      "impressions": 49,
-      "clicks": 2,
-      "cpm": 286,
-      "ctr": 4,
-      "cpc": 7,
+      "date": "2026-08-26",
+      "spend": 45,
+      "impressions": 60,
+      "clicks": 5,
+      "cpm": 750,
+      "ctr": 8,
+      "cpc": 9,
       "mail": 0,
       "koza": 0,
       "cpa": null
     },
     "this_month": {
-      "spend": 35652,
-      "impressions": 97312,
-      "clicks": 1595,
+      "spend": 35694,
+      "impressions": 97352,
+      "clicks": 1600,
       "mail": 33,
       "koza": 1,
-      "cpm": 366,
+      "cpm": 367,
       "cpc": 22,
-      "cpa": 1080
+      "cpa": 1082
     }
   },
   "yesterday": {
@@ -6054,11 +6066,11 @@
       "this_month": 1
     }
   },
-  "last_checked": "2026-08-26T02:37:46Z",
+  "last_checked": "2026-08-27T11:09:34Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-08-26T02:37:46Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Tuesday, 25-Aug-26 19:37:45 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=ABOGIvtZ5_Q5kzHLkqw4Rw3",
+    "checked_at": "2026-08-27T11:09:34Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Thursday, 27-Aug-26 04:09:34 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=Amt9k5R5L4BPKdsy3WG0C2Q",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
