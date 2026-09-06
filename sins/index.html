@@ -21,8 +21,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/hero-mobile-800.webp" type="image/webp" media="(max-width: 899px)">
-<link rel="preload" as="image" href="assets/hero-1600.webp" type="image/webp" media="(min-width: 900px)">
+<link rel="preload" as="image" href="assets/hero-mobile-800.webp" type="image/webp" media="(max-width: 599px)">
+<link rel="preload" as="image" href="assets/hero-1600.webp" type="image/webp" media="(min-width: 600px)">
 
 <script>
 /* =====================================================================
@@ -114,7 +114,8 @@ section{position:relative;scroll-margin-top:var(--header-h)}
 .eyebrow::before{content:'';width:34px;height:1px;background:var(--gold)}
 .eyebrow.is-center{justify-content:center}
 .eyebrow.is-center::after{content:'';width:34px;height:1px;background:var(--gold)}
-h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.55;letter-spacing:.04em;text-wrap:balance}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.55;letter-spacing:.04em;text-wrap:balance;word-break:auto-phrase}
+.lead,.hero__sub,.problem__close,.band__lines,.method__text p,.instructor__text p,.final__body p,.ns p,.step4 p{word-break:auto-phrase}
 h2{font-size:clamp(23px,2.6vw,36px);margin-bottom:22px}
 h3{font-size:clamp(18px,1.6vw,22px)}
 .lead{color:var(--ink-2);font-size:clamp(15px,1.1vw,17px);max-width:40em}
@@ -159,7 +160,7 @@ html[data-unlocked] .gate__open{display:grid}
 .header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
 .header.is-scrolled{background:rgba(251,248,243,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
 .header__in{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{display:flex;align-items:baseline;gap:10px;font-family:var(--latin);font-style:italic;font-weight:500;font-size:30px;letter-spacing:.02em;color:var(--ink);line-height:1}
+.logo{display:inline-flex;align-items:baseline;gap:10px;min-height:44px;font-family:var(--latin);font-style:italic;font-weight:500;font-size:30px;letter-spacing:.02em;color:var(--ink);line-height:1}
 .logo small{font-family:var(--latin);font-style:normal;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-3)}
 .nav{display:none;gap:28px;font-size:13.5px;letter-spacing:.1em;color:var(--ink-2)}
 .nav a{position:relative;padding:6px 0}
@@ -167,6 +168,7 @@ html[data-unlocked] .gate__open{display:grid}
 .nav a:hover::after{transform:scaleX(1)}
 @media (min-width:1000px){.nav{display:flex}}
 .header .btn{min-height:42px;padding:8px 20px;font-size:13.5px;transition:opacity .35s}
+@media (max-width:1023px){.header .btn{display:none !important}}
 .header.hero-cta-visible .btn{opacity:0;pointer-events:none}
 @media (max-width:420px){.header .btn{padding:8px 14px;font-size:12.5px}}
 
@@ -174,8 +176,9 @@ html[data-unlocked] .gate__open{display:grid}
    Hero
    ===================================================================== */
 .hero{position:relative;padding-top:var(--header-h);background:linear-gradient(180deg,#F4EFEA 0%,var(--bg) 100%);overflow:hidden}
-.hero__media{position:relative;aspect-ratio:4/5;max-height:72vh}
-.hero__media img{width:100%;height:100%;object-fit:cover;object-position:60% 30%}
+.hero__media{position:relative;aspect-ratio:1/1}
+@media (min-width:600px) and (max-width:899px){.hero__media{aspect-ratio:16/10}.hero__media img{object-position:55% 45%}}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:62% 28%}
 .hero__media::after{content:'';position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(251,248,243,0) 0%,var(--bg) 100%)}
 .hero__body{position:relative;padding:12px 20px 56px;width:min(100%,1120px);margin-inline:auto}
 .hero__eyebrow{font-size:13px;letter-spacing:.14em;color:var(--cta-dark);font-weight:500;display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
@@ -191,8 +194,9 @@ html.js .hero__media img{animation:zoomin 1.8s var(--ease) both}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes zoomin{from{transform:scale(1.03)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){html.js .hero__body > *,html.js .hero__media img{animation:none}}
-.hero__sub{font-size:clamp(15px,1.15vw,17.5px);color:var(--ink-2);max-width:34em;margin-bottom:12px}
-.hero__note{font-size:13.5px;color:var(--ink-3);margin-bottom:30px;letter-spacing:.04em}
+.hero__sub{font-size:clamp(15px,1.15vw,17.5px);color:var(--ink-2);max-width:34em;margin-bottom:10px;line-height:1.85}
+.hero__note{font-size:13.5px;color:var(--ink-3);margin-bottom:22px;letter-spacing:.04em}
+@media (min-width:900px){.hero__note{margin-bottom:30px}}
 .hero .btn-row{margin-bottom:30px}
 .trust{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 18px;max-width:520px}
 .trust li{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.06em;color:var(--ink-2)}
@@ -208,7 +212,7 @@ html.js .hero__media img{animation:zoomin 1.8s var(--ease) both}
 }
 @media (min-width:1280px){.hero__media{border-radius:28px;margin-right:0}}
 .scroll-cue{display:none}
-@media (min-width:900px){.scroll-cue{display:flex;position:absolute;left:50%;bottom:22px;transform:translateX(-50%);flex-direction:column;align-items:center;gap:6px;font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.3em;color:var(--ink-3)}
+@media (min-width:900px){.scroll-cue{display:flex;position:absolute;left:max(40px,calc((100% - 1280px) / 2 + 40px));bottom:22px;flex-direction:column;align-items:center;gap:6px;font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.3em;color:var(--ink-3)}
 .scroll-cue::after{content:'';width:1px;height:38px;background:linear-gradient(180deg,var(--gold),transparent);animation:cue 2.2s var(--ease) infinite}}
 @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @media (prefers-reduced-motion:reduce){.scroll-cue::after{animation:none}}
@@ -248,6 +252,8 @@ html.js .hero__media img{animation:zoomin 1.8s var(--ease) both}
 .waves{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .wave{text-align:center;padding:12px 4px 10px;border-radius:12px;background:var(--bg)}
 .wave svg{width:100%;height:96px;display:block;margin:0 auto 8px}
+@media (max-width:700px){.process-hint{display:block}}
+.process-hint{display:none;text-align:center;font-size:11.5px;letter-spacing:.14em;color:var(--ink-3);margin-top:6px}
 html.js .chart-card .wave path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s var(--ease)}
 html.js .chart-card.is-in .wave path{stroke-dashoffset:0}
 html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js .chart-card.is-in .wave:nth-child(3) path{transition-delay:.3s}html.js .chart-card.is-in .wave:nth-child(4) path{transition-delay:.45s}
@@ -279,7 +285,8 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 @media (max-width:899px){.flow__photos figure{aspect-ratio:3/4}}
 .flow__photos img{width:100%;height:100%;object-fit:cover}
 .flow__photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:12px;letter-spacing:.08em;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.45))}
-@media (max-width:899px){.flow__photos figcaption{font-size:10px;padding:18px 6px 7px;letter-spacing:.02em}}
+@media (max-width:899px){.flow__photos figcaption{font-size:11.5px;padding:18px 6px 7px;letter-spacing:.02em}}
+@media (min-width:600px) and (max-width:899px){.flow__photos figcaption{font-size:12.5px;letter-spacing:.06em}}
 
 /* =====================================================================
    Cases (ビフォーアフター)
@@ -385,7 +392,8 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 .gate__locked small{font-size:12.5px;color:var(--ink-3)}
 .gate__open{display:none;border-radius:18px;background:linear-gradient(135deg,#fff 0%,var(--rose-2) 100%);border:1px solid var(--rose);padding:26px 18px;text-align:center;box-shadow:var(--shadow);gap:20px}
 .gate__open > *{min-width:0}
-.gate__open .btn--block{padding-left:16px;padding-right:16px;font-size:16px}
+.gate__open .btn--block{white-space:normal;padding-left:16px;padding-right:16px;font-size:16px}
+.gate__open .btn--block > span:first-child{white-space:nowrap}
 .gate__open .btn--block .btn__sub{white-space:normal}
 @media (max-width:899px){.gate__open .price small{display:block;margin:2px 0 0}}
 .gate__thumb{width:min(100%,260px);margin:0 auto;border-radius:12px;overflow:hidden;aspect-ratio:16/10;outline:1px solid rgba(201,174,120,.35);outline-offset:-1px}
@@ -409,9 +417,9 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 /* =====================================================================
    Products
    ===================================================================== */
-.products__hero{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:26px;background:#EEEDEE;aspect-ratio:16/9}
-@media (min-width:900px){.products__hero{aspect-ratio:21/9;margin-bottom:36px}}
-.products__hero img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.products__hero{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:26px;background:#EAE9EB;aspect-ratio:16/9}
+@media (min-width:900px){.products__hero{aspect-ratio:2/1;margin-bottom:36px}}
+.products__hero img{width:100%;height:100%;object-fit:cover;object-position:40% 62%}
 .products{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
 @media (min-width:1000px){.products{grid-template-columns:repeat(4,1fr);gap:18px}}
 .product{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 14px 20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
@@ -455,8 +463,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 .instructor{display:grid;gap:36px}
 @media (min-width:900px){.instructor{grid-template-columns:5fr 7fr;gap:72px;align-items:center}}
 .instructor__media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3;position:relative}
-@media (min-width:900px){.instructor__media{aspect-ratio:4/5}}
-.instructor__media img{width:100%;height:100%;object-fit:cover;object-position:60% center}
+.instructor__media img{width:100%;height:100%;object-fit:cover;object-position:72% center}
 .instructor__name{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 4px}
 .instructor__name b{font-family:var(--serif);font-size:clamp(24px,2.2vw,30px);font-weight:600;letter-spacing:.1em}
 .instructor__name span{font-family:var(--latin);font-style:italic;font-size:15px;letter-spacing:.14em;color:var(--gold-ink)}
@@ -518,7 +525,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 .footer .logo{color:#fff}
 .footer .logo small{color:rgba(255,255,255,.72)}
 .footer__links{display:flex;flex-wrap:wrap;gap:8px 20px}
-.footer__links a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.35)}
+.footer__links a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.35)}
 @media (max-width:1023px){.footer{padding-bottom:calc(34px + 76px + env(safe-area-inset-bottom))}}
 .footer__copy{font-family:var(--latin);letter-spacing:.14em;color:rgba(255,255,255,.72)}
 
@@ -538,8 +545,8 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 .problem__media,.flow__photos figure,.collage figure,.instructor__media,.process .ph,.pair,.chart-card__photo{outline:1px solid rgba(198,165,107,.28);outline-offset:-1px}
 /* utilities */
 .nb{display:inline-block}
-.hide-desktop{display:block}.show-desktop{display:none}
-@media (min-width:900px){.hide-desktop{display:none}.show-desktop{display:block}}
+.hide-desktop{display:inline}.show-desktop{display:none}
+@media (min-width:900px){.hide-desktop{display:none}.show-desktop{display:inline}}
 [hidden]{display:none !important}
 </style>
 </head>
@@ -571,8 +578,8 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   <div class="hero__in">
     <div class="hero__media">
       <picture>
-        <source media="(min-width: 900px)" type="image/webp" srcset="assets/hero-1600.webp 1600w, assets/hero-2400.webp 2400w" sizes="50vw">
-        <source media="(min-width: 900px)" srcset="assets/hero-1600.jpg 1600w, assets/hero-2400.jpg 2400w" sizes="50vw">
+        <source media="(min-width: 600px)" type="image/webp" srcset="assets/hero-1000.webp 1000w, assets/hero-1600.webp 1600w, assets/hero-2400.webp 2400w" sizes="(min-width: 900px) 50vw, 100vw">
+        <source media="(min-width: 600px)" srcset="assets/hero-1000.jpg 1000w, assets/hero-1600.jpg 1600w, assets/hero-2400.jpg 2400w" sizes="(min-width: 900px) 50vw, 100vw">
         <source type="image/webp" srcset="assets/hero-mobile-800.webp 800w, assets/hero-mobile-1200.webp 1200w" sizes="100vw">
         <img src="assets/hero-mobile-800.jpg" srcset="assets/hero-mobile-800.jpg 800w, assets/hero-mobile-1200.jpg 1200w" sizes="100vw" width="800" height="1000" alt="艶のあるストレートヘアのモデルと、sins の薬剤 T7・TC6・4.5・0.5" fetchpriority="high" decoding="async">
       </picture>
@@ -702,14 +709,14 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
             <source type="image/webp" srcset="assets/chart-hand-600.webp 600w, assets/chart-hand-1000.webp 1000w" sizes="(min-width: 900px) 34vw, 33vw">
             <img src="assets/chart-hand-1000.jpg" srcset="assets/chart-hand-600.jpg 600w, assets/chart-hand-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="563" alt="髪の癖にチャートを当てて確認している手元" loading="lazy" decoding="async">
           </picture>
-          <figcaption>癖毛チャートを当てる</figcaption>
+          <figcaption><span class="show-desktop">癖毛チャートを当てる</span><span class="hide-desktop">チャートを当てる</span></figcaption>
         </figure>
         <figure data-reveal data-delay="1">
           <picture>
             <source type="image/webp" srcset="assets/apply-600.webp 600w, assets/apply-1000.webp 1000w" sizes="(min-width: 900px) 34vw, 33vw">
             <img src="assets/apply-1000.jpg" srcset="assets/apply-600.jpg 600w, assets/apply-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="563" alt="部位ごとに薬剤を塗り分けている様子" loading="lazy" decoding="async">
           </picture>
-          <figcaption>部位ごとに塗り分ける</figcaption>
+          <figcaption><span class="show-desktop">部位ごとに塗り分ける</span><span class="hide-desktop">塗り分け</span></figcaption>
         </figure>
         <figure data-reveal data-delay="2">
           <picture>
@@ -798,6 +805,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       <figure data-reveal data-delay="3"><div class="ph"><img src="assets/iron-600.jpg" width="600" height="338" alt="アイロン操作" loading="lazy" decoding="async"></div><figcaption><b>04</b>アイロン</figcaption></figure>
       <figure data-reveal data-delay="3"><div class="ph"><img src="assets/ba4035-after-600.jpg" width="600" height="1200" alt="仕上がり" loading="lazy" decoding="async"></div><figcaption><b>05</b>仕上がり</figcaption></figure>
     </div>
+    <p class="process-hint" aria-hidden="true">◂ スワイプで工程を見る ▸</p>
 
     <div class="video-wrap" id="video" data-reveal>
       <div class="video-head">
@@ -835,14 +843,14 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
           <div class="gate__thumb"><img src="assets/products-700.jpg" width="700" height="675" alt="sins の薬剤 4種のパウチ" loading="lazy" decoding="async"></div>
           <div>
             <p class="thanks">ご視聴ありがとうございます</p>
-            <h4>sins式を、サロンで実際にお試しください。</h4>
+            <h4>sins式を、<span class="nb">サロンで実際に</span><span class="nb">お試しください。</span></h4>
             <p>癖毛チャートと合わせて使うことで、動画でお伝えした「判断の仕方」をそのままサロンで確かめられます。</p>
             <p class="sample-label">Sample Set</p>
             <p class="price" data-price-row><span class="num" data-price>13,200円（税込）</span><small>サンプルセット</small></p>
             <p class="note">最新の価格・セット内容は購入ページでご確認ください。</p>
           </div>
           <div>
-            <a class="btn btn--primary btn--lg btn--block" data-purchase href="https://sins.base.shop" target="_blank" rel="noopener"><span>サンプルセット購入ページへ<span class="btn__sub">オンラインショップが新しいタブで開きます</span></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <a class="btn btn--primary btn--lg btn--block" data-purchase href="https://sins.base.shop" target="_blank" rel="noopener"><span>サンプルセット購入ページへ<span class="btn__sub">新しいタブで開きます</span></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
             <a class="hero__link" data-line hidden href="#" target="_blank" rel="noopener" style="margin:10px auto 0;display:none">先に LINE で相談する</a>
           </div>
         </div>
@@ -948,7 +956,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       </figure>
       <div data-reveal>
         <p class="eyebrow">Instructor</p>
-        <h2 id="instructor-title">現役美容師の現場から生まれた、<br>美容師のための薬剤と教育。</h2>
+        <h2 id="instructor-title">現役美容師の<span class="nb">現場から</span>生まれた、<br>美容師のための<span class="nb">薬剤と教育。</span></h2>
         <div class="instructor__name"><b data-profile="name">菅原 寛人</b><span data-profile="romaji">Hiroto Sugawara</span></div>
         <p class="instructor__role" data-profile="role">sins cosmetics ／ 現役美容師（sinsia）</p>
         <div class="instructor__text">
@@ -988,7 +996,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       </li>
       <li class="ns" data-reveal data-delay="2">
         <span class="tag">サロン導入</span>
-        <h3>チャートとマニュアルで再現する</h3>
+        <h3><span class="nb">チャートと</span><span class="nb">マニュアルで</span><span class="nb">再現する</span></h3>
         <p>薬剤・癖毛チャート・マニュアル・教育を一体で使うことで、スタッフ間でも同じ基準で判断できるようになります。</p>
         <a class="btn btn--ghost" data-contact hidden href="#" target="_blank" rel="noopener">導入について相談する</a>
       </li>
@@ -1455,6 +1463,8 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       // No video configured yet → placeholder; purchase CTA available immediately (configurable)
       body.classList.add('no-video');
       if (speedBtn) speedBtn.hidden = true;
+      var th = $('.gate__open .thanks'); if (th) th.textContent = '動画公開前のご案内';
+      var hs = $('#hero .btn__sub'); if (hs) hs.textContent = '約25分・登録不要・動画は近日公開';
       if (CFG.unlockWhenNoVideo !== false) unlock('no-video');
     }
   }
