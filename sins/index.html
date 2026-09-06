@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>sins式 髪質改善ストレート｜薬剤選定を、感覚からチャートへ。｜sins cosmetics</title>
+<meta name="description" content="髪質改善ストレートの薬剤選定に迷う美容師へ。癖毛チャート・薬剤・レシピ・還元チェックを一体化した sins式なら、感覚に頼らず判断しやすい。無料オンラインセミナー動画（約25分）を今すぐ視聴。">
+<link rel="canonical" href="https://o-arakawa.github.io/francdirect-dashboard/sins/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="sins cosmetics">
+<meta property="og:title" content="sins式 髪質改善ストレート｜薬剤選定を、感覚からチャートへ。">
+<meta property="og:description" content="癖毛チャート・薬剤・レシピ・還元チェックを一体化。現役美容師の現場から生まれた sins式 髪質改善ストレートシステム。無料セミナー動画（約25分）を公開中。">
+<meta property="og:url" content="https://o-arakawa.github.io/francdirect-dashboard/sins/">
+<meta property="og:image" content="https://o-arakawa.github.io/francdirect-dashboard/sins/assets/hero-1600.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FCFAF7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23FCFAF7' stroke='%23C6A56B' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-style='italic' font-size='30' text-anchor='middle' fill='%233A322F'%3Es%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero-mobile-800.webp" type="image/webp" media="(max-width: 899px)">
+<link rel="preload" as="image" href="assets/hero-1600.webp" type="image/webp" media="(min-width: 900px)">
+
+<script>
+/* =====================================================================
+   設定はここだけ（詳細は sins/README.md）
+   ===================================================================== */
+window.SINS_LP_CONFIG = {
+  purchaseUrl: 'https://sins.base.shop',   // サンプルセット購入ページ（BASE）。直販サイトに変わったらここを変更
+  lineUrl: '',                             // 公式LINEのURL。空なら LINE 導線は表示しない
+  contactUrl: '',                          // 集合セミナー等の問い合わせ先（例 'mailto:info@example.com'）。空なら購入ページ内の問い合わせを案内
+  video: {
+    type: 'none',                          // 'youtube' | 'vimeo' | 'mp4' | 'none'
+    src: '',                               // youtube: 動画ID / vimeo: 動画ID / mp4: 動画URL
+    poster: 'assets/iron-1600.jpg'         // 再生前に表示する画像（mp4 のみ）
+  },
+  unlockAt: 0.9,                           // 視聴率がこの値に達したら購入CTAを表示（0.9 = 90%）
+  unlockWhenNoVideo: true,                 // 動画が未設定の間は購入CTAを最初から表示する
+  cases: [
+    { title: 'ミディアム・うねりの強い髪', before: 'assets/ba4038-before-600.jpg', after: 'assets/ba4038-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
+    { title: 'ロング・広がりやすい髪',     before: 'assets/ba4032-before-600.jpg', after: 'assets/ba4032-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
+    { title: 'ロング・明るいカラー履歴のある髪', before: 'assets/ba4040a-before-600.jpg', after: 'assets/ba4040a-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' }
+  ],
+  testimonials: []                         // 実在の受講者の声のみ。例: { quote: '…', salon: '〇〇（神奈川）', name: '〇〇 様', photo: 'assets/voice-1.jpg' }
+};
+</script>
+
+<style>
+/* =====================================================================
+   Design tokens
+   ===================================================================== */
+:root{
+  --bg:#FCFAF7;          /* ivory */
+  --bg-2:#F7F0EB;        /* blush beige */
+  --bg-3:#F1E6E0;        /* deeper blush */
+  --surface:#FFFFFF;
+  --ink:#3A322F;         /* warm charcoal */
+  --ink-2:#6B5F5A;       /* muted */
+  --ink-3:#726660;       /* light muted (labels) — AA on bg/bg-2/bg-3 */
+  --line:#EADFD8;
+  --line-2:#DCCFC6;
+  --gold:#C6A56B;        /* lines / decoration only */
+  --gold-ink:#7A5B26;    /* gold for text (AA) */
+  --gold-2:#E4D2AE;
+  --gold-3:#F3EAD8;
+  --rose:#D9B2A9;
+  --rose-2:#F2E2DC;
+  --cta:#94505A;         /* rose gold — 商品色（赤/青/緑/黄）とは別系統。白文字で AA */
+  --cta-2:#A45561;
+  --cta-dark:#7E434B;
+  --ok:#587A5C;
+  --t7:#C63C3C; --tc6:#2E63C4; --f45:#1E8F73; --f05:#E9A824;
+  --serif:'Shippori Mincho','Hiragino Mincho ProN','Yu Mincho',serif;
+  --sans:'Noto Sans JP','Hiragino Kaku Gothic ProN','Hiragino Sans',sans-serif;
+  --latin:'Cormorant Garamond','Times New Roman',serif;
+  --radius:18px;
+  --radius-sm:10px;
+  --shadow:0 18px 50px -24px rgba(58,50,47,.28);
+  --shadow-sm:0 8px 24px -14px rgba(58,50,47,.25);
+  --container:1120px;
+  --header-h:64px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.9;letter-spacing:.02em;font-size:16px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--cta);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.container{width:min(var(--container),100% - 40px);margin-inline:auto}
+@media (min-width:900px){.container{width:min(var(--container),100% - 80px)}}
+section{position:relative;scroll-margin-top:var(--header-h)}
+.section{padding:72px 0}
+@media (min-width:900px){.section{padding:120px 0}}
+.bg-2{background:var(--bg-2)}
+.bg-3{background:linear-gradient(180deg,var(--bg-2) 0%,var(--bg-3) 100%)}
+.bg-white{background:var(--surface)}
+
+/* typography */
+.eyebrow{font-family:var(--latin);font-style:italic;font-weight:500;font-size:15px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-ink);display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyebrow::before{content:'';width:34px;height:1px;background:var(--gold)}
+.eyebrow.is-center{justify-content:center}
+.eyebrow.is-center::after{content:'';width:34px;height:1px;background:var(--gold)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.55;letter-spacing:.04em;text-wrap:balance}
+h2{font-size:clamp(23px,2.6vw,36px);margin-bottom:22px}
+h3{font-size:clamp(18px,1.6vw,22px)}
+.lead{color:var(--ink-2);font-size:clamp(15px,1.1vw,17px);max-width:40em}
+.lead+.lead{margin-top:1em}
+.center{text-align:center}
+.center .lead{margin-inline:auto}
+.section-head{margin-bottom:44px}
+@media (min-width:900px){.section-head{margin-bottom:64px}}
+.note{font-size:13px;color:var(--ink-3);line-height:1.8}
+strong{font-weight:600}
+.em{color:var(--cta-dark)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 30px;white-space:nowrap;border-radius:999px;font-weight:600;font-size:16px;letter-spacing:.06em;line-height:1.3;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s;text-align:center;position:relative}
+.btn--primary{background:linear-gradient(135deg,var(--cta-2) 0%,var(--cta) 55%,var(--cta-dark) 100%);color:#fff;box-shadow:0 12px 30px -12px rgba(148,80,90,.6)}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 18px 36px -14px rgba(148,80,90,.7)}
+.btn--primary .btn__sub{display:block;font-weight:400;font-size:11.5px;letter-spacing:.08em;opacity:.9;margin-top:2px}
+.btn--ghost{border:1px solid var(--gold);color:var(--ink);background:rgba(255,255,255,.6)}
+.btn--ghost:hover{background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn--lg{min-height:64px;padding:16px 38px;font-size:17px}
+.btn--block{width:100%}
+.btn .arrow{width:18px;height:18px;flex:none}
+.btn-row{display:flex;flex-direction:column;gap:14px;align-items:stretch}
+@media (min-width:640px){.btn-row{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start}.btn-row.is-center{justify-content:center}}
+.cta-note{font-size:13px;color:var(--ink-3);margin-top:14px;letter-spacing:.04em}
+
+/* reveal */
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+[data-reveal].is-in{opacity:1;transform:none}
+[data-reveal][data-delay="1"]{transition-delay:.12s}[data-reveal][data-delay="2"]{transition-delay:.24s}[data-reveal][data-delay="3"]{transition-delay:.36s}
+@media (prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;transition:none}}
+
+/* =====================================================================
+   Header
+   ===================================================================== */
+.header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
+.header.is-scrolled{background:rgba(252,250,247,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.header__in{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:baseline;gap:10px;font-family:var(--latin);font-style:italic;font-weight:500;font-size:30px;letter-spacing:.02em;color:var(--ink);line-height:1}
+.logo small{font-family:var(--latin);font-style:normal;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-3)}
+.nav{display:none;gap:28px;font-size:13.5px;letter-spacing:.1em;color:var(--ink-2)}
+.nav a{position:relative;padding:6px 0}
+.nav a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+@media (min-width:1000px){.nav{display:flex}}
+.header .btn{min-height:42px;padding:8px 20px;font-size:13.5px}
+@media (max-width:420px){.header .btn{padding:8px 14px;font-size:12.5px}}
+
+/* =====================================================================
+   Hero
+   ===================================================================== */
+.hero{position:relative;padding-top:var(--header-h);background:linear-gradient(180deg,#F6F3F1 0%,var(--bg) 100%);overflow:hidden}
+.hero__media{position:relative;aspect-ratio:4/5;max-height:72vh}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:60% 30%}
+.hero__media::after{content:'';position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(252,250,247,0) 0%,var(--bg) 100%)}
+.hero__body{position:relative;padding:12px 20px 56px;width:min(100%,1120px);margin-inline:auto}
+.hero__eyebrow{font-size:13px;letter-spacing:.14em;color:var(--cta-dark);font-weight:500;display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+.hero__eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.hero h1{font-size:clamp(30px,7.6vw,66px);line-height:1.32;font-weight:600;letter-spacing:.03em;margin-bottom:22px}
+@media (min-width:900px){.hero h1{font-size:clamp(38px,3.9vw,54px)}}
+.hero h1 .thin{font-weight:400}
+.hero__sub{font-size:clamp(15px,1.15vw,17.5px);color:var(--ink-2);max-width:34em;margin-bottom:12px}
+.hero__note{font-size:13.5px;color:var(--ink-3);margin-bottom:30px;letter-spacing:.04em}
+.hero .btn-row{margin-bottom:30px}
+.trust{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 18px;max-width:520px}
+.trust li{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.06em;color:var(--ink-2)}
+.trust li::before{content:'';width:22px;height:22px;flex:none;border-radius:50%;border:1px solid var(--gold);background:radial-gradient(circle at 50% 50%,var(--gold) 0 3px,transparent 3.5px)}
+.hero__deco{position:absolute;right:-6%;top:12%;width:46vw;max-width:520px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(217,178,169,.35) 0%,rgba(217,178,169,0) 70%);pointer-events:none}
+@media (min-width:900px){
+  .hero{min-height:min(860px,92vh);display:flex;align-items:center}
+  .hero__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px;width:min(1280px,100% - 80px);margin-inline:auto;padding:40px 0 60px}
+  .hero__media{aspect-ratio:auto;max-height:none;height:min(760px,78vh);order:2;border-radius:28px 0 0 28px;overflow:hidden;margin-right:calc(-1 * max(0px,(100vw - 1280px)/2) - 40px);box-shadow:var(--shadow)}
+  .hero__media img{object-position:62% 40%}
+  .hero__media::after{display:none}
+  .hero__body{order:1;padding:0;width:auto;margin:0}
+}
+@media (min-width:1280px){.hero__media{border-radius:28px;margin-right:0}}
+.scroll-cue{display:none}
+@media (min-width:900px){.scroll-cue{display:flex;position:absolute;left:50%;bottom:22px;transform:translateX(-50%);flex-direction:column;align-items:center;gap:6px;font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.3em;color:var(--ink-3)}
+.scroll-cue::after{content:'';width:1px;height:38px;background:linear-gradient(180deg,var(--gold),transparent);animation:cue 2.2s var(--ease) infinite}}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (prefers-reduced-motion:reduce){.scroll-cue::after{animation:none}}
+
+/* =====================================================================
+   Problem (悩み)
+   ===================================================================== */
+.problem__grid{display:grid;gap:40px}
+@media (min-width:900px){.problem__grid{grid-template-columns:5fr 7fr;gap:64px;align-items:start}}
+.problem__media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative;aspect-ratio:4/3}
+.problem__media img{width:100%;height:100%;object-fit:cover}
+@media (min-width:900px){.problem__media{aspect-ratio:4/5;position:sticky;top:calc(var(--header-h) + 24px)}}
+.problem__media figcaption{position:absolute;left:18px;bottom:14px;font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.2em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.checklist{display:grid;gap:12px}
+.checklist li{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:16px 18px;font-size:15px;line-height:1.75;box-shadow:0 2px 0 rgba(58,50,47,.02)}
+.check-svg{width:22px;height:22px;flex:none;margin-top:4px}
+.problem__close{margin-top:36px;padding:28px 26px;border-left:2px solid var(--gold);background:linear-gradient(90deg,var(--gold-3),transparent);font-family:var(--serif);font-size:clamp(16px,1.3vw,19px);line-height:2;letter-spacing:.04em}
+
+/* =====================================================================
+   Method (sins式)
+   ===================================================================== */
+.steps4{display:grid;gap:14px;counter-reset:step}
+@media (min-width:640px) and (max-width:899px){.steps4{grid-template-columns:repeat(2,1fr);gap:14px}}
+@media (min-width:900px){.steps4{grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps4::before{content:'';position:absolute;left:12%;right:12%;top:38px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2) 12%,var(--gold-2) 88%,transparent)}}
+.step4{text-align:center;padding:18px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);position:relative}
+@media (min-width:900px){.step4{background:transparent;border:0;padding:0 14px}}
+.step4__num{width:76px;height:76px;margin:0 auto 16px;border-radius:50%;background:var(--surface);border:1px solid var(--gold-2);display:grid;place-items:center;font-family:var(--latin);font-style:italic;font-size:30px;color:var(--gold-ink);box-shadow:var(--shadow-sm);position:relative}
+.step4__num::after{counter-increment:step;content:'0' counter(step)}
+.step4 h3{font-size:17px;line-height:1.6;margin-bottom:8px}
+.step4 p{font-size:13.5px;color:var(--ink-2);line-height:1.8}
+.method__body{display:grid;gap:40px;margin-top:56px}
+@media (min-width:900px){.method__body{grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:88px}}
+.chart-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px 22px;box-shadow:var(--shadow)}
+.chart-card__title{font-family:var(--latin);font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:18px}
+.chart-card__title b{display:block;font-family:var(--serif);font-size:15px;letter-spacing:.14em;color:var(--ink);margin-top:4px;font-weight:600}
+.waves{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.wave{text-align:center;padding:12px 4px 10px;border-radius:12px;background:var(--bg)}
+.wave svg{width:100%;height:96px;display:block;margin:0 auto 8px}
+.wave b{display:block;font-family:var(--latin);font-size:24px;line-height:1;color:var(--ink);margin-bottom:4px}
+.wave span{display:block;font-size:11px;letter-spacing:.06em;color:var(--ink-2);line-height:1.4}
+.chart-card__photo{margin-top:16px;border-radius:12px;overflow:hidden;aspect-ratio:16/9}
+.chart-card__photo img{width:100%;height:100%;object-fit:cover}
+.chart-card__cap{font-size:12px;color:var(--ink-3);margin-top:10px;text-align:center;letter-spacing:.04em}
+.method__text p{margin-bottom:1.1em;color:var(--ink-2)}
+.method__text p strong{color:var(--ink)}
+
+/* =====================================================================
+   Flow (薬剤選定の流れ)
+   ===================================================================== */
+.flow__grid{display:grid;gap:44px}
+@media (min-width:900px){.flow__grid{grid-template-columns:7fr 5fr;gap:72px;align-items:start}}
+.timeline{display:grid;gap:0;margin-top:34px;position:relative}
+.timeline li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:14px 0;position:relative}
+.timeline li::before{content:'';position:absolute;left:21px;top:0;bottom:0;width:1px;background:var(--line-2)}
+.timeline li:first-child::before{top:50%}.timeline li:last-child::before{bottom:50%}
+.timeline__num{width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--latin);font-size:17px;color:var(--gold-ink);position:relative;z-index:1;box-shadow:0 0 0 6px var(--bg)}
+.bg-2 .timeline__num{box-shadow:0 0 0 6px var(--bg-2)}
+.timeline__txt{padding-top:7px;font-size:15.5px;line-height:1.75}
+.timeline__txt small{display:block;font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.flow__photos{display:grid;gap:14px}
+@media (max-width:899px){.flow__photos{grid-template-columns:repeat(3,1fr)}}
+.flow__photos figure{border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);position:relative;aspect-ratio:3/2}
+@media (max-width:899px){.flow__photos figure{aspect-ratio:3/4}}
+.flow__photos img{width:100%;height:100%;object-fit:cover}
+.flow__photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:12px;letter-spacing:.08em;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.45))}
+@media (max-width:899px){.flow__photos figcaption{font-size:10px;padding:18px 6px 7px;letter-spacing:.02em}}
+
+/* =====================================================================
+   Cases (ビフォーアフター)
+   ===================================================================== */
+.cases{display:grid;gap:26px}
+@media (min-width:760px){.cases{grid-template-columns:repeat(3,1fr);gap:22px}}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+.ba{position:relative;aspect-ratio:4/5;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:pan-y;background:var(--bg-2)}
+.ba__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba__after{position:absolute;inset:0;--pos:50%;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.ba__handle::before{content:'';position:absolute;top:0;bottom:0;left:-1px;width:2px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.35)}
+.ba__label{position:absolute;top:12px;font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.2em;padding:5px 12px;border-radius:999px;background:rgba(58,50,47,.55);color:#fff;backdrop-filter:blur(4px);pointer-events:none}
+.ba__label--before{left:12px}.ba__label--after{right:12px;background:rgba(148,80,90,.85)}
+.ba__handle{position:absolute;top:0;bottom:0;left:50%;width:0;pointer-events:none}
+.ba__handle span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.25);display:grid;place-items:center}
+.ba__handle span::before{content:'◂';font-size:13px;color:var(--ink);position:absolute;left:9px;top:50%;transform:translateY(-50%)}
+.ba__handle span::after{content:'▸';font-size:13px;color:var(--ink);position:absolute;right:9px;top:50%;transform:translateY(-50%)}
+.ba__range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;-webkit-appearance:none;appearance:none;background:transparent}
+.ba__range:focus-visible{opacity:1;outline:3px solid var(--cta);outline-offset:-3px;border-radius:0}
+.ba__hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);font-size:11px;letter-spacing:.14em;color:#fff;background:rgba(58,50,47,.5);padding:4px 12px;border-radius:999px;pointer-events:none;white-space:nowrap}
+.case__body{padding:20px 20px 22px}
+.case__num{font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.3em;color:var(--gold-ink);margin-bottom:4px}
+.case__title{font-size:17px;margin-bottom:12px}
+.case__dl{display:grid;gap:6px;font-size:13px}
+.case__row{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:6px 0;border-top:1px dashed var(--line)}
+.case__row dt{color:var(--ink-3);letter-spacing:.04em}
+.case__row dd{color:var(--ink)}
+.case__row.is-empty dd span{color:var(--ink-3);font-size:12px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}
+@media (min-width:760px){.gallery{grid-template-columns:repeat(3,1fr);gap:16px}}
+.pair{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#fff;aspect-ratio:4/3}
+.pair img{width:100%;height:100%;object-fit:cover}
+.pair span{position:absolute;top:8px;font-family:var(--latin);font-style:italic;font-size:11px;letter-spacing:.16em;padding:3px 9px;border-radius:999px;background:rgba(58,50,47,.55);color:#fff}
+.pair span:first-of-type{left:8px}.pair span:last-of-type{right:8px;background:rgba(148,80,90,.85)}
+.cases__note{margin-top:22px;text-align:center}
+
+/* =====================================================================
+   Mid CTA (band)
+   ===================================================================== */
+.band{position:relative;overflow:hidden;color:var(--ink);padding:88px 0}
+@media (min-width:900px){.band{padding:140px 0}}
+.band__bg{position:absolute;inset:0;z-index:0}
+.band__bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.band__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(252,250,247,.94) 0%,rgba(252,250,247,.86) 50%,rgba(252,250,247,.94) 100%)}
+.band__in{position:relative;z-index:1;text-align:center;max-width:760px;margin-inline:auto}
+.band__lines{font-family:var(--serif);font-size:clamp(16px,1.4vw,20px);line-height:2.1;letter-spacing:.06em;margin:22px 0 10px}
+.band .lead{margin-inline:auto;margin-bottom:34px}
+
+/* =====================================================================
+   Seminar (video)
+   ===================================================================== */
+.learn{display:grid;gap:10px;margin-top:8px}
+@media (min-width:760px){.learn{grid-template-columns:1fr 1fr;gap:12px 22px}}
+.learn li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);font-size:14.5px;line-height:1.7}
+.learn li b{flex:none;font-family:var(--latin);font-style:italic;font-size:15px;color:var(--gold-ink);width:24px;padding-top:1px}
+.process{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:40px}
+.process figure{position:relative}
+.process .ph{border-radius:12px;overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow-sm)}
+.process img{width:100%;height:100%;object-fit:cover}
+.process figcaption{text-align:center;font-size:12px;letter-spacing:.08em;color:var(--ink-2);margin-top:8px}
+.process figcaption b{font-family:var(--latin);font-style:italic;color:var(--gold-ink);margin-right:4px;font-weight:500}
+@media (max-width:700px){.process{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px 8px;margin-left:-20px;margin-right:-20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.process::-webkit-scrollbar{display:none}
+.process figure{flex:0 0 132px;scroll-snap-align:start}}
+.video-wrap{margin-top:56px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+@media (min-width:900px){.video-wrap{padding:36px;margin-top:80px}}
+.video-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;margin-bottom:18px}
+.video-head h3{font-size:clamp(18px,1.6vw,22px)}
+.video-head .badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.1em;color:var(--cta-dark);background:var(--rose-2);border-radius:999px;padding:6px 14px}
+.video-head .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cta)}
+.video-stage{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#1a1614}
+.video-stage iframe,.video-stage video,.video__el{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+.video-ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:24px}
+.video-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.video-ph > div{position:relative}
+.video-ph .play{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.7);display:grid;place-items:center;backdrop-filter:blur(6px)}
+.video-ph .play::after{content:'';width:0;height:0;border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+.video-ph p{font-family:var(--serif);font-size:15px;letter-spacing:.14em;line-height:1.9}
+.video-ph small{display:block;font-size:11.5px;letter-spacing:.08em;opacity:.85;margin-top:6px}
+.video-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-top:16px}
+.progress{flex:1 1 220px;display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
+.progress__bar{flex:1;height:6px;border-radius:999px;background:var(--bg-3);overflow:hidden}
+.progress__fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-2),var(--cta));transition:width .6s var(--ease);border-radius:999px}
+.speed{min-height:42px;padding:8px 18px;border-radius:999px;border:1px solid var(--gold);font-size:13px;letter-spacing:.06em;background:#fff}
+.speed[aria-pressed="true"]{background:var(--gold-3)}
+.speed--ghost{border-color:var(--line-2);color:var(--ink-2)}
+.video-btns{display:flex;flex-wrap:wrap;gap:8px}
+.video-fallback{margin-top:14px;font-size:13px;color:var(--ink-2);text-align:center}
+.video-fallback a{text-decoration:underline;text-underline-offset:3px}
+.linklike{text-decoration:underline;text-underline-offset:3px;color:var(--cta-dark);margin-left:10px}
+
+/* purchase gate */
+.gate{margin-top:26px;border-radius:18px;position:relative;overflow:hidden}
+.gate__locked{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:34px 22px;border:1px dashed var(--line-2);border-radius:18px;background:var(--bg)}
+.gate__locked .lock{width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--gold-2);display:grid;place-items:center;color:var(--gold)}
+.gate__locked p{font-family:var(--serif);font-size:15.5px;letter-spacing:.06em;line-height:1.9}
+.gate__locked small{font-size:12.5px;color:var(--ink-3)}
+.gate__open{display:none;border-radius:18px;background:linear-gradient(135deg,#fff 0%,var(--rose-2) 100%);border:1px solid var(--rose);padding:28px 22px;text-align:center;box-shadow:var(--shadow)}
+@media (min-width:900px){.gate__open{padding:40px 48px;display:none;grid-template-columns:1fr auto;align-items:center;gap:32px;text-align:left}}
+.gate.is-open .gate__locked{display:none}
+.gate.is-open .gate__open{display:grid}
+.gate__open .thanks{font-size:13px;letter-spacing:.12em;color:var(--cta-dark);margin-bottom:8px}
+.gate__open h4{font-family:var(--serif);font-size:clamp(19px,1.7vw,24px);font-weight:600;line-height:1.6;margin-bottom:8px}
+.gate__open .price{font-family:var(--latin);font-size:34px;line-height:1;color:var(--ink);margin:10px 0 6px}
+.gate__open .price small{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-left:6px;letter-spacing:.06em}
+.gate__open p{font-size:14px;color:var(--ink-2);line-height:1.8}
+.gate__open .btn{margin-top:14px}
+@media (min-width:900px){.gate__open .btn{margin-top:0}}
+.gate__open .cta-note{margin-top:8px}
+.unlock-note{margin-top:14px;text-align:center;font-size:13px;color:var(--ok);letter-spacing:.06em}
+.no-video .gate__locked{display:none}
+.no-video .video-tools{display:none}
+
+/* =====================================================================
+   Products
+   ===================================================================== */
+.products__hero{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:26px;background:#EEEDEE;aspect-ratio:16/9}
+@media (min-width:900px){.products__hero{aspect-ratio:21/9;margin-bottom:36px}}
+.products__hero img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.products{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media (min-width:1000px){.products{grid-template-columns:repeat(4,1fr);gap:18px}}
+.product{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 14px 20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
+@media (min-width:640px){.product{padding:26px 18px 24px}}
+.product::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--c)}
+.product__name{font-family:var(--latin);font-size:34px;line-height:1;color:var(--ink);margin:6px 0 2px;display:flex;align-items:center;gap:10px}
+.product__name i{width:12px;height:12px;border-radius:50%;background:var(--c);display:inline-block}
+.product__tag{font-size:11.5px;letter-spacing:.16em;color:var(--ink-3);margin-bottom:12px}
+.product__role{font-size:13.5px;line-height:1.75;color:var(--ink-2)}
+.products__sub{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;justify-content:center;padding:20px 22px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface)}
+.products__sub b{font-size:13.5px;letter-spacing:.06em;color:var(--ink-2)}
+.chip{font-size:13px;letter-spacing:.08em;padding:7px 14px;border-radius:999px;background:var(--gold-3);color:var(--ink)}
+.products__lead{max-width:38em;margin:34px auto 0;text-align:center;color:var(--ink-2);font-size:15px}
+
+/* =====================================================================
+   Results / voices
+   ===================================================================== */
+.results__grid{display:grid;gap:40px}
+@media (min-width:900px){.results__grid{grid-template-columns:7fr 5fr;gap:64px;align-items:start}.results__grid h2{font-size:clamp(23px,2.3vw,33px)}}
+.outcomes{display:grid;gap:12px}
+.outcomes li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;line-height:1.75;padding:14px 18px;background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--line)}
+.outcomes li b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold-3);color:var(--gold-ink);display:grid;place-items:center;font-family:var(--latin);font-style:italic;font-size:14px;margin-top:2px}
+.collage{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-self:start}
+.collage figure{border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:4/3}
+.collage figure:nth-child(1){grid-column:span 6;aspect-ratio:16/9}
+.collage figure:nth-child(2),.collage figure:nth-child(3){grid-column:span 3}
+.collage figure:nth-child(4){grid-column:span 6;aspect-ratio:16/8}
+.collage img{width:100%;height:100%;object-fit:cover}
+.collage__cap{font-size:12.5px;color:var(--ink-3);margin-top:10px;letter-spacing:.06em;text-align:center}
+.voices{display:grid;gap:16px;margin-top:56px}
+@media (min-width:760px){.voices{grid-template-columns:repeat(3,1fr)}}
+.voice{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
+.voice__photo{width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:14px}
+.voice__quote{font-family:var(--serif);font-size:15.5px;line-height:1.9;margin-bottom:12px}
+.voice__meta{font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
+.voice__meta span{display:block;color:var(--ink-2)}
+
+/* =====================================================================
+   Instructor
+   ===================================================================== */
+.instructor{display:grid;gap:36px}
+@media (min-width:900px){.instructor{grid-template-columns:5fr 7fr;gap:72px;align-items:center}}
+.instructor__media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3;position:relative}
+@media (min-width:900px){.instructor__media{aspect-ratio:4/5}}
+.instructor__media img{width:100%;height:100%;object-fit:cover;object-position:60% center}
+.instructor__name{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 4px}
+.instructor__name b{font-family:var(--serif);font-size:clamp(24px,2.2vw,30px);font-weight:600;letter-spacing:.1em}
+.instructor__name span{font-family:var(--latin);font-style:italic;font-size:15px;letter-spacing:.14em;color:var(--gold-ink)}
+.instructor__role{font-size:13.5px;letter-spacing:.08em;color:var(--ink-2);margin-bottom:18px}
+.instructor__text p{color:var(--ink-2);margin-bottom:1em}
+.brand-msg{margin-top:28px;padding:26px 26px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);position:relative}
+.brand-msg::before{content:'sins cosmetics';position:absolute;top:-11px;left:22px;padding:0 10px;background:var(--surface);font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.24em;color:var(--gold-ink)}
+.brand-msg p{font-family:var(--serif);font-size:clamp(16px,1.35vw,19px);line-height:2;letter-spacing:.06em}
+.brand-msg p+p{margin-top:6px;color:var(--cta-dark)}
+
+/* =====================================================================
+   Next steps
+   ===================================================================== */
+.nextsteps{display:grid;gap:14px;counter-reset:ns}
+@media (min-width:760px){.nextsteps{grid-template-columns:repeat(3,1fr);gap:18px}}
+.ns{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px 26px;position:relative;box-shadow:var(--shadow-sm)}
+.ns::before{counter-increment:ns;content:'0' counter(ns);font-family:var(--latin);font-style:italic;font-size:40px;line-height:1;color:var(--gold);position:absolute;right:18px;top:16px}
+.ns h3{font-size:17.5px;margin:6px 0 10px;padding-right:44px}
+.ns p{font-size:14px;color:var(--ink-2);line-height:1.8}
+.ns .tag{display:inline-block;font-size:11.5px;letter-spacing:.14em;color:var(--cta-dark);background:var(--rose-2);border-radius:999px;padding:4px 12px;margin-bottom:10px}
+.ns .btn{margin-top:16px;min-height:46px;padding:10px 22px;font-size:14px}
+.ns--hl{border-color:var(--rose);background:linear-gradient(160deg,#fff,var(--rose-2))}
+
+/* =====================================================================
+   FAQ
+   ===================================================================== */
+.faq{max-width:820px;margin-inline:auto;display:grid;gap:10px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:30px 1fr 28px;gap:12px;align-items:start;padding:18px 20px;font-weight:500;font-size:15.5px;line-height:1.7}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary b{font-family:var(--latin);font-style:italic;font-size:19px;color:var(--gold-ink);line-height:1.3}
+.faq summary i{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);position:relative;transition:transform .35s var(--ease)}
+.faq summary i::before,.faq summary i::after{content:'';position:absolute;left:50%;top:50%;width:12px;height:1px;background:var(--ink-2);transform:translate(-50%,-50%)}
+.faq summary i::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .35s var(--ease)}
+.faq details[open] summary i::after{transform:translate(-50%,-50%) rotate(0)}
+.faq details[open] summary i{transform:rotate(180deg)}
+.faq .a{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:0 20px 20px;font-size:14.5px;line-height:1.85;color:var(--ink-2)}
+.faq .a b{font-family:var(--latin);font-style:italic;font-size:19px;color:var(--cta);line-height:1.3}
+
+/* =====================================================================
+   Final CTA
+   ===================================================================== */
+.final{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-3) 100%)}
+.final__grid{display:grid;gap:36px;align-items:center}
+@media (min-width:900px){.final__grid{grid-template-columns:5fr 7fr;gap:72px}}
+.final__media{border-radius:50% 50% var(--radius) var(--radius)/38% 38% var(--radius) var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;max-width:380px;margin-inline:auto}
+.final__media img{width:100%;height:100%;object-fit:cover}
+.final__body p{color:var(--ink-2);margin-bottom:1em}
+.final__body .btn-row{margin-top:26px}
+.final .strip{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
+.final .strip span{font-size:12.5px;letter-spacing:.1em;padding:6px 14px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+
+/* =====================================================================
+   Footer
+   ===================================================================== */
+.footer{padding:44px 0 calc(34px + 76px + env(safe-area-inset-bottom));background:var(--ink);color:rgba(255,255,255,.88);font-size:13px;letter-spacing:.06em}
+.footer__in{display:flex;flex-direction:column;gap:18px}
+@media (min-width:760px){.footer__in{flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.footer .logo{color:#fff}
+.footer .logo small{color:rgba(255,255,255,.72)}
+.footer__links{display:flex;flex-wrap:wrap;gap:8px 20px}
+.footer__links a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.35)}
+.footer__copy{font-family:var(--latin);letter-spacing:.14em;color:rgba(255,255,255,.72)}
+
+/* =====================================================================
+   Sticky CTA bar
+   ===================================================================== */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(252,250,247,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s var(--ease)}
+.sticky.is-visible{transform:none}
+.sticky__in{display:flex;gap:10px;align-items:center;max-width:720px;margin-inline:auto}
+.sticky .btn{min-height:52px;padding:10px 16px;font-size:14.5px;flex:1}
+.sticky .btn--ghost{flex:0 0 auto;background:#fff}
+@media (prefers-reduced-motion:reduce){.sticky{transition:none}}
+
+/* photo treatment: unify tone of on-site photos */
+.problem__media img,.flow__photos img,.collage img,.instructor__media img,.process .ph img,.pair img,.ba__img,.chart-card__photo img{filter:saturate(.94) contrast(.98)}
+.problem__media,.flow__photos figure,.collage figure,.instructor__media,.process .ph,.pair,.chart-card__photo{outline:1px solid rgba(198,165,107,.28);outline-offset:-1px}
+/* utilities */
+.nb{display:inline-block}
+.hide-desktop{display:block}.show-desktop{display:none}
+@media (min-width:900px){.hide-desktop{display:none}.show-desktop{display:block}}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+
+<a class="sr-only" href="#main">本文へスキップ</a>
+
+<!-- ===================================================================== Header -->
+<header class="header" id="site-header">
+  <div class="container header__in">
+    <a class="logo" href="#hero" aria-label="sins cosmetics トップへ">sins <small>cosmetics</small></a>
+    <nav class="nav" aria-label="ページ内リンク">
+      <a href="#method">sins式の仕組み</a>
+      <a href="#cases">症例</a>
+      <a href="#seminar">セミナー動画</a>
+      <a href="#products">薬剤</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <a class="btn btn--primary" href="#seminar">無料セミナー動画を見る</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================================================================== 1. Hero -->
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="hero__deco" aria-hidden="true"></div>
+  <div class="hero__in">
+    <div class="hero__media">
+      <picture>
+        <source media="(min-width: 900px)" type="image/webp" srcset="assets/hero-1600.webp 1600w, assets/hero-2400.webp 2400w" sizes="50vw">
+        <source media="(min-width: 900px)" srcset="assets/hero-1600.jpg 1600w, assets/hero-2400.jpg 2400w" sizes="50vw">
+        <source type="image/webp" srcset="assets/hero-mobile-800.webp 800w, assets/hero-mobile-1200.webp 1200w" sizes="100vw">
+        <img src="assets/hero-mobile-800.jpg" srcset="assets/hero-mobile-800.jpg 800w, assets/hero-mobile-1200.jpg 1200w" sizes="100vw" width="800" height="1000" alt="艶のあるストレートヘアのモデルと、sins の薬剤 T7・TC6・4.5・0.5" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+    <div class="hero__body">
+      <p class="hero__eyebrow">髪質改善ストレートの薬剤選定に迷う美容師へ</p>
+      <h1 id="hero-title">薬剤選定を、<br>感覚から<span class="thin">チャートへ。</span></h1>
+      <p class="hero__sub">癖の強さ、髪の強度、ダメージ履歴を見極め、チャートとレシピに沿って薬剤を選定する。現役美容師の現場から生まれた、sins式 髪質改善ストレートシステム。</p>
+      <p class="hero__note">薬剤・マニュアル・教育を一体化し、サロン全体で再現しやすい技術へ。</p>
+      <div class="btn-row">
+        <a class="btn btn--primary btn--lg" href="#seminar"><span>無料セミナー動画を見る<span class="btn__sub">約25分・登録不要・LP内で視聴</span></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="#method">sins式の仕組みを見る</a>
+      </div>
+      <ul class="trust" aria-label="sins式を構成する要素">
+        <li>薬剤 4種</li>
+        <li>癖毛チャート</li>
+        <li>レシピ・マニュアル</li>
+        <li>教育セミナー</li>
+      </ul>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">scroll</div>
+</section>
+
+<!-- ===================================================================== 2. Problem -->
+<section class="section" id="problem" aria-labelledby="problem-title">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Problem</p>
+      <h2 id="problem-title">髪質改善ストレートを、<br><span class="nb">「経験と感覚」</span>だけで<span class="nb">選定していませんか？</span></h2>
+    </div>
+    <div class="problem__grid">
+      <figure class="problem__media" data-reveal>
+        <picture>
+          <source type="image/webp" srcset="assets/counsel-2-600.webp 600w, assets/counsel-2-1000.webp 1000w, assets/counsel-2-1600.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw">
+          <img src="assets/counsel-2-1000.jpg" srcset="assets/counsel-2-600.jpg 600w, assets/counsel-2-1000.jpg 1000w, assets/counsel-2-1600.jpg 1600w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="563" alt="サロンでお客様の髪の状態をカウンセリングする美容師" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Counseling</figcaption>
+      </figure>
+      <div>
+        <ul class="checklist" aria-label="よくある悩み">
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>担当者によって薬剤選定が変わってしまう</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>癖は伸ばしたいが、ダメージさせるのが怖い</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>ブリーチ毛・既矯正毛・エイジング毛の判断が難しい</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>強い癖に、どこまで薬剤パワーを上げてよいか分からない</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>スタッフに教えても、感覚的な説明になってしまう</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>薬剤を弱くしすぎて、癖の伸びが甘くなる</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>髪質改善ストレートを高単価メニューにしたいが、技術に自信がない</span></li>
+        </ul>
+        <p class="problem__close" data-reveal>髪質改善ストレートが難しい理由は、美容師の技術だけではありません。<br><strong>判断基準が、言葉と仕組みになっていないこと</strong>も大きな原因です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== 3. Method -->
+<section class="section bg-2" id="method" aria-labelledby="method-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow is-center">sins Method</p>
+      <h2 id="method-title">迷いを減らすために、sins式は<br>髪質改善ストレートを<span class="nb">「判断できる形」</span>にしました。</h2>
+      <p class="lead">癖の見極めから、流すタイミングまで。判断を4つの工程に分け、サロンの誰もが同じ基準で考えられるようにしています。</p>
+    </div>
+
+    <ol class="steps4" aria-label="sins式 4つの流れ">
+      <li class="step4" data-reveal><div class="step4__num" aria-hidden="true"></div><h3>癖毛チャートで<br>癖の強さを確認</h3><p>SINS CURL PATTERN CHART でウェーブ幅を A・B・C に分類</p></li>
+      <li class="step4" data-reveal data-delay="1"><div class="step4__num" aria-hidden="true"></div><h3>髪の強度と<br>ダメージ履歴を確認</h3><p>太さ・強度、カラー・ブリーチ・既矯正の履歴を加味</p></li>
+      <li class="step4" data-reveal data-delay="2"><div class="step4__num" aria-hidden="true"></div><h3>レシピ表から<br>薬剤を選定</h3><p>T7・TC6・4.5・0.5 と処理剤の組み合わせを決定</p></li>
+      <li class="step4" data-reveal data-delay="3"><div class="step4__num" aria-hidden="true"></div><h3>還元チェックで<br>流すタイミングを判断</h3><p>D Test Curl を基準に、還元状態を確認</p></li>
+    </ol>
+
+    <div class="method__body">
+      <div class="chart-card" data-reveal>
+        <p class="chart-card__title">Sins Curl Pattern Chart<b>癖毛チャート</b></p>
+        <div class="waves" role="img" aria-label="癖毛チャート：A ソフトウェーブ、B モデレートウェーブ、C ストロングウェーブ、D テストカール">
+          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 26 16, 14 28, 20 40 S 26 64, 20 76 S 16 88, 20 92" fill="none" stroke="#3A322F" stroke-width="2.2" stroke-linecap="round"/></svg><b>A</b><span>Soft Wave</span></div>
+          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 30 12, 10 20, 20 28 S 30 44, 20 52 S 10 68, 20 76 S 30 88, 20 92" fill="none" stroke="#3A322F" stroke-width="2.2" stroke-linecap="round"/></svg><b>B</b><span>Moderate Wave</span></div>
+          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 34 9, 6 14, 20 20 S 34 27, 20 34 S 6 41, 20 48 S 34 55, 20 62 S 6 69, 20 76 S 34 83, 20 92" fill="none" stroke="#3A322F" stroke-width="2.2" stroke-linecap="round"/></svg><b>C</b><span>Strong Wave</span></div>
+          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 v8 c -10 0 -10 12 0 12 c 10 0 10 12 0 12 c -10 0 -10 12 0 12 c 10 0 10 12 0 12 c -10 0 -10 12 0 12 v 8" fill="none" stroke="#B0616B" stroke-width="2.2" stroke-linecap="round"/></svg><b>D</b><span>Test Curl</span></div>
+        </div>
+        <div class="chart-card__photo">
+          <picture>
+            <source type="image/webp" srcset="assets/chart-c-600.webp 600w, assets/chart-c-1000.webp 1000w" sizes="(min-width: 900px) 40vw, 100vw">
+            <img src="assets/chart-c-1000.jpg" srcset="assets/chart-c-600.jpg 600w, assets/chart-c-1000.jpg 1000w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="563" alt="癖毛チャート C の図と実際の髪の癖を見比べている手元" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <p class="chart-card__cap">実際の癖と並べて、チャートで分類する<br>※ 図はウェーブ幅の目安です。実際の判定はセミナー動画で解説します。</p>
+      </div>
+      <div class="method__text" data-reveal>
+        <h3 style="margin-bottom:16px">「どの薬剤を使うか」だけでなく、<br>「いつ流すか」まで基準を統一する。</h3>
+        <p><strong>SINS CURL PATTERN CHART</strong> で、癖のウェーブ幅を A・B・C に分類。髪の太さや強度、カラー・ブリーチ・既矯正などの履歴を加味して、使用する薬剤とレシピを選びます。</p>
+        <p>さらに、<strong>D Test Curl</strong> を基準に還元状態を確認。「どの薬剤を使うか」だけでなく、「いつ流すか」まで判断基準を統一します。</p>
+        <p>文字だけの説明ではなく、チャートという共通の物差しがあるから、スタッフ間でも同じ言葉で話せるようになります。</p>
+        <div class="btn-row" style="margin-top:28px">
+          <a class="btn btn--primary" href="#seminar">sins式をセミナー動画で体験する<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <p class="cta-note">無料・約25分・LP内で視聴できます</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== 4. Flow -->
+<section class="section" id="flow" aria-labelledby="flow-title">
+  <div class="container">
+    <div class="flow__grid">
+      <div>
+        <div class="section-head" data-reveal style="margin-bottom:0">
+          <p class="eyebrow">Selection Flow</p>
+          <h2 id="flow-title">「伸ばす部分」と「守る部分」を、<br>同じ薬剤で考えない。</h2>
+          <p class="lead">sins式では、髪全体を一つの状態として判断しません。新生部、既矯正部、ダメージ部分、顔周り、毛先など、部位ごとの目的を整理します。</p>
+          <p class="lead">癖を伸ばす部分には必要な還元力を使い、傷みやすい部分は <strong>0.5</strong> や処理剤を使用して薬剤パワーを調整します。</p>
+        </div>
+        <ol class="timeline" aria-label="薬剤選定の手順">
+          <li data-reveal><span class="timeline__num">1</span><div class="timeline__txt">癖毛チャートを当てる<small>ウェーブ幅を A・B・C で分類</small></div></li>
+          <li data-reveal><span class="timeline__num">2</span><div class="timeline__txt">後頭部など、癖の強い部分を確認する</div></li>
+          <li data-reveal><span class="timeline__num">3</span><div class="timeline__txt">髪の太さ・強度を確認する</div></li>
+          <li data-reveal><span class="timeline__num">4</span><div class="timeline__txt">カラー・ブリーチ・髪質改善ストレートの履歴を確認する</div></li>
+          <li data-reveal><span class="timeline__num">5</span><div class="timeline__txt">基準となる薬剤を選ぶ<small>レシピ表に沿って T7 / TC6 / 4.5 を決める</small></div></li>
+          <li data-reveal><span class="timeline__num">6</span><div class="timeline__txt">細毛・損傷部分は塗り分ける<small>0.5 や処理剤でパワーを調整</small></div></li>
+          <li data-reveal><span class="timeline__num">7</span><div class="timeline__txt">クルクルチェックで還元状態を確認する<small>D Test Curl を基準に、流すタイミングを判断</small></div></li>
+        </ol>
+      </div>
+      <div class="flow__photos">
+        <figure data-reveal>
+          <picture>
+            <source type="image/webp" srcset="assets/chart-hand-600.webp 600w, assets/chart-hand-1000.webp 1000w" sizes="(min-width: 900px) 34vw, 33vw">
+            <img src="assets/chart-hand-1000.jpg" srcset="assets/chart-hand-600.jpg 600w, assets/chart-hand-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="563" alt="髪の癖にチャートを当てて確認している手元" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>癖毛チャートを当てる</figcaption>
+        </figure>
+        <figure data-reveal data-delay="1">
+          <picture>
+            <source type="image/webp" srcset="assets/apply-600.webp 600w, assets/apply-1000.webp 1000w" sizes="(min-width: 900px) 34vw, 33vw">
+            <img src="assets/apply-1000.jpg" srcset="assets/apply-600.jpg 600w, assets/apply-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="563" alt="部位ごとに薬剤を塗り分けている様子" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>部位ごとに塗り分ける</figcaption>
+        </figure>
+        <figure data-reveal data-delay="2">
+          <picture>
+            <source type="image/webp" srcset="assets/curlcheck-600.webp 600w, assets/curlcheck-1000.webp 1000w" sizes="(min-width: 900px) 34vw, 33vw">
+            <img src="assets/curlcheck-1000.jpg" srcset="assets/curlcheck-600.jpg 600w, assets/curlcheck-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="563" alt="クルクルチェックで還元状態を確認している手元" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>クルクルチェック</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== 5. Cases -->
+<section class="section bg-3" id="cases" aria-labelledby="cases-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow is-center">Before / After</p>
+      <h2 id="cases-title">マニュアル通りに考えると、<br>難しい髪も整理して<span class="nb">判断できる。</span></h2>
+      <p class="lead">スライダーを動かして、施術前後を見比べてください。各症例の判断は、セミナー動画の中で解説しています。</p>
+    </div>
+    <div class="cases" id="cases-grid">
+      <!-- 症例カードは SINS_LP_CONFIG.cases から生成されます -->
+    </div>
+    <div class="gallery" aria-label="その他の施術例">
+      <div class="pair" data-reveal><img src="assets/ba4033-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4033-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><img src="assets/ba4034-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4034-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><img src="assets/ba4035-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4035-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><img src="assets/ba4039-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4039-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><img src="assets/ba4041a-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4041a-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><img src="assets/ba4037a-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4037a-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
+    </div>
+    <p class="note cases__note">※ 写真はセミナー・サロンワークで撮影した実際の施術例です。仕上がりは髪の状態や履歴によって異なります。</p>
+    <div class="btn-row is-center" style="margin-top:36px" data-reveal>
+      <a class="btn btn--primary" href="#seminar">症例の考え方をセミナー動画で学ぶ<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <p class="cta-note center">無料・約25分・登録不要（このページ内で視聴できます）</p>
+  </div>
+</section>
+
+<!-- ===================================================================== 6. Mid CTA band -->
+<section class="band" id="mid-cta" aria-labelledby="band-title">
+  <div class="band__bg" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="assets/seminar-live-1000.webp 1000w, assets/seminar-live-1600.webp 1600w" sizes="100vw">
+      <img src="assets/seminar-live-1000.jpg" srcset="assets/seminar-live-1000.jpg 1000w, assets/seminar-live-1600.jpg 1600w" sizes="100vw" width="1000" height="1778" alt="" loading="lazy" decoding="async">
+    </picture>
+  </div>
+  <div class="container band__in" data-reveal>
+    <p class="eyebrow is-center">Seminar</p>
+    <h2 id="band-title">文章だけでは分からない薬剤反応を、<br class="show-desktop">実際の施術で<span class="nb">確認してください。</span></h2>
+    <p class="band__lines">なぜこの薬剤を選んだのか。<br>なぜこの部分だけ薬剤を変えたのか。<br>どの状態になったら流すのか。</p>
+    <p class="lead">sins のセミナーでは、レシピだけでなく、判断の理由までお伝えします。</p>
+    <div class="btn-row is-center">
+      <a class="btn btn--primary btn--lg" href="#seminar"><span>無料セミナー動画を見る<span class="btn__sub">約25分・登録不要</span></span></a>
+      <a class="btn btn--ghost" href="#products">薬剤ラインナップを見る</a>
+    </div>
+    <p class="cta-note">動画はこのページ内で視聴できます。外部登録やメール入力はありません。</p>
+  </div>
+</section>
+
+<!-- ===================================================================== 7. Seminar / Video -->
+<section class="section" id="seminar" aria-labelledby="seminar-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow is-center">Online Seminar</p>
+      <h2 id="seminar-title">セミナーの翌日から、<br>サロンワークで使える内容を。</h2>
+      <p class="lead">薬剤の説明ではなく、判断の仕方を学ぶ約25分。スマートフォンでも、2倍速でもご覧いただけます。</p>
+    </div>
+
+    <ol class="learn" aria-label="セミナーで学べる内容">
+      <li data-reveal><b>01</b>癖毛チャート A・B・C の見分け方</li>
+      <li data-reveal><b>02</b>髪の太さ・強度・履歴の確認方法</li>
+      <li data-reveal><b>03</b>T7・TC6・4.5・0.5 の使い分け</li>
+      <li data-reveal><b>04</b>ダメージ部分への塗り分けと減力</li>
+      <li data-reveal><b>05</b>クルクルチェックによる還元判断</li>
+      <li data-reveal><b>06</b>髪質別のドライ・ツインブラシ・アイロン操作</li>
+      <li data-reveal><b>07</b>伸びが甘かった場合の原因分析</li>
+      <li data-reveal><b>08</b>お客様へのカウンセリングと仕上がり説明</li>
+    </ol>
+
+    <div class="process" aria-label="施術工程">
+      <figure data-reveal><div class="ph"><img src="assets/counsel-1-600.jpg" width="600" height="338" alt="診断・カウンセリング" loading="lazy" decoding="async"></div><figcaption><b>01</b>診断</figcaption></figure>
+      <figure data-reveal data-delay="1"><div class="ph"><img src="assets/apply-600.jpg" width="600" height="338" alt="薬剤塗布" loading="lazy" decoding="async"></div><figcaption><b>02</b>薬剤塗布</figcaption></figure>
+      <figure data-reveal data-delay="2"><div class="ph"><img src="assets/curlcheck-600.jpg" width="600" height="338" alt="還元チェック" loading="lazy" decoding="async"></div><figcaption><b>03</b>還元チェック</figcaption></figure>
+      <figure data-reveal data-delay="3"><div class="ph"><img src="assets/iron-600.jpg" width="600" height="338" alt="アイロン操作" loading="lazy" decoding="async"></div><figcaption><b>04</b>アイロン</figcaption></figure>
+      <figure data-reveal data-delay="3"><div class="ph"><img src="assets/ba4035-after-600.jpg" width="600" height="1200" alt="仕上がり" loading="lazy" decoding="async"></div><figcaption><b>05</b>仕上がり</figcaption></figure>
+    </div>
+
+    <div class="video-wrap" id="video" data-reveal>
+      <div class="video-head">
+        <h3>sins式 髪質改善ストレート オンラインセミナー</h3>
+        <span class="badge">無料・登録不要・約25分</span>
+      </div>
+      <div class="video-stage" id="video-stage">
+        <div class="video-ph" id="video-placeholder">
+          <img src="assets/iron-1000.jpg" width="1000" height="563" alt="" loading="lazy" decoding="async">
+          <div>
+            <div class="play" aria-hidden="true"></div>
+            <p>セミナー動画は準備中です</p>
+            <small>公開までしばらくお待ちください</small>
+          </div>
+        </div>
+      </div>
+      <div class="video-tools">
+        <div class="progress" aria-live="polite"><span>視聴状況</span><div class="progress__bar" role="progressbar" aria-label="視聴状況" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress__fill" id="video-progress"></div></div><span id="video-progress-text">0%</span></div>
+        <div class="video-btns">
+          <button class="speed" id="speed-btn" type="button" aria-pressed="false">2倍速で見る（約12分）</button>
+          <button class="speed speed--ghost" id="later-btn" type="button">後で見る（URLをコピー）</button>
+        </div>
+      </div>
+      <p class="video-fallback" id="video-fallback" hidden>動画が再生できない場合は、<a id="video-fallback-link" href="#" target="_blank" rel="noopener">こちらから直接ご覧ください</a>。<button type="button" class="linklike" id="video-fallback-done">視聴が終わった方はこちら</button></p>
+
+      <div class="gate" id="purchase-gate" aria-hidden="true">
+        <div class="gate__locked">
+          <span class="lock" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+          <p>動画を最後までご覧いただくと、<br class="hide-desktop">サンプルセットのご案内が表示されます。</p>
+          <small>視聴状況は端末に保存されます。次回は続きからご案内が表示されます。</small>
+        </div>
+        <div class="gate__open">
+          <div>
+            <p class="thanks">ご視聴ありがとうございます</p>
+            <h4>sins式の薬剤を、サロンで実際にお試しください。</h4>
+            <p>癖毛チャートと合わせて使うことで、動画でお伝えした「判断の仕方」をそのまま再現できます。</p>
+            <p class="price">13,200<small>円（税込）／ サンプルセット</small></p>
+            <p class="note">セット内容・数量は購入ページでご確認ください。</p>
+          </div>
+          <div>
+            <a class="btn btn--primary btn--lg btn--block" data-purchase href="https://sins.base.shop" target="_blank" rel="noopener"><span>サンプルセットを購入する<span class="btn__sub">購入ページ（オンラインショップ）へ</span></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+            <p class="cta-note" style="text-align:center">別ウィンドウで開きます</p>
+          </div>
+        </div>
+      </div>
+      <p class="unlock-note" id="unlock-note" hidden>✓ ご視聴ありがとうございました。サンプルセットのご案内を表示しました。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== 8. Products -->
+<section class="section bg-2" id="products" aria-labelledby="products-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow is-center">Line Up</p>
+      <h2 id="products-title">4つの薬剤を覚えるのではなく、<br>それぞれの役割を理解する。</h2>
+      <p class="lead">色で役割が分かる4つの薬剤。チャートと履歴の判断に沿って、基準薬剤とブレーキ剤を組み合わせます。</p>
+    </div>
+    <div class="products__hero" data-reveal>
+      <picture>
+        <source type="image/webp" srcset="assets/products-700.webp 700w, assets/products-1000.webp 1000w, assets/products-1600.webp 1600w" sizes="(min-width: 1200px) 1120px, 100vw">
+        <img src="assets/products-1000.jpg" srcset="assets/products-700.jpg 700w, assets/products-1000.jpg 1000w, assets/products-1600.jpg 1600w" sizes="(min-width: 1200px) 1120px, 100vw" width="1000" height="964" alt="sins の薬剤 4種。左から TC6（青）、T7（赤）、4.5（緑）、0.5（黄）" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <ul class="products" aria-label="薬剤ラインナップ">
+      <li class="product" style="--c:var(--t7)" data-reveal>
+        <p class="product__name"><i aria-hidden="true"></i>T7</p><p class="product__tag">BASE / STRONG</p>
+        <p class="product__role">強い癖や、強度のある髪に対応する基準薬剤</p>
+      </li>
+      <li class="product" style="--c:var(--tc6)" data-reveal data-delay="1">
+        <p class="product__name"><i aria-hidden="true"></i>TC6</p><p class="product__tag">BASE / ACID</p>
+        <p class="product__role">弱酸性領域で、幅広い髪質に対応</p>
+      </li>
+      <li class="product" style="--c:var(--f45)" data-reveal data-delay="2">
+        <p class="product__name"><i aria-hidden="true"></i>4.5</p><p class="product__tag">GENTLE</p>
+        <p class="product__role">細毛・エイジング毛・ダメージ部分に対応</p>
+      </li>
+      <li class="product" style="--c:var(--f05)" data-reveal data-delay="3">
+        <p class="product__name"><i aria-hidden="true"></i>0.5</p><p class="product__tag">BRAKE</p>
+        <p class="product__role">傷みやすい部分を守るための、ブレーキ剤</p>
+      </li>
+    </ul>
+    <div class="products__sub" data-reveal>
+      <b>調整・保護するための薬剤</b>
+      <span class="chip">ブースター</span><span class="chip">バランサー</span><span class="chip">レブリペア</span>
+    </div>
+    <p class="products__lead" data-reveal>「伸ばす部分」には T7・TC6 で必要な還元力を。「守る部分」には 4.5・0.5 と処理剤でパワーを調整。<br class="show-desktop">組み合わせの考え方は、セミナー動画で解説しています。</p>
+    <div class="btn-row is-center" style="margin-top:30px" data-reveal>
+      <a class="btn btn--primary" href="#seminar">薬剤の使い分けを動画で学ぶ<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <p class="cta-note center">無料・約25分・登録不要（このページ内で視聴できます）</p>
+  </div>
+</section>
+
+<!-- ===================================================================== 9. Results / Voices -->
+<section class="section" id="results" aria-labelledby="results-title">
+  <div class="container">
+    <div class="results__grid">
+      <div>
+        <div class="section-head" data-reveal style="margin-bottom:28px">
+          <p class="eyebrow">Results</p>
+          <h2 id="results-title">技術が変わるだけではなく、<br>サロン内の<span class="nb">「共通言語」</span>が<span class="nb">生まれる。</span></h2>
+          <p class="lead">sins式が目指しているのは、一人の美容師の上達ではなく、サロン全体で同じ判断ができる状態です。</p>
+        </div>
+        <ul class="outcomes" aria-label="導入後に目指す変化">
+          <li data-reveal><b>1</b>薬剤選定の基準がスタッフ間で揃う</li>
+          <li data-reveal><b>2</b>新人への技術教育がしやすくなる</li>
+          <li data-reveal><b>3</b>難しい履歴でも、考え方を整理できる</li>
+          <li data-reveal><b>4</b>髪質改善ストレートへの苦手意識が減る</li>
+          <li data-reveal><b>5</b>高単価メニューとして提案しやすくなる</li>
+        </ul>
+      </div>
+      <div data-reveal>
+        <div class="collage">
+          <figure><picture><source type="image/webp" srcset="assets/seminar-large-600.webp 600w, assets/seminar-large-1000.webp 1000w" sizes="(min-width: 900px) 46vw, 100vw"><img src="assets/seminar-large-1000.jpg" srcset="assets/seminar-large-600.jpg 600w, assets/seminar-large-1000.jpg 1000w" sizes="(min-width: 900px) 46vw, 100vw" width="1000" height="750" alt="sins セミナーに参加した多数の美容師の集合写真" loading="lazy" decoding="async"></picture></figure>
+          <figure><img src="assets/seminar-hearts-600.jpg" width="600" height="338" alt="セミナー後の受講者と講師" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/seminar-wood-600.jpg" width="600" height="800" alt="サロンで開催したセミナーの集合写真" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/seminar-group1-600.jpg" width="600" height="338" alt="セミナー会場での受講者と講師" loading="lazy" decoding="async"></figure>
+        </div>
+        <p class="collage__cap">これまでに開催してきた sins セミナーの様子</p>
+      </div>
+    </div>
+
+    <div id="testimonials" hidden>
+      <div class="section-head center" style="margin-top:72px;margin-bottom:28px">
+        <p class="eyebrow is-center">Voices</p>
+        <h3>導入美容師・サロンの声</h3>
+      </div>
+      <div class="voices" id="testimonials-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== 10. Instructor -->
+<section class="section bg-2" id="instructor" aria-labelledby="instructor-title">
+  <div class="container">
+    <div class="instructor">
+      <figure class="instructor__media" data-reveal>
+        <picture>
+          <source type="image/webp" srcset="assets/iron-600.webp 600w, assets/iron-1000.webp 1000w, assets/iron-1600.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw">
+          <img src="assets/iron-1000.jpg" srcset="assets/iron-600.jpg 600w, assets/iron-1000.jpg 1000w, assets/iron-1600.jpg 1600w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="563" alt="モデルの髪をアイロンで仕上げる講師" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <div data-reveal>
+        <p class="eyebrow">Instructor</p>
+        <h2 id="instructor-title">現役美容師の現場から生まれた、<br>美容師のための薬剤と教育。</h2>
+        <div class="instructor__name"><b>菅原 寛人</b><span>Hiroto Sugawara</span></div>
+        <p class="instructor__role">sins cosmetics ／ 現役美容師（sinsia）</p>
+        <div class="instructor__text">
+          <p>サロン「sinsia（シンシア）」でサロンワークを続けながら、sins式 髪質改善ストレートの教育・セミナー登壇を行っています。</p>
+          <p>セミナーで大切にしているのは、レシピを渡すことではなく、「なぜその薬剤なのか」「なぜ今流すのか」という判断の理由を、受講した美容師が自分の言葉で説明できるようになることです。</p>
+        </div>
+        <div class="brand-msg">
+          <p>薬剤を販売するだけではなく、<br>技術が育つ仕組みまで届ける。</p>
+          <p>切りたくなくなる髪を、世界へ。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== 11. Next steps -->
+<section class="section" id="next" aria-labelledby="next-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow is-center">Next Step</p>
+      <h2 id="next-title">ご導入までの流れ</h2>
+      <p class="lead">まずは動画で仕組みを理解し、サンプルセットで実際の薬剤反応を確認する。この順番なら、判断しやすさをサロンで体感してから導入できます。</p>
+    </div>
+    <ol class="nextsteps">
+      <li class="ns" data-reveal>
+        <span class="tag">無料・約25分</span>
+        <h3>動画で仕組みを理解する</h3>
+        <p>癖毛チャート、履歴の確認、薬剤の使い分け、還元チェック。sins式の判断の流れを、このページ内の動画で学びます。</p>
+        <a class="btn btn--ghost" href="#seminar">動画を見る</a>
+      </li>
+      <li class="ns ns--hl" data-reveal data-delay="1">
+        <span class="tag">13,200円（税込）</span>
+        <h3>サンプルセットで試す</h3>
+        <p>動画を視聴した方に、サンプルセットの購入ページをご案内します。サロンで実際の薬剤反応を確認してください。</p>
+        <a class="btn btn--primary" data-locked href="#seminar">動画視聴後にご案内</a>
+        <a class="btn btn--primary" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセットを購入する</a>
+      </li>
+      <li class="ns" data-reveal data-delay="2">
+        <span class="tag">サロン導入</span>
+        <h3>チャートとマニュアルで再現する</h3>
+        <p>薬剤・癖毛チャート・マニュアル・教育を一体で使うことで、スタッフ間でも同じ基準で判断できるようになります。</p>
+        <a class="btn btn--ghost" data-contact hidden href="#" target="_blank" rel="noopener">導入について相談する</a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================================================================== 12. FAQ -->
+<section class="section bg-2" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow is-center">FAQ</p>
+      <h2 id="faq-title">よくある質問</h2>
+    </div>
+    <div class="faq" data-reveal>
+      <details><summary><b>Q</b><span>sins の商品をまだ使ったことがなくても視聴できますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい。動画は、sins の薬剤をまだお使いでない美容師の方に向けて、薬剤選定の考え方から解説しています。</p></div></details>
+      <details><summary><b>Q</b><span>髪質改善ストレートの経験が浅くても大丈夫ですか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい。癖毛チャートと履歴の確認手順に沿って判断していく仕組みのため、経験年数に関わらず、基準を持って取り組めます。</p></div></details>
+      <details><summary><b>Q</b><span>動画では、モデル施術の様子も見られますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>sins式の薬剤選定の考え方と施術の流れを解説しています。内容の詳細は、上の「セミナーで学べる内容」をご覧ください。</p></div></details>
+      <details><summary><b>Q</b><span>商品を購入する必要はありますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>いいえ。動画の視聴は無料で、購入は任意です。実際に試したい方には、視聴後に表示されるサンプルセット（13,200円・税込）をご案内しています。</p></div></details>
+      <details><summary><b>Q</b><span>集合セミナーは開催していますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>モデル施術を間近で確認できる集合セミナーも行っています。開催時期・会場は都度異なるため、ご希望の方は<span data-contact-text>購入ページ内のお問い合わせ</span>からご連絡ください。</p></div></details>
+      <details><summary><b>Q</b><span>スマートフォンで視聴できますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい。スマートフォン・タブレット・パソコンのいずれでもご覧いただけます。通信量が気になる場合は、Wi-Fi 環境での視聴をおすすめします。</p></div></details>
+      <details><summary><b>Q</b><span>質問はできますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>動画内で解説しきれない点は、<span data-contact-text>購入ページ内のお問い合わせ</span>からご質問ください。</p></div></details>
+      <details><summary><b>Q</b><span>視聴に期限はありますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>期限はありません。このページで、いつでも何度でもご覧いただけます。サンプルセットの返品・交換については、購入ページの記載をご確認ください。</p></div></details>
+      <details><summary><b>Q</b><span>美容師免許を持っていないスタッフも視聴できますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>動画はどなたでもご覧いただけます。ただし薬剤は美容師向けのプロフェッショナル用製品のため、施術は美容師免許をお持ちの方が行ってください。</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== 13. Final CTA -->
+<section class="section final" id="final" aria-labelledby="final-title">
+  <div class="container final__grid">
+    <div class="final__media" data-reveal>
+      <picture>
+        <source type="image/webp" srcset="assets/model-800.webp 800w, assets/model-1200.webp 1200w" sizes="(min-width: 900px) 30vw, 80vw">
+        <img src="assets/model-800.jpg" srcset="assets/model-800.jpg 800w, assets/model-1200.jpg 1200w" sizes="(min-width: 900px) 30vw, 80vw" width="800" height="1000" alt="艶のあるストレートヘアのモデル" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <div class="final__body" data-reveal>
+      <p class="eyebrow">Last Message</p>
+      <h2 id="final-title">髪質改善ストレートを、<br>一人の上手な美容師だけの<br>技術にしない。</h2>
+      <p>癖毛チャート、薬剤、レシピ、還元チェック。感覚で行われてきた判断を、一つずつ共有できる形にする。</p>
+      <p>まずはセミナー動画で、sins式の考え方と仕上がりをご確認ください。</p>
+      <div class="strip" aria-hidden="true"><span>癖毛チャート</span><span>薬剤 4種</span><span>レシピ表</span><span>還元チェック</span></div>
+      <div class="btn-row">
+        <a class="btn btn--primary btn--lg" href="#seminar"><span>無料セミナー動画を見る<span class="btn__sub">約25分・登録不要</span></span></a>
+        <a class="btn btn--ghost" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセットを購入する</a>
+      </div>
+      <p class="cta-note">動画は無料・登録不要でご覧いただけます。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================================================================== Footer -->
+<footer class="footer">
+  <div class="container footer__in">
+    <div>
+      <p class="logo">sins <small>cosmetics</small></p>
+      <p style="margin-top:10px">株式会社sinsコスメティクス</p>
+    </div>
+    <div>
+      <div class="footer__links">
+        <a data-purchase href="https://sins.base.shop" target="_blank" rel="noopener">オンラインショップ</a>
+        <a data-line hidden href="#" target="_blank" rel="noopener">公式LINE</a>
+        <a data-contact hidden href="#" target="_blank" rel="noopener">お問い合わせ</a>
+      </div>
+      <p class="footer__copy" style="margin-top:12px">&copy; <span id="year">2026</span> sins cosmetics</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================================================================== Sticky CTA -->
+<div class="sticky" id="sticky-bar" role="region" aria-label="固定メニュー">
+  <div class="sticky__in">
+    <a class="btn btn--primary" data-locked href="#seminar">無料セミナー動画を見る</a>
+    <a class="btn btn--ghost" data-unlocked hidden href="#seminar">動画を見る</a>
+    <a class="btn btn--primary" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセットを購入する</a>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "株式会社sinsコスメティクス",
+      "alternateName": "sins cosmetics",
+      "url": "https://o-arakawa.github.io/francdirect-dashboard/sins/",
+      "sameAs": ["https://sins.base.shop"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"sins の商品をまだ使ったことがなくても視聴できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。動画は、sins の薬剤をまだお使いでない美容師の方に向けて、薬剤選定の考え方から解説しています。"}},
+        {"@type":"Question","name":"髪質改善ストレートの経験が浅くても大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"はい。癖毛チャートと履歴の確認手順に沿って判断していく仕組みのため、経験年数に関わらず、基準を持って取り組めます。"}},
+        {"@type":"Question","name":"商品を購入する必要はありますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。動画の視聴は無料で、購入は任意です。実際に試したい方には、視聴後に表示されるサンプルセット（13,200円・税込）をご案内しています。"}},
+        {"@type":"Question","name":"スマートフォンで視聴できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。スマートフォン・タブレット・パソコンのいずれでもご覧いただけます。"}},
+        {"@type":"Question","name":"美容師免許を持っていないスタッフも視聴できますか？","acceptedAnswer":{"@type":"Answer","text":"動画はどなたでもご覧いただけます。ただし薬剤は美容師向けのプロフェッショナル用製品のため、施術は美容師免許をお持ちの方が行ってください。"}}
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+/* ==========================================================================
+   sins 髪質改善ストレート LP — page logic (inlined into index.html)
+   ========================================================================== */
+(function () {
+  'use strict';
+  var CFG = window.SINS_LP_CONFIG || {};
+  var doc = document, body = doc.body;
+  var $ = function (s, r) { return (r || doc).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); };
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var LS_KEY = 'sins_lp_unlocked_v1';
+
+  /* ---------- 1. Scroll reveal ---------- */
+  var io = null;
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  }
+  function observeReveals() {
+    $$('[data-reveal]:not([data-observed])').forEach(function (el) {
+      el.setAttribute('data-observed', '');
+      if (io) io.observe(el); else el.classList.add('is-in');
+    });
+  }
+  observeReveals();
+
+  /* ---------- 2. Header + sticky CTA bar ---------- */
+  var header = $('#site-header'), bar = $('#sticky-bar'), hero = $('#hero'), heroCta = $('#hero .btn-row');
+  function onScroll() {
+    var y = window.scrollY || doc.documentElement.scrollTop;
+    if (header) header.classList.toggle('is-scrolled', y > 24);
+    if (bar && hero) {
+      var limit = heroCta ? (heroCta.getBoundingClientRect().top + y + heroCta.offsetHeight - window.innerHeight + 40) : hero.offsetHeight * 0.6;
+      bar.classList.toggle('is-visible', y > Math.max(limit, 120));
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- 3. Before / After sliders (static ones) ---------- */
+  $$('.ba').forEach(function (ba) { initBA(ba); });
+
+  /* ---------- 4. Cases (症例) from config ---------- */
+  var casesRoot = $('#cases-grid');
+  if (casesRoot && CFG.cases && CFG.cases.length) {
+    var FIELD_LABELS = { chart: '癖毛チャート', thickness: '髪の太さ', history: 'カラー履歴', recipe: '使用レシピ', reason: '選定理由' };
+    casesRoot.innerHTML = CFG.cases.map(function (c, i) {
+      var n = ('0' + (i + 1)).slice(-2);
+      var rows = Object.keys(FIELD_LABELS).map(function (k) {
+        var v = (c[k] || '').trim();
+        return '<div class="case__row' + (v ? '' : ' is-empty') + '"><dt>' + FIELD_LABELS[k] + '</dt><dd>' + (v ? esc(v) : '<span>動画内で解説</span>') + '</dd></div>';
+      }).join('');
+      return '<article class="case" data-reveal>' +
+        '<div class="ba" aria-label="症例' + n + ' ビフォーアフター比較">' +
+          '<img class="ba__img" src="' + esc(c.after) + '" alt="症例' + n + ' 施術後" loading="lazy" decoding="async" width="636" height="1280">' +
+          '<div class="ba__after" style="--pos:50%"><img class="ba__img" src="' + esc(c.before) + '" alt="症例' + n + ' 施術前" loading="lazy" decoding="async" width="636" height="1280"></div>' +
+          '<span class="ba__label ba__label--before" aria-hidden="true">Before</span><span class="ba__label ba__label--after" aria-hidden="true">After</span>' +
+          '<div class="ba__handle" aria-hidden="true"><span></span></div><span class="ba__hint" aria-hidden="true">◂ ドラッグして比較 ▸</span>' +
+          '<input class="ba__range" type="range" min="0" max="100" value="50" aria-label="ビフォーアフターの比較位置" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">' +
+        '</div>' +
+        '<div class="case__body"><p class="case__num">CASE ' + n + '</p><h3 class="case__title">' + esc(c.title || '') + '</h3>' +
+        '<dl class="case__dl">' + rows + '</dl></div></article>';
+    }).join('');
+    // re-init sliders for injected cases
+    $$('.ba', casesRoot).forEach(initBA);
+    observeReveals();
+  }
+  function initBA(ba) {
+    var range = $('.ba__range', ba), afterWrap = $('.ba__after', ba), handle = $('.ba__handle', ba);
+    function set(v) { v = Math.max(0, Math.min(100, v)); afterWrap.style.setProperty('--pos', v + '%'); handle.style.left = v + '%'; range.value = v; range.setAttribute('aria-valuenow', Math.round(v)); }
+    range.addEventListener('input', function () { set(parseFloat(range.value)); });
+    var dragging = false;
+    function posToVal(ev) { var r = ba.getBoundingClientRect(); return ((ev.clientX) - r.left) / r.width * 100; }
+    ba.addEventListener('pointerdown', function (ev) { if (ev.target === range) return; dragging = true; set(posToVal(ev)); });
+    ba.addEventListener('pointermove', function (ev) { if (dragging) set(posToVal(ev)); });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (t) { ba.addEventListener(t, function () { dragging = false; }); });
+    set(50);
+  }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  /* ---------- 5. Testimonials (only real ones; hidden until provided) ---------- */
+  var tRoot = $('#testimonials');
+  if (tRoot) {
+    var list = (CFG.testimonials || []).filter(function (t) { return t && t.quote; });
+    if (list.length) {
+      tRoot.hidden = false;
+      $('#testimonials-grid').innerHTML = list.map(function (t) {
+        return '<figure class="voice" data-reveal>' +
+          (t.photo ? '<img class="voice__photo" src="' + esc(t.photo) + '" alt="" loading="lazy" decoding="async" width="96" height="96">' : '') +
+          '<blockquote class="voice__quote">' + esc(t.quote) + '</blockquote>' +
+          '<figcaption class="voice__meta">' + esc(t.salon || '') + (t.name ? '<span>' + esc(t.name) + '</span>' : '') + '</figcaption></figure>';
+      }).join('');
+      observeReveals();
+    }
+  }
+
+
+  /* ---------- 5b. Config wiring (URLs) ---------- */
+  var purchaseUrl = CFG.purchaseUrl || 'https://sins.base.shop';
+  $$('[data-purchase]').forEach(function (a) { a.href = purchaseUrl; });
+  if (CFG.lineUrl) { $$('[data-line]').forEach(function (a) { a.href = CFG.lineUrl; a.hidden = false; }); }
+  if (CFG.contactUrl) {
+    $$('[data-contact]').forEach(function (a) { a.href = CFG.contactUrl; a.hidden = false; if (/^mailto:/.test(CFG.contactUrl)) { a.removeAttribute('target'); } });
+    $$('[data-contact-text]').forEach(function (s) { var a = doc.createElement('a'); a.href = CFG.contactUrl; a.textContent = 'お問い合わせ'; a.style.textDecoration = 'underline'; a.style.textUnderlineOffset = '3px'; if (!/^mailto:/.test(CFG.contactUrl)) { a.target = '_blank'; a.rel = 'noopener'; } s.replaceWith(a); });
+  } else if (CFG.lineUrl) {
+    $$('[data-contact-text]').forEach(function (s) { var a = doc.createElement('a'); a.href = CFG.lineUrl; a.textContent = '公式LINE'; a.target = '_blank'; a.rel = 'noopener'; a.style.textDecoration = 'underline'; a.style.textUnderlineOffset = '3px'; s.replaceWith(a); });
+  }
+
+  /* ---------- 6. Video + purchase gate ---------- */
+  var video = CFG.video || { type: 'none' };
+  var threshold = typeof CFG.unlockAt === 'number' ? CFG.unlockAt : 0.9;
+  var unlocked = false;
+  var stage = $('#video-stage'), progressEl = $('#video-progress'), progressTxt = $('#video-progress-text');
+  var speedBtn = $('#speed-btn');
+  var maxWatched = 0, duration = 0, poll = null;
+  var BUCKET = 5, buckets = {}, bucketCount = 0; // 実際に再生した5秒区間のユニーク数で視聴率を判定（シークで飛ばした区間は数えない）
+  function markTime(t) {
+    if (!(t >= 0)) return;
+    if (t > maxWatched) maxWatched = t;
+    var b = Math.floor(t / BUCKET);
+    if (!buckets[b]) { buckets[b] = 1; bucketCount++; }
+    if (duration) setProgress(bucketCount / Math.ceil(duration / BUCKET));
+  }
+
+  function setProgress(ratio) {
+    ratio = Math.max(0, Math.min(1, ratio || 0));
+    if (progressEl) { progressEl.style.width = (ratio * 100) + '%'; var pb = progressEl.parentNode; if (pb) pb.setAttribute('aria-valuenow', Math.round(ratio * 100)); }
+    if (progressTxt) progressTxt.textContent = Math.round(ratio * 100) + '%';
+    if (ratio >= threshold) unlock('progress');
+  }
+
+  function unlock(reason) {
+    if (unlocked) return;
+    unlocked = true;
+    body.classList.add('is-unlocked');
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ t: Date.now(), r: reason })); } catch (e) {}
+    var gate = $('#purchase-gate');
+    if (gate) {
+      gate.classList.add('is-open');
+      gate.setAttribute('aria-hidden', 'false');
+      $$('a, button', gate).forEach(function (el) { el.removeAttribute('tabindex'); });
+    }
+    $$('[data-locked]').forEach(function (el) { el.hidden = true; });
+    $$('[data-unlocked]').forEach(function (el) { el.hidden = false; });
+    if (bar) bar.classList.add('is-unlocked');
+    if (reason === 'progress' || reason === 'ended') {
+      var note = $('#unlock-note');
+      if (note) { note.hidden = false; }
+      if (gate) {
+        gate.setAttribute('tabindex', '-1');
+        setTimeout(function () { gate.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' }); try { gate.focus({ preventScroll: true }); } catch (e) {} }, 600);
+      }
+    }
+  }
+
+  // Already unlocked on a previous visit?
+  try {
+    var saved = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
+    if (saved && saved.t && (Date.now() - saved.t) < 1000 * 60 * 60 * 24 * 90) unlock('remembered');
+  } catch (e) {}
+
+  function loadScript(src, cb) {
+    var s = doc.createElement('script'); s.src = src; s.async = true; s.onload = cb; s.onerror = function () { showFallback(); }; doc.head.appendChild(s);
+  }
+  function videoUrl() {
+    if (video.type === 'youtube') return 'https://www.youtube.com/watch?v=' + encodeURIComponent(video.src);
+    if (video.type === 'vimeo') return 'https://vimeo.com/' + encodeURIComponent(video.src);
+    return video.src || '#';
+  }
+  function showFallback() {
+    // プレイヤーが読み込めない場合：外部リンクで視聴してもらい、視聴後に自己申告で解放（無音の自動解放はしない）
+    var fb = $('#video-fallback'), fl = $('#video-fallback-link'), fd = $('#video-fallback-done');
+    if (fl) fl.href = videoUrl();
+    if (fb) fb.hidden = false;
+    if (fd) fd.addEventListener('click', function () { unlock('self-report'); });
+  }
+
+  function initMp4() {
+    var v = doc.createElement('video');
+    v.setAttribute('controls', ''); v.setAttribute('playsinline', ''); v.setAttribute('preload', 'metadata');
+    if (video.poster) v.setAttribute('poster', video.poster);
+    v.className = 'video__el';
+    var src = doc.createElement('source'); src.src = video.src; src.type = video.mime || 'video/mp4'; v.appendChild(src);
+    stage.innerHTML = ''; stage.appendChild(v);
+    v.addEventListener('loadedmetadata', function () { duration = v.duration || 0; });
+    v.addEventListener('timeupdate', function () { if (!v.paused) markTime(v.currentTime); });
+    v.addEventListener('ended', function () { setProgress(1); unlock('ended'); });
+    v.addEventListener('error', showFallback);
+    if (speedBtn) speedBtn.addEventListener('click', function () {
+      var fast = v.playbackRate < 1.9; v.playbackRate = fast ? 2 : 1; speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
+      speedBtn.textContent = fast ? '通常速度に戻す' : '2倍速で見る（約12分）';
+      if (v.paused) v.play().catch(function () {});
+    });
+  }
+
+  function initYouTube() {
+    var id = video.src; // YouTube video id
+    var holder = doc.createElement('div'); holder.id = 'yt-player'; stage.innerHTML = ''; stage.appendChild(holder);
+    window.onYouTubeIframeAPIReady = function () {
+      var player = new YT.Player('yt-player', {
+        videoId: id,
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: { rel: 0, modestbranding: 1, playsinline: 1, origin: location.origin },
+        events: {
+          onReady: function () { duration = player.getDuration() || 0; },
+          onStateChange: function (e) {
+            if (e.data === YT.PlayerState.PLAYING) {
+              duration = player.getDuration() || duration;
+              if (!poll) poll = setInterval(function () { markTime(player.getCurrentTime()); }, 1000);
+            } else if (poll && e.data !== YT.PlayerState.BUFFERING) { clearInterval(poll); poll = null; }
+            if (e.data === YT.PlayerState.ENDED) { setProgress(1); unlock('ended'); }
+          },
+          onError: showFallback
+        }
+      });
+      if (speedBtn) speedBtn.addEventListener('click', function () {
+        var fast = player.getPlaybackRate() < 1.9; player.setPlaybackRate(fast ? 2 : 1);
+        speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
+        speedBtn.textContent = fast ? '通常速度に戻す' : '2倍速で見る（約12分）';
+        if (player.getPlayerState() !== YT.PlayerState.PLAYING) player.playVideo();
+      });
+    };
+    loadScript('https://www.youtube.com/iframe_api');
+  }
+
+  function initVimeo() {
+    var iframe = doc.createElement('iframe');
+    iframe.src = 'https://player.vimeo.com/video/' + video.src + '?dnt=1&title=0&byline=0&portrait=0&playsinline=1';
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture'); iframe.setAttribute('allowfullscreen', ''); iframe.title = 'オンラインセミナー動画';
+    iframe.className = 'video__el'; stage.innerHTML = ''; stage.appendChild(iframe);
+    loadScript('https://player.vimeo.com/api/player.js', function () {
+      var player = new Vimeo.Player(iframe);
+      player.on('timeupdate', function (d) { if (d.duration) duration = d.duration; markTime(d.seconds); });
+      player.on('ended', function () { setProgress(1); unlock('ended'); });
+      player.on('error', showFallback);
+      if (speedBtn) speedBtn.addEventListener('click', function () {
+        player.getPlaybackRate().then(function (r) {
+          var fast = r < 1.9; return player.setPlaybackRate(fast ? 2 : 1).then(function () {
+            speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
+            speedBtn.textContent = fast ? '通常速度に戻す' : '2倍速で見る（約12分）';
+            player.play();
+          });
+        }).catch(function () {});
+      });
+    });
+  }
+
+  if (stage) {
+    if (video.type === 'mp4' && video.src) initMp4();
+    else if (video.type === 'youtube' && video.src) initYouTube();
+    else if (video.type === 'vimeo' && video.src) initVimeo();
+    else {
+      // No video configured yet → placeholder; purchase CTA available immediately (configurable)
+      body.classList.add('no-video');
+      if (speedBtn) speedBtn.hidden = true;
+      if (CFG.unlockWhenNoVideo !== false) unlock('no-video');
+    }
+  }
+
+  /* ---------- 6b. 「後で見る」URLコピー ---------- */
+  var laterBtn = $('#later-btn');
+  if (laterBtn) laterBtn.addEventListener('click', function () {
+    var url = location.origin + location.pathname + '#seminar';
+    var done = function () { laterBtn.textContent = 'URLをコピーしました'; setTimeout(function () { laterBtn.textContent = '後で見る（URLをコピー）'; }, 2400); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done).catch(function () { window.prompt('このURLをコピーしてください', url); });
+    else window.prompt('このURLをコピーしてください', url);
+  });
+
+  /* ---------- 7. Smooth anchor scroll with header offset (fallback for old browsers) ---------- */
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (ev) {
+      var id = a.getAttribute('href').slice(1); if (!id) return;
+      var t = doc.getElementById(id); if (!t) return;
+      ev.preventDefault();
+      var top = t.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) + 1;
+      window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+
+  /* ---------- 8. Year ---------- */
+  var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
