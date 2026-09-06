@@ -3,22 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>sins式 髪質改善ストレート｜薬剤選定を、感覚からチャートへ。｜sins cosmetics</title>
-<meta name="description" content="髪質改善ストレートの薬剤選定に迷う美容師へ。癖毛チャート・薬剤・レシピ・還元チェックを一体化した sins式なら、感覚に頼らず判断しやすい。無料オンラインセミナー動画（約25分）を今すぐ視聴。">
+<title>sins式 髪質改善ストレート｜薬剤選定を感覚からチャートへ｜美容師向け無料セミナー動画</title>
+<meta name="description" content="髪質改善ストレートの薬剤選定に迷う美容師へ。癖毛チャート A・B・C、4つの薬剤の役割、還元チェックで判断基準をサロンで共有する sins式を、約25分の無料セミナー動画（登録不要）でご覧いただけます。視聴後にサンプルセットをご案内します。">
 <link rel="canonical" href="https://o-arakawa.github.io/francdirect-dashboard/sins/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="sins cosmetics">
 <meta property="og:title" content="sins式 髪質改善ストレート｜薬剤選定を、感覚からチャートへ。">
 <meta property="og:description" content="癖毛チャート・薬剤・レシピ・還元チェックを一体化。現役美容師の現場から生まれた sins式 髪質改善ストレートシステム。無料セミナー動画（約25分）を公開中。">
 <meta property="og:url" content="https://o-arakawa.github.io/francdirect-dashboard/sins/">
-<meta property="og:image" content="https://o-arakawa.github.io/francdirect-dashboard/sins/assets/hero-1600.jpg">
+<meta property="og:image" content="https://o-arakawa.github.io/francdirect-dashboard/sins/assets/og-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FCFAF7">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23FCFAF7' stroke='%23C6A56B' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-style='italic' font-size='30' text-anchor='middle' fill='%233A322F'%3Es%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#FBF8F3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23FBF8F3' stroke='%23C6A56B' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-style='italic' font-size='30' text-anchor='middle' fill='%232B2523'%3Es%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/hero-mobile-800.webp" type="image/webp" media="(max-width: 899px)">
 <link rel="preload" as="image" href="assets/hero-1600.webp" type="image/webp" media="(min-width: 900px)">
 
@@ -42,8 +44,13 @@ window.SINS_LP_CONFIG = {
     { title: 'ロング・広がりやすい髪',     before: 'assets/ba4032-before-600.jpg', after: 'assets/ba4032-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
     { title: 'ロング・明るいカラー履歴のある髪', before: 'assets/ba4040a-before-600.jpg', after: 'assets/ba4040a-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' }
   ],
+  price: '13,200円（税込）',                // サンプルセットの価格表記。空文字にすると価格の行が非表示になる
+  profile: { name: '菅原 寛人', romaji: 'Hiroto Sugawara', role: 'sins cosmetics ／ 現役美容師（sinsia）' },
   testimonials: []                         // 実在の受講者の声のみ。例: { quote: '…', salon: '〇〇（神奈川）', name: '〇〇 様', photo: 'assets/voice-1.jpg' }
 };
+// JS 有効の印（無効時もコンテンツは全て表示される）／ 既視聴者はチラつきなく解放状態で描画
+document.documentElement.classList.add('js');
+try { var _u = JSON.parse(localStorage.getItem('sins_lp_unlocked_v1') || 'null'); if (_u && _u.t && (Date.now() - _u.t) < 7776e6) document.documentElement.setAttribute('data-unlocked', ''); } catch (e) {}
 </script>
 
 <style>
@@ -51,24 +58,25 @@ window.SINS_LP_CONFIG = {
    Design tokens
    ===================================================================== */
 :root{
-  --bg:#FCFAF7;          /* ivory */
-  --bg-2:#F7F0EB;        /* blush beige */
-  --bg-3:#F1E6E0;        /* deeper blush */
+  --bg:#FBF8F3;          /* ivory（ページ地色） */
+  --bg-2:#F5ECE6;        /* 淡いローズベージュ（交互セクション） */
+  --bg-3:#F0E3DC;        /* deeper blush */
   --surface:#FFFFFF;
-  --ink:#3A322F;         /* warm charcoal */
-  --ink-2:#6B5F5A;       /* muted */
-  --ink-3:#726660;       /* light muted (labels) — AA on bg/bg-2/bg-3 */
+  --ink:#2B2523;         /* 暖色チャコール */
+  --ink-2:#6F625C;       /* 補助文（AA） */
+  --ink-3:#6F625C;       /* 注記・ラベル（AA） */
   --line:#EADFD8;
   --line-2:#DCCFC6;
-  --gold:#C6A56B;        /* lines / decoration only */
-  --gold-ink:#7A5B26;    /* gold for text (AA) */
+  --gold:#C9AE78;        /* ヘアライン・装飾専用（文字色には使わない） */
+  --gold-ink:#8F5D55;    /* アクセント（眉見出し・番号など文字用、AA） */
   --gold-2:#E4D2AE;
   --gold-3:#F3EAD8;
   --rose:#D9B2A9;
   --rose-2:#F2E2DC;
-  --cta:#94505A;         /* rose gold — 商品色（赤/青/緑/黄）とは別系統。白文字で AA */
-  --cta-2:#A45561;
-  --cta-dark:#7E434B;
+  --accent-soft:#E8CFC8;
+  --cta:#7B3B5E;         /* 深いモーヴ — 商品色（赤/青/緑/黄）とも明確に区別。白文字で AA */
+  --cta-2:#9A5074;
+  --cta-dark:#63304B;
   --ok:#587A5C;
   --t7:#C63C3C; --tc6:#2E63C4; --f45:#1E8F73; --f05:#E9A824;
   --serif:'Shippori Mincho','Hiragino Mincho ProN','Yu Mincho',serif;
@@ -121,8 +129,8 @@ strong{font-weight:600}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 30px;white-space:nowrap;border-radius:999px;font-weight:600;font-size:16px;letter-spacing:.06em;line-height:1.3;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s;text-align:center;position:relative}
-.btn--primary{background:linear-gradient(135deg,var(--cta-2) 0%,var(--cta) 55%,var(--cta-dark) 100%);color:#fff;box-shadow:0 12px 30px -12px rgba(148,80,90,.6)}
-.btn--primary:hover{transform:translateY(-2px);box-shadow:0 18px 36px -14px rgba(148,80,90,.7)}
+.btn--primary{background:linear-gradient(135deg,var(--cta-2) 0%,var(--cta) 55%,var(--cta-dark) 100%);color:#fff;box-shadow:0 12px 30px -12px rgba(123,59,94,.35)}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 18px 36px -14px rgba(123,59,94,.45)}
 .btn--primary .btn__sub{display:block;font-weight:400;font-size:11.5px;letter-spacing:.08em;opacity:.9;margin-top:2px}
 .btn--ghost{border:1px solid var(--gold);color:var(--ink);background:rgba(255,255,255,.6)}
 .btn--ghost:hover{background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
@@ -134,16 +142,22 @@ strong{font-weight:600}
 .cta-note{font-size:13px;color:var(--ink-3);margin-top:14px;letter-spacing:.04em}
 
 /* reveal */
-[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-[data-reveal].is-in{opacity:1;transform:none}
+html.js [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+html.js [data-reveal].is-in{opacity:1;transform:none}
 [data-reveal][data-delay="1"]{transition-delay:.12s}[data-reveal][data-delay="2"]{transition-delay:.24s}[data-reveal][data-delay="3"]{transition-delay:.36s}
-@media (prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){html.js [data-reveal]{opacity:1;transform:none;transition:none}}
+/* 既視聴者：JS 実行前から解放状態で描画（チラつき防止） */
+html[data-unlocked] .btn[data-unlocked][hidden]{display:inline-flex !important}
+html[data-unlocked] .btn[data-locked]{display:none !important}
+html[data-unlocked] .gate__locked{display:none}
+html[data-unlocked] .gate__open{display:grid}
+.num{font-variant-numeric:tabular-nums}
 
 /* =====================================================================
    Header
    ===================================================================== */
 .header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
-.header.is-scrolled{background:rgba(252,250,247,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.header.is-scrolled{background:rgba(251,248,243,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
 .header__in{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{display:flex;align-items:baseline;gap:10px;font-family:var(--latin);font-style:italic;font-weight:500;font-size:30px;letter-spacing:.02em;color:var(--ink);line-height:1}
 .logo small{font-family:var(--latin);font-style:normal;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-3)}
@@ -152,22 +166,31 @@ strong{font-weight:600}
 .nav a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .nav a:hover::after{transform:scaleX(1)}
 @media (min-width:1000px){.nav{display:flex}}
-.header .btn{min-height:42px;padding:8px 20px;font-size:13.5px}
+.header .btn{min-height:42px;padding:8px 20px;font-size:13.5px;transition:opacity .35s}
+.header.hero-cta-visible .btn{opacity:0;pointer-events:none}
 @media (max-width:420px){.header .btn{padding:8px 14px;font-size:12.5px}}
 
 /* =====================================================================
    Hero
    ===================================================================== */
-.hero{position:relative;padding-top:var(--header-h);background:linear-gradient(180deg,#F6F3F1 0%,var(--bg) 100%);overflow:hidden}
+.hero{position:relative;padding-top:var(--header-h);background:linear-gradient(180deg,#F4EFEA 0%,var(--bg) 100%);overflow:hidden}
 .hero__media{position:relative;aspect-ratio:4/5;max-height:72vh}
 .hero__media img{width:100%;height:100%;object-fit:cover;object-position:60% 30%}
-.hero__media::after{content:'';position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(252,250,247,0) 0%,var(--bg) 100%)}
+.hero__media::after{content:'';position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(251,248,243,0) 0%,var(--bg) 100%)}
 .hero__body{position:relative;padding:12px 20px 56px;width:min(100%,1120px);margin-inline:auto}
 .hero__eyebrow{font-size:13px;letter-spacing:.14em;color:var(--cta-dark);font-weight:500;display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
 .hero__eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
 .hero h1{font-size:clamp(30px,7.6vw,66px);line-height:1.32;font-weight:600;letter-spacing:.03em;margin-bottom:22px}
 @media (min-width:900px){.hero h1{font-size:clamp(38px,3.9vw,54px)}}
-.hero h1 .thin{font-weight:400}
+.hero h1 .thin{font-weight:500;color:var(--gold-ink)}
+.hero__link{display:inline-flex;align-items:center;gap:8px;font-size:14px;letter-spacing:.08em;color:var(--gold-ink);border-bottom:1px solid var(--gold);padding:4px 2px;margin-left:6px;min-height:44px}
+.hero__link:hover{color:var(--cta)}
+html.js .hero__body > *{animation:rise .9s var(--ease) both}
+html.js .hero__body > :nth-child(2){animation-delay:.12s}html.js .hero__body > :nth-child(3){animation-delay:.24s}html.js .hero__body > :nth-child(4){animation-delay:.32s}html.js .hero__body > :nth-child(5){animation-delay:.42s}html.js .hero__body > :nth-child(6){animation-delay:.52s}
+html.js .hero__media img{animation:zoomin 1.8s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes zoomin{from{transform:scale(1.03)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){html.js .hero__body > *,html.js .hero__media img{animation:none}}
 .hero__sub{font-size:clamp(15px,1.15vw,17.5px);color:var(--ink-2);max-width:34em;margin-bottom:12px}
 .hero__note{font-size:13.5px;color:var(--ink-3);margin-bottom:30px;letter-spacing:.04em}
 .hero .btn-row{margin-bottom:30px}
@@ -225,6 +248,10 @@ strong{font-weight:600}
 .waves{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .wave{text-align:center;padding:12px 4px 10px;border-radius:12px;background:var(--bg)}
 .wave svg{width:100%;height:96px;display:block;margin:0 auto 8px}
+html.js .chart-card .wave path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s var(--ease)}
+html.js .chart-card.is-in .wave path{stroke-dashoffset:0}
+html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js .chart-card.is-in .wave:nth-child(3) path{transition-delay:.3s}html.js .chart-card.is-in .wave:nth-child(4) path{transition-delay:.45s}
+@media (prefers-reduced-motion:reduce){html.js .chart-card .wave path{stroke-dashoffset:0;transition:none}}
 .wave b{display:block;font-family:var(--latin);font-size:24px;line-height:1;color:var(--ink);margin-bottom:4px}
 .wave span{display:block;font-size:11px;letter-spacing:.06em;color:var(--ink-2);line-height:1.4}
 .chart-card__photo{margin-top:16px;border-radius:12px;overflow:hidden;aspect-ratio:16/9}
@@ -265,7 +292,7 @@ strong{font-weight:600}
 .ba__after{position:absolute;inset:0;--pos:50%;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
 .ba__handle::before{content:'';position:absolute;top:0;bottom:0;left:-1px;width:2px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.35)}
 .ba__label{position:absolute;top:12px;font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.2em;padding:5px 12px;border-radius:999px;background:rgba(58,50,47,.55);color:#fff;backdrop-filter:blur(4px);pointer-events:none}
-.ba__label--before{left:12px}.ba__label--after{right:12px;background:rgba(148,80,90,.85)}
+.ba__label--before{left:12px}.ba__label--after{right:12px;background:rgba(123,59,94,.85)}
 .ba__handle{position:absolute;top:0;bottom:0;left:50%;width:0;pointer-events:none}
 .ba__handle span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.25);display:grid;place-items:center}
 .ba__handle span::before{content:'◂';font-size:13px;color:var(--ink);position:absolute;left:9px;top:50%;transform:translateY(-50%)}
@@ -286,7 +313,7 @@ strong{font-weight:600}
 .pair{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#fff;aspect-ratio:4/3}
 .pair img{width:100%;height:100%;object-fit:cover}
 .pair span{position:absolute;top:8px;font-family:var(--latin);font-style:italic;font-size:11px;letter-spacing:.16em;padding:3px 9px;border-radius:999px;background:rgba(58,50,47,.55);color:#fff}
-.pair span:first-of-type{left:8px}.pair span:last-of-type{right:8px;background:rgba(148,80,90,.85)}
+.pair span:first-of-type{left:8px}.pair span:last-of-type{right:8px;background:rgba(123,59,94,.85)}
 .cases__note{margin-top:22px;text-align:center}
 
 /* =====================================================================
@@ -296,7 +323,7 @@ strong{font-weight:600}
 @media (min-width:900px){.band{padding:140px 0}}
 .band__bg{position:absolute;inset:0;z-index:0}
 .band__bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.band__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(252,250,247,.94) 0%,rgba(252,250,247,.86) 50%,rgba(252,250,247,.94) 100%)}
+.band__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(251,248,243,.94) 0%,rgba(251,248,243,.86) 50%,rgba(251,248,243,.94) 100%)}
 .band__in{position:relative;z-index:1;text-align:center;max-width:760px;margin-inline:auto}
 .band__lines{font-family:var(--serif);font-size:clamp(16px,1.4vw,20px);line-height:2.1;letter-spacing:.06em;margin:22px 0 10px}
 .band .lead{margin-inline:auto;margin-bottom:34px}
@@ -317,7 +344,7 @@ strong{font-weight:600}
 @media (max-width:700px){.process{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px 8px;margin-left:-20px;margin-right:-20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .process::-webkit-scrollbar{display:none}
 .process figure{flex:0 0 132px;scroll-snap-align:start}}
-.video-wrap{margin-top:56px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.video-wrap{margin-top:56px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:14px;box-shadow:var(--shadow)}
 @media (min-width:900px){.video-wrap{padding:36px;margin-top:80px}}
 .video-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;margin-bottom:18px}
 .video-head h3{font-size:clamp(18px,1.6vw,22px)}
@@ -346,18 +373,29 @@ strong{font-weight:600}
 
 /* purchase gate */
 .gate{margin-top:26px;border-radius:18px;position:relative;overflow:hidden}
-.gate__locked{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:34px 22px;border:1px dashed var(--line-2);border-radius:18px;background:var(--bg)}
-.gate__locked .lock{width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--gold-2);display:grid;place-items:center;color:var(--gold)}
+.gate__locked{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 16px;border:1px dashed var(--line-2);border-radius:18px;background:var(--bg)}
+.ring{position:relative;width:88px;height:88px;display:grid;place-items:center}
+.ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:2.5}
+.ring .ring__bg{stroke:var(--accent-soft)}
+.ring .ring__fg{stroke:var(--gold);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .6s var(--ease)}
+.ring b{font-family:var(--latin);font-weight:600;font-size:24px;color:var(--ink);font-variant-numeric:tabular-nums}
+.gate__locked .ghost{margin-top:8px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 22px;border-radius:999px;border:1px dashed var(--line-2);font-size:13px;color:var(--ink-3);letter-spacing:.06em}
 .gate__locked p{font-family:var(--serif);font-size:15.5px;letter-spacing:.06em;line-height:1.9}
 .gate__locked small{font-size:12.5px;color:var(--ink-3)}
-.gate__open{display:none;border-radius:18px;background:linear-gradient(135deg,#fff 0%,var(--rose-2) 100%);border:1px solid var(--rose);padding:28px 22px;text-align:center;box-shadow:var(--shadow)}
-@media (min-width:900px){.gate__open{padding:40px 48px;display:none;grid-template-columns:1fr auto;align-items:center;gap:32px;text-align:left}}
+.gate__open{display:none;border-radius:18px;background:linear-gradient(135deg,#fff 0%,var(--rose-2) 100%);border:1px solid var(--rose);padding:26px 18px;text-align:center;box-shadow:var(--shadow);gap:20px}
+.gate__open > *{min-width:0}
+.gate__open .btn--block{white-space:normal;padding-left:18px;padding-right:18px}
+.gate__thumb{width:min(100%,260px);margin:0 auto;border-radius:12px;overflow:hidden;aspect-ratio:16/10;outline:1px solid rgba(201,174,120,.35);outline-offset:-1px}
+.gate__thumb img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+@media (min-width:900px){.gate__open{padding:36px 44px;display:none;grid-template-columns:200px 1fr auto;align-items:center;gap:32px;text-align:left}.gate__thumb{width:200px;aspect-ratio:1}}
 .gate.is-open .gate__locked{display:none}
 .gate.is-open .gate__open{display:grid}
 .gate__open .thanks{font-size:13px;letter-spacing:.12em;color:var(--cta-dark);margin-bottom:8px}
 .gate__open h4{font-family:var(--serif);font-size:clamp(19px,1.7vw,24px);font-weight:600;line-height:1.6;margin-bottom:8px}
-.gate__open .price{font-family:var(--latin);font-size:34px;line-height:1;color:var(--ink);margin:10px 0 6px}
-.gate__open .price small{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-left:6px;letter-spacing:.06em}
+.gate__open .price{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--ink);margin:10px 0 4px;font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.gate__open .price small{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-left:8px;letter-spacing:.06em;font-weight:400}
+.gate__open .sample-label{font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.24em;color:var(--gold-ink);margin-bottom:2px}
 .gate__open p{font-size:14px;color:var(--ink-2);line-height:1.8}
 .gate__open .btn{margin-top:14px}
 @media (min-width:900px){.gate__open .btn{margin-top:0}}
@@ -472,27 +510,29 @@ strong{font-weight:600}
 /* =====================================================================
    Footer
    ===================================================================== */
-.footer{padding:44px 0 calc(34px + 76px + env(safe-area-inset-bottom));background:var(--ink);color:rgba(255,255,255,.88);font-size:13px;letter-spacing:.06em}
+.footer{padding:44px 0 34px;background:var(--ink);color:rgba(255,255,255,.88);font-size:13px;letter-spacing:.06em}
 .footer__in{display:flex;flex-direction:column;gap:18px}
 @media (min-width:760px){.footer__in{flex-direction:row;justify-content:space-between;align-items:flex-end}}
 .footer .logo{color:#fff}
 .footer .logo small{color:rgba(255,255,255,.72)}
 .footer__links{display:flex;flex-wrap:wrap;gap:8px 20px}
 .footer__links a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.35)}
+@media (max-width:1023px){.footer{padding-bottom:calc(34px + 76px + env(safe-area-inset-bottom))}}
 .footer__copy{font-family:var(--latin);letter-spacing:.14em;color:rgba(255,255,255,.72)}
 
 /* =====================================================================
    Sticky CTA bar
    ===================================================================== */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(252,250,247,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s var(--ease)}
+.sticky{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(251,248,243,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s var(--ease)}
 .sticky.is-visible{transform:none}
+.sticky.is-suppressed{transform:translateY(110%)}
+@media (max-width:1023px){.sticky{display:block}}
 .sticky__in{display:flex;gap:10px;align-items:center;max-width:720px;margin-inline:auto}
 .sticky .btn{min-height:52px;padding:10px 16px;font-size:14.5px;flex:1}
 .sticky .btn--ghost{flex:0 0 auto;background:#fff}
 @media (prefers-reduced-motion:reduce){.sticky{transition:none}}
 
 /* photo treatment: unify tone of on-site photos */
-.problem__media img,.flow__photos img,.collage img,.instructor__media img,.process .ph img,.pair img,.ba__img,.chart-card__photo img{filter:saturate(.94) contrast(.98)}
 .problem__media,.flow__photos figure,.collage figure,.instructor__media,.process .ph,.pair,.chart-card__photo{outline:1px solid rgba(198,165,107,.28);outline-offset:-1px}
 /* utilities */
 .nb{display:inline-block}
@@ -511,12 +551,13 @@ strong{font-weight:600}
     <a class="logo" href="#hero" aria-label="sins cosmetics トップへ">sins <small>cosmetics</small></a>
     <nav class="nav" aria-label="ページ内リンク">
       <a href="#method">sins式の仕組み</a>
-      <a href="#cases">症例</a>
+      <a href="#cases">施術例</a>
       <a href="#seminar">セミナー動画</a>
       <a href="#products">薬剤</a>
       <a href="#faq">よくある質問</a>
     </nav>
-    <a class="btn btn--primary" href="#seminar">無料セミナー動画を見る</a>
+    <a class="btn btn--primary" data-locked href="#seminar">無料セミナー動画を見る</a>
+    <a class="btn btn--primary" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセット購入ページへ</a>
   </div>
 </header>
 
@@ -536,12 +577,12 @@ strong{font-weight:600}
     </div>
     <div class="hero__body">
       <p class="hero__eyebrow">髪質改善ストレートの薬剤選定に迷う美容師へ</p>
-      <h1 id="hero-title">薬剤選定を、<br>感覚から<span class="thin">チャートへ。</span></h1>
+      <h1 id="hero-title">薬剤選定を、<br>感覚から<span class="thin">チャート</span>へ。</h1>
       <p class="hero__sub">癖の強さ、髪の強度、ダメージ履歴を見極め、チャートとレシピに沿って薬剤を選定する。現役美容師の現場から生まれた、sins式 髪質改善ストレートシステム。</p>
       <p class="hero__note">薬剤・マニュアル・教育を一体化し、サロン全体で再現しやすい技術へ。</p>
       <div class="btn-row">
-        <a class="btn btn--primary btn--lg" href="#seminar"><span>無料セミナー動画を見る<span class="btn__sub">約25分・登録不要・LP内で視聴</span></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn--ghost" href="#method">sins式の仕組みを見る</a>
+        <a class="btn btn--primary btn--lg" href="#seminar"><span>無料セミナー動画を見る<span class="btn__sub">約25分・登録不要・このページ内で再生</span></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        <a class="hero__link" href="#method">先に sins式の仕組みを読む<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v13M6 12l6 6 6-6"/></svg></a>
       </div>
       <ul class="trust" aria-label="sins式を構成する要素">
         <li>薬剤 4種</li>
@@ -571,13 +612,13 @@ strong{font-weight:600}
       </figure>
       <div>
         <ul class="checklist" aria-label="よくある悩み">
-          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>担当者によって薬剤選定が変わってしまう</span></li>
-          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>癖は伸ばしたいが、ダメージさせるのが怖い</span></li>
-          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>ブリーチ毛・既矯正毛・エイジング毛の判断が難しい</span></li>
-          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>強い癖に、どこまで薬剤パワーを上げてよいか分からない</span></li>
-          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>スタッフに教えても、感覚的な説明になってしまう</span></li>
-          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>薬剤を弱くしすぎて、癖の伸びが甘くなる</span></li>
-          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#B0616B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>髪質改善ストレートを高単価メニューにしたいが、技術に自信がない</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#8F5D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>担当者によって薬剤選定が変わってしまう</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#8F5D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>癖は伸ばしたいが、ダメージさせるのが怖い</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#8F5D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>ブリーチ毛・既矯正毛・エイジング毛の判断が難しい</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#8F5D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>強い癖に、どこまで薬剤パワーを上げてよいか分からない</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#8F5D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>スタッフに教えても、感覚的な説明になってしまう</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#8F5D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>薬剤を弱くしすぎて、癖の伸びが甘くなる</span></li>
+          <li data-reveal><svg class="check-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#F2E2DC" stroke="#D9B2A9"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="#8F5D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>髪質改善ストレートを高単価メニューにしたいが、技術に自信がない</span></li>
         </ul>
         <p class="problem__close" data-reveal>髪質改善ストレートが難しい理由は、美容師の技術だけではありません。<br><strong>判断基準が、言葉と仕組みになっていないこと</strong>も大きな原因です。</p>
       </div>
@@ -605,10 +646,10 @@ strong{font-weight:600}
       <div class="chart-card" data-reveal>
         <p class="chart-card__title">Sins Curl Pattern Chart<b>癖毛チャート</b></p>
         <div class="waves" role="img" aria-label="癖毛チャート：A ソフトウェーブ、B モデレートウェーブ、C ストロングウェーブ、D テストカール">
-          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 26 16, 14 28, 20 40 S 26 64, 20 76 S 16 88, 20 92" fill="none" stroke="#3A322F" stroke-width="2.2" stroke-linecap="round"/></svg><b>A</b><span>Soft Wave</span></div>
-          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 30 12, 10 20, 20 28 S 30 44, 20 52 S 10 68, 20 76 S 30 88, 20 92" fill="none" stroke="#3A322F" stroke-width="2.2" stroke-linecap="round"/></svg><b>B</b><span>Moderate Wave</span></div>
-          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 34 9, 6 14, 20 20 S 34 27, 20 34 S 6 41, 20 48 S 34 55, 20 62 S 6 69, 20 76 S 34 83, 20 92" fill="none" stroke="#3A322F" stroke-width="2.2" stroke-linecap="round"/></svg><b>C</b><span>Strong Wave</span></div>
-          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 v8 c -10 0 -10 12 0 12 c 10 0 10 12 0 12 c -10 0 -10 12 0 12 c 10 0 10 12 0 12 c -10 0 -10 12 0 12 v 8" fill="none" stroke="#B0616B" stroke-width="2.2" stroke-linecap="round"/></svg><b>D</b><span>Test Curl</span></div>
+          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 26 16, 14 28, 20 40 S 26 64, 20 76 S 16 88, 20 92" pathLength="1" fill="none" stroke="#2B2523" stroke-width="2.2" stroke-linecap="round"/></svg><b>A</b><span>Soft Wave</span></div>
+          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 30 12, 10 20, 20 28 S 30 44, 20 52 S 10 68, 20 76 S 30 88, 20 92" pathLength="1" fill="none" stroke="#2B2523" stroke-width="2.2" stroke-linecap="round"/></svg><b>B</b><span>Moderate Wave</span></div>
+          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 C 34 9, 6 14, 20 20 S 34 27, 20 34 S 6 41, 20 48 S 34 55, 20 62 S 6 69, 20 76 S 34 83, 20 92" pathLength="1" fill="none" stroke="#2B2523" stroke-width="2.2" stroke-linecap="round"/></svg><b>C</b><span>Strong Wave</span></div>
+          <div class="wave"><svg viewBox="0 0 40 96" aria-hidden="true"><path d="M20 4 v8 c -10 0 -10 12 0 12 c 10 0 10 12 0 12 c -10 0 -10 12 0 12 c 10 0 10 12 0 12 c -10 0 -10 12 0 12 v 8" pathLength="1" fill="none" stroke="#8F5D55" stroke-width="2.2" stroke-linecap="round"/></svg><b>D</b><span>Test Curl</span></div>
         </div>
         <div class="chart-card__photo">
           <picture>
@@ -686,10 +727,10 @@ strong{font-weight:600}
     <div class="section-head center" data-reveal>
       <p class="eyebrow is-center">Before / After</p>
       <h2 id="cases-title">マニュアル通りに考えると、<br>難しい髪も整理して<span class="nb">判断できる。</span></h2>
-      <p class="lead">スライダーを動かして、施術前後を見比べてください。各症例の判断は、セミナー動画の中で解説しています。</p>
+      <p class="lead">スライダーを動かして、施術前後を見比べてください。各施術例の判断は、セミナー動画の中で解説しています。</p>
     </div>
     <div class="cases" id="cases-grid">
-      <!-- 症例カードは SINS_LP_CONFIG.cases から生成されます -->
+      <!-- 施術例カードは SINS_LP_CONFIG.cases から生成されます -->
     </div>
     <div class="gallery" aria-label="その他の施術例">
       <div class="pair" data-reveal><img src="assets/ba4033-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4033-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
@@ -699,9 +740,9 @@ strong{font-weight:600}
       <div class="pair" data-reveal><img src="assets/ba4041a-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4041a-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
       <div class="pair" data-reveal><img src="assets/ba4037a-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4037a-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
     </div>
-    <p class="note cases__note">※ 写真はセミナー・サロンワークで撮影した実際の施術例です。仕上がりは髪の状態や履歴によって異なります。</p>
+    <p class="note cases__note">※ 写真はセミナー・サロンワークで撮影した実際の施術例です。仕上がりには個人差があり、髪の状態や履歴によって異なります。</p>
     <div class="btn-row is-center" style="margin-top:36px" data-reveal>
-      <a class="btn btn--primary" href="#seminar">症例の考え方をセミナー動画で学ぶ<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--primary" href="#seminar">施術例の考え方をセミナー動画で学ぶ<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
     </div>
     <p class="cta-note center">無料・約25分・登録不要（このページ内で視聴できます）</p>
   </div>
@@ -734,7 +775,7 @@ strong{font-weight:600}
     <div class="section-head center" data-reveal>
       <p class="eyebrow is-center">Online Seminar</p>
       <h2 id="seminar-title">セミナーの翌日から、<br>サロンワークで使える内容を。</h2>
-      <p class="lead">薬剤の説明ではなく、判断の仕方を学ぶ約25分。スマートフォンでも、2倍速でもご覧いただけます。</p>
+      <p class="lead">薬剤の説明ではなく、判断の仕方を学ぶ約25分。2倍速なら約12分。登録・メール入力は不要で、スマートフォンでもご覧いただけます。</p>
     </div>
 
     <ol class="learn" aria-label="セミナーで学べる内容">
@@ -749,7 +790,7 @@ strong{font-weight:600}
     </ol>
 
     <div class="process" aria-label="施術工程">
-      <figure data-reveal><div class="ph"><img src="assets/counsel-1-600.jpg" width="600" height="338" alt="診断・カウンセリング" loading="lazy" decoding="async"></div><figcaption><b>01</b>診断</figcaption></figure>
+      <figure data-reveal><div class="ph"><img src="assets/counsel-1-600.jpg" width="600" height="338" alt="カウンセリング" loading="lazy" decoding="async"></div><figcaption><b>01</b>カウンセリング</figcaption></figure>
       <figure data-reveal data-delay="1"><div class="ph"><img src="assets/apply-600.jpg" width="600" height="338" alt="薬剤塗布" loading="lazy" decoding="async"></div><figcaption><b>02</b>薬剤塗布</figcaption></figure>
       <figure data-reveal data-delay="2"><div class="ph"><img src="assets/curlcheck-600.jpg" width="600" height="338" alt="還元チェック" loading="lazy" decoding="async"></div><figcaption><b>03</b>還元チェック</figcaption></figure>
       <figure data-reveal data-delay="3"><div class="ph"><img src="assets/iron-600.jpg" width="600" height="338" alt="アイロン操作" loading="lazy" decoding="async"></div><figcaption><b>04</b>アイロン</figcaption></figure>
@@ -758,7 +799,7 @@ strong{font-weight:600}
 
     <div class="video-wrap" id="video" data-reveal>
       <div class="video-head">
-        <h3>sins式 髪質改善ストレート オンラインセミナー</h3>
+        <h3>無料オンラインセミナー動画｜sins式 髪質改善ストレート</h3>
         <span class="badge">無料・登録不要・約25分</span>
       </div>
       <div class="video-stage" id="video-stage">
@@ -780,23 +821,27 @@ strong{font-weight:600}
       </div>
       <p class="video-fallback" id="video-fallback" hidden>動画が再生できない場合は、<a id="video-fallback-link" href="#" target="_blank" rel="noopener">こちらから直接ご覧ください</a>。<button type="button" class="linklike" id="video-fallback-done">視聴が終わった方はこちら</button></p>
 
+      <p class="sr-only" id="gate-live" aria-live="polite"></p>
       <div class="gate" id="purchase-gate" aria-hidden="true">
         <div class="gate__locked">
-          <span class="lock" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
-          <p>動画を最後までご覧いただくと、<br class="hide-desktop">サンプルセットのご案内が表示されます。</p>
-          <small>視聴状況は端末に保存されます。次回は続きからご案内が表示されます。</small>
+          <div class="ring" role="progressbar" aria-label="動画の視聴状況" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring__bg" cx="50" cy="50" r="46" pathLength="1"/><circle class="ring__fg" id="ring-fg" cx="50" cy="50" r="46" pathLength="1"/></svg><b id="ring-text">0%</b></div>
+          <p>サンプルセットのご案内は、<br class="hide-desktop">動画の視聴完了後に表示されます。</p>
+          <small>2倍速でもご覧いただけます。視聴状況はお使いのブラウザに保存され、同じ端末・同じブラウザなら次回も引き継がれます。</small>
+          <span class="ghost" aria-hidden="true">サンプルセット購入ページへ ─ 視聴完了後に開きます</span>
         </div>
         <div class="gate__open">
+          <div class="gate__thumb"><img src="assets/products-700.jpg" width="700" height="675" alt="sins の薬剤 4種のパウチ" loading="lazy" decoding="async"></div>
           <div>
             <p class="thanks">ご視聴ありがとうございます</p>
-            <h4>sins式の薬剤を、サロンで実際にお試しください。</h4>
-            <p>癖毛チャートと合わせて使うことで、動画でお伝えした「判断の仕方」をそのまま再現できます。</p>
-            <p class="price">13,200<small>円（税込）／ サンプルセット</small></p>
-            <p class="note">セット内容・数量は購入ページでご確認ください。</p>
+            <h4>sins式を、サロンで実際にお試しください。</h4>
+            <p>癖毛チャートと合わせて使うことで、動画でお伝えした「判断の仕方」をそのままサロンで確かめられます。</p>
+            <p class="sample-label">Sample Set</p>
+            <p class="price" data-price-row><span class="num" data-price>13,200円（税込）</span><small>サンプルセット</small></p>
+            <p class="note">最新の価格・セット内容は購入ページでご確認ください。</p>
           </div>
           <div>
-            <a class="btn btn--primary btn--lg btn--block" data-purchase href="https://sins.base.shop" target="_blank" rel="noopener"><span>サンプルセットを購入する<span class="btn__sub">購入ページ（オンラインショップ）へ</span></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
-            <p class="cta-note" style="text-align:center">別ウィンドウで開きます</p>
+            <a class="btn btn--primary btn--lg btn--block" data-purchase href="https://sins.base.shop" target="_blank" rel="noopener"><span>サンプルセット購入ページへ<span class="btn__sub">オンラインショップが新しいタブで開きます</span></span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+            <a class="hero__link" data-line hidden href="#" target="_blank" rel="noopener" style="margin:10px auto 0;display:none">先に LINE で相談する</a>
           </div>
         </div>
       </div>
@@ -841,6 +886,7 @@ strong{font-weight:600}
       <b>調整・保護するための薬剤</b>
       <span class="chip">ブースター</span><span class="chip">バランサー</span><span class="chip">レブリペア</span>
     </div>
+    <p class="note center" data-reveal style="margin-top:14px">※ 薬剤は美容師向けのプロフェッショナル用製品です。仕上がりを保証するものではなく、髪の状態や履歴によって結果は異なります。</p>
     <p class="products__lead" data-reveal>「伸ばす部分」には T7・TC6 で必要な還元力を。「守る部分」には 4.5・0.5 と処理剤でパワーを調整。<br class="show-desktop">組み合わせの考え方は、セミナー動画で解説しています。</p>
     <div class="btn-row is-center" style="margin-top:30px" data-reveal>
       <a class="btn btn--primary" href="#seminar">薬剤の使い分けを動画で学ぶ<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
@@ -901,8 +947,8 @@ strong{font-weight:600}
       <div data-reveal>
         <p class="eyebrow">Instructor</p>
         <h2 id="instructor-title">現役美容師の現場から生まれた、<br>美容師のための薬剤と教育。</h2>
-        <div class="instructor__name"><b>菅原 寛人</b><span>Hiroto Sugawara</span></div>
-        <p class="instructor__role">sins cosmetics ／ 現役美容師（sinsia）</p>
+        <div class="instructor__name"><b data-profile="name">菅原 寛人</b><span data-profile="romaji">Hiroto Sugawara</span></div>
+        <p class="instructor__role" data-profile="role">sins cosmetics ／ 現役美容師（sinsia）</p>
         <div class="instructor__text">
           <p>サロン「sinsia（シンシア）」でサロンワークを続けながら、sins式 髪質改善ストレートの教育・セミナー登壇を行っています。</p>
           <p>セミナーで大切にしているのは、レシピを渡すことではなく、「なぜその薬剤なのか」「なぜ今流すのか」という判断の理由を、受講した美容師が自分の言葉で説明できるようになることです。</p>
@@ -932,11 +978,11 @@ strong{font-weight:600}
         <a class="btn btn--ghost" href="#seminar">動画を見る</a>
       </li>
       <li class="ns ns--hl" data-reveal data-delay="1">
-        <span class="tag">13,200円（税込）</span>
+        <span class="tag" data-price-row><span data-price>13,200円（税込）</span></span>
         <h3>サンプルセットで試す</h3>
         <p>動画を視聴した方に、サンプルセットの購入ページをご案内します。サロンで実際の薬剤反応を確認してください。</p>
         <a class="btn btn--primary" data-locked href="#seminar">動画視聴後にご案内</a>
-        <a class="btn btn--primary" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセットを購入する</a>
+        <a class="btn btn--primary" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセット購入ページへ</a>
       </li>
       <li class="ns" data-reveal data-delay="2">
         <span class="tag">サロン導入</span>
@@ -956,15 +1002,15 @@ strong{font-weight:600}
       <h2 id="faq-title">よくある質問</h2>
     </div>
     <div class="faq" data-reveal>
-      <details><summary><b>Q</b><span>sins の商品をまだ使ったことがなくても視聴できますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい。動画は、sins の薬剤をまだお使いでない美容師の方に向けて、薬剤選定の考え方から解説しています。</p></div></details>
-      <details><summary><b>Q</b><span>髪質改善ストレートの経験が浅くても大丈夫ですか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい。癖毛チャートと履歴の確認手順に沿って判断していく仕組みのため、経験年数に関わらず、基準を持って取り組めます。</p></div></details>
-      <details><summary><b>Q</b><span>動画では、モデル施術の様子も見られますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>sins式の薬剤選定の考え方と施術の流れを解説しています。内容の詳細は、上の「セミナーで学べる内容」をご覧ください。</p></div></details>
-      <details><summary><b>Q</b><span>商品を購入する必要はありますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>いいえ。動画の視聴は無料で、購入は任意です。実際に試したい方には、視聴後に表示されるサンプルセット（13,200円・税込）をご案内しています。</p></div></details>
-      <details><summary><b>Q</b><span>集合セミナーは開催していますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>モデル施術を間近で確認できる集合セミナーも行っています。開催時期・会場は都度異なるため、ご希望の方は<span data-contact-text>購入ページ内のお問い合わせ</span>からご連絡ください。</p></div></details>
-      <details><summary><b>Q</b><span>スマートフォンで視聴できますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい。スマートフォン・タブレット・パソコンのいずれでもご覧いただけます。通信量が気になる場合は、Wi-Fi 環境での視聴をおすすめします。</p></div></details>
-      <details><summary><b>Q</b><span>質問はできますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>動画内で解説しきれない点は、<span data-contact-text>購入ページ内のお問い合わせ</span>からご質問ください。</p></div></details>
-      <details><summary><b>Q</b><span>視聴に期限はありますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>期限はありません。このページで、いつでも何度でもご覧いただけます。サンプルセットの返品・交換については、購入ページの記載をご確認ください。</p></div></details>
-      <details><summary><b>Q</b><span>美容師免許を持っていないスタッフも視聴できますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>動画はどなたでもご覧いただけます。ただし薬剤は美容師向けのプロフェッショナル用製品のため、施術は美容師免許をお持ちの方が行ってください。</p></div></details>
+      <details><summary><b>Q</b><span>sins の薬剤を使ったことがなくても、動画は見られますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい、ご覧いただけます。動画は sins式の考え方（癖毛チャート、薬剤の役割、還元チェック）を最初から説明する内容です。薬剤をお持ちでない方や、今は別の薬剤をお使いの方も、まず考え方を確認する目的でご視聴ください。登録やメール入力も不要です。</p></div></details>
+      <details><summary><b>Q</b><span>髪質改善ストレートの経験が浅くても、内容についていけますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい。sins式は「感覚に頼らず、チャートと手順で判断しやすくする」ことを目的にしているため、判断に迷うことが多い方ほど、基準を整理する材料としてお役立ていただけます。専門用語が出てくる箇所は、一時停止しながらご覧ください。</p></div></details>
+      <details><summary><b>Q</b><span>動画では、モデル施術の様子も見られますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>動画は、癖毛チャートの当て方、薬剤の塗り分け、還元チェック、アイロン操作、仕上がり説明までの流れを解説する構成です。詳しい内容は、上の「セミナーで学べる内容」をご覧ください。</p></div></details>
+      <details><summary><b>Q</b><span>動画を見たら、サンプルセットの購入は必須ですか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>必須ではありません。動画は無料でご覧いただけ、視聴後に表示されるのは購入ページへのご案内だけです。sins式を実際のサロンワークで試してみたい方に向けて、サンプルセット（<span data-price>13,200円（税込）</span>）をご用意しています。最新の価格・セット内容・お支払い方法は購入ページでご確認ください。</p></div></details>
+      <details><summary><b>Q</b><span>集合セミナーはどこで開催していますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>集合セミナーは、開催地や日程が回ごとに異なります。現在の開催予定は、<span data-contact-text>購入ページ内のお問い合わせ</span>からお尋ねください。まずはこのページの動画で、sins式の考え方をご確認いただくことをおすすめします。</p></div></details>
+      <details><summary><b>Q</b><span>スマートフォンでも視聴できますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>はい、スマートフォン・タブレット・パソコンのいずれでもご覧いただけます。約25分の動画のため、Wi-Fi 環境でのご視聴をおすすめします。「2倍速で見る」ボタンを使うと約12分でご覧いただけます。視聴状況はお使いの端末のブラウザに保存されるため、同じ端末・同じブラウザであれば、後日開いた際も購入ページのご案内が表示されます。</p></div></details>
+      <details><summary><b>Q</b><span>動画の内容について質問はできますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p><span data-contact-text>購入ページ内のお問い合わせ</span>からお寄せください。個別の髪の状態に関するご相談は、髪の写真や履歴の情報が必要になるため、回答までにお時間をいただく場合があります。</p></div></details>
+      <details><summary><b>Q</b><span>キャンセルや日程変更の手続きは必要ですか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>このページの動画は録画のオンラインセミナーですので、キャンセルや日程変更の手続きは不要で、お好きなタイミングで何度でもご覧いただけます。サンプルセットの返品・キャンセルの条件は、購入ページに記載の規約をご確認ください。</p></div></details>
+      <details><summary><b>Q</b><span>美容師免許のないスタッフも視聴できますか？</span><i aria-hidden="true"></i></summary><div class="a"><b>A</b><p>動画の視聴自体に資格の制限はありません。アシスタントやレセプションの方が、サロン内の共通言語として考え方を理解したり、お客様への仕上がり説明に役立てたりする目的でご覧いただけます。ただし、薬剤を用いた施術は、法令に基づき美容師免許をお持ちの方が行ってください。</p></div></details>
     </div>
   </div>
 </section>
@@ -986,7 +1032,7 @@ strong{font-weight:600}
       <div class="strip" aria-hidden="true"><span>癖毛チャート</span><span>薬剤 4種</span><span>レシピ表</span><span>還元チェック</span></div>
       <div class="btn-row">
         <a class="btn btn--primary btn--lg" href="#seminar"><span>無料セミナー動画を見る<span class="btn__sub">約25分・登録不要</span></span></a>
-        <a class="btn btn--ghost" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセットを購入する</a>
+        <a class="btn btn--ghost" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセット購入ページへ</a>
       </div>
       <p class="cta-note">動画は無料・登録不要でご覧いただけます。</p>
     </div>
@@ -1018,32 +1064,101 @@ strong{font-weight:600}
   <div class="sticky__in">
     <a class="btn btn--primary" data-locked href="#seminar">無料セミナー動画を見る</a>
     <a class="btn btn--ghost" data-unlocked hidden href="#seminar">動画を見る</a>
-    <a class="btn btn--primary" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセットを購入する</a>
+    <a class="btn btn--primary" data-unlocked data-purchase hidden href="https://sins.base.shop" target="_blank" rel="noopener">サンプルセット購入ページへ</a>
   </div>
 </div>
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@graph": [
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "name": "株式会社sinsコスメティクス",
+   "alternateName": "sins cosmetics",
+   "url": "https://o-arakawa.github.io/francdirect-dashboard/sins/",
+   "sameAs": [
+    "https://sins.base.shop"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
     {
-      "@type": "Organization",
-      "name": "株式会社sinsコスメティクス",
-      "alternateName": "sins cosmetics",
-      "url": "https://o-arakawa.github.io/francdirect-dashboard/sins/",
-      "sameAs": ["https://sins.base.shop"]
+     "@type": "Question",
+     "name": "sins の薬剤を使ったことがなくても、動画は見られますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "はい、ご覧いただけます。動画は sins式の考え方（癖毛チャート、薬剤の役割、還元チェック）を最初から説明する内容です。薬剤をお持ちでない方や、今は別の薬剤をお使いの方も、まず考え方を確認する目的でご視聴ください。登録やメール入力も不要です。"
+     }
     },
     {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {"@type":"Question","name":"sins の商品をまだ使ったことがなくても視聴できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。動画は、sins の薬剤をまだお使いでない美容師の方に向けて、薬剤選定の考え方から解説しています。"}},
-        {"@type":"Question","name":"髪質改善ストレートの経験が浅くても大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"はい。癖毛チャートと履歴の確認手順に沿って判断していく仕組みのため、経験年数に関わらず、基準を持って取り組めます。"}},
-        {"@type":"Question","name":"商品を購入する必要はありますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。動画の視聴は無料で、購入は任意です。実際に試したい方には、視聴後に表示されるサンプルセット（13,200円・税込）をご案内しています。"}},
-        {"@type":"Question","name":"スマートフォンで視聴できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。スマートフォン・タブレット・パソコンのいずれでもご覧いただけます。"}},
-        {"@type":"Question","name":"美容師免許を持っていないスタッフも視聴できますか？","acceptedAnswer":{"@type":"Answer","text":"動画はどなたでもご覧いただけます。ただし薬剤は美容師向けのプロフェッショナル用製品のため、施術は美容師免許をお持ちの方が行ってください。"}}
-      ]
+     "@type": "Question",
+     "name": "髪質改善ストレートの経験が浅くても、内容についていけますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "はい。sins式は「感覚に頼らず、チャートと手順で判断しやすくする」ことを目的にしているため、判断に迷うことが多い方ほど、基準を整理する材料としてお役立ていただけます。専門用語が出てくる箇所は、一時停止しながらご覧ください。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "動画では、モデル施術の様子も見られますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "動画は、癖毛チャートの当て方、薬剤の塗り分け、還元チェック、アイロン操作、仕上がり説明までの流れを解説する構成です。詳しい内容は、上の「セミナーで学べる内容」をご覧ください。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "動画を見たら、サンプルセットの購入は必須ですか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "必須ではありません。動画は無料でご覧いただけ、視聴後に表示されるのは購入ページへのご案内だけです。sins式を実際のサロンワークで試してみたい方に向けて、サンプルセット（13,200円（税込））をご用意しています。最新の価格・セット内容・お支払い方法は購入ページでご確認ください。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "集合セミナーはどこで開催していますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "集合セミナーは、開催地や日程が回ごとに異なります。現在の開催予定は、購入ページ内のお問い合わせからお尋ねください。まずはこのページの動画で、sins式の考え方をご確認いただくことをおすすめします。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "スマートフォンでも視聴できますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "はい、スマートフォン・タブレット・パソコンのいずれでもご覧いただけます。約25分の動画のため、Wi-Fi 環境でのご視聴をおすすめします。「2倍速で見る」ボタンを使うと約12分でご覧いただけます。視聴状況はお使いの端末のブラウザに保存されるため、同じ端末・同じブラウザであれば、後日開いた際も購入ページのご案内が表示されます。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "動画の内容について質問はできますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "購入ページ内のお問い合わせからお寄せください。個別の髪の状態に関するご相談は、髪の写真や履歴の情報が必要になるため、回答までにお時間をいただく場合があります。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "キャンセルや日程変更の手続きは必要ですか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "このページの動画は録画のオンラインセミナーですので、キャンセルや日程変更の手続きは不要で、お好きなタイミングで何度でもご覧いただけます。サンプルセットの返品・キャンセルの条件は、購入ページに記載の規約をご確認ください。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "美容師免許のないスタッフも視聴できますか？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "動画の視聴自体に資格の制限はありません。アシスタントやレセプションの方が、サロン内の共通言語として考え方を理解したり、お客様への仕上がり説明に役立てたりする目的でご覧いただけます。ただし、薬剤を用いた施術は、法令に基づき美容師免許をお持ちの方が行ってください。"
+     }
     }
-  ]
+   ]
+  }
+ ]
 }
 </script>
 
@@ -1089,11 +1204,16 @@ strong{font-weight:600}
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+  if ('IntersectionObserver' in window) {
+    if (heroCta && header) new IntersectionObserver(function (es) { header.classList.toggle('hero-cta-visible', es[0].isIntersecting); }, { threshold: 0.4 }).observe(heroCta);
+    var stageEl = $('#video-stage');
+    if (stageEl && bar) new IntersectionObserver(function (es) { bar.classList.toggle('is-suppressed', es[0].isIntersecting); }, { threshold: 0.35 }).observe(stageEl);
+  }
 
   /* ---------- 3. Before / After sliders (static ones) ---------- */
   $$('.ba').forEach(function (ba) { initBA(ba); });
 
-  /* ---------- 4. Cases (症例) from config ---------- */
+  /* ---------- 4. Cases (施術例) from config ---------- */
   var casesRoot = $('#cases-grid');
   if (casesRoot && CFG.cases && CFG.cases.length) {
     var FIELD_LABELS = { chart: '癖毛チャート', thickness: '髪の太さ', history: 'カラー履歴', recipe: '使用レシピ', reason: '選定理由' };
@@ -1104,9 +1224,9 @@ strong{font-weight:600}
         return '<div class="case__row' + (v ? '' : ' is-empty') + '"><dt>' + FIELD_LABELS[k] + '</dt><dd>' + (v ? esc(v) : '<span>動画内で解説</span>') + '</dd></div>';
       }).join('');
       return '<article class="case" data-reveal>' +
-        '<div class="ba" aria-label="症例' + n + ' ビフォーアフター比較">' +
-          '<img class="ba__img" src="' + esc(c.after) + '" alt="症例' + n + ' 施術後" loading="lazy" decoding="async" width="636" height="1280">' +
-          '<div class="ba__after" style="--pos:50%"><img class="ba__img" src="' + esc(c.before) + '" alt="症例' + n + ' 施術前" loading="lazy" decoding="async" width="636" height="1280"></div>' +
+        '<div class="ba" aria-label="施術例' + n + ' ビフォーアフター比較">' +
+          '<img class="ba__img" src="' + esc(c.after) + '" alt="施術例' + n + ' 施術後" loading="lazy" decoding="async" width="636" height="1280">' +
+          '<div class="ba__after" style="--pos:50%"><img class="ba__img" src="' + esc(c.before) + '" alt="施術例' + n + ' 施術前" loading="lazy" decoding="async" width="636" height="1280"></div>' +
           '<span class="ba__label ba__label--before" aria-hidden="true">Before</span><span class="ba__label ba__label--after" aria-hidden="true">After</span>' +
           '<div class="ba__handle" aria-hidden="true"><span></span></div><span class="ba__hint" aria-hidden="true">◂ ドラッグして比較 ▸</span>' +
           '<input class="ba__range" type="range" min="0" max="100" value="50" aria-label="ビフォーアフターの比較位置" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">' +
@@ -1148,10 +1268,15 @@ strong{font-weight:600}
   }
 
 
-  /* ---------- 5b. Config wiring (URLs) ---------- */
+  /* ---------- 5b. Config wiring (URLs / price / profile) ---------- */
   var purchaseUrl = CFG.purchaseUrl || 'https://sins.base.shop';
   $$('[data-purchase]').forEach(function (a) { a.href = purchaseUrl; });
-  if (CFG.lineUrl) { $$('[data-line]').forEach(function (a) { a.href = CFG.lineUrl; a.hidden = false; }); }
+  if (CFG.lineUrl) { $$('[data-line]').forEach(function (a) { a.href = CFG.lineUrl; a.hidden = false; a.style.display = ''; }); }
+  if (typeof CFG.price === 'string') {
+    if (CFG.price.trim()) { $$('[data-price]').forEach(function (el) { el.textContent = CFG.price; }); }
+    else { $$('[data-price-row]').forEach(function (el) { el.hidden = true; }); $$('[data-price]').forEach(function (el) { el.textContent = '価格は購入ページでご確認ください'; }); }
+  }
+  if (CFG.profile) { Object.keys(CFG.profile).forEach(function (k) { $$('[data-profile="' + k + '"]').forEach(function (el) { if (CFG.profile[k]) el.textContent = CFG.profile[k]; }); }); }
   if (CFG.contactUrl) {
     $$('[data-contact]').forEach(function (a) { a.href = CFG.contactUrl; a.hidden = false; if (/^mailto:/.test(CFG.contactUrl)) { a.removeAttribute('target'); } });
     $$('[data-contact-text]').forEach(function (s) { var a = doc.createElement('a'); a.href = CFG.contactUrl; a.textContent = 'お問い合わせ'; a.style.textDecoration = 'underline'; a.style.textUnderlineOffset = '3px'; if (!/^mailto:/.test(CFG.contactUrl)) { a.target = '_blank'; a.rel = 'noopener'; } s.replaceWith(a); });
@@ -1166,20 +1291,40 @@ strong{font-weight:600}
   var stage = $('#video-stage'), progressEl = $('#video-progress'), progressTxt = $('#video-progress-text');
   var speedBtn = $('#speed-btn');
   var maxWatched = 0, duration = 0, poll = null;
-  var BUCKET = 5, buckets = {}, bucketCount = 0; // 実際に再生した5秒区間のユニーク数で視聴率を判定（シークで飛ばした区間は数えない）
+  var buckets = {}, bucketCount = 0; // 実際に再生した区間（約5秒）のユニーク数で視聴率を判定（シークで飛ばした区間は数えない）
+  function bucketSec() { return duration ? Math.max(1, Math.min(5, duration / 40)) : 5; }
+  function totalBuckets() { return Math.max(1, Math.ceil(duration / bucketSec())); }
   function markTime(t) {
-    if (!(t >= 0)) return;
+    if (!(t >= 0) || !duration) return;
     if (t > maxWatched) maxWatched = t;
-    var b = Math.floor(t / BUCKET);
-    if (!buckets[b]) { buckets[b] = 1; bucketCount++; }
-    if (duration) setProgress(bucketCount / Math.ceil(duration / BUCKET));
+    var b = Math.floor(t / bucketSec());
+    if (!buckets[b]) { buckets[b] = 1; bucketCount++; saveProgress(); }
+    setProgress(bucketCount / totalBuckets());
   }
 
+  var ringFg = $('#ring-fg'), ringTxt = $('#ring-text'), ringBox = $('.ring'), lastAnnounced = -1;
   function setProgress(ratio) {
     ratio = Math.max(0, Math.min(1, ratio || 0));
-    if (progressEl) { progressEl.style.width = (ratio * 100) + '%'; var pb = progressEl.parentNode; if (pb) pb.setAttribute('aria-valuenow', Math.round(ratio * 100)); }
-    if (progressTxt) progressTxt.textContent = Math.round(ratio * 100) + '%';
+    var pct = Math.round(ratio * 100);
+    if (progressEl) { progressEl.style.width = (ratio * 100) + '%'; var pb = progressEl.parentNode; if (pb) pb.setAttribute('aria-valuenow', pct); }
+    if (progressTxt) progressTxt.textContent = pct + '%';
+    if (ringFg) ringFg.style.strokeDashoffset = String(1 - ratio);
+    if (ringTxt) ringTxt.textContent = pct + '%';
+    if (ringBox) ringBox.setAttribute('aria-valuenow', pct);
+    var step = Math.floor(pct / 10) * 10;
+    if (step !== lastAnnounced && step > 0) { lastAnnounced = step; var live = $('#gate-live'); if (live) live.textContent = '視聴 ' + step + '% です'; }
     if (ratio >= threshold) unlock('progress');
+  }
+  var PROG_KEY = 'sins_video_progress_v1';
+  function saveProgress() { try { localStorage.setItem(PROG_KEY, JSON.stringify({ d: duration, b: Object.keys(buckets).map(Number) })); } catch (e) {} }
+  function restoreProgress() {
+    try {
+      var s = JSON.parse(localStorage.getItem(PROG_KEY) || 'null');
+      if (s && s.d && duration && Math.abs(s.d - duration) < 2 && s.b && s.b.length) {
+        s.b.forEach(function (b) { if (!buckets[b]) { buckets[b] = 1; bucketCount++; } });
+        setProgress(bucketCount / totalBuckets());
+      }
+    } catch (e) {}
   }
 
   function unlock(reason) {
@@ -1199,6 +1344,7 @@ strong{font-weight:600}
     if (reason === 'progress' || reason === 'ended') {
       var note = $('#unlock-note');
       if (note) { note.hidden = false; }
+      var live = $('#gate-live'); if (live) live.textContent = 'サンプルセットのご案内を表示しました';
       if (gate) {
         gate.setAttribute('tabindex', '-1');
         setTimeout(function () { gate.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' }); try { gate.focus({ preventScroll: true }); } catch (e) {} }, 600);
@@ -1235,7 +1381,7 @@ strong{font-weight:600}
     v.className = 'video__el';
     var src = doc.createElement('source'); src.src = video.src; src.type = video.mime || 'video/mp4'; v.appendChild(src);
     stage.innerHTML = ''; stage.appendChild(v);
-    v.addEventListener('loadedmetadata', function () { duration = v.duration || 0; });
+    v.addEventListener('loadedmetadata', function () { duration = v.duration || 0; restoreProgress(); });
     v.addEventListener('timeupdate', function () { if (!v.paused) markTime(v.currentTime); });
     v.addEventListener('ended', function () { setProgress(1); unlock('ended'); });
     v.addEventListener('error', showFallback);
@@ -1255,7 +1401,7 @@ strong{font-weight:600}
         host: 'https://www.youtube-nocookie.com',
         playerVars: { rel: 0, modestbranding: 1, playsinline: 1, origin: location.origin },
         events: {
-          onReady: function () { duration = player.getDuration() || 0; },
+          onReady: function () { duration = player.getDuration() || 0; restoreProgress(); },
           onStateChange: function (e) {
             if (e.data === YT.PlayerState.PLAYING) {
               duration = player.getDuration() || duration;
@@ -1283,7 +1429,8 @@ strong{font-weight:600}
     iframe.className = 'video__el'; stage.innerHTML = ''; stage.appendChild(iframe);
     loadScript('https://player.vimeo.com/api/player.js', function () {
       var player = new Vimeo.Player(iframe);
-      player.on('timeupdate', function (d) { if (d.duration) duration = d.duration; markTime(d.seconds); });
+      var restored = false;
+      player.on('timeupdate', function (d) { if (d.duration) duration = d.duration; if (!restored && duration) { restored = true; restoreProgress(); } markTime(d.seconds); });
       player.on('ended', function () { setProgress(1); unlock('ended'); });
       player.on('error', showFallback);
       if (speedBtn) speedBtn.addEventListener('click', function () {
