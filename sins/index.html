@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>sins式 髪質改善ストレート｜薬剤選定を感覚からチャートへ｜美容師向け無料セミナー動画</title>
+<title>sins式 髪質改善ストレート｜薬剤選定を、感覚からチャートへ</title>
 <meta name="description" content="髪質改善ストレートの薬剤選定に迷う美容師へ。癖毛チャート A・B・C、4つの薬剤の役割、還元チェックで判断基準をサロンで共有する sins式を、約25分の無料セミナー動画（登録不要）でご覧いただけます。視聴後にサンプルセットをご案内します。">
 <link rel="canonical" href="https://o-arakawa.github.io/francdirect-dashboard/sins/">
 <meta property="og:type" content="website">
@@ -18,11 +18,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FBF8F3">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23FBF8F3' stroke='%23C6A56B' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-style='italic' font-size='30' text-anchor='middle' fill='%232B2523'%3Es%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/hero-mobile-800.webp" type="image/webp" media="(max-width: 599px)">
-<link rel="preload" as="image" href="assets/hero-1600.webp" type="image/webp" media="(min-width: 600px)">
+<link rel="preload" as="image" imagesrcset="assets/hero-mobile-800.webp 800w, assets/hero-mobile-1200.webp 1200w" imagesizes="100vw" type="image/webp" media="(max-width: 599px)">
+<link rel="preload" as="image" imagesrcset="assets/hero-1000.webp 1000w, assets/hero-1600.webp 1600w, assets/hero-2400.webp 2400w" imagesizes="(min-width: 900px) 50vw, 100vw" type="image/webp" media="(min-width: 600px)">
 
 <script>
 /* =====================================================================
@@ -38,11 +40,12 @@ window.SINS_LP_CONFIG = {
     poster: 'assets/iron-1600.jpg'         // 再生前に表示する画像（mp4 のみ）
   },
   unlockAt: 0.9,                           // 視聴率がこの値に達したら購入CTAを表示（0.9 = 90%）
-  unlockWhenNoVideo: true,                 // 動画が未設定の間は購入CTAを最初から表示する
+  unlockWhenNoVideo: true,                 // 動画が未設定の間は購入CTAを最初から表示する（この状態は端末に保存しない）
+  unlockTtlDays: 90,                       // 視聴完了の記憶を保持する日数
   cases: [
     { title: 'ミディアム・うねりの強い髪', before: 'assets/ba4038-before-600.jpg', after: 'assets/ba4038-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
     { title: 'ロング・広がりやすい髪',     before: 'assets/ba4032-before-600.jpg', after: 'assets/ba4032-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
-    { title: 'ロング・明るいカラー履歴のある髪', before: 'assets/ba4040a-before-600.jpg', after: 'assets/ba4040a-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' }
+    { title: 'ロング・明るめの髪色',       before: 'assets/ba4040a-before-600.jpg', after: 'assets/ba4040a-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' }
   ],
   price: '13,200円（税込）',                // サンプルセットの価格表記。空文字にすると価格の行が非表示になる
   profile: { name: '菅原 寛人', romaji: 'Hiroto Sugawara', role: 'sins cosmetics ／ 現役美容師（sinsia）' },
@@ -50,7 +53,7 @@ window.SINS_LP_CONFIG = {
 };
 // JS 有効の印（無効時もコンテンツは全て表示される）／ 既視聴者はチラつきなく解放状態で描画
 document.documentElement.classList.add('js');
-try { var _u = JSON.parse(localStorage.getItem('sins_lp_unlocked_v1') || 'null'); if (_u && _u.t && (Date.now() - _u.t) < 7776e6) document.documentElement.setAttribute('data-unlocked', ''); } catch (e) {}
+try { var _c = window.SINS_LP_CONFIG, _k = 'sins_lp_unlocked_v1:' + ((_c.video && _c.video.type) || 'none') + ':' + ((_c.video && _c.video.src) || ''); var _u = JSON.parse(localStorage.getItem(_k) || 'null'); if (_u && _u.t && (Date.now() - _u.t) < (_c.unlockTtlDays || 90) * 864e5) document.documentElement.setAttribute('data-unlocked', ''); } catch (e) {}
 </script>
 
 <style>
@@ -100,6 +103,8 @@ ul,ol{list-style:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--cta);outline-offset:3px;border-radius:4px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+a.sr-only:focus{position:fixed;top:12px;left:12px;width:auto;height:auto;margin:0;padding:10px 16px;clip:auto;white-space:normal;background:var(--cta);color:#fff;border-radius:999px;z-index:100}
+section:focus,main:focus{outline:none}
 .container{width:min(var(--container),100% - 40px);margin-inline:auto}
 @media (min-width:900px){.container{width:min(var(--container),100% - 80px)}}
 section{position:relative;scroll-margin-top:var(--header-h)}
@@ -115,7 +120,7 @@ section{position:relative;scroll-margin-top:var(--header-h)}
 .eyebrow.is-center{justify-content:center}
 .eyebrow.is-center::after{content:'';width:34px;height:1px;background:var(--gold)}
 h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.55;letter-spacing:.04em;text-wrap:balance;word-break:auto-phrase}
-.lead,.hero__sub,.problem__close,.band__lines,.method__text p,.instructor__text p,.final__body p,.ns p,.step4 p{word-break:auto-phrase}
+.lead,.hero__sub,.problem__close,.band__lines,.method__text p,.instructor__text p,.final__body p,.ns p,.step4 p,.products__lead,.product__role,.outcomes li,.gate__open p,.checklist li,.learn li,.timeline__txt,.faq .a p,.note{word-break:auto-phrase}
 h2{font-size:clamp(23px,2.6vw,36px);margin-bottom:22px}
 h3{font-size:clamp(18px,1.6vw,22px)}
 .lead{color:var(--ink-2);font-size:clamp(15px,1.1vw,17px);max-width:40em}
@@ -167,9 +172,9 @@ html[data-unlocked] .gate__open{display:grid}
 .nav a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .nav a:hover::after{transform:scaleX(1)}
 @media (min-width:1000px){.nav{display:flex}}
-.header .btn{min-height:42px;padding:8px 20px;font-size:13.5px;transition:opacity .35s}
+.header .btn{min-height:42px;padding:8px 20px;font-size:13.5px;transition:opacity .35s,visibility .35s}
 @media (max-width:1023px){.header .btn{display:none !important}}
-.header.hero-cta-visible .btn{opacity:0;pointer-events:none}
+.header.hero-cta-visible .btn{opacity:0;pointer-events:none;visibility:hidden}
 @media (max-width:420px){.header .btn{padding:8px 14px;font-size:12.5px}}
 
 /* =====================================================================
@@ -177,13 +182,15 @@ html[data-unlocked] .gate__open{display:grid}
    ===================================================================== */
 .hero{position:relative;padding-top:var(--header-h);background:linear-gradient(180deg,#F4EFEA 0%,var(--bg) 100%);overflow:hidden}
 .hero__media{position:relative;aspect-ratio:1/1}
+@media (max-width:599px){.hero__note{display:none}.hero__sub{margin-bottom:18px}}
 @media (min-width:600px) and (max-width:899px){.hero__media{aspect-ratio:16/10}.hero__media img{object-position:55% 45%}}
 .hero__media img{width:100%;height:100%;object-fit:cover;object-position:62% 28%}
 .hero__media::after{content:'';position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(251,248,243,0) 0%,var(--bg) 100%)}
 .hero__body{position:relative;padding:12px 20px 56px;width:min(100%,1120px);margin-inline:auto}
 .hero__eyebrow{font-size:13px;letter-spacing:.14em;color:var(--cta-dark);font-weight:500;display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
 .hero__eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
-.hero h1{font-size:clamp(30px,7.6vw,66px);line-height:1.32;font-weight:600;letter-spacing:.03em;margin-bottom:22px}
+.hero h1{font-size:clamp(30px,7.6vw,66px);line-height:1.32;font-weight:600;letter-spacing:.03em;margin-bottom:16px}
+@media (min-width:900px){.hero h1{margin-bottom:22px}}
 @media (min-width:900px){.hero h1{font-size:clamp(38px,3.9vw,54px)}}
 .hero h1 .thin{font-weight:500;color:var(--gold-ink)}
 .hero__link{display:inline-flex;align-items:center;gap:8px;font-size:14px;letter-spacing:.08em;color:var(--gold-ink);border-bottom:1px solid var(--gold);padding:4px 2px;margin-left:6px;min-height:44px}
@@ -236,7 +243,7 @@ html.js .hero__media img{animation:zoomin 1.8s var(--ease) both}
    ===================================================================== */
 .steps4{display:grid;gap:14px;counter-reset:step}
 @media (min-width:640px) and (max-width:899px){.steps4{grid-template-columns:repeat(2,1fr);gap:14px}}
-@media (min-width:900px){.steps4{grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+@media (min-width:900px){.steps4{grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative}
 .steps4::before{content:'';position:absolute;left:12%;right:12%;top:38px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2) 12%,var(--gold-2) 88%,transparent)}}
 .step4{text-align:center;padding:18px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);position:relative}
 @media (min-width:900px){.step4{background:transparent;border:0;padding:0 14px}}
@@ -285,16 +292,19 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 @media (max-width:899px){.flow__photos figure{aspect-ratio:3/4}}
 .flow__photos img{width:100%;height:100%;object-fit:cover}
 .flow__photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:12px;letter-spacing:.08em;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.45))}
-@media (max-width:899px){.flow__photos figcaption{font-size:11.5px;padding:18px 6px 7px;letter-spacing:.02em}}
+@media (max-width:899px){.flow__photos figcaption{font-size:12.5px;padding:18px 6px 7px;letter-spacing:.02em}}
 @media (min-width:600px) and (max-width:899px){.flow__photos figcaption{font-size:12.5px;letter-spacing:.06em}}
 
 /* =====================================================================
    Cases (ビフォーアフター)
    ===================================================================== */
 .cases{display:grid;gap:26px}
-@media (min-width:760px){.cases{grid-template-columns:repeat(3,1fr);gap:22px}}
+@media (min-width:760px){.cases{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
 .case{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
 .ba{position:relative;aspect-ratio:4/5;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:pan-y;background:var(--bg-2)}
+.ba::before{content:'';display:block;padding-top:100%}
+@supports (aspect-ratio:1){.ba::before{display:none}}
+.ba picture{display:contents}
 .ba__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .ba__after{position:absolute;inset:0;--pos:50%;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
 .ba__handle::before{content:'';position:absolute;top:0;bottom:0;left:-1px;width:2px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.35)}
@@ -319,6 +329,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 @media (min-width:760px){.gallery{grid-template-columns:repeat(3,1fr);gap:16px}}
 .pair{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#fff;aspect-ratio:4/3}
 .pair img{width:100%;height:100%;object-fit:cover}
+.pair picture{display:contents}
 .pair span{position:absolute;top:8px;font-family:var(--latin);font-style:italic;font-size:11px;letter-spacing:.16em;padding:3px 9px;border-radius:999px;background:rgba(58,50,47,.55);color:#fff}
 .pair span:first-of-type{left:8px}.pair span:last-of-type{right:8px;background:rgba(123,59,94,.85)}
 .cases__note{margin-top:22px;text-align:center}
@@ -345,6 +356,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 .process{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:40px}
 .process figure{position:relative}
 .process .ph{border-radius:12px;overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow-sm)}
+.process .ph picture,.collage picture{display:contents}
 .process img{width:100%;height:100%;object-fit:cover}
 .process figcaption{text-align:center;font-size:12px;letter-spacing:.08em;color:var(--ink-2);margin-top:8px}
 .process figcaption b{font-family:var(--latin);font-style:italic;color:var(--gold-ink);margin-right:4px;font-weight:500}
@@ -370,13 +382,13 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 .progress{flex:1 1 220px;display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
 .progress__bar{flex:1;height:6px;border-radius:999px;background:var(--bg-3);overflow:hidden}
 .progress__fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-2),var(--cta));transition:width .6s var(--ease);border-radius:999px}
-.speed{min-height:42px;padding:8px 18px;border-radius:999px;border:1px solid var(--gold);font-size:13px;letter-spacing:.06em;background:#fff}
+.speed{min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid var(--gold);font-size:13px;letter-spacing:.06em;background:#fff}
 .speed[aria-pressed="true"]{background:var(--gold-3)}
 .speed--ghost{border-color:var(--line-2);color:var(--ink-2)}
 .video-btns{display:flex;flex-wrap:wrap;gap:8px}
 .video-fallback{margin-top:14px;font-size:13px;color:var(--ink-2);text-align:center}
 .video-fallback a{text-decoration:underline;text-underline-offset:3px}
-.linklike{text-decoration:underline;text-underline-offset:3px;color:var(--cta-dark);margin-left:10px}
+.linklike{text-decoration:underline;text-underline-offset:3px;color:var(--cta-dark);margin-left:10px;min-height:44px;display:inline-flex;align-items:center}
 
 /* purchase gate */
 .gate{margin-top:26px;border-radius:18px;position:relative;overflow:hidden}
@@ -417,11 +429,11 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 /* =====================================================================
    Products
    ===================================================================== */
-.products__hero{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:26px;background:#EAE9EB;aspect-ratio:16/9}
-@media (min-width:900px){.products__hero{aspect-ratio:2/1;margin-bottom:36px}}
-.products__hero img{width:100%;height:100%;object-fit:cover;object-position:40% 62%}
+.products__hero{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:26px;background:#EAE9EB;aspect-ratio:3/2}
+@media (min-width:900px){.products__hero{aspect-ratio:16/9;margin-bottom:36px}}
+.products__hero img{width:100%;height:100%;object-fit:cover;object-position:center 68%}
 .products{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-@media (min-width:1000px){.products{grid-template-columns:repeat(4,1fr);gap:18px}}
+@media (min-width:1000px){.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}}
 .product{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 14px 20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
 @media (min-width:640px){.product{padding:26px 18px 24px}}
 .product::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--c)}
@@ -439,6 +451,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
    ===================================================================== */
 .results__grid{display:grid;gap:40px}
 @media (min-width:900px){.results__grid{grid-template-columns:7fr 5fr;gap:64px;align-items:start}.results__grid h2{font-size:clamp(23px,2.3vw,33px)}}
+.sub-label{font-size:13px;letter-spacing:.14em;color:var(--gold-ink);margin-bottom:10px;font-weight:500}
 .outcomes{display:grid;gap:12px}
 .outcomes li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;line-height:1.75;padding:14px 18px;background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--line)}
 .outcomes li b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold-3);color:var(--gold-ink);display:grid;place-items:center;font-family:var(--latin);font-style:italic;font-size:14px;margin-top:2px}
@@ -478,13 +491,13 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
    Next steps
    ===================================================================== */
 .nextsteps{display:grid;gap:14px;counter-reset:ns}
-@media (min-width:760px){.nextsteps{grid-template-columns:repeat(3,1fr);gap:18px}}
+@media (min-width:900px){.nextsteps{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
 .ns{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px 26px;position:relative;box-shadow:var(--shadow-sm)}
-.ns::before{counter-increment:ns;content:'0' counter(ns);font-family:var(--latin);font-style:italic;font-size:40px;line-height:1;color:var(--gold);position:absolute;right:18px;top:16px}
+.ns::before{counter-increment:ns;content:'0' counter(ns);font-family:var(--latin);font-style:italic;font-size:40px;line-height:1;color:var(--gold-ink);opacity:.6;position:absolute;right:18px;top:16px}
 .ns h3{font-size:17.5px;margin:6px 0 10px;padding-right:44px}
 .ns p{font-size:14px;color:var(--ink-2);line-height:1.8}
 .ns .tag{display:inline-block;font-size:11.5px;letter-spacing:.14em;color:var(--cta-dark);background:var(--rose-2);border-radius:999px;padding:4px 12px;margin-bottom:10px}
-.ns .btn{margin-top:16px;min-height:46px;padding:10px 22px;font-size:14px}
+.ns .btn{margin-top:16px;min-height:46px;padding:10px 22px;font-size:14px;white-space:normal}
 .ns--hl{border-color:var(--rose);background:linear-gradient(160deg,#fff,var(--rose-2))}
 
 /* =====================================================================
@@ -494,6 +507,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 .faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
 .faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:30px 1fr 28px;gap:12px;align-items:start;padding:18px 20px;font-weight:500;font-size:15.5px;line-height:1.7}
 .faq summary::-webkit-details-marker{display:none}
+.faq summary:focus-visible{outline-offset:-3px;border-radius:var(--radius-sm)}
 .faq summary b{font-family:var(--latin);font-style:italic;font-size:19px;color:var(--gold-ink);line-height:1.3}
 .faq summary i{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);position:relative;transition:transform .35s var(--ease)}
 .faq summary i::before,.faq summary i::after{content:'';position:absolute;left:50%;top:50%;width:12px;height:1px;background:var(--ink-2);transform:translate(-50%,-50%)}
@@ -533,8 +547,9 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
    Sticky CTA bar
    ===================================================================== */
 .sticky{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(251,248,243,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s var(--ease)}
-.sticky.is-visible{transform:none}
-.sticky.is-suppressed{transform:translateY(110%)}
+.sticky{visibility:hidden;transition:transform .5s var(--ease),visibility .5s}
+.sticky.is-visible{transform:none;visibility:visible}
+.sticky.is-suppressed{transform:translateY(110%);visibility:hidden}
 @media (max-width:1023px){.sticky{display:block}}
 .sticky__in{display:flex;gap:10px;align-items:center;max-width:720px;margin-inline:auto}
 .sticky .btn{min-height:52px;padding:10px 16px;font-size:14.5px;flex:1}
@@ -615,7 +630,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       <figure class="problem__media" data-reveal>
         <picture>
           <source type="image/webp" srcset="assets/counsel-2-600.webp 600w, assets/counsel-2-1000.webp 1000w, assets/counsel-2-1600.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw">
-          <img src="assets/counsel-2-1000.jpg" srcset="assets/counsel-2-600.jpg 600w, assets/counsel-2-1000.jpg 1000w, assets/counsel-2-1600.jpg 1600w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="563" alt="サロンでお客様の髪の状態をカウンセリングする美容師" loading="lazy" decoding="async">
+          <img src="assets/counsel-2-1000.jpg" srcset="assets/counsel-2-600.jpg 600w, assets/counsel-2-1000.jpg 1000w, assets/counsel-2-1600.jpg 1600w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="562" alt="サロンでお客様の髪の状態をカウンセリングする美容師" loading="lazy" decoding="async">
         </picture>
         <figcaption>Counseling</figcaption>
       </figure>
@@ -641,7 +656,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     <div class="section-head center" data-reveal>
       <p class="eyebrow is-center">sins Method</p>
       <h2 id="method-title">迷いを減らすために、sins式は<br>髪質改善ストレートを<span class="nb">「判断できる形」</span>にしました。</h2>
-      <p class="lead">癖の見極めから、流すタイミングまで。判断を4つの工程に分け、サロンの誰もが同じ基準で考えられるようにしています。</p>
+      <p class="lead">癖の見極めから、流すタイミングまで。判断を4つの工程に分け、サロンのスタッフが同じ基準で考えやすいようにしています。</p>
     </div>
 
     <ol class="steps4" aria-label="sins式 4つの流れ">
@@ -663,7 +678,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
         <div class="chart-card__photo">
           <picture>
             <source type="image/webp" srcset="assets/chart-c-600.webp 600w, assets/chart-c-1000.webp 1000w" sizes="(min-width: 900px) 40vw, 100vw">
-            <img src="assets/chart-c-1000.jpg" srcset="assets/chart-c-600.jpg 600w, assets/chart-c-1000.jpg 1000w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="563" alt="癖毛チャート C の図と実際の髪の癖を見比べている手元" loading="lazy" decoding="async">
+            <img src="assets/chart-c-1000.jpg" srcset="assets/chart-c-600.jpg 600w, assets/chart-c-1000.jpg 1000w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="562" alt="癖毛チャート C の図と実際の髪の癖を見比べている手元" loading="lazy" decoding="async">
           </picture>
         </div>
         <p class="chart-card__cap">実際の癖と並べて、チャートで分類する<br>※ 図はウェーブ幅の目安です。実際の判定はセミナー動画で解説します。</p>
@@ -698,7 +713,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
           <li data-reveal><span class="timeline__num">2</span><div class="timeline__txt">後頭部など、癖の強い部分を確認する</div></li>
           <li data-reveal><span class="timeline__num">3</span><div class="timeline__txt">髪の太さ・強度を確認する</div></li>
           <li data-reveal><span class="timeline__num">4</span><div class="timeline__txt">カラー・ブリーチ・髪質改善ストレートの履歴を確認する</div></li>
-          <li data-reveal><span class="timeline__num">5</span><div class="timeline__txt">基準となる薬剤を選ぶ<small>レシピ表に沿って T7 / TC6 / 4.5 を決める</small></div></li>
+          <li data-reveal><span class="timeline__num">5</span><div class="timeline__txt">基準となる薬剤を選ぶ<small>レシピ表に沿って、基準薬剤（T7 / TC6）を決める</small></div></li>
           <li data-reveal><span class="timeline__num">6</span><div class="timeline__txt">細毛・損傷部分は塗り分ける<small>0.5 や処理剤でパワーを調整</small></div></li>
           <li data-reveal><span class="timeline__num">7</span><div class="timeline__txt">クルクルチェックで還元状態を確認する<small>D Test Curl を基準に、流すタイミングを判断</small></div></li>
         </ol>
@@ -707,21 +722,21 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
         <figure data-reveal>
           <picture>
             <source type="image/webp" srcset="assets/chart-hand-600.webp 600w, assets/chart-hand-1000.webp 1000w" sizes="(min-width: 900px) 34vw, 33vw">
-            <img src="assets/chart-hand-1000.jpg" srcset="assets/chart-hand-600.jpg 600w, assets/chart-hand-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="563" alt="髪の癖にチャートを当てて確認している手元" loading="lazy" decoding="async">
+            <img src="assets/chart-hand-1000.jpg" srcset="assets/chart-hand-600.jpg 600w, assets/chart-hand-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="562" alt="髪の癖にチャートを当てて確認している手元" loading="lazy" decoding="async">
           </picture>
           <figcaption><span class="show-desktop">癖毛チャートを当てる</span><span class="hide-desktop">チャートを当てる</span></figcaption>
         </figure>
         <figure data-reveal data-delay="1">
           <picture>
             <source type="image/webp" srcset="assets/apply-600.webp 600w, assets/apply-1000.webp 1000w" sizes="(min-width: 900px) 34vw, 33vw">
-            <img src="assets/apply-1000.jpg" srcset="assets/apply-600.jpg 600w, assets/apply-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="563" alt="部位ごとに薬剤を塗り分けている様子" loading="lazy" decoding="async">
+            <img src="assets/apply-1000.jpg" srcset="assets/apply-600.jpg 600w, assets/apply-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="562" alt="部位ごとに薬剤を塗り分けている様子" loading="lazy" decoding="async">
           </picture>
           <figcaption><span class="show-desktop">部位ごとに塗り分ける</span><span class="hide-desktop">塗り分け</span></figcaption>
         </figure>
         <figure data-reveal data-delay="2">
           <picture>
             <source type="image/webp" srcset="assets/curlcheck-600.webp 600w, assets/curlcheck-1000.webp 1000w" sizes="(min-width: 900px) 34vw, 33vw">
-            <img src="assets/curlcheck-1000.jpg" srcset="assets/curlcheck-600.jpg 600w, assets/curlcheck-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="563" alt="クルクルチェックで還元状態を確認している手元" loading="lazy" decoding="async">
+            <img src="assets/curlcheck-1000.jpg" srcset="assets/curlcheck-600.jpg 600w, assets/curlcheck-1000.jpg 1000w" sizes="(min-width: 900px) 34vw, 33vw" width="1000" height="562" alt="クルクルチェックで還元状態を確認している手元" loading="lazy" decoding="async">
           </picture>
           <figcaption>クルクルチェック</figcaption>
         </figure>
@@ -741,15 +756,15 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     <div class="cases" id="cases-grid">
       <!-- 施術例カードは SINS_LP_CONFIG.cases から生成されます -->
     </div>
-    <div class="gallery" aria-label="その他の施術例">
-      <div class="pair" data-reveal><img src="assets/ba4033-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4033-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
-      <div class="pair" data-reveal><img src="assets/ba4034-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4034-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
-      <div class="pair" data-reveal><img src="assets/ba4035-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4035-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
-      <div class="pair" data-reveal><img src="assets/ba4039-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4039-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
-      <div class="pair" data-reveal><img src="assets/ba4041a-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4041a-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
-      <div class="pair" data-reveal><img src="assets/ba4037a-before-600.jpg" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"><img src="assets/ba4037a-after-600.jpg" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"><span>Before</span><span>After</span></div>
+    <div class="gallery" role="group" aria-label="その他の施術例">
+      <div class="pair" data-reveal><picture><source type="image/webp" srcset="assets/ba4033-before-320.webp 320w, assets/ba4033-before-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4033-before-640.jpg" srcset="assets/ba4033-before-320.jpg 320w, assets/ba4033-before-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"></picture><picture><source type="image/webp" srcset="assets/ba4033-after-320.webp 320w, assets/ba4033-after-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4033-after-640.jpg" srcset="assets/ba4033-after-320.jpg 320w, assets/ba4033-after-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"></picture><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><picture><source type="image/webp" srcset="assets/ba4034-before-320.webp 320w, assets/ba4034-before-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4034-before-640.jpg" srcset="assets/ba4034-before-320.jpg 320w, assets/ba4034-before-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"></picture><picture><source type="image/webp" srcset="assets/ba4034-after-320.webp 320w, assets/ba4034-after-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4034-after-640.jpg" srcset="assets/ba4034-after-320.jpg 320w, assets/ba4034-after-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"></picture><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><picture><source type="image/webp" srcset="assets/ba4035-before-320.webp 320w, assets/ba4035-before-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4035-before-640.jpg" srcset="assets/ba4035-before-320.jpg 320w, assets/ba4035-before-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"></picture><picture><source type="image/webp" srcset="assets/ba4035-after-320.webp 320w, assets/ba4035-after-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4035-after-640.jpg" srcset="assets/ba4035-after-320.jpg 320w, assets/ba4035-after-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"></picture><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><picture><source type="image/webp" srcset="assets/ba4039-before-320.webp 320w, assets/ba4039-before-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4039-before-640.jpg" srcset="assets/ba4039-before-320.jpg 320w, assets/ba4039-before-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="636" height="1280" alt="施術前" loading="lazy" decoding="async"></picture><picture><source type="image/webp" srcset="assets/ba4039-after-320.webp 320w, assets/ba4039-after-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4039-after-640.jpg" srcset="assets/ba4039-after-320.jpg 320w, assets/ba4039-after-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="636" height="1280" alt="施術後" loading="lazy" decoding="async"></picture><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><picture><source type="image/webp" srcset="assets/ba4041a-before-320.webp 320w, assets/ba4041a-before-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4041a-before-640.jpg" srcset="assets/ba4041a-before-320.jpg 320w, assets/ba4041a-before-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="479" height="844" alt="施術前" loading="lazy" decoding="async"></picture><picture><source type="image/webp" srcset="assets/ba4041a-after-320.webp 320w, assets/ba4041a-after-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4041a-after-640.jpg" srcset="assets/ba4041a-after-320.jpg 320w, assets/ba4041a-after-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="479" height="844" alt="施術後" loading="lazy" decoding="async"></picture><span>Before</span><span>After</span></div>
+      <div class="pair" data-reveal><picture><source type="image/webp" srcset="assets/ba4037a-before-320.webp 320w, assets/ba4037a-before-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4037a-before-640.jpg" srcset="assets/ba4037a-before-320.jpg 320w, assets/ba4037a-before-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="521" height="776" alt="施術前" loading="lazy" decoding="async"></picture><picture><source type="image/webp" srcset="assets/ba4037a-after-320.webp 320w, assets/ba4037a-after-640.webp 640w" sizes="(min-width: 760px) 17vw, 25vw"><img src="assets/ba4037a-after-640.jpg" srcset="assets/ba4037a-after-320.jpg 320w, assets/ba4037a-after-640.jpg 640w" sizes="(min-width: 760px) 17vw, 25vw" width="521" height="776" alt="施術後" loading="lazy" decoding="async"></picture><span>Before</span><span>After</span></div>
     </div>
-    <p class="note cases__note">※ 写真はセミナー・サロンワークで撮影した実際の施術例です。仕上がりには個人差があり、髪の状態や履歴によって異なります。</p>
+    <p class="note cases__note">※ 写真は実際の施術例です。仕上がりには個人差があり、髪の状態や履歴によって異なります。</p>
     <div class="btn-row is-center" style="margin-top:36px" data-reveal>
       <a class="btn btn--primary" href="#seminar">施術例の考え方をセミナー動画で学ぶ<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
     </div>
@@ -761,8 +776,8 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 <section class="band" id="mid-cta" aria-labelledby="band-title">
   <div class="band__bg" aria-hidden="true">
     <picture>
-      <source type="image/webp" srcset="assets/seminar-live-1000.webp 1000w, assets/seminar-live-1600.webp 1600w" sizes="100vw">
-      <img src="assets/seminar-live-1000.jpg" srcset="assets/seminar-live-1000.jpg 1000w, assets/seminar-live-1600.jpg 1600w" sizes="100vw" width="1000" height="1778" alt="" loading="lazy" decoding="async">
+      <source type="image/webp" srcset="assets/seminar-wide-800.webp 800w, assets/seminar-wide-1200.webp 1200w, assets/seminar-wide-1600.webp 1600w" sizes="100vw">
+      <img src="assets/seminar-wide-1200.jpg" srcset="assets/seminar-wide-800.jpg 800w, assets/seminar-wide-1200.jpg 1200w, assets/seminar-wide-1600.jpg 1600w" sizes="100vw" width="1200" height="600" alt="" loading="lazy" decoding="async">
     </picture>
   </div>
   <div class="container band__in" data-reveal>
@@ -798,12 +813,12 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       <li data-reveal><b>08</b>お客様へのカウンセリングと仕上がり説明</li>
     </ol>
 
-    <div class="process" aria-label="施術工程">
-      <figure data-reveal><div class="ph"><img src="assets/counsel-1-600.jpg" width="600" height="338" alt="カウンセリング" loading="lazy" decoding="async"></div><figcaption><b>01</b>カウンセリング</figcaption></figure>
-      <figure data-reveal data-delay="1"><div class="ph"><img src="assets/apply-600.jpg" width="600" height="338" alt="薬剤塗布" loading="lazy" decoding="async"></div><figcaption><b>02</b>薬剤塗布</figcaption></figure>
-      <figure data-reveal data-delay="2"><div class="ph"><img src="assets/curlcheck-600.jpg" width="600" height="338" alt="還元チェック" loading="lazy" decoding="async"></div><figcaption><b>03</b>還元チェック</figcaption></figure>
-      <figure data-reveal data-delay="3"><div class="ph"><img src="assets/iron-600.jpg" width="600" height="338" alt="アイロン操作" loading="lazy" decoding="async"></div><figcaption><b>04</b>アイロン</figcaption></figure>
-      <figure data-reveal data-delay="3"><div class="ph"><img src="assets/ba4035-after-600.jpg" width="600" height="1200" alt="仕上がり" loading="lazy" decoding="async"></div><figcaption><b>05</b>仕上がり</figcaption></figure>
+    <div class="process" role="group" aria-label="施術工程">
+      <figure data-reveal><div class="ph"><picture><source type="image/webp" srcset="assets/counsel-1-600.webp"><img src="assets/counsel-1-600.jpg" width="600" height="338" alt="カウンセリング" loading="lazy" decoding="async"></picture></div><figcaption><b>01</b>カウンセリング</figcaption></figure>
+      <figure data-reveal data-delay="1"><div class="ph"><picture><source type="image/webp" srcset="assets/apply-600.webp"><img src="assets/apply-600.jpg" width="600" height="338" alt="薬剤塗布" loading="lazy" decoding="async"></picture></div><figcaption><b>02</b>薬剤塗布</figcaption></figure>
+      <figure data-reveal data-delay="2"><div class="ph"><picture><source type="image/webp" srcset="assets/curlcheck-600.webp"><img src="assets/curlcheck-600.jpg" width="600" height="338" alt="還元チェック" loading="lazy" decoding="async"></picture></div><figcaption><b>03</b>還元チェック</figcaption></figure>
+      <figure data-reveal data-delay="3"><div class="ph"><picture><source type="image/webp" srcset="assets/iron-600.webp"><img src="assets/iron-600.jpg" width="600" height="338" alt="アイロン操作" loading="lazy" decoding="async"></picture></div><figcaption><b>04</b>アイロン</figcaption></figure>
+      <figure data-reveal data-delay="3"><div class="ph"><picture><source type="image/webp" srcset="assets/ba4035-after-640.webp"><img src="assets/ba4035-after-640.jpg" width="636" height="1280" alt="仕上がり" loading="lazy" decoding="async"></picture></div><figcaption><b>05</b>仕上がり</figcaption></figure>
     </div>
     <p class="process-hint" aria-hidden="true">◂ スワイプで工程を見る ▸</p>
 
@@ -814,7 +829,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       </div>
       <div class="video-stage" id="video-stage">
         <div class="video-ph" id="video-placeholder">
-          <img src="assets/iron-1000.jpg" width="1000" height="563" alt="" loading="lazy" decoding="async">
+          <img src="assets/iron-1000.jpg" width="1000" height="562" alt="" loading="lazy" decoding="async">
           <div>
             <div class="play" aria-hidden="true"></div>
             <p>セミナー動画は準備中です</p>
@@ -823,7 +838,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
         </div>
       </div>
       <div class="video-tools">
-        <div class="progress" aria-live="polite"><span>視聴状況</span><div class="progress__bar" role="progressbar" aria-label="視聴状況" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress__fill" id="video-progress"></div></div><span id="video-progress-text">0%</span></div>
+        <div class="progress"><span>視聴状況</span><div class="progress__bar" role="progressbar" aria-label="視聴状況" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress__fill" id="video-progress"></div></div><span id="video-progress-text">0%</span></div>
         <div class="video-btns">
           <button class="speed" id="speed-btn" type="button" aria-pressed="false">2倍速で見る（約12分）</button>
           <button class="speed speed--ghost" id="later-btn" type="button">後で見る（URLをコピー）</button>
@@ -832,19 +847,19 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       <p class="video-fallback" id="video-fallback" hidden>動画が再生できない場合は、<a id="video-fallback-link" href="#" target="_blank" rel="noopener">こちらから直接ご覧ください</a>。<button type="button" class="linklike" id="video-fallback-done">視聴が終わった方はこちら</button></p>
 
       <p class="sr-only" id="gate-live" aria-live="polite"></p>
-      <div class="gate" id="purchase-gate" aria-hidden="true">
+      <div class="gate" id="purchase-gate">
         <div class="gate__locked">
-          <div class="ring" role="progressbar" aria-label="動画の視聴状況" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring__bg" cx="50" cy="50" r="46" pathLength="1"/><circle class="ring__fg" id="ring-fg" cx="50" cy="50" r="46" pathLength="1"/></svg><b id="ring-text">0%</b></div>
+          <div class="ring" aria-hidden="true"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="ring__bg" cx="50" cy="50" r="46" pathLength="1"/><circle class="ring__fg" id="ring-fg" cx="50" cy="50" r="46" pathLength="1"/></svg><b id="ring-text">0%</b></div>
           <p>サンプルセットのご案内は、<br class="hide-desktop">動画の視聴完了後に表示されます。</p>
           <small>2倍速でもご覧いただけます。視聴状況はお使いのブラウザに保存され、同じ端末・同じブラウザなら次回も引き継がれます。</small>
           <span class="ghost" aria-hidden="true">サンプルセット購入ページへ ─ 視聴完了後に開きます</span>
         </div>
         <div class="gate__open">
-          <div class="gate__thumb"><img src="assets/products-700.jpg" width="700" height="675" alt="sins の薬剤 4種のパウチ" loading="lazy" decoding="async"></div>
+          <div class="gate__thumb"><img src="assets/products-700.jpg" width="700" height="458" alt="sins の薬剤 4種のパウチ" loading="lazy" decoding="async"></div>
           <div>
             <p class="thanks">ご視聴ありがとうございます</p>
             <h4>sins式を、<span class="nb">サロンで実際に</span><span class="nb">お試しください。</span></h4>
-            <p>癖毛チャートと合わせて使うことで、動画でお伝えした「判断の仕方」をそのままサロンで確かめられます。</p>
+            <p>癖毛チャートと合わせて使うことで、動画で解説している<span class="nb">「判断の仕方」</span>を<span class="nb">そのままサロンで</span><span class="nb">確かめられます。</span></p>
             <p class="sample-label">Sample Set</p>
             <p class="price" data-price-row><span class="num" data-price>13,200円（税込）</span><small>サンプルセット</small></p>
             <p class="note">最新の価格・セット内容は購入ページでご確認ください。</p>
@@ -871,7 +886,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     <div class="products__hero" data-reveal>
       <picture>
         <source type="image/webp" srcset="assets/products-700.webp 700w, assets/products-1000.webp 1000w, assets/products-1600.webp 1600w" sizes="(min-width: 1200px) 1120px, 100vw">
-        <img src="assets/products-1000.jpg" srcset="assets/products-700.jpg 700w, assets/products-1000.jpg 1000w, assets/products-1600.jpg 1600w" sizes="(min-width: 1200px) 1120px, 100vw" width="1000" height="964" alt="sins の薬剤 4種。左から TC6（青）、T7（赤）、4.5（緑）、0.5（黄）" loading="lazy" decoding="async">
+        <img src="assets/products-1000.jpg" srcset="assets/products-700.jpg 700w, assets/products-1000.jpg 1000w, assets/products-1600.jpg 1600w" sizes="(min-width: 1200px) 1120px, 100vw" width="1000" height="655" alt="sins の薬剤 4種。左から TC6（青）、T7（赤）、4.5（緑）、0.5（黄）" loading="lazy" decoding="async">
       </picture>
     </div>
     <ul class="products" aria-label="薬剤ラインナップ">
@@ -889,7 +904,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       </li>
       <li class="product" style="--c:var(--f05)" data-reveal data-delay="3">
         <p class="product__name"><i aria-hidden="true"></i>0.5</p><p class="product__tag">BRAKE</p>
-        <p class="product__role">傷みやすい部分を守るための、ブレーキ剤</p>
+        <p class="product__role">傷みやすい部分を守る<span class="nb">ブレーキ剤</span></p>
       </li>
     </ul>
     <div class="products__sub" data-reveal>
@@ -897,7 +912,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       <span class="chip">ブースター</span><span class="chip">バランサー</span><span class="chip">レブリペア</span>
     </div>
     <p class="note center" data-reveal style="margin-top:14px">※ 薬剤は美容師向けのプロフェッショナル用製品です。仕上がりを保証するものではなく、髪の状態や履歴によって結果は異なります。</p>
-    <p class="products__lead" data-reveal>「伸ばす部分」には T7・TC6 で必要な還元力を。「守る部分」には 4.5・0.5 と処理剤でパワーを調整。<br class="show-desktop">組み合わせの考え方は、セミナー動画で解説しています。</p>
+    <p class="products__lead" data-reveal>「伸ばす部分」には T7・TC6 で必要な還元力を。「守る部分」には 4.5・0.5 と<span class="nb">処理剤で</span><span class="nb">パワーを調整。</span><br class="show-desktop">組み合わせの考え方は、セミナー動画で解説しています。</p>
     <div class="btn-row is-center" style="margin-top:30px" data-reveal>
       <a class="btn btn--primary" href="#seminar">薬剤の使い分けを動画で学ぶ<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
     </div>
@@ -911,14 +926,15 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     <div class="results__grid">
       <div>
         <div class="section-head" data-reveal style="margin-bottom:28px">
-          <p class="eyebrow">Results</p>
+          <p class="eyebrow">What We Aim For</p>
           <h2 id="results-title">技術が変わるだけではなく、<br>サロン内の<span class="nb">「共通言語」</span>が<span class="nb">生まれる。</span></h2>
           <p class="lead">sins式が目指しているのは、一人の美容師の上達ではなく、サロン全体で同じ判断ができる状態です。</p>
         </div>
+        <p class="sub-label">導入後に目指す変化</p>
         <ul class="outcomes" aria-label="導入後に目指す変化">
           <li data-reveal><b>1</b>薬剤選定の基準がスタッフ間で揃う</li>
           <li data-reveal><b>2</b>新人への技術教育がしやすくなる</li>
-          <li data-reveal><b>3</b>難しい履歴でも、考え方を整理できる</li>
+          <li data-reveal><b>3</b>難しい履歴でも、<span class="nb">考え方を整理できる</span></li>
           <li data-reveal><b>4</b>髪質改善ストレートへの苦手意識が減る</li>
           <li data-reveal><b>5</b>高単価メニューとして提案しやすくなる</li>
         </ul>
@@ -926,9 +942,9 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       <div data-reveal>
         <div class="collage">
           <figure><picture><source type="image/webp" srcset="assets/seminar-large-600.webp 600w, assets/seminar-large-1000.webp 1000w" sizes="(min-width: 900px) 46vw, 100vw"><img src="assets/seminar-large-1000.jpg" srcset="assets/seminar-large-600.jpg 600w, assets/seminar-large-1000.jpg 1000w" sizes="(min-width: 900px) 46vw, 100vw" width="1000" height="750" alt="sins セミナーに参加した多数の美容師の集合写真" loading="lazy" decoding="async"></picture></figure>
-          <figure><img src="assets/seminar-hearts-600.jpg" width="600" height="338" alt="セミナー後の受講者と講師" loading="lazy" decoding="async"></figure>
-          <figure><img src="assets/seminar-wood-600.jpg" width="600" height="800" alt="サロンで開催したセミナーの集合写真" loading="lazy" decoding="async"></figure>
-          <figure><img src="assets/seminar-group1-600.jpg" width="600" height="338" alt="セミナー会場での受講者と講師" loading="lazy" decoding="async"></figure>
+          <figure><picture><source type="image/webp" srcset="assets/seminar-hearts-600.webp"><img src="assets/seminar-hearts-600.jpg" width="600" height="338" alt="セミナー後の受講者と講師" loading="lazy" decoding="async"></picture></figure>
+          <figure><picture><source type="image/webp" srcset="assets/seminar-wood-600.webp"><img src="assets/seminar-wood-600.jpg" width="600" height="800" alt="サロンで開催したセミナーの集合写真" loading="lazy" decoding="async"></picture></figure>
+          <figure><picture><source type="image/webp" srcset="assets/seminar-group1-600.webp"><img src="assets/seminar-group1-600.jpg" width="600" height="338" alt="セミナー会場での受講者と講師" loading="lazy" decoding="async"></picture></figure>
         </div>
         <p class="collage__cap">これまでに開催してきた sins セミナーの様子</p>
       </div>
@@ -951,7 +967,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       <figure class="instructor__media" data-reveal>
         <picture>
           <source type="image/webp" srcset="assets/iron-600.webp 600w, assets/iron-1000.webp 1000w, assets/iron-1600.webp 1600w" sizes="(min-width: 900px) 40vw, 100vw">
-          <img src="assets/iron-1000.jpg" srcset="assets/iron-600.jpg 600w, assets/iron-1000.jpg 1000w, assets/iron-1600.jpg 1600w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="563" alt="モデルの髪をアイロンで仕上げる講師" loading="lazy" decoding="async">
+          <img src="assets/iron-1000.jpg" srcset="assets/iron-600.jpg 600w, assets/iron-1000.jpg 1000w, assets/iron-1600.jpg 1600w" sizes="(min-width: 900px) 40vw, 100vw" width="1000" height="562" alt="モデルの髪をアイロンで仕上げる講師" loading="lazy" decoding="async">
         </picture>
       </figure>
       <div data-reveal>
@@ -961,7 +977,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
         <p class="instructor__role" data-profile="role">sins cosmetics ／ 現役美容師（sinsia）</p>
         <div class="instructor__text">
           <p>サロン「sinsia（シンシア）」でサロンワークを続けながら、sins式 髪質改善ストレートの教育・セミナー登壇を行っています。</p>
-          <p>セミナーで大切にしているのは、レシピを渡すことではなく、「なぜその薬剤なのか」「なぜ今流すのか」という判断の理由を、受講した美容師が自分の言葉で説明できるようになることです。</p>
+          <p>セミナーでは、レシピだけでなく、<span class="nb">「なぜこの薬剤を選んだのか」</span><span class="nb">「どの状態になったら流すのか」</span>という判断の理由までお伝えしています。</p>
         </div>
         <div class="brand-msg">
           <p>薬剤を販売するだけではなく、<br>技術が育つ仕組みまで届ける。</p>
@@ -978,7 +994,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     <div class="section-head center" data-reveal>
       <p class="eyebrow is-center">Next Step</p>
       <h2 id="next-title">ご導入までの流れ</h2>
-      <p class="lead">まずは動画で仕組みを理解し、サンプルセットで実際の薬剤反応を確認する。この順番なら、判断しやすさをサロンで体感してから導入できます。</p>
+      <p class="lead">まずは動画で仕組みを理解し、サンプルセットで実際の薬剤反応を確認します。この順番なら、判断しやすさをサロンで体感してから導入できます。</p>
     </div>
     <ol class="nextsteps">
       <li class="ns" data-reveal>
@@ -1031,7 +1047,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     <div class="final__media" data-reveal>
       <picture>
         <source type="image/webp" srcset="assets/model-800.webp 800w, assets/model-1200.webp 1200w" sizes="(min-width: 900px) 30vw, 80vw">
-        <img src="assets/model-800.jpg" srcset="assets/model-800.jpg 800w, assets/model-1200.jpg 1200w" sizes="(min-width: 900px) 30vw, 80vw" width="800" height="1000" alt="艶のあるストレートヘアのモデル" loading="lazy" decoding="async">
+        <img src="assets/model-800.jpg" srcset="assets/model-800.jpg 800w, assets/model-1200.jpg 1200w" sizes="(min-width: 900px) 30vw, 80vw" width="800" height="823" alt="艶のあるストレートヘアのモデル" loading="lazy" decoding="async">
       </picture>
     </div>
     <div class="final__body" data-reveal>
@@ -1123,7 +1139,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
      "name": "動画を見たら、サンプルセットの購入は必須ですか？",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "必須ではありません。動画は無料でご覧いただけ、視聴後に表示されるのは購入ページへのご案内だけです。sins式を実際のサロンワークで試してみたい方に向けて、サンプルセット（13,200円（税込））をご用意しています。最新の価格・セット内容・お支払い方法は購入ページでご確認ください。"
+      "text": "必須ではありません。動画は無料でご覧いただけ、視聴後に表示されるのは購入ページへのご案内だけです。sins式を実際のサロンワークで試してみたい方に向けて、サンプルセットをご用意しています。最新の価格・セット内容・お支払い方法は購入ページでご確認ください。"
      }
     },
     {
@@ -1183,7 +1199,9 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   var $ = function (s, r) { return (r || doc).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); };
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var LS_KEY = 'sins_lp_unlocked_v1';
+  var VID = CFG.video || { type: 'none' };
+  var LS_KEY = 'sins_lp_unlocked_v1:' + (VID.type || 'none') + ':' + (VID.src || '');   // 動画ごとに記憶（動画公開前の解放は保存しない）
+  var TTL_MS = (CFG.unlockTtlDays || 90) * 864e5;
 
   /* ---------- 1. Scroll reveal ---------- */
   var io = null;
@@ -1230,16 +1248,16 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     casesRoot.innerHTML = CFG.cases.map(function (c, i) {
       var n = ('0' + (i + 1)).slice(-2);
       var rows = Object.keys(FIELD_LABELS).map(function (k) {
-        var v = (c[k] || '').trim();
+        var v = String(c[k] == null ? '' : c[k]).trim();
         return '<div class="case__row' + (v ? '' : ' is-empty') + '"><dt>' + FIELD_LABELS[k] + '</dt><dd>' + (v ? esc(v) : '<span>動画内で解説</span>') + '</dd></div>';
       }).join('');
       return '<article class="case" data-reveal>' +
-        '<div class="ba" aria-label="施術例' + n + ' ビフォーアフター比較">' +
-          '<img class="ba__img" src="' + esc(c.after) + '" alt="施術例' + n + ' 施術後" loading="lazy" decoding="async" width="636" height="1280">' +
-          '<div class="ba__after" style="--pos:50%"><img class="ba__img" src="' + esc(c.before) + '" alt="施術例' + n + ' 施術前" loading="lazy" decoding="async" width="636" height="1280"></div>' +
+        '<div class="ba" role="group" aria-label="施術例' + n + ' ビフォーアフター比較">' +
+          pic(c.after, '施術例' + n + ' 施術後') +
+          '<div class="ba__after" style="--pos:50%">' + pic(c.before, '施術例' + n + ' 施術前') + '</div>' +
           '<span class="ba__label ba__label--before" aria-hidden="true">Before</span><span class="ba__label ba__label--after" aria-hidden="true">After</span>' +
           '<div class="ba__handle" aria-hidden="true"><span></span></div><span class="ba__hint" aria-hidden="true">◂ ドラッグして比較 ▸</span>' +
-          '<input class="ba__range" type="range" min="0" max="100" value="50" aria-label="ビフォーアフターの比較位置" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">' +
+          '<input class="ba__range" type="range" min="0" max="100" value="50" aria-label="ビフォーアフターの比較位置">' +
         '</div>' +
         '<div class="case__body"><p class="case__num">CASE ' + n + '</p><h3 class="case__title">' + esc(c.title || '') + '</h3>' +
         '<dl class="case__dl">' + rows + '</dl></div></article>';
@@ -1250,16 +1268,19 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   }
   function initBA(ba) {
     var range = $('.ba__range', ba), afterWrap = $('.ba__after', ba), handle = $('.ba__handle', ba);
-    function set(v) { v = Math.max(0, Math.min(100, v)); afterWrap.style.setProperty('--pos', v + '%'); handle.style.left = v + '%'; range.value = v; range.setAttribute('aria-valuenow', Math.round(v)); }
-    range.addEventListener('input', function () { set(parseFloat(range.value)); });
-    var dragging = false;
-    function posToVal(ev) { var r = ba.getBoundingClientRect(); return ((ev.clientX) - r.left) / r.width * 100; }
-    ba.addEventListener('pointerdown', function (ev) { if (ev.target === range) return; dragging = true; set(posToVal(ev)); });
-    ba.addEventListener('pointermove', function (ev) { if (dragging) set(posToVal(ev)); });
-    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (t) { ba.addEventListener(t, function () { dragging = false; }); });
+    function set(v) { v = Math.max(0, Math.min(100, v)); afterWrap.style.setProperty('--pos', v + '%'); handle.style.left = v + '%'; range.value = v; }
+    range.addEventListener('input', function () { set(parseFloat(range.value)); }); // range が全面を覆い、ドラッグ／タップ／キーボードを一手に受ける
     set(50);
   }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  // 'assets/xxx-600.jpg' のような命名なら 480/800 の webp/jpg 候補を生成、それ以外はそのまま表示
+  function pic(src, alt) {
+    var m = /^(.*)-(\d+)\.(jpe?g|webp)$/i.exec(String(src));
+    if (!m) return '<img class="ba__img" src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy" decoding="async" width="636" height="1280">';
+    var b = esc(m[1]), sizes = '(min-width: 760px) 33vw, 100vw';
+    return '<picture><source type="image/webp" srcset="' + b + '-480.webp 480w, ' + b + '-800.webp 800w" sizes="' + sizes + '">' +
+      '<img class="ba__img" src="' + b + '-800.jpg" srcset="' + b + '-480.jpg 480w, ' + b + '-800.jpg 800w" sizes="' + sizes + '" alt="' + esc(alt) + '" loading="lazy" decoding="async" width="800" height="1610"></picture>';
+  }
 
   /* ---------- 5. Testimonials (only real ones; hidden until provided) ---------- */
   var tRoot = $('#testimonials');
@@ -1320,12 +1341,11 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     if (progressTxt) progressTxt.textContent = pct + '%';
     if (ringFg) ringFg.style.strokeDashoffset = String(1 - ratio);
     if (ringTxt) ringTxt.textContent = pct + '%';
-    if (ringBox) ringBox.setAttribute('aria-valuenow', pct);
     var step = Math.floor(pct / 10) * 10;
     if (step !== lastAnnounced && step > 0) { lastAnnounced = step; var live = $('#gate-live'); if (live) live.textContent = '視聴 ' + step + '% です'; }
     if (ratio >= threshold) unlock('progress');
   }
-  var PROG_KEY = 'sins_video_progress_v1';
+  var PROG_KEY = 'sins_video_progress_v1:' + (VID.type || 'none') + ':' + (VID.src || '');
   function saveProgress() { try { localStorage.setItem(PROG_KEY, JSON.stringify({ d: duration, b: Object.keys(buckets).map(Number) })); } catch (e) {} }
   function restoreProgress() {
     try {
@@ -1341,21 +1361,20 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     if (unlocked) return;
     unlocked = true;
     body.classList.add('is-unlocked');
-    try { localStorage.setItem(LS_KEY, JSON.stringify({ t: Date.now(), r: reason })); } catch (e) {}
+    if (reason === 'progress' || reason === 'ended' || reason === 'self-report') { try { localStorage.setItem(LS_KEY, JSON.stringify({ t: Date.now(), r: reason })); } catch (e) {} }
     var gate = $('#purchase-gate');
     if (gate) {
       gate.classList.add('is-open');
-      gate.setAttribute('aria-hidden', 'false');
       $$('a, button', gate).forEach(function (el) { el.removeAttribute('tabindex'); });
     }
     $$('[data-locked]').forEach(function (el) { el.hidden = true; });
     $$('[data-unlocked]').forEach(function (el) { el.hidden = false; });
     if (bar) bar.classList.add('is-unlocked');
-    if (reason === 'progress' || reason === 'ended') {
+    if (reason === 'progress' || reason === 'ended' || reason === 'self-report') {
       var note = $('#unlock-note');
       if (note) { note.hidden = false; }
       var live = $('#gate-live'); if (live) live.textContent = 'サンプルセットのご案内を表示しました';
-      if (gate) {
+      if (gate && reason !== 'progress') { // 再生中（90%到達）はフォーカスを奪わず、終了時だけ案内へ移動
         gate.setAttribute('tabindex', '-1');
         setTimeout(function () { gate.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' }); try { gate.focus({ preventScroll: true }); } catch (e) {} }, 600);
       }
@@ -1365,7 +1384,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   // Already unlocked on a previous visit?
   try {
     var saved = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
-    if (saved && saved.t && (Date.now() - saved.t) < 1000 * 60 * 60 * 24 * 90) unlock('remembered');
+    if (saved && saved.t && (Date.now() - saved.t) < TTL_MS) unlock('remembered');
   } catch (e) {}
 
   function loadScript(src, cb) {
@@ -1378,6 +1397,8 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   }
   function showFallback() {
     // プレイヤーが読み込めない場合：外部リンクで視聴してもらい、視聴後に自己申告で解放（無音の自動解放はしない）
+    if (showFallback.done) return; showFallback.done = true;
+    var tools = $('.video-tools'); if (tools) tools.hidden = true;
     var fb = $('#video-fallback'), fl = $('#video-fallback-link'), fd = $('#video-fallback-done');
     if (fl) fl.href = videoUrl();
     if (fb) fb.hidden = false;
@@ -1389,7 +1410,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     v.setAttribute('controls', ''); v.setAttribute('playsinline', ''); v.setAttribute('preload', 'metadata');
     if (video.poster) v.setAttribute('poster', video.poster);
     v.className = 'video__el';
-    var src = doc.createElement('source'); src.src = video.src; src.type = video.mime || 'video/mp4'; v.appendChild(src);
+    v.src = video.src;
     stage.innerHTML = ''; stage.appendChild(v);
     v.addEventListener('loadedmetadata', function () { duration = v.duration || 0; restoreProgress(); });
     v.addEventListener('timeupdate', function () { if (!v.paused) markTime(v.currentTime); });
@@ -1397,13 +1418,13 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
     v.addEventListener('error', showFallback);
     if (speedBtn) speedBtn.addEventListener('click', function () {
       var fast = v.playbackRate < 1.9; v.playbackRate = fast ? 2 : 1; speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
-      speedBtn.textContent = fast ? '通常速度に戻す' : '2倍速で見る（約12分）';
-      if (v.paused) v.play().catch(function () {});
+      if (v.paused) { var pr = v.play(); if (pr && typeof pr.catch === 'function') pr.catch(function () {}); }
     });
   }
 
   function initYouTube() {
-    var id = video.src; // YouTube video id
+    var id = String(video.src).trim(); // YouTube video id
+    var ytRestored = false;
     var holder = doc.createElement('div'); holder.id = 'yt-player'; stage.innerHTML = ''; stage.appendChild(holder);
     window.onYouTubeIframeAPIReady = function () {
       var player = new YT.Player('yt-player', {
@@ -1411,10 +1432,11 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
         host: 'https://www.youtube-nocookie.com',
         playerVars: { rel: 0, modestbranding: 1, playsinline: 1, origin: location.origin },
         events: {
-          onReady: function () { duration = player.getDuration() || 0; restoreProgress(); },
+          onReady: function () { duration = player.getDuration() || 0; if (duration) { ytRestored = true; restoreProgress(); } },
           onStateChange: function (e) {
             if (e.data === YT.PlayerState.PLAYING) {
               duration = player.getDuration() || duration;
+              if (!ytRestored && duration) { ytRestored = true; restoreProgress(); }
               if (!poll) poll = setInterval(function () { markTime(player.getCurrentTime()); }, 1000);
             } else if (poll && e.data !== YT.PlayerState.BUFFERING) { clearInterval(poll); poll = null; }
             if (e.data === YT.PlayerState.ENDED) { setProgress(1); unlock('ended'); }
@@ -1425,8 +1447,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       if (speedBtn) speedBtn.addEventListener('click', function () {
         var fast = player.getPlaybackRate() < 1.9; player.setPlaybackRate(fast ? 2 : 1);
         speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
-        speedBtn.textContent = fast ? '通常速度に戻す' : '2倍速で見る（約12分）';
-        if (player.getPlayerState() !== YT.PlayerState.PLAYING) player.playVideo();
+          if (player.getPlayerState() !== YT.PlayerState.PLAYING) player.playVideo();
       });
     };
     loadScript('https://www.youtube.com/iframe_api');
@@ -1434,7 +1455,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 
   function initVimeo() {
     var iframe = doc.createElement('iframe');
-    iframe.src = 'https://player.vimeo.com/video/' + video.src + '?dnt=1&title=0&byline=0&portrait=0&playsinline=1';
+    iframe.src = 'https://player.vimeo.com/video/' + encodeURIComponent(String(video.src).trim()) + '?dnt=1&title=0&byline=0&portrait=0&playsinline=1';
     iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture'); iframe.setAttribute('allowfullscreen', ''); iframe.title = 'オンラインセミナー動画';
     iframe.className = 'video__el'; stage.innerHTML = ''; stage.appendChild(iframe);
     loadScript('https://player.vimeo.com/api/player.js', function () {
@@ -1447,8 +1468,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
         player.getPlaybackRate().then(function (r) {
           var fast = r < 1.9; return player.setPlaybackRate(fast ? 2 : 1).then(function () {
             speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
-            speedBtn.textContent = fast ? '通常速度に戻す' : '2倍速で見る（約12分）';
-            player.play();
+                  var pp = player.play(); if (pp && typeof pp.catch === 'function') pp.catch(function () {});
           });
         }).catch(function () {});
       });
@@ -1487,8 +1507,14 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
       var top = t.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) + 1;
       window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
       history.replaceState(null, '', '#' + id);
+      if (!/^(a|button|input|select|textarea)$/i.test(t.tagName) && t.tabIndex < 0) t.setAttribute('tabindex', '-1');
+      try { t.focus({ preventScroll: true }); } catch (e) {}
     });
   });
+
+  /* ---------- 7b. a11y: list semantics (list-style:none) and new-tab notices ---------- */
+  $$('ul,ol').forEach(function (l) { if (!l.getAttribute('role')) l.setAttribute('role', 'list'); });
+  $$('a[target="_blank"]').forEach(function (a) { if (!a.querySelector('.sr-only') && !/新しいタブ/.test(a.textContent)) { var s = doc.createElement('span'); s.className = 'sr-only'; s.textContent = '（新しいタブで開きます）'; a.appendChild(s); } });
 
   /* ---------- 8. Year ---------- */
   var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
