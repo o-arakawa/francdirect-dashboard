@@ -4485,10 +4485,67 @@
         "mail": 0,
         "koza": 0,
         "cpa": null
+      },
+      {
+        "date": "2026-09-01",
+        "spend": 1517,
+        "impressions": 2008,
+        "clicks": 44,
+        "cpm": 755,
+        "ctr": 2,
+        "cpc": 34,
+        "mail": 0,
+        "koza": 0,
+        "cpa": null
+      },
+      {
+        "date": "2026-09-02",
+        "spend": 5282,
+        "impressions": 11750,
+        "clicks": 206,
+        "cpm": 450,
+        "ctr": 1,
+        "cpc": 26,
+        "mail": 0,
+        "koza": 0,
+        "cpa": null
+      },
+      {
+        "date": "2026-09-03",
+        "spend": 6641,
+        "impressions": 12968,
+        "clicks": 187,
+        "cpm": 512,
+        "ctr": 1,
+        "cpc": 36,
+        "mail": 0,
+        "koza": 0,
+        "cpa": null
+      },
+      {
+        "date": "2026-09-04",
+        "spend": 82,
+        "impressions": 190,
+        "clicks": 3,
+        "cpm": 432,
+        "ctr": 1,
+        "cpc": 27,
+        "mail": 0,
+        "koza": 0,
+        "cpa": null
       }
     ],
     "yesterday": null,
-    "this_month": null
+    "this_month": {
+      "spend": 13522,
+      "impressions": 26916,
+      "clicks": 440,
+      "mail": 0,
+      "koza": 0,
+      "cpm": 502,
+      "cpc": 31,
+      "cpa": null
+    }
   },
   "yesterday": {
     "date": "2026-07-17",
@@ -6094,11 +6151,11 @@
       "this_month": 0
     }
   },
-  "last_checked": "2026-09-05T05:39:44Z",
+  "last_checked": "2026-09-06T05:52:05Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-09-05T05:39:44Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Friday, 04-Sep-26 22:39:44 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AtDkP9YzVqapXAhQ6QE6uCC",
+    "checked_at": "2026-09-06T05:52:05Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Saturday, 05-Sep-26 22:52:05 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AM15xJS0L-KbCPXsMWVLu4_",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
