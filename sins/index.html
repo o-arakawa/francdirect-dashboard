@@ -385,7 +385,9 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 .gate__locked small{font-size:12.5px;color:var(--ink-3)}
 .gate__open{display:none;border-radius:18px;background:linear-gradient(135deg,#fff 0%,var(--rose-2) 100%);border:1px solid var(--rose);padding:26px 18px;text-align:center;box-shadow:var(--shadow);gap:20px}
 .gate__open > *{min-width:0}
-.gate__open .btn--block{white-space:normal;padding-left:18px;padding-right:18px}
+.gate__open .btn--block{padding-left:16px;padding-right:16px;font-size:16px}
+.gate__open .btn--block .btn__sub{white-space:normal}
+@media (max-width:899px){.gate__open .price small{display:block;margin:2px 0 0}}
 .gate__thumb{width:min(100%,260px);margin:0 auto;border-radius:12px;overflow:hidden;aspect-ratio:16/10;outline:1px solid rgba(201,174,120,.35);outline-offset:-1px}
 .gate__thumb img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
 @media (min-width:900px){.gate__open{padding:36px 44px;display:none;grid-template-columns:200px 1fr auto;align-items:center;gap:32px;text-align:left}.gate__thumb{width:200px;aspect-ratio:1}}
