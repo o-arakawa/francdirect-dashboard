@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
+<!--
+  ┌──────────────────────────────────────────────────────────────┐
+  │  編集ガイド（初心者向け）                                          │
+  ├──────────────────────────────────────────────────────────────┤
+  │ 1. 購入URL・動画・価格・LINE・講師名など …… config.js を編集      │
+  │ 2. 文章の変更 …… このファイルの日本語部分を直接書き換える            │
+  │    ・各セクションは「ここから」というコメントで区切られています      │
+  │    ・<span class="nb"> … </span> は「途中で改行させない」印です。      │
+  │      消しても壊れません                                             │
+  │    ・<br> は改行、<br class="show-desktop"> はPC表示だけの改行です     │
+  │ 3. 画像の差し替え …… assets フォルダの同じファイル名で上書き          │
+  │    ・「-600」「-1000」「-1600」は同じ写真の大きさ違いです。            │
+  │      面倒なら同じ画像を全部のサイズ名で保存して構いません             │
+  │ 4. 色や余白 …… css/style.css の一番上「:root」の色コード              │
+  │ 5. 公開URLが決まったら、この下の canonical / og:url / og:image の      │
+  │    「https://o-arakawa.github.io/francdirect-dashboard/sins/」を       │
+  │    実際のURLに置き換えてください（3か所）                           │
+  │ 6. 触らなくてよいもの …… js/main.js、<picture>〜</picture> の中身     │
+  └──────────────────────────────────────────────────────────────┘
+-->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -26,550 +46,22 @@
 <link rel="preload" as="image" imagesrcset="assets/hero-mobile-800.webp 800w, assets/hero-mobile-1200.webp 1200w" imagesizes="100vw" type="image/webp" media="(max-width: 599px)">
 <link rel="preload" as="image" imagesrcset="assets/hero-1000.webp 1000w, assets/hero-1600.webp 1600w, assets/hero-2400.webp 2400w" imagesizes="(min-width: 900px) 50vw, 100vw" type="image/webp" media="(min-width: 600px)">
 
+<!-- ★ 設定（購入URL・動画・価格など）は config.js を編集してください -->
+<script src="config.js"></script>
 <script>
-/* =====================================================================
-   設定はここだけ（詳細は sins/README.md）
-   ===================================================================== */
-window.SINS_LP_CONFIG = {
-  purchaseUrl: 'https://sins.base.shop',   // サンプルセット購入ページ（BASE）。直販サイトに変わったらここを変更
-  lineUrl: '',                             // 公式LINEのURL。空なら LINE 導線は表示しない
-  contactUrl: '',                          // 集合セミナー等の問い合わせ先（例 'mailto:info@example.com'）。空なら購入ページ内の問い合わせを案内
-  video: {
-    type: 'none',                          // 'youtube' | 'vimeo' | 'mp4' | 'none'
-    src: '',                               // youtube: 動画ID / vimeo: 動画ID / mp4: 動画URL
-    poster: 'assets/iron-1600.jpg'         // 再生前に表示する画像（mp4 のみ）
-  },
-  unlockAt: 0.9,                           // 視聴率がこの値に達したら購入CTAを表示（0.9 = 90%）
-  unlockWhenNoVideo: true,                 // 動画が未設定の間は購入CTAを最初から表示する（この状態は端末に保存しない）
-  unlockTtlDays: 90,                       // 視聴完了の記憶を保持する日数
-  cases: [
-    { title: 'ミディアム・うねりの強い髪', before: 'assets/ba4038-before-600.jpg', after: 'assets/ba4038-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
-    { title: 'ロング・広がりやすい髪',     before: 'assets/ba4032-before-600.jpg', after: 'assets/ba4032-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
-    { title: 'ロング・明るめの髪色',       before: 'assets/ba4040a-before-600.jpg', after: 'assets/ba4040a-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' }
-  ],
-  price: '13,200円（税込）',                // サンプルセットの価格表記。空文字にすると価格の行が非表示になる
-  profile: { name: '菅原 寛人', romaji: 'Hiroto Sugawara', role: 'sins cosmetics ／ 現役美容師（sinsia）' },
-  testimonials: []                         // 実在の受講者の声のみ。例: { quote: '…', salon: '〇〇（神奈川）', name: '〇〇 様', photo: 'assets/voice-1.jpg' }
-};
 // JS 有効の印（無効時もコンテンツは全て表示される）／ 既視聴者はチラつきなく解放状態で描画
 document.documentElement.classList.add('js');
-try { var _c = window.SINS_LP_CONFIG, _k = 'sins_lp_unlocked_v1:' + ((_c.video && _c.video.type) || 'none') + ':' + ((_c.video && _c.video.src) || ''); var _u = JSON.parse(localStorage.getItem(_k) || 'null'); if (_u && _u.t && (Date.now() - _u.t) < (_c.unlockTtlDays || 90) * 864e5) document.documentElement.setAttribute('data-unlocked', ''); } catch (e) {}
+try { var _c = window.SINS_LP_CONFIG || {}, _k = 'sins_lp_unlocked_v1:' + ((_c.video && _c.video.type) || 'none') + ':' + ((_c.video && _c.video.src) || ''); var _u = JSON.parse(localStorage.getItem(_k) || 'null'); if (_u && _u.t && (Date.now() - _u.t) < (_c.unlockTtlDays || 90) * 864e5) document.documentElement.setAttribute('data-unlocked', ''); } catch (e) {}
 </script>
 
-<style>
-/* =====================================================================
-   Design tokens
-   ===================================================================== */
-:root{
-  --bg:#FBF8F3;          /* ivory（ページ地色） */
-  --bg-2:#F5ECE6;        /* 淡いローズベージュ（交互セクション） */
-  --bg-3:#F0E3DC;        /* deeper blush */
-  --surface:#FFFFFF;
-  --ink:#2B2523;         /* 暖色チャコール */
-  --ink-2:#6F625C;       /* 補助文（AA） */
-  --ink-3:#6F625C;       /* 注記・ラベル（AA） */
-  --line:#EADFD8;
-  --line-2:#DCCFC6;
-  --gold:#C9AE78;        /* ヘアライン・装飾専用（文字色には使わない） */
-  --gold-ink:#8F5D55;    /* アクセント（眉見出し・番号など文字用、AA） */
-  --gold-2:#E4D2AE;
-  --gold-3:#F3EAD8;
-  --rose:#D9B2A9;
-  --rose-2:#F2E2DC;
-  --accent-soft:#E8CFC8;
-  --cta:#7B3B5E;         /* 深いモーヴ — 商品色（赤/青/緑/黄）とも明確に区別。白文字で AA */
-  --cta-2:#9A5074;
-  --cta-dark:#63304B;
-  --ok:#587A5C;
-  --t7:#C63C3C; --tc6:#2E63C4; --f45:#1E8F73; --f05:#E9A824;
-  --serif:'Shippori Mincho','Hiragino Mincho ProN','Yu Mincho',serif;
-  --sans:'Noto Sans JP','Hiragino Kaku Gothic ProN','Hiragino Sans',sans-serif;
-  --latin:'Cormorant Garamond','Times New Roman',serif;
-  --radius:18px;
-  --radius-sm:10px;
-  --shadow:0 18px 50px -24px rgba(58,50,47,.28);
-  --shadow-sm:0 8px 24px -14px rgba(58,50,47,.25);
-  --container:1120px;
-  --header-h:64px;
-  --ease:cubic-bezier(.22,.61,.36,1);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.9;letter-spacing:.02em;font-size:16px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img{max-width:100%;height:auto;display:block}
-a{color:inherit;text-decoration:none}
-ul,ol{list-style:none}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--cta);outline-offset:3px;border-radius:4px}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-a.sr-only:focus{position:fixed;top:12px;left:12px;width:auto;height:auto;margin:0;padding:10px 16px;clip:auto;white-space:normal;background:var(--cta);color:#fff;border-radius:999px;z-index:100}
-section:focus,main:focus{outline:none}
-.container{width:min(var(--container),100% - 40px);margin-inline:auto}
-@media (min-width:900px){.container{width:min(var(--container),100% - 80px)}}
-section{position:relative;scroll-margin-top:var(--header-h)}
-.section{padding:72px 0}
-@media (min-width:900px){.section{padding:120px 0}}
-.bg-2{background:var(--bg-2)}
-.bg-3{background:linear-gradient(180deg,var(--bg-2) 0%,var(--bg-3) 100%)}
-.bg-white{background:var(--surface)}
-
-/* typography */
-.eyebrow{font-family:var(--latin);font-style:italic;font-weight:500;font-size:15px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-ink);display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.eyebrow::before{content:'';width:34px;height:1px;background:var(--gold)}
-.eyebrow.is-center{justify-content:center}
-.eyebrow.is-center::after{content:'';width:34px;height:1px;background:var(--gold)}
-h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.55;letter-spacing:.04em;text-wrap:balance;word-break:auto-phrase}
-.lead,.hero__sub,.problem__close,.band__lines,.method__text p,.instructor__text p,.final__body p,.ns p,.step4 p,.products__lead,.product__role,.outcomes li,.gate__open p,.checklist li,.learn li,.timeline__txt,.faq .a p,.note{word-break:auto-phrase}
-h2{font-size:clamp(23px,2.6vw,36px);margin-bottom:22px}
-h3{font-size:clamp(18px,1.6vw,22px)}
-.lead{color:var(--ink-2);font-size:clamp(15px,1.1vw,17px);max-width:40em}
-.lead+.lead{margin-top:1em}
-.center{text-align:center}
-.center .lead{margin-inline:auto}
-.section-head{margin-bottom:44px}
-@media (min-width:900px){.section-head{margin-bottom:64px}}
-.note{font-size:13px;color:var(--ink-3);line-height:1.8}
-strong{font-weight:600}
-.em{color:var(--cta-dark)}
-
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 30px;white-space:nowrap;border-radius:999px;font-weight:600;font-size:16px;letter-spacing:.06em;line-height:1.3;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s;text-align:center;position:relative}
-.btn--primary{background:linear-gradient(135deg,var(--cta-2) 0%,var(--cta) 55%,var(--cta-dark) 100%);color:#fff;box-shadow:0 12px 30px -12px rgba(123,59,94,.35)}
-.btn--primary:hover{transform:translateY(-2px);box-shadow:0 18px 36px -14px rgba(123,59,94,.45)}
-.btn--primary .btn__sub{display:block;font-weight:400;font-size:11.5px;letter-spacing:.08em;opacity:.9;margin-top:2px}
-.btn--ghost{border:1px solid var(--gold);color:var(--ink);background:rgba(255,255,255,.6)}
-.btn--ghost:hover{background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
-.btn--lg{min-height:64px;padding:16px 38px;font-size:17px}
-.btn--block{width:100%}
-.btn .arrow{width:18px;height:18px;flex:none}
-.btn-row{display:flex;flex-direction:column;gap:14px;align-items:stretch}
-@media (min-width:640px){.btn-row{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start}.btn-row.is-center{justify-content:center}}
-.cta-note{font-size:13px;color:var(--ink-3);margin-top:14px;letter-spacing:.04em}
-
-/* reveal */
-html.js [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-html.js [data-reveal].is-in{opacity:1;transform:none}
-[data-reveal][data-delay="1"]{transition-delay:.12s}[data-reveal][data-delay="2"]{transition-delay:.24s}[data-reveal][data-delay="3"]{transition-delay:.36s}
-@media (prefers-reduced-motion:reduce){html.js [data-reveal]{opacity:1;transform:none;transition:none}}
-/* 既視聴者：JS 実行前から解放状態で描画（チラつき防止） */
-html[data-unlocked] .btn[data-unlocked][hidden]{display:inline-flex !important}
-html[data-unlocked] .btn[data-locked]{display:none !important}
-html[data-unlocked] .gate__locked{display:none}
-html[data-unlocked] .gate__open{display:grid}
-.num{font-variant-numeric:tabular-nums}
-
-/* =====================================================================
-   Header
-   ===================================================================== */
-.header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
-.header.is-scrolled{background:rgba(251,248,243,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
-.header__in{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{display:inline-flex;align-items:baseline;gap:10px;min-height:44px;font-family:var(--latin);font-style:italic;font-weight:500;font-size:30px;letter-spacing:.02em;color:var(--ink);line-height:1}
-.logo small{font-family:var(--latin);font-style:normal;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-3)}
-.nav{display:none;gap:28px;font-size:13.5px;letter-spacing:.1em;color:var(--ink-2)}
-.nav a{position:relative;padding:6px 0}
-.nav a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
-.nav a:hover::after{transform:scaleX(1)}
-@media (min-width:1000px){.nav{display:flex}}
-.header .btn{min-height:42px;padding:8px 20px;font-size:13.5px;transition:opacity .35s,visibility .35s}
-@media (max-width:1023px){.header .btn{display:none !important}}
-.header.hero-cta-visible .btn{opacity:0;pointer-events:none;visibility:hidden}
-@media (max-width:420px){.header .btn{padding:8px 14px;font-size:12.5px}}
-
-/* =====================================================================
-   Hero
-   ===================================================================== */
-.hero{position:relative;padding-top:var(--header-h);background:linear-gradient(180deg,#F4EFEA 0%,var(--bg) 100%);overflow:hidden}
-.hero__media{position:relative;aspect-ratio:1/1}
-@media (max-width:599px){.hero__note{display:none}.hero__sub{margin-bottom:18px}}
-@media (min-width:600px) and (max-width:899px){.hero__media{aspect-ratio:16/10}.hero__media img{object-position:55% 45%}}
-.hero__media img{width:100%;height:100%;object-fit:cover;object-position:62% 28%}
-.hero__media::after{content:'';position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(180deg,rgba(251,248,243,0) 0%,var(--bg) 100%)}
-.hero__body{position:relative;padding:12px 20px 56px;width:min(100%,1120px);margin-inline:auto}
-.hero__eyebrow{font-size:13px;letter-spacing:.14em;color:var(--cta-dark);font-weight:500;display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
-.hero__eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
-.hero h1{font-size:clamp(30px,7.6vw,66px);line-height:1.32;font-weight:600;letter-spacing:.03em;margin-bottom:16px}
-@media (min-width:900px){.hero h1{margin-bottom:22px}}
-@media (min-width:900px){.hero h1{font-size:clamp(38px,3.9vw,54px)}}
-.hero h1 .thin{font-weight:500;color:var(--gold-ink)}
-.hero__link{display:inline-flex;align-items:center;gap:8px;font-size:14px;letter-spacing:.08em;color:var(--gold-ink);border-bottom:1px solid var(--gold);padding:4px 2px;margin-left:6px;min-height:44px}
-.hero__link:hover{color:var(--cta)}
-html.js .hero__body > *{animation:rise .9s var(--ease) both}
-html.js .hero__body > :nth-child(2){animation-delay:.12s}html.js .hero__body > :nth-child(3){animation-delay:.24s}html.js .hero__body > :nth-child(4){animation-delay:.32s}html.js .hero__body > :nth-child(5){animation-delay:.42s}html.js .hero__body > :nth-child(6){animation-delay:.52s}
-html.js .hero__media img{animation:zoomin 1.8s var(--ease) both}
-@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-@keyframes zoomin{from{transform:scale(1.03)}to{transform:none}}
-@media (prefers-reduced-motion:reduce){html.js .hero__body > *,html.js .hero__media img{animation:none}}
-.hero__sub{font-size:clamp(15px,1.15vw,17.5px);color:var(--ink-2);max-width:34em;margin-bottom:10px;line-height:1.85}
-.hero__note{font-size:13.5px;color:var(--ink-3);margin-bottom:22px;letter-spacing:.04em}
-@media (min-width:900px){.hero__note{margin-bottom:30px}}
-.hero .btn-row{margin-bottom:30px}
-.trust{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 18px;max-width:520px}
-.trust li{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.06em;color:var(--ink-2)}
-.trust li::before{content:'';width:22px;height:22px;flex:none;border-radius:50%;border:1px solid var(--gold);background:radial-gradient(circle at 50% 50%,var(--gold) 0 3px,transparent 3.5px)}
-.hero__deco{position:absolute;right:-6%;top:12%;width:46vw;max-width:520px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(217,178,169,.35) 0%,rgba(217,178,169,0) 70%);pointer-events:none}
-@media (min-width:900px){
-  .hero{min-height:min(860px,92vh);display:flex;align-items:center}
-  .hero__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px;width:min(1280px,100% - 80px);margin-inline:auto;padding:40px 0 60px}
-  .hero__media{aspect-ratio:auto;max-height:none;height:min(760px,78vh);order:2;border-radius:28px 0 0 28px;overflow:hidden;margin-right:calc(-1 * max(0px,(100vw - 1280px)/2) - 40px);box-shadow:var(--shadow)}
-  .hero__media img{object-position:62% 40%}
-  .hero__media::after{display:none}
-  .hero__body{order:1;padding:0;width:auto;margin:0}
-}
-@media (min-width:1280px){.hero__media{border-radius:28px;margin-right:0}}
-.scroll-cue{display:none}
-@media (min-width:900px){.scroll-cue{display:flex;position:absolute;left:max(40px,calc((100% - 1280px) / 2 + 40px));bottom:22px;flex-direction:column;align-items:center;gap:6px;font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.3em;color:var(--ink-3)}
-.scroll-cue::after{content:'';width:1px;height:38px;background:linear-gradient(180deg,var(--gold),transparent);animation:cue 2.2s var(--ease) infinite}}
-@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-@media (prefers-reduced-motion:reduce){.scroll-cue::after{animation:none}}
-
-/* =====================================================================
-   Problem (悩み)
-   ===================================================================== */
-.problem__grid{display:grid;gap:40px}
-@media (min-width:900px){.problem__grid{grid-template-columns:5fr 7fr;gap:64px;align-items:start}}
-.problem__media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative;aspect-ratio:4/3}
-.problem__media img{width:100%;height:100%;object-fit:cover}
-@media (min-width:900px){.problem__media{aspect-ratio:4/5;position:sticky;top:calc(var(--header-h) + 24px)}}
-.problem__media figcaption{position:absolute;left:18px;bottom:14px;font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.2em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4)}
-.checklist{display:grid;gap:12px}
-.checklist li{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:16px 18px;font-size:15px;line-height:1.75;box-shadow:0 2px 0 rgba(58,50,47,.02)}
-.check-svg{width:22px;height:22px;flex:none;margin-top:4px}
-.problem__close{margin-top:36px;padding:28px 26px;border-left:2px solid var(--gold);background:linear-gradient(90deg,var(--gold-3),transparent);font-family:var(--serif);font-size:clamp(16px,1.3vw,19px);line-height:2;letter-spacing:.04em}
-
-/* =====================================================================
-   Method (sins式)
-   ===================================================================== */
-.steps4{display:grid;gap:14px;counter-reset:step}
-@media (min-width:640px) and (max-width:899px){.steps4{grid-template-columns:repeat(2,1fr);gap:14px}}
-@media (min-width:900px){.steps4{grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative}
-.steps4::before{content:'';position:absolute;left:12%;right:12%;top:38px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2) 12%,var(--gold-2) 88%,transparent)}}
-.step4{text-align:center;padding:18px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);position:relative}
-@media (min-width:900px){.step4{background:transparent;border:0;padding:0 14px}}
-.step4__num{width:76px;height:76px;margin:0 auto 16px;border-radius:50%;background:var(--surface);border:1px solid var(--gold-2);display:grid;place-items:center;font-family:var(--latin);font-style:italic;font-size:30px;color:var(--gold-ink);box-shadow:var(--shadow-sm);position:relative}
-.step4__num::after{counter-increment:step;content:'0' counter(step)}
-.step4 h3{font-size:17px;line-height:1.6;margin-bottom:8px}
-.step4 p{font-size:13.5px;color:var(--ink-2);line-height:1.8}
-.method__body{display:grid;gap:40px;margin-top:56px}
-@media (min-width:900px){.method__body{grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:88px}}
-.chart-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px 22px;box-shadow:var(--shadow)}
-.chart-card__title{font-family:var(--latin);font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-3);text-align:center;margin-bottom:18px}
-.chart-card__title b{display:block;font-family:var(--serif);font-size:15px;letter-spacing:.14em;color:var(--ink);margin-top:4px;font-weight:600}
-.waves{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.wave{text-align:center;padding:12px 4px 10px;border-radius:12px;background:var(--bg)}
-.wave svg{width:100%;height:96px;display:block;margin:0 auto 8px}
-@media (max-width:700px){.process-hint{display:block}}
-.process-hint{display:none;text-align:center;font-size:11.5px;letter-spacing:.14em;color:var(--ink-3);margin-top:6px}
-html.js .chart-card .wave path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s var(--ease)}
-html.js .chart-card.is-in .wave path{stroke-dashoffset:0}
-html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js .chart-card.is-in .wave:nth-child(3) path{transition-delay:.3s}html.js .chart-card.is-in .wave:nth-child(4) path{transition-delay:.45s}
-@media (prefers-reduced-motion:reduce){html.js .chart-card .wave path{stroke-dashoffset:0;transition:none}}
-.wave b{display:block;font-family:var(--latin);font-size:24px;line-height:1;color:var(--ink);margin-bottom:4px}
-.wave span{display:block;font-size:11px;letter-spacing:.06em;color:var(--ink-2);line-height:1.4}
-.chart-card__photo{margin-top:16px;border-radius:12px;overflow:hidden;aspect-ratio:16/9}
-.chart-card__photo img{width:100%;height:100%;object-fit:cover}
-.chart-card__cap{font-size:12px;color:var(--ink-3);margin-top:10px;text-align:center;letter-spacing:.04em}
-.method__text p{margin-bottom:1.1em;color:var(--ink-2)}
-.method__text p strong{color:var(--ink)}
-
-/* =====================================================================
-   Flow (薬剤選定の流れ)
-   ===================================================================== */
-.flow__grid{display:grid;gap:44px}
-@media (min-width:900px){.flow__grid{grid-template-columns:7fr 5fr;gap:72px;align-items:start}}
-.timeline{display:grid;gap:0;margin-top:34px;position:relative}
-.timeline li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:14px 0;position:relative}
-.timeline li::before{content:'';position:absolute;left:21px;top:0;bottom:0;width:1px;background:var(--line-2)}
-.timeline li:first-child::before{top:50%}.timeline li:last-child::before{bottom:50%}
-.timeline__num{width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--latin);font-size:17px;color:var(--gold-ink);position:relative;z-index:1;box-shadow:0 0 0 6px var(--bg)}
-.bg-2 .timeline__num{box-shadow:0 0 0 6px var(--bg-2)}
-.timeline__txt{padding-top:7px;font-size:15.5px;line-height:1.75}
-.timeline__txt small{display:block;font-size:12.5px;color:var(--ink-3);margin-top:2px}
-.flow__photos{display:grid;gap:14px}
-@media (max-width:899px){.flow__photos{grid-template-columns:repeat(3,1fr)}}
-.flow__photos figure{border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);position:relative;aspect-ratio:3/2}
-@media (max-width:899px){.flow__photos figure{aspect-ratio:3/4}}
-.flow__photos img{width:100%;height:100%;object-fit:cover}
-.flow__photos figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;font-size:12px;letter-spacing:.08em;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.45))}
-@media (max-width:899px){.flow__photos figcaption{font-size:12.5px;padding:18px 6px 7px;letter-spacing:.02em}}
-@media (min-width:600px) and (max-width:899px){.flow__photos figcaption{font-size:12.5px;letter-spacing:.06em}}
-
-/* =====================================================================
-   Cases (ビフォーアフター)
-   ===================================================================== */
-.cases{display:grid;gap:26px}
-@media (min-width:760px){.cases{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}}
-.case{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
-.ba{position:relative;aspect-ratio:4/5;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:pan-y;background:var(--bg-2)}
-.ba::before{content:'';display:block;padding-top:100%}
-@supports (aspect-ratio:1){.ba::before{display:none}}
-.ba picture{display:contents}
-.ba__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
-.ba__after{position:absolute;inset:0;--pos:50%;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
-.ba__handle::before{content:'';position:absolute;top:0;bottom:0;left:-1px;width:2px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.35)}
-.ba__label{position:absolute;top:12px;font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.2em;padding:5px 12px;border-radius:999px;background:rgba(58,50,47,.55);color:#fff;backdrop-filter:blur(4px);pointer-events:none}
-.ba__label--before{left:12px}.ba__label--after{right:12px;background:rgba(123,59,94,.85)}
-.ba__handle{position:absolute;top:0;bottom:0;left:50%;width:0;pointer-events:none}
-.ba__handle span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.25);display:grid;place-items:center}
-.ba__handle span::before{content:'◂';font-size:13px;color:var(--ink);position:absolute;left:9px;top:50%;transform:translateY(-50%)}
-.ba__handle span::after{content:'▸';font-size:13px;color:var(--ink);position:absolute;right:9px;top:50%;transform:translateY(-50%)}
-.ba__range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;-webkit-appearance:none;appearance:none;background:transparent}
-.ba__range:focus-visible{opacity:1;outline:3px solid var(--cta);outline-offset:-3px;border-radius:0}
-.ba__hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);font-size:11px;letter-spacing:.14em;color:#fff;background:rgba(58,50,47,.5);padding:4px 12px;border-radius:999px;pointer-events:none;white-space:nowrap}
-.case__body{padding:20px 20px 22px}
-.case__num{font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.3em;color:var(--gold-ink);margin-bottom:4px}
-.case__title{font-size:17px;margin-bottom:12px}
-.case__dl{display:grid;gap:6px;font-size:13px}
-.case__row{display:grid;grid-template-columns:92px 1fr;gap:8px;padding:6px 0;border-top:1px dashed var(--line)}
-.case__row dt{color:var(--ink-3);letter-spacing:.04em}
-.case__row dd{color:var(--ink)}
-.case__row.is-empty dd span{color:var(--ink-3);font-size:12px}
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}
-@media (min-width:760px){.gallery{grid-template-columns:repeat(3,1fr);gap:16px}}
-.pair{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#fff;aspect-ratio:4/3}
-.pair img{width:100%;height:100%;object-fit:cover}
-.pair picture{display:contents}
-.pair span{position:absolute;top:8px;font-family:var(--latin);font-style:italic;font-size:11px;letter-spacing:.16em;padding:3px 9px;border-radius:999px;background:rgba(58,50,47,.55);color:#fff}
-.pair span:first-of-type{left:8px}.pair span:last-of-type{right:8px;background:rgba(123,59,94,.85)}
-.cases__note{margin-top:22px;text-align:center}
-
-/* =====================================================================
-   Mid CTA (band)
-   ===================================================================== */
-.band{position:relative;overflow:hidden;color:var(--ink);padding:88px 0}
-@media (min-width:900px){.band{padding:140px 0}}
-.band__bg{position:absolute;inset:0;z-index:0}
-.band__bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.band__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(251,248,243,.94) 0%,rgba(251,248,243,.86) 50%,rgba(251,248,243,.94) 100%)}
-.band__in{position:relative;z-index:1;text-align:center;max-width:760px;margin-inline:auto}
-.band__lines{font-family:var(--serif);font-size:clamp(16px,1.4vw,20px);line-height:2.1;letter-spacing:.06em;margin:22px 0 10px}
-.band .lead{margin-inline:auto;margin-bottom:34px}
-
-/* =====================================================================
-   Seminar (video)
-   ===================================================================== */
-.learn{display:grid;gap:10px;margin-top:8px}
-@media (min-width:760px){.learn{grid-template-columns:1fr 1fr;gap:12px 22px}}
-.learn li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);font-size:14.5px;line-height:1.7}
-.learn li b{flex:none;font-family:var(--latin);font-style:italic;font-size:15px;color:var(--gold-ink);width:24px;padding-top:1px}
-.process{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:40px}
-.process figure{position:relative}
-.process .ph{border-radius:12px;overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow-sm)}
-.process .ph picture,.collage picture{display:contents}
-.process img{width:100%;height:100%;object-fit:cover}
-.process figcaption{text-align:center;font-size:12px;letter-spacing:.08em;color:var(--ink-2);margin-top:8px}
-.process figcaption b{font-family:var(--latin);font-style:italic;color:var(--gold-ink);margin-right:4px;font-weight:500}
-@media (max-width:700px){.process{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px 8px;margin-left:-20px;margin-right:-20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.process::-webkit-scrollbar{display:none}
-.process figure{flex:0 0 132px;scroll-snap-align:start}}
-.video-wrap{margin-top:56px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:14px;box-shadow:var(--shadow)}
-@media (min-width:900px){.video-wrap{padding:36px;margin-top:80px}}
-.video-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 20px;margin-bottom:18px}
-.video-head h3{font-size:clamp(18px,1.6vw,22px)}
-.video-head .badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.1em;color:var(--cta-dark);background:var(--rose-2);border-radius:999px;padding:6px 14px}
-.video-head .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cta)}
-.video-stage{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#1a1614}
-.video-stage iframe,.video-stage video,.video__el{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
-.video-ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:24px}
-.video-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
-.video-ph > div{position:relative}
-.video-ph .play{width:72px;height:72px;border-radius:50%;margin:0 auto 14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.7);display:grid;place-items:center;backdrop-filter:blur(6px)}
-.video-ph .play::after{content:'';width:0;height:0;border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
-.video-ph p{font-family:var(--serif);font-size:15px;letter-spacing:.14em;line-height:1.9}
-.video-ph small{display:block;font-size:11.5px;letter-spacing:.08em;opacity:.85;margin-top:6px}
-.video-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-top:16px}
-.progress{flex:1 1 220px;display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
-.progress__bar{flex:1;height:6px;border-radius:999px;background:var(--bg-3);overflow:hidden}
-.progress__fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-2),var(--cta));transition:width .6s var(--ease);border-radius:999px}
-.speed{min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid var(--gold);font-size:13px;letter-spacing:.06em;background:#fff}
-.speed[aria-pressed="true"]{background:var(--gold-3)}
-.speed--ghost{border-color:var(--line-2);color:var(--ink-2)}
-.video-btns{display:flex;flex-wrap:wrap;gap:8px}
-.video-fallback{margin-top:14px;font-size:13px;color:var(--ink-2);text-align:center}
-.video-fallback a{text-decoration:underline;text-underline-offset:3px}
-.linklike{text-decoration:underline;text-underline-offset:3px;color:var(--cta-dark);margin-left:10px;min-height:44px;display:inline-flex;align-items:center}
-
-/* purchase gate */
-.gate{margin-top:26px;border-radius:18px;position:relative;overflow:hidden}
-.gate__locked{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 16px;border:1px dashed var(--line-2);border-radius:18px;background:var(--bg)}
-.ring{position:relative;width:88px;height:88px;display:grid;place-items:center}
-.ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:2.5}
-.ring .ring__bg{stroke:var(--accent-soft)}
-.ring .ring__fg{stroke:var(--gold);stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .6s var(--ease)}
-.ring b{font-family:var(--latin);font-weight:600;font-size:24px;color:var(--ink);font-variant-numeric:tabular-nums}
-.gate__locked .ghost{margin-top:8px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 22px;border-radius:999px;border:1px dashed var(--line-2);font-size:13px;color:var(--ink-3);letter-spacing:.06em}
-.gate__locked p{font-family:var(--serif);font-size:15.5px;letter-spacing:.06em;line-height:1.9}
-.gate__locked small{font-size:12.5px;color:var(--ink-3)}
-.gate__open{display:none;border-radius:18px;background:linear-gradient(135deg,#fff 0%,var(--rose-2) 100%);border:1px solid var(--rose);padding:26px 18px;text-align:center;box-shadow:var(--shadow);gap:20px}
-.gate__open > *{min-width:0}
-.gate__open .btn--block{white-space:normal;padding-left:16px;padding-right:16px;font-size:16px}
-.gate__open .btn--block > span:first-child{white-space:nowrap}
-.gate__open .btn--block .btn__sub{white-space:normal}
-@media (max-width:899px){.gate__open .price small{display:block;margin:2px 0 0}}
-.gate__thumb{width:min(100%,260px);margin:0 auto;border-radius:12px;overflow:hidden;aspect-ratio:16/10;outline:1px solid rgba(201,174,120,.35);outline-offset:-1px}
-.gate__thumb img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
-@media (min-width:900px){.gate__open{padding:36px 44px;display:none;grid-template-columns:200px 1fr auto;align-items:center;gap:32px;text-align:left}.gate__thumb{width:200px;aspect-ratio:1}}
-.gate.is-open .gate__locked{display:none}
-.gate.is-open .gate__open{display:grid}
-.gate__open .thanks{font-size:13px;letter-spacing:.12em;color:var(--cta-dark);margin-bottom:8px}
-.gate__open h4{font-family:var(--serif);font-size:clamp(19px,1.7vw,24px);font-weight:600;line-height:1.6;margin-bottom:8px}
-.gate__open .price{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--ink);margin:10px 0 4px;font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.gate__open .price small{font-family:var(--sans);font-size:12px;color:var(--ink-3);margin-left:8px;letter-spacing:.06em;font-weight:400}
-.gate__open .sample-label{font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.24em;color:var(--gold-ink);margin-bottom:2px}
-.gate__open p{font-size:14px;color:var(--ink-2);line-height:1.8}
-.gate__open .btn{margin-top:14px}
-@media (min-width:900px){.gate__open .btn{margin-top:0}}
-.gate__open .cta-note{margin-top:8px}
-.unlock-note{margin-top:14px;text-align:center;font-size:13px;color:var(--ok);letter-spacing:.06em}
-.no-video .gate__locked{display:none}
-.no-video .video-tools{display:none}
-
-/* =====================================================================
-   Products
-   ===================================================================== */
-.products__hero{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:26px;background:#EAE9EB;aspect-ratio:3/2}
-@media (min-width:900px){.products__hero{aspect-ratio:16/9;margin-bottom:36px}}
-.products__hero img{width:100%;height:100%;object-fit:cover;object-position:center 68%}
-.products{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-@media (min-width:1000px){.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}}
-.product{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px 14px 20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
-@media (min-width:640px){.product{padding:26px 18px 24px}}
-.product::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--c)}
-.product__name{font-family:var(--latin);font-size:34px;line-height:1;color:var(--ink);margin:6px 0 2px;display:flex;align-items:center;gap:10px}
-.product__name i{width:12px;height:12px;border-radius:50%;background:var(--c);display:inline-block}
-.product__tag{font-size:11.5px;letter-spacing:.16em;color:var(--ink-3);margin-bottom:12px}
-.product__role{font-size:13.5px;line-height:1.75;color:var(--ink-2)}
-.products__sub{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;justify-content:center;padding:20px 22px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface)}
-.products__sub b{font-size:13.5px;letter-spacing:.06em;color:var(--ink-2)}
-.chip{font-size:13px;letter-spacing:.08em;padding:7px 14px;border-radius:999px;background:var(--gold-3);color:var(--ink)}
-.products__lead{max-width:38em;margin:34px auto 0;text-align:center;color:var(--ink-2);font-size:15px}
-
-/* =====================================================================
-   Results / voices
-   ===================================================================== */
-.results__grid{display:grid;gap:40px}
-@media (min-width:900px){.results__grid{grid-template-columns:7fr 5fr;gap:64px;align-items:start}.results__grid h2{font-size:clamp(23px,2.3vw,33px)}}
-.sub-label{font-size:13px;letter-spacing:.14em;color:var(--gold-ink);margin-bottom:10px;font-weight:500}
-.outcomes{display:grid;gap:12px}
-.outcomes li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;line-height:1.75;padding:14px 18px;background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--line)}
-.outcomes li b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold-3);color:var(--gold-ink);display:grid;place-items:center;font-family:var(--latin);font-style:italic;font-size:14px;margin-top:2px}
-.collage{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-self:start}
-.collage figure{border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:4/3}
-.collage figure:nth-child(1){grid-column:span 6;aspect-ratio:16/9}
-.collage figure:nth-child(2),.collage figure:nth-child(3){grid-column:span 3}
-.collage figure:nth-child(4){grid-column:span 6;aspect-ratio:16/8}
-.collage img{width:100%;height:100%;object-fit:cover}
-.collage__cap{font-size:12.5px;color:var(--ink-3);margin-top:10px;letter-spacing:.06em;text-align:center}
-.voices{display:grid;gap:16px;margin-top:56px}
-@media (min-width:760px){.voices{grid-template-columns:repeat(3,1fr)}}
-.voice{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
-.voice__photo{width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:14px}
-.voice__quote{font-family:var(--serif);font-size:15.5px;line-height:1.9;margin-bottom:12px}
-.voice__meta{font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
-.voice__meta span{display:block;color:var(--ink-2)}
-
-/* =====================================================================
-   Instructor
-   ===================================================================== */
-.instructor{display:grid;gap:36px}
-@media (min-width:900px){.instructor{grid-template-columns:5fr 7fr;gap:72px;align-items:center}}
-.instructor__media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3;position:relative}
-.instructor__media img{width:100%;height:100%;object-fit:cover;object-position:72% center}
-.instructor__name{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:6px 0 4px}
-.instructor__name b{font-family:var(--serif);font-size:clamp(24px,2.2vw,30px);font-weight:600;letter-spacing:.1em}
-.instructor__name span{font-family:var(--latin);font-style:italic;font-size:15px;letter-spacing:.14em;color:var(--gold-ink)}
-.instructor__role{font-size:13.5px;letter-spacing:.08em;color:var(--ink-2);margin-bottom:18px}
-.instructor__text p{color:var(--ink-2);margin-bottom:1em}
-.brand-msg{margin-top:28px;padding:26px 26px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);position:relative}
-.brand-msg::before{content:'sins cosmetics';position:absolute;top:-11px;left:22px;padding:0 10px;background:var(--surface);font-family:var(--latin);font-style:italic;font-size:13px;letter-spacing:.24em;color:var(--gold-ink)}
-.brand-msg p{font-family:var(--serif);font-size:clamp(16px,1.35vw,19px);line-height:2;letter-spacing:.06em}
-.brand-msg p+p{margin-top:6px;color:var(--cta-dark)}
-
-/* =====================================================================
-   Next steps
-   ===================================================================== */
-.nextsteps{display:grid;gap:14px;counter-reset:ns}
-@media (min-width:900px){.nextsteps{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
-.ns{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px 26px;position:relative;box-shadow:var(--shadow-sm)}
-.ns::before{counter-increment:ns;content:'0' counter(ns);font-family:var(--latin);font-style:italic;font-size:40px;line-height:1;color:var(--gold-ink);opacity:.6;position:absolute;right:18px;top:16px}
-.ns h3{font-size:17.5px;margin:6px 0 10px;padding-right:44px}
-.ns p{font-size:14px;color:var(--ink-2);line-height:1.8}
-.ns .tag{display:inline-block;font-size:11.5px;letter-spacing:.14em;color:var(--cta-dark);background:var(--rose-2);border-radius:999px;padding:4px 12px;margin-bottom:10px}
-.ns .btn{margin-top:16px;min-height:46px;padding:10px 22px;font-size:14px;white-space:normal}
-.ns--hl{border-color:var(--rose);background:linear-gradient(160deg,#fff,var(--rose-2))}
-
-/* =====================================================================
-   FAQ
-   ===================================================================== */
-.faq{max-width:820px;margin-inline:auto;display:grid;gap:10px}
-.faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
-.faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:30px 1fr 28px;gap:12px;align-items:start;padding:18px 20px;font-weight:500;font-size:15.5px;line-height:1.7}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary:focus-visible{outline-offset:-3px;border-radius:var(--radius-sm)}
-.faq summary b{font-family:var(--latin);font-style:italic;font-size:19px;color:var(--gold-ink);line-height:1.3}
-.faq summary i{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);position:relative;transition:transform .35s var(--ease)}
-.faq summary i::before,.faq summary i::after{content:'';position:absolute;left:50%;top:50%;width:12px;height:1px;background:var(--ink-2);transform:translate(-50%,-50%)}
-.faq summary i::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .35s var(--ease)}
-.faq details[open] summary i::after{transform:translate(-50%,-50%) rotate(0)}
-.faq details[open] summary i{transform:rotate(180deg)}
-.faq .a{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:0 20px 20px;font-size:14.5px;line-height:1.85;color:var(--ink-2)}
-.faq .a b{font-family:var(--latin);font-style:italic;font-size:19px;color:var(--cta);line-height:1.3}
-
-/* =====================================================================
-   Final CTA
-   ===================================================================== */
-.final{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-3) 100%)}
-.final__grid{display:grid;gap:36px;align-items:center}
-@media (min-width:900px){.final__grid{grid-template-columns:5fr 7fr;gap:72px}}
-.final__media{border-radius:50% 50% var(--radius) var(--radius)/38% 38% var(--radius) var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;max-width:380px;margin-inline:auto}
-.final__media img{width:100%;height:100%;object-fit:cover}
-.final__body p{color:var(--ink-2);margin-bottom:1em}
-.final__body .btn-row{margin-top:26px}
-.final .strip{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
-.final .strip span{font-size:12.5px;letter-spacing:.1em;padding:6px 14px;border-radius:999px;background:#fff;border:1px solid var(--line)}
-
-/* =====================================================================
-   Footer
-   ===================================================================== */
-.footer{padding:44px 0 34px;background:var(--ink);color:rgba(255,255,255,.88);font-size:13px;letter-spacing:.06em}
-.footer__in{display:flex;flex-direction:column;gap:18px}
-@media (min-width:760px){.footer__in{flex-direction:row;justify-content:space-between;align-items:flex-end}}
-.footer .logo{color:#fff}
-.footer .logo small{color:rgba(255,255,255,.72)}
-.footer__links{display:flex;flex-wrap:wrap;gap:8px 20px}
-.footer__links a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.35)}
-@media (max-width:1023px){.footer{padding-bottom:calc(34px + 76px + env(safe-area-inset-bottom))}}
-.footer__copy{font-family:var(--latin);letter-spacing:.14em;color:rgba(255,255,255,.72)}
-
-/* =====================================================================
-   Sticky CTA bar
-   ===================================================================== */
-.sticky{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(251,248,243,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s var(--ease)}
-.sticky{visibility:hidden;transition:transform .5s var(--ease),visibility .5s}
-.sticky.is-visible{transform:none;visibility:visible}
-.sticky.is-suppressed{transform:translateY(110%);visibility:hidden}
-@media (max-width:1023px){.sticky{display:block}}
-.sticky__in{display:flex;gap:10px;align-items:center;max-width:720px;margin-inline:auto}
-.sticky .btn{min-height:52px;padding:10px 16px;font-size:14.5px;flex:1}
-.sticky .btn--ghost{flex:0 0 auto;background:#fff}
-@media (prefers-reduced-motion:reduce){.sticky{transition:none}}
-
-/* photo treatment: unify tone of on-site photos */
-.problem__media,.flow__photos figure,.collage figure,.instructor__media,.process .ph,.pair,.chart-card__photo{outline:1px solid rgba(198,165,107,.28);outline-offset:-1px}
-/* utilities */
-.nb{display:inline-block}
-.hide-desktop{display:inline}.show-desktop{display:none}
-@media (min-width:900px){.hide-desktop{display:none}.show-desktop{display:inline}}
-[hidden]{display:none !important}
-</style>
+<!-- デザイン（色・余白など）は css/style.css -->
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <a class="sr-only" href="#main">本文へスキップ</a>
 
-<!-- ===================================================================== Header -->
+<!-- ============================== ヘッダー（ロゴ・メニュー） ここから ============================== -->
 <header class="header" id="site-header">
   <div class="container header__in">
     <a class="logo" href="#hero" aria-label="sins cosmetics トップへ">sins <small>cosmetics</small></a>
@@ -587,7 +79,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 
 <main id="main">
 
-<!-- ===================================================================== 1. Hero -->
+<!-- ============================== ① ファーストビュー ここから ============================== -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <div class="hero__deco" aria-hidden="true"></div>
   <div class="hero__in">
@@ -619,7 +111,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   <div class="scroll-cue" aria-hidden="true">scroll</div>
 </section>
 
-<!-- ===================================================================== 2. Problem -->
+<!-- ============================== ② 悩みへの共感 ここから ============================== -->
 <section class="section" id="problem" aria-labelledby="problem-title">
   <div class="container">
     <div class="section-head" data-reveal>
@@ -650,7 +142,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 3. Method -->
+<!-- ============================== ③ sins式が解決すること ここから ============================== -->
 <section class="section bg-2" id="method" aria-labelledby="method-title">
   <div class="container">
     <div class="section-head center" data-reveal>
@@ -697,7 +189,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 4. Flow -->
+<!-- ============================== ④ 薬剤選定の流れ ここから ============================== -->
 <section class="section" id="flow" aria-labelledby="flow-title">
   <div class="container">
     <div class="flow__grid">
@@ -745,7 +237,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 5. Cases -->
+<!-- ============================== ⑤ 施術例（ビフォーアフター） ここから ============================== -->
 <section class="section bg-3" id="cases" aria-labelledby="cases-title">
   <div class="container">
     <div class="section-head center" data-reveal>
@@ -772,7 +264,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 6. Mid CTA band -->
+<!-- ============================== ⑥ 中間CTA（セミナーへの誘導） ここから ============================== -->
 <section class="band" id="mid-cta" aria-labelledby="band-title">
   <div class="band__bg" aria-hidden="true">
     <picture>
@@ -793,7 +285,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 7. Seminar / Video -->
+<!-- ============================== ⑦ セミナーで学べる内容 ＋ 動画 ＋ 購入カード ここから ============================== -->
 <section class="section" id="seminar" aria-labelledby="seminar-title">
   <div class="container">
     <div class="section-head center" data-reveal>
@@ -875,7 +367,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 8. Products -->
+<!-- ============================== ⑧ 薬剤ラインナップ ここから ============================== -->
 <section class="section bg-2" id="products" aria-labelledby="products-title">
   <div class="container">
     <div class="section-head center" data-reveal>
@@ -920,7 +412,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 9. Results / Voices -->
+<!-- ============================== ⑨ 導入後に目指す変化 ／ 受講者の声 ここから ============================== -->
 <section class="section" id="results" aria-labelledby="results-title">
   <div class="container">
     <div class="results__grid">
@@ -960,7 +452,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 10. Instructor -->
+<!-- ============================== ⑩ 講師・会社紹介 ここから ============================== -->
 <section class="section bg-2" id="instructor" aria-labelledby="instructor-title">
   <div class="container">
     <div class="instructor">
@@ -988,7 +480,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 11. Next steps -->
+<!-- ============================== ⑪ ご導入までの流れ ここから ============================== -->
 <section class="section" id="next" aria-labelledby="next-title">
   <div class="container">
     <div class="section-head center" data-reveal>
@@ -1020,7 +512,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 12. FAQ -->
+<!-- ============================== ⑫ よくある質問 ここから ============================== -->
 <section class="section bg-2" id="faq" aria-labelledby="faq-title">
   <div class="container">
     <div class="section-head center" data-reveal>
@@ -1041,7 +533,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </section>
 
-<!-- ===================================================================== 13. Final CTA -->
+<!-- ============================== ⑬ 最終CTA ここから ============================== -->
 <section class="section final" id="final" aria-labelledby="final-title">
   <div class="container final__grid">
     <div class="final__media" data-reveal>
@@ -1067,7 +559,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 
 </main>
 
-<!-- ===================================================================== Footer -->
+<!-- ============================== フッター ここから ============================== -->
 <footer class="footer">
   <div class="container footer__in">
     <div>
@@ -1085,7 +577,7 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
   </div>
 </footer>
 
-<!-- ===================================================================== Sticky CTA -->
+<!-- ============================== 画面下の固定ボタン（スマホ・タブレット） ここから ============================== -->
 <div class="sticky" id="sticky-bar" role="region" aria-label="固定メニュー">
   <div class="sticky__in">
     <a class="btn btn--primary" data-locked href="#seminar">無料セミナー動画を見る</a>
@@ -1095,430 +587,10 @@ html.js .chart-card.is-in .wave:nth-child(2) path{transition-delay:.15s}html.js 
 </div>
 
 <script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "Organization",
-   "name": "株式会社sinsコスメティクス",
-   "alternateName": "sins cosmetics",
-   "url": "https://o-arakawa.github.io/francdirect-dashboard/sins/",
-   "sameAs": [
-    "https://sins.base.shop"
-   ]
-  },
-  {
-   "@type": "FAQPage",
-   "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "sins の薬剤を使ったことがなくても、動画は見られますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "はい、ご覧いただけます。動画は sins式の考え方（癖毛チャート、薬剤の役割、還元チェック）を最初から説明する内容です。薬剤をお持ちでない方や、今は別の薬剤をお使いの方も、まず考え方を確認する目的でご視聴ください。登録やメール入力も不要です。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "髪質改善ストレートの経験が浅くても、内容についていけますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "はい。sins式は「感覚に頼らず、チャートと手順で判断しやすくする」ことを目的にしているため、判断に迷うことが多い方ほど、基準を整理する材料としてお役立ていただけます。専門用語が出てくる箇所は、一時停止しながらご覧ください。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "動画では、モデル施術の様子も見られますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "動画は、癖毛チャートの当て方、薬剤の塗り分け、還元チェック、アイロン操作、仕上がり説明までの流れを解説する構成です。詳しい内容は、上の「セミナーで学べる内容」をご覧ください。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "動画を見たら、サンプルセットの購入は必須ですか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "必須ではありません。動画は無料でご覧いただけ、視聴後に表示されるのは購入ページへのご案内だけです。sins式を実際のサロンワークで試してみたい方に向けて、サンプルセットをご用意しています。最新の価格・セット内容・お支払い方法は購入ページでご確認ください。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "集合セミナーはどこで開催していますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "集合セミナーは、開催地や日程が回ごとに異なります。現在の開催予定は、購入ページ内のお問い合わせからお尋ねください。まずはこのページの動画で、sins式の考え方をご確認いただくことをおすすめします。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "スマートフォンでも視聴できますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "はい、スマートフォン・タブレット・パソコンのいずれでもご覧いただけます。約25分の動画のため、Wi-Fi 環境でのご視聴をおすすめします。「2倍速で見る」ボタンを使うと約12分でご覧いただけます。視聴状況はお使いの端末のブラウザに保存されるため、同じ端末・同じブラウザであれば、後日開いた際も購入ページのご案内が表示されます。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "動画の内容について質問はできますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "購入ページ内のお問い合わせからお寄せください。個別の髪の状態に関するご相談は、髪の写真や履歴の情報が必要になるため、回答までにお時間をいただく場合があります。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "キャンセルや日程変更の手続きは必要ですか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "このページの動画は録画のオンラインセミナーですので、キャンセルや日程変更の手続きは不要で、お好きなタイミングで何度でもご覧いただけます。サンプルセットの返品・キャンセルの条件は、購入ページに記載の規約をご確認ください。"
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "美容師免許のないスタッフも視聴できますか？",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "動画の視聴自体に資格の制限はありません。アシスタントやレセプションの方が、サロン内の共通言語として考え方を理解したり、お客様への仕上がり説明に役立てたりする目的でご覧いただけます。ただし、薬剤を用いた施術は、法令に基づき美容師免許をお持ちの方が行ってください。"
-     }
-    }
-   ]
-  }
- ]
-}
+{"@context":"https://schema.org","@type":"Organization","name":"株式会社sinsコスメティクス","alternateName":"sins cosmetics","url":"https://o-arakawa.github.io/francdirect-dashboard/sins/","sameAs":["https://sins.base.shop"]}
 </script>
 
-<script>
-/* ==========================================================================
-   sins 髪質改善ストレート LP — page logic (inlined into index.html)
-   ========================================================================== */
-(function () {
-  'use strict';
-  var CFG = window.SINS_LP_CONFIG || {};
-  var doc = document, body = doc.body;
-  var $ = function (s, r) { return (r || doc).querySelector(s); };
-  var $$ = function (s, r) { return Array.prototype.slice.call((r || doc).querySelectorAll(s)); };
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var VID = CFG.video || { type: 'none' };
-  var LS_KEY = 'sins_lp_unlocked_v1:' + (VID.type || 'none') + ':' + (VID.src || '');   // 動画ごとに記憶（動画公開前の解放は保存しない）
-  var TTL_MS = (CFG.unlockTtlDays || 90) * 864e5;
-
-  /* ---------- 1. Scroll reveal ---------- */
-  var io = null;
-  if ('IntersectionObserver' in window && !reduceMotion) {
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-  }
-  function observeReveals() {
-    $$('[data-reveal]:not([data-observed])').forEach(function (el) {
-      el.setAttribute('data-observed', '');
-      if (io) io.observe(el); else el.classList.add('is-in');
-    });
-  }
-  observeReveals();
-
-  /* ---------- 2. Header + sticky CTA bar ---------- */
-  var header = $('#site-header'), bar = $('#sticky-bar'), hero = $('#hero'), heroCta = $('#hero .btn-row');
-  function onScroll() {
-    var y = window.scrollY || doc.documentElement.scrollTop;
-    if (header) header.classList.toggle('is-scrolled', y > 24);
-    if (bar && hero) {
-      var limit = heroCta ? (heroCta.getBoundingClientRect().top + y + heroCta.offsetHeight - window.innerHeight + 40) : hero.offsetHeight * 0.6;
-      bar.classList.toggle('is-visible', y > Math.max(limit, 120));
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-  if ('IntersectionObserver' in window) {
-    if (heroCta && header) new IntersectionObserver(function (es) { header.classList.toggle('hero-cta-visible', es[0].isIntersecting); }, { threshold: 0.4 }).observe(heroCta);
-    var stageEl = $('#video-stage');
-    if (stageEl && bar) new IntersectionObserver(function (es) { bar.classList.toggle('is-suppressed', es[0].isIntersecting); }, { threshold: 0.35 }).observe(stageEl);
-  }
-
-  /* ---------- 3. Before / After sliders (static ones) ---------- */
-  $$('.ba').forEach(function (ba) { initBA(ba); });
-
-  /* ---------- 4. Cases (施術例) from config ---------- */
-  var casesRoot = $('#cases-grid');
-  if (casesRoot && CFG.cases && CFG.cases.length) {
-    var FIELD_LABELS = { chart: '癖毛チャート', thickness: '髪の太さ', history: 'カラー履歴', recipe: '使用レシピ', reason: '選定理由' };
-    casesRoot.innerHTML = CFG.cases.map(function (c, i) {
-      var n = ('0' + (i + 1)).slice(-2);
-      var rows = Object.keys(FIELD_LABELS).map(function (k) {
-        var v = String(c[k] == null ? '' : c[k]).trim();
-        return '<div class="case__row' + (v ? '' : ' is-empty') + '"><dt>' + FIELD_LABELS[k] + '</dt><dd>' + (v ? esc(v) : '<span>動画内で解説</span>') + '</dd></div>';
-      }).join('');
-      return '<article class="case" data-reveal>' +
-        '<div class="ba" role="group" aria-label="施術例' + n + ' ビフォーアフター比較">' +
-          pic(c.after, '施術例' + n + ' 施術後') +
-          '<div class="ba__after" style="--pos:50%">' + pic(c.before, '施術例' + n + ' 施術前') + '</div>' +
-          '<span class="ba__label ba__label--before" aria-hidden="true">Before</span><span class="ba__label ba__label--after" aria-hidden="true">After</span>' +
-          '<div class="ba__handle" aria-hidden="true"><span></span></div><span class="ba__hint" aria-hidden="true">◂ ドラッグして比較 ▸</span>' +
-          '<input class="ba__range" type="range" min="0" max="100" value="50" aria-label="ビフォーアフターの比較位置">' +
-        '</div>' +
-        '<div class="case__body"><p class="case__num">CASE ' + n + '</p><h3 class="case__title">' + esc(c.title || '') + '</h3>' +
-        '<dl class="case__dl">' + rows + '</dl></div></article>';
-    }).join('');
-    // re-init sliders for injected cases
-    $$('.ba', casesRoot).forEach(initBA);
-    observeReveals();
-  }
-  function initBA(ba) {
-    var range = $('.ba__range', ba), afterWrap = $('.ba__after', ba), handle = $('.ba__handle', ba);
-    function set(v) { v = Math.max(0, Math.min(100, v)); afterWrap.style.setProperty('--pos', v + '%'); handle.style.left = v + '%'; range.value = v; }
-    range.addEventListener('input', function () { set(parseFloat(range.value)); }); // range が全面を覆い、ドラッグ／タップ／キーボードを一手に受ける
-    set(50);
-  }
-  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  // 'assets/xxx-600.jpg' のような命名なら 480/800 の webp/jpg 候補を生成、それ以外はそのまま表示
-  function pic(src, alt) {
-    var m = /^(.*)-(\d+)\.(jpe?g|webp)$/i.exec(String(src));
-    if (!m) return '<img class="ba__img" src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy" decoding="async" width="636" height="1280">';
-    var b = esc(m[1]), sizes = '(min-width: 760px) 33vw, 100vw';
-    return '<picture><source type="image/webp" srcset="' + b + '-480.webp 480w, ' + b + '-800.webp 800w" sizes="' + sizes + '">' +
-      '<img class="ba__img" src="' + b + '-800.jpg" srcset="' + b + '-480.jpg 480w, ' + b + '-800.jpg 800w" sizes="' + sizes + '" alt="' + esc(alt) + '" loading="lazy" decoding="async" width="800" height="1610"></picture>';
-  }
-
-  /* ---------- 5. Testimonials (only real ones; hidden until provided) ---------- */
-  var tRoot = $('#testimonials');
-  if (tRoot) {
-    var list = (CFG.testimonials || []).filter(function (t) { return t && t.quote; });
-    if (list.length) {
-      tRoot.hidden = false;
-      $('#testimonials-grid').innerHTML = list.map(function (t) {
-        return '<figure class="voice" data-reveal>' +
-          (t.photo ? '<img class="voice__photo" src="' + esc(t.photo) + '" alt="" loading="lazy" decoding="async" width="96" height="96">' : '') +
-          '<blockquote class="voice__quote">' + esc(t.quote) + '</blockquote>' +
-          '<figcaption class="voice__meta">' + esc(t.salon || '') + (t.name ? '<span>' + esc(t.name) + '</span>' : '') + '</figcaption></figure>';
-      }).join('');
-      observeReveals();
-    }
-  }
-
-
-  /* ---------- 5b. Config wiring (URLs / price / profile) ---------- */
-  var purchaseUrl = CFG.purchaseUrl || 'https://sins.base.shop';
-  $$('[data-purchase]').forEach(function (a) { a.href = purchaseUrl; });
-  if (CFG.lineUrl) { $$('[data-line]').forEach(function (a) { a.href = CFG.lineUrl; a.hidden = false; a.style.display = ''; }); }
-  if (typeof CFG.price === 'string') {
-    if (CFG.price.trim()) { $$('[data-price]').forEach(function (el) { el.textContent = CFG.price; }); }
-    else { $$('[data-price-row]').forEach(function (el) { el.hidden = true; }); $$('[data-price]').forEach(function (el) { el.textContent = '価格は購入ページでご確認ください'; }); }
-  }
-  if (CFG.profile) { Object.keys(CFG.profile).forEach(function (k) { $$('[data-profile="' + k + '"]').forEach(function (el) { if (CFG.profile[k]) el.textContent = CFG.profile[k]; }); }); }
-  if (CFG.contactUrl) {
-    $$('[data-contact]').forEach(function (a) { a.href = CFG.contactUrl; a.hidden = false; if (/^mailto:/.test(CFG.contactUrl)) { a.removeAttribute('target'); } });
-    $$('[data-contact-text]').forEach(function (s) { var a = doc.createElement('a'); a.href = CFG.contactUrl; a.textContent = 'お問い合わせ'; a.style.textDecoration = 'underline'; a.style.textUnderlineOffset = '3px'; if (!/^mailto:/.test(CFG.contactUrl)) { a.target = '_blank'; a.rel = 'noopener'; } s.replaceWith(a); });
-  } else if (CFG.lineUrl) {
-    $$('[data-contact-text]').forEach(function (s) { var a = doc.createElement('a'); a.href = CFG.lineUrl; a.textContent = '公式LINE'; a.target = '_blank'; a.rel = 'noopener'; a.style.textDecoration = 'underline'; a.style.textUnderlineOffset = '3px'; s.replaceWith(a); });
-  }
-
-  /* ---------- 6. Video + purchase gate ---------- */
-  var video = CFG.video || { type: 'none' };
-  var threshold = typeof CFG.unlockAt === 'number' ? CFG.unlockAt : 0.9;
-  var unlocked = false;
-  var stage = $('#video-stage'), progressEl = $('#video-progress'), progressTxt = $('#video-progress-text');
-  var speedBtn = $('#speed-btn');
-  var maxWatched = 0, duration = 0, poll = null;
-  var buckets = {}, bucketCount = 0; // 実際に再生した区間（約5秒）のユニーク数で視聴率を判定（シークで飛ばした区間は数えない）
-  function bucketSec() { return duration ? Math.max(1, Math.min(5, duration / 40)) : 5; }
-  function totalBuckets() { return Math.max(1, Math.ceil(duration / bucketSec())); }
-  function markTime(t) {
-    if (!(t >= 0) || !duration) return;
-    if (t > maxWatched) maxWatched = t;
-    var b = Math.floor(t / bucketSec());
-    if (!buckets[b]) { buckets[b] = 1; bucketCount++; saveProgress(); }
-    setProgress(bucketCount / totalBuckets());
-  }
-
-  var ringFg = $('#ring-fg'), ringTxt = $('#ring-text'), ringBox = $('.ring'), lastAnnounced = -1;
-  function setProgress(ratio) {
-    ratio = Math.max(0, Math.min(1, ratio || 0));
-    var pct = Math.round(ratio * 100);
-    if (progressEl) { progressEl.style.width = (ratio * 100) + '%'; var pb = progressEl.parentNode; if (pb) pb.setAttribute('aria-valuenow', pct); }
-    if (progressTxt) progressTxt.textContent = pct + '%';
-    if (ringFg) ringFg.style.strokeDashoffset = String(1 - ratio);
-    if (ringTxt) ringTxt.textContent = pct + '%';
-    var step = Math.floor(pct / 10) * 10;
-    if (step !== lastAnnounced && step > 0) { lastAnnounced = step; var live = $('#gate-live'); if (live) live.textContent = '視聴 ' + step + '% です'; }
-    if (ratio >= threshold) unlock('progress');
-  }
-  var PROG_KEY = 'sins_video_progress_v1:' + (VID.type || 'none') + ':' + (VID.src || '');
-  function saveProgress() { try { localStorage.setItem(PROG_KEY, JSON.stringify({ d: duration, b: Object.keys(buckets).map(Number) })); } catch (e) {} }
-  function restoreProgress() {
-    try {
-      var s = JSON.parse(localStorage.getItem(PROG_KEY) || 'null');
-      if (s && s.d && duration && Math.abs(s.d - duration) < 2 && s.b && s.b.length) {
-        s.b.forEach(function (b) { if (!buckets[b]) { buckets[b] = 1; bucketCount++; } });
-        setProgress(bucketCount / totalBuckets());
-      }
-    } catch (e) {}
-  }
-
-  function unlock(reason) {
-    if (unlocked) return;
-    unlocked = true;
-    body.classList.add('is-unlocked');
-    if (reason === 'progress' || reason === 'ended' || reason === 'self-report') { try { localStorage.setItem(LS_KEY, JSON.stringify({ t: Date.now(), r: reason })); } catch (e) {} }
-    var gate = $('#purchase-gate');
-    if (gate) {
-      gate.classList.add('is-open');
-      $$('a, button', gate).forEach(function (el) { el.removeAttribute('tabindex'); });
-    }
-    $$('[data-locked]').forEach(function (el) { el.hidden = true; });
-    $$('[data-unlocked]').forEach(function (el) { el.hidden = false; });
-    if (bar) bar.classList.add('is-unlocked');
-    if (reason === 'progress' || reason === 'ended' || reason === 'self-report') {
-      var note = $('#unlock-note');
-      if (note) { note.hidden = false; }
-      var live = $('#gate-live'); if (live) live.textContent = 'サンプルセットのご案内を表示しました';
-      if (gate && reason !== 'progress') { // 再生中（90%到達）はフォーカスを奪わず、終了時だけ案内へ移動
-        gate.setAttribute('tabindex', '-1');
-        setTimeout(function () { gate.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' }); try { gate.focus({ preventScroll: true }); } catch (e) {} }, 600);
-      }
-    }
-  }
-
-  // Already unlocked on a previous visit?
-  try {
-    var saved = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
-    if (saved && saved.t && (Date.now() - saved.t) < TTL_MS) unlock('remembered');
-  } catch (e) {}
-
-  function loadScript(src, cb) {
-    var s = doc.createElement('script'); s.src = src; s.async = true; s.onload = cb; s.onerror = function () { showFallback(); }; doc.head.appendChild(s);
-  }
-  function videoUrl() {
-    if (video.type === 'youtube') return 'https://www.youtube.com/watch?v=' + encodeURIComponent(video.src);
-    if (video.type === 'vimeo') return 'https://vimeo.com/' + encodeURIComponent(video.src);
-    return video.src || '#';
-  }
-  function showFallback() {
-    // プレイヤーが読み込めない場合：外部リンクで視聴してもらい、視聴後に自己申告で解放（無音の自動解放はしない）
-    if (showFallback.done) return; showFallback.done = true;
-    var tools = $('.video-tools'); if (tools) tools.hidden = true;
-    var fb = $('#video-fallback'), fl = $('#video-fallback-link'), fd = $('#video-fallback-done');
-    if (fl) fl.href = videoUrl();
-    if (fb) fb.hidden = false;
-    if (fd) fd.addEventListener('click', function () { unlock('self-report'); });
-  }
-
-  function initMp4() {
-    var v = doc.createElement('video');
-    v.setAttribute('controls', ''); v.setAttribute('playsinline', ''); v.setAttribute('preload', 'metadata');
-    if (video.poster) v.setAttribute('poster', video.poster);
-    v.className = 'video__el';
-    v.src = video.src;
-    stage.innerHTML = ''; stage.appendChild(v);
-    v.addEventListener('loadedmetadata', function () { duration = v.duration || 0; restoreProgress(); });
-    v.addEventListener('timeupdate', function () { if (!v.paused) markTime(v.currentTime); });
-    v.addEventListener('ended', function () { setProgress(1); unlock('ended'); });
-    v.addEventListener('error', showFallback);
-    if (speedBtn) speedBtn.addEventListener('click', function () {
-      var fast = v.playbackRate < 1.9; v.playbackRate = fast ? 2 : 1; speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
-      if (v.paused) { var pr = v.play(); if (pr && typeof pr.catch === 'function') pr.catch(function () {}); }
-    });
-  }
-
-  function initYouTube() {
-    var id = String(video.src).trim(); // YouTube video id
-    var ytRestored = false;
-    var holder = doc.createElement('div'); holder.id = 'yt-player'; stage.innerHTML = ''; stage.appendChild(holder);
-    window.onYouTubeIframeAPIReady = function () {
-      var player = new YT.Player('yt-player', {
-        videoId: id,
-        host: 'https://www.youtube-nocookie.com',
-        playerVars: { rel: 0, modestbranding: 1, playsinline: 1, origin: location.origin },
-        events: {
-          onReady: function () { duration = player.getDuration() || 0; if (duration) { ytRestored = true; restoreProgress(); } },
-          onStateChange: function (e) {
-            if (e.data === YT.PlayerState.PLAYING) {
-              duration = player.getDuration() || duration;
-              if (!ytRestored && duration) { ytRestored = true; restoreProgress(); }
-              if (!poll) poll = setInterval(function () { markTime(player.getCurrentTime()); }, 1000);
-            } else if (poll && e.data !== YT.PlayerState.BUFFERING) { clearInterval(poll); poll = null; }
-            if (e.data === YT.PlayerState.ENDED) { setProgress(1); unlock('ended'); }
-          },
-          onError: showFallback
-        }
-      });
-      if (speedBtn) speedBtn.addEventListener('click', function () {
-        var fast = player.getPlaybackRate() < 1.9; player.setPlaybackRate(fast ? 2 : 1);
-        speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
-          if (player.getPlayerState() !== YT.PlayerState.PLAYING) player.playVideo();
-      });
-    };
-    loadScript('https://www.youtube.com/iframe_api');
-  }
-
-  function initVimeo() {
-    var iframe = doc.createElement('iframe');
-    iframe.src = 'https://player.vimeo.com/video/' + encodeURIComponent(String(video.src).trim()) + '?dnt=1&title=0&byline=0&portrait=0&playsinline=1';
-    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture'); iframe.setAttribute('allowfullscreen', ''); iframe.title = 'オンラインセミナー動画';
-    iframe.className = 'video__el'; stage.innerHTML = ''; stage.appendChild(iframe);
-    loadScript('https://player.vimeo.com/api/player.js', function () {
-      var player = new Vimeo.Player(iframe);
-      var restored = false;
-      player.on('timeupdate', function (d) { if (d.duration) duration = d.duration; if (!restored && duration) { restored = true; restoreProgress(); } markTime(d.seconds); });
-      player.on('ended', function () { setProgress(1); unlock('ended'); });
-      player.on('error', showFallback);
-      if (speedBtn) speedBtn.addEventListener('click', function () {
-        player.getPlaybackRate().then(function (r) {
-          var fast = r < 1.9; return player.setPlaybackRate(fast ? 2 : 1).then(function () {
-            speedBtn.setAttribute('aria-pressed', fast ? 'true' : 'false');
-                  var pp = player.play(); if (pp && typeof pp.catch === 'function') pp.catch(function () {});
-          });
-        }).catch(function () {});
-      });
-    });
-  }
-
-  if (stage) {
-    if (video.type === 'mp4' && video.src) initMp4();
-    else if (video.type === 'youtube' && video.src) initYouTube();
-    else if (video.type === 'vimeo' && video.src) initVimeo();
-    else {
-      // No video configured yet → placeholder; purchase CTA available immediately (configurable)
-      body.classList.add('no-video');
-      if (speedBtn) speedBtn.hidden = true;
-      var th = $('.gate__open .thanks'); if (th) th.textContent = '動画公開前のご案内';
-      var hs = $('#hero .btn__sub'); if (hs) hs.textContent = '約25分・登録不要・動画は近日公開';
-      if (CFG.unlockWhenNoVideo !== false) unlock('no-video');
-    }
-  }
-
-  /* ---------- 6b. 「後で見る」URLコピー ---------- */
-  var laterBtn = $('#later-btn');
-  if (laterBtn) laterBtn.addEventListener('click', function () {
-    var url = location.origin + location.pathname + '#seminar';
-    var done = function () { laterBtn.textContent = 'URLをコピーしました'; setTimeout(function () { laterBtn.textContent = '後で見る（URLをコピー）'; }, 2400); };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done).catch(function () { window.prompt('このURLをコピーしてください', url); });
-    else window.prompt('このURLをコピーしてください', url);
-  });
-
-  /* ---------- 7. Smooth anchor scroll with header offset (fallback for old browsers) ---------- */
-  $$('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (ev) {
-      var id = a.getAttribute('href').slice(1); if (!id) return;
-      var t = doc.getElementById(id); if (!t) return;
-      ev.preventDefault();
-      var top = t.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0) + 1;
-      window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
-      history.replaceState(null, '', '#' + id);
-      if (!/^(a|button|input|select|textarea)$/i.test(t.tagName) && t.tabIndex < 0) t.setAttribute('tabindex', '-1');
-      try { t.focus({ preventScroll: true }); } catch (e) {}
-    });
-  });
-
-  /* ---------- 7b. a11y: list semantics (list-style:none) and new-tab notices ---------- */
-  $$('ul,ol').forEach(function (l) { if (!l.getAttribute('role')) l.setAttribute('role', 'list'); });
-  $$('a[target="_blank"]').forEach(function (a) { if (!a.querySelector('.sr-only') && !/新しいタブ/.test(a.textContent)) { var s = doc.createElement('span'); s.className = 'sr-only'; s.textContent = '（新しいタブで開きます）'; a.appendChild(s); } });
-
-  /* ---------- 8. Year ---------- */
-  var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
-})();
-</script>
+<!-- 動作（動画ゲート・スライダーなど）は js/main.js。通常は編集不要 -->
+<script src="js/main.js"></script>
 </body>
 </html>

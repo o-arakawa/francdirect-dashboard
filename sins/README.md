@@ -3,18 +3,29 @@
 美容師向け「sins式 髪質改善ストレート」のランディングページです。
 ChatGPT広告 → LP → LP内のセミナー動画 → 視聴後にサンプルセット購入ページへ、という **LP内完結** の導線で設計しています。
 
-- 公開URL（main にマージ後）: `https://o-arakawa.github.io/francdirect-dashboard/sins/`
-- 本体: `sins/index.html`（CSS / JS も同一ファイルに内包）
-- 画像: `sins/assets/`（WebP + JPEG、複数サイズ）
+初心者向けの手順は同じフォルダの **`はじめにお読みください.txt`** にまとめています。このファイルは制作者・保守担当向けの詳細です。
 
-## 差し替え・設定は `index.html` 冒頭の `SINS_LP_CONFIG` だけ
+## ファイル構成
+
+| ファイル | 役割 | 普段触るか |
+|---|---|---|
+| `index.html` | ページ本体（文章・構成） | 文章を変えるとき |
+| `config.js` | 設定（購入URL・動画・価格・LINE・講師名・施術例・受講者の声） | **ここが基本** |
+| `css/style.css` | デザイン（色・文字・余白・レイアウト） | 色を変えるときだけ |
+| `js/main.js` | 動作（動画ゲート・スライダー・FAQ・構造化データ） | 触らない |
+| `assets/` | 画像（WebP + JPEG、複数サイズ）、favicon、OGP画像 | 画像を差し替えるとき |
+
+- 公開URL（GitHub Pages、main にマージ後）: `https://o-arakawa.github.io/francdirect-dashboard/sins/`
+- 別サーバーに置く場合は、このフォルダの中身をそのままアップロードし、`index.html` 冒頭の canonical / og:url / og:image の URL を実際の公開URLに置き換えてください。
+
+## 設定（`config.js`）
 
 ```js
 window.SINS_LP_CONFIG = {
   purchaseUrl: 'https://sins.base.shop',   // サンプルセットの購入ページ（BASE → 直販サイトに変わったらここだけ変更）
   lineUrl: '',                             // 相談用の公式LINE URL。空なら LINE 導線は非表示
   contactUrl: '',                          // 集合セミナー等の問い合わせ先（mailto: や フォームURL）。空なら非表示
-  video: { type: 'none', src: '', poster: 'assets/…' },  // 下記参照
+  video: { type: 'none', src: '', poster: 'assets/iron-1600.jpg' },  // 下記参照
   unlockAt: 0.9,                           // 動画をここまで視聴したら購入CTAを表示（0.9 = 90%）
   unlockWhenNoVideo: true,                 // 動画未設定のあいだは購入CTAを最初から表示する（この状態は端末に保存されない）
   unlockTtlDays: 90,                       // 視聴完了の記憶を保持する日数
@@ -36,7 +47,7 @@ window.SINS_LP_CONFIG = {
 
 視聴判定は「実際に再生した5秒区間のユニーク数 ÷ 全区間数」で行い、シークで飛ばした区間は数えません。`unlockAt` に達するか最後まで再生されると、購入カード（`#purchase-gate`）・ヘッダー・ページ下部・固定バーの購入ボタンが同時に切り替わります。解放状態は `localStorage` に `unlockTtlDays` 日間、視聴の進捗は5秒ごとに保存され、同じ端末・同じブラウザなら再訪時に引き継がれます。記憶は動画（type + src）ごとに分かれるため、動画を差し替えると再度視聴が必要になります。動画未設定のあいだ（`type: 'none'`）の解放は保存されないので、公開前に訪れた人も公開後はきちんとゲートがかかります。動画には「2倍速で見る（約12分）」「後で見る（URLをコピー）」ボタンがあります。プレイヤーが読み込めない場合は外部リンクと「視聴が終わった方はこちら」ボタンを表示します（無音の自動解放はしません）。
 
-価格は `price` の1箇所から購入カード・STEP2・FAQ に出力されます。JSON-LD（FAQ の構造化データ）には価格を含めていないため、価格変更時は `price` だけ変えれば済みます。
+価格は `price` の1箇所から購入カード・STEP2・FAQ に出力されます。FAQ の構造化データ（JSON-LD）は `index.html` の FAQ 本文から `js/main.js` が自動生成するため、FAQ を書き換えても二重管理は不要です。
 
 ### 施術例カード（`cases`）
 
@@ -45,7 +56,7 @@ window.SINS_LP_CONFIG = {
   chart: 'C', thickness: '普通', history: 'カラー2回', recipe: 'T7 → 顔周り 4.5', reason: '…' }
 ```
 
-`chart / thickness / history / recipe / reason` は事実が確認できたものだけ入れてください。空欄は「動画内で解説」と表示されます。
+`chart / thickness / history / recipe / reason` は事実が確認できたものだけ入れてください。空欄は「動画内で解説」と表示されます。`before` / `after` に `assets/xxx-600.jpg` の形式で指定すると、同名の `-480` / `-800` の webp / jpg を自動で使います（無ければそのファイルをそのまま表示）。
 
 ### 受講者の声（`testimonials`）
 
@@ -60,6 +71,7 @@ window.SINS_LP_CONFIG = {
 - 「縮毛矯正」ではなく **「髪質改善ストレート」** に統一（見出し・CTA・本文）
 - 店舗名は「sinsia（シンシア）」、商品・サービス名は「sins」
 - 「日本一」「No.1」などの最上級表現は使わない（広告審査対策）
+- 医療を連想させる「症例・診断・治療」は使わず「施術例・カウンセリング」に統一
 
 ## ローカル確認
 
