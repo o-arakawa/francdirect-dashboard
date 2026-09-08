@@ -6151,11 +6151,11 @@
       "this_month": 0
     }
   },
-  "last_checked": "2026-09-07T06:00:56Z",
+  "last_checked": "2026-09-08T05:54:22Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-09-07T06:00:56Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Sunday, 06-Sep-26 23:00:56 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=ARvakwNwYCNg4GC-jP_DGen",
+    "checked_at": "2026-09-08T05:54:22Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Monday, 07-Sep-26 22:54:21 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=ASsut4wnUK86ZpYQzCSjeMW",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
