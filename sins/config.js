@@ -10,18 +10,27 @@ window.SINS_LP_CONFIG = {
   purchaseUrl: 'https://sins.base.shop',   // サンプルセット購入ページ（BASE）。直販サイトに変わったらここを変更
   lineUrl: '',                             // 公式LINEのURL。空なら LINE 導線は表示しない
   contactUrl: '',                          // 集合セミナー等の問い合わせ先（例 'mailto:info@example.com'）。空なら購入ページ内の問い合わせを案内
-  video: {
-    type: 'none',                          // 'youtube' | 'vimeo' | 'mp4' | 'none'
-    src: '',                               // youtube: 動画ID / vimeo: 動画ID / mp4: 動画URL
-    poster: 'assets/iron-1600.jpg'         // 再生前に表示する画像（mp4 のみ）
-  },
+  // ▼ 動画（YouTube の「限定公開」を推奨）。1本だけなら { … } を1つにする。type は全部同じ種類にそろえる
+  videos: [
+    { title: '髪質改善ストレート セミナー', note: '薬剤選定・施術の流れ（経営者目線パートあり）', type: 'youtube', src: 'fIy8MAHXpNM' },
+    { title: '髪質改善 セミナー',           note: '経営者目線パートあり',                          type: 'youtube', src: 'zxhF30iWFDE' }
+  ],
+  //   type: 'youtube' → src は動画ID（URL の v= の後ろ、youtu.be/ の後ろ）
+  //   type: 'vimeo'   → src は動画ID（数字） / type: 'mp4' → src は動画のURL、poster: 'assets/…' で再生前の画像
+  //   動画をいったん外すときは videos: [] にする（購入ボタンが最初から表示されます）
+  unlockRule: 'any',                       // 購入案内を出す条件： 'any' = どれか1本を視聴完了 / 'all' = 全部 / 'first' = 1本目
   unlockAt: 0.9,                           // 視聴率がこの値に達したら購入CTAを表示（0.9 = 90%）
   unlockWhenNoVideo: true,                 // 動画が未設定の間は購入CTAを最初から表示する（この状態は端末に保存しない）
   unlockTtlDays: 90,                       // 視聴完了の記憶を保持する日数
+  // ▼ 施術例（ビフォーアフター）。before / after は assets 内の画像、ratio は写真の縦横比（幅/高さ）
+  //    chart / thickness / history / recipe / reason は事実が確認できたものだけ入れる（空欄は「動画内で解説」と表示）
   cases: [
-    { title: 'ミディアム・うねりの強い髪', before: 'assets/ba4038-before-600.jpg', after: 'assets/ba4038-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
-    { title: 'ロング・広がりやすい髪',     before: 'assets/ba4032-before-600.jpg', after: 'assets/ba4032-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' },
-    { title: 'ロング・明るめの髪色',       before: 'assets/ba4040a-before-600.jpg', after: 'assets/ba4040a-after-600.jpg', chart: '', thickness: '', history: '', recipe: '', reason: '' }
+    { title: 'ミディアム（黒髪）',            before: 'assets/case1-before-800.jpg', after: 'assets/case1-after-800.jpg', ratio: '1/1',      chart: '', thickness: '', history: '', recipe: '', reason: '' },
+    { title: 'ロング（ダークブラウン）',      before: 'assets/case2-before-800.jpg', after: 'assets/case2-after-800.jpg', ratio: '1/1',      chart: '', thickness: '', history: '', recipe: '', reason: '' },
+    { title: 'ミディアムロング（ブラウン）',  before: 'assets/case3-before-800.jpg', after: 'assets/case3-after-800.jpg', ratio: '1048/1560', chart: '', thickness: '', history: '', recipe: '', reason: '' },
+    { title: 'ミディアム（ブラウン）',        before: 'assets/case4-before-800.jpg', after: 'assets/case4-after-800.jpg', ratio: '1/1',      chart: '', thickness: '', history: '', recipe: '', reason: '' },
+    { title: 'ロング（明るめのブラウン）',    before: 'assets/case5-before-800.jpg', after: 'assets/case5-after-800.jpg', ratio: '986/1661', chart: '', thickness: '', history: '', recipe: '', reason: '' },
+    { title: 'ミディアム（ブラウン）',        before: 'assets/case6-before-800.jpg', after: 'assets/case6-after-800.jpg', ratio: '1/1',      chart: '', thickness: '', history: '', recipe: '', reason: '' }
   ],
   price: '13,200円（税込）',                // サンプルセットの価格表記。空文字にすると価格の行が非表示になる
   profile: { name: '菅原 寛人', romaji: 'Hiroto Sugawara', role: 'sins cosmetics ／ 現役美容師（sinsia）' },
