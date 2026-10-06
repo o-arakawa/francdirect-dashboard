@@ -5415,7 +5415,7 @@
     "meta": {
       "today": 0,
       "yesterday": 0,
-      "this_month": 2,
+      "this_month": 1,
       "by_date": {
         "2026-04-01": 0,
         "2026-04-02": 0,
@@ -5602,7 +5602,7 @@
         "2026-09-30": 0,
         "2026-10-01": 0,
         "2026-10-02": 1,
-        "2026-10-03": 1,
+        "2026-10-03": 0,
         "2026-10-04": 0,
         "2026-10-05": 0,
         "2026-10-06": 0,
@@ -6139,14 +6139,14 @@
     "combined": {
       "today": 0,
       "yesterday": 0,
-      "this_month": 2
+      "this_month": 1
     }
   },
-  "last_checked": "2026-10-05T06:56:47Z",
+  "last_checked": "2026-10-06T07:29:43Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-10-05T06:56:47Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Sunday, 04-Oct-26 23:56:47 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=A3zP9jAS3ofWFbxdhaif3Dx",
+    "checked_at": "2026-10-06T07:29:43Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Tuesday, 06-Oct-26 00:29:43 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AsDrHTDdEPKiMtJEVpkbCZd",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
