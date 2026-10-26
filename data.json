@@ -2421,7 +2421,7 @@
     },
     {
       "date": "2026-10-09",
-      "myasp": 0,
+      "myasp": 1,
       "line": 0
     },
     {
@@ -2431,22 +2431,22 @@
     },
     {
       "date": "2026-10-11",
-      "myasp": 5,
+      "myasp": 6,
       "line": 0
     },
     {
       "date": "2026-10-12",
-      "myasp": 3,
+      "myasp": 4,
       "line": 0
     },
     {
       "date": "2026-10-13",
-      "myasp": 5,
+      "myasp": 6,
       "line": 0
     },
     {
       "date": "2026-10-14",
-      "myasp": 5,
+      "myasp": 4,
       "line": 0
     },
     {
@@ -2461,47 +2461,47 @@
     },
     {
       "date": "2026-10-17",
-      "myasp": 0,
+      "myasp": 9,
       "line": 0
     },
     {
       "date": "2026-10-18",
-      "myasp": 0,
+      "myasp": 12,
       "line": 0
     },
     {
       "date": "2026-10-19",
-      "myasp": 0,
+      "myasp": 9,
       "line": 0
     },
     {
       "date": "2026-10-20",
-      "myasp": 0,
+      "myasp": 11,
       "line": 0
     },
     {
       "date": "2026-10-21",
-      "myasp": 0,
+      "myasp": 3,
       "line": 0
     },
     {
       "date": "2026-10-22",
-      "myasp": 0,
+      "myasp": 5,
       "line": 0
     },
     {
       "date": "2026-10-23",
-      "myasp": 0,
+      "myasp": 9,
       "line": 0
     },
     {
       "date": "2026-10-24",
-      "myasp": 0,
+      "myasp": 4,
       "line": 0
     },
     {
       "date": "2026-10-25",
-      "myasp": 0,
+      "myasp": 6,
       "line": 0
     },
     {
@@ -6749,7 +6749,7 @@
       }
     ],
     "yesterday": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "spend": 0,
       "impressions": 0,
       "clicks": 0,
@@ -7648,7 +7648,7 @@
     "meta": {
       "today": 0,
       "yesterday": 0,
-      "this_month": 1,
+      "this_month": 76,
       "by_date": {
         "2026-04-01": 0,
         "2026-04-02": 0,
@@ -7841,22 +7841,22 @@
         "2026-10-06": 0,
         "2026-10-07": 0,
         "2026-10-08": 0,
-        "2026-10-09": 0,
-        "2026-10-10": 0,
+        "2026-10-09": 5,
+        "2026-10-10": 5,
         "2026-10-11": 0,
         "2026-10-12": 0,
         "2026-10-13": 0,
         "2026-10-14": 0,
-        "2026-10-15": 0,
-        "2026-10-16": 0,
-        "2026-10-17": 0,
-        "2026-10-18": 0,
+        "2026-10-15": 6,
+        "2026-10-16": 8,
+        "2026-10-17": 16,
+        "2026-10-18": 4,
         "2026-10-19": 0,
         "2026-10-20": 0,
-        "2026-10-21": 0,
+        "2026-10-21": 25,
         "2026-10-22": 0,
         "2026-10-23": 0,
-        "2026-10-24": 0,
+        "2026-10-24": 6,
         "2026-10-25": 0,
         "2026-10-26": 0,
         "2026-10-27": 0,
@@ -8372,14 +8372,14 @@
     "combined": {
       "today": 0,
       "yesterday": 0,
-      "this_month": 1
+      "this_month": 76
     }
   },
-  "last_checked": "2026-10-25T06:00:22Z",
+  "last_checked": "2026-10-26T06:04:23Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-10-25T06:00:22Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Saturday, 24-Oct-26 23:00:22 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AGAlWopfraH0vJR1W6qCyu7",
+    "checked_at": "2026-10-26T06:04:23Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Sunday, 25-Oct-26 23:04:23 PDT. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AaQA2vRHottAKBxGg7QOd4T",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
