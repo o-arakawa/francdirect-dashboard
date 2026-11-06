@@ -2546,7 +2546,7 @@
     },
     {
       "date": "2026-11-03",
-      "myasp": 2,
+      "myasp": 5,
       "line": 0
     },
     {
@@ -2556,7 +2556,7 @@
     },
     {
       "date": "2026-11-05",
-      "myasp": 0,
+      "myasp": 6,
       "line": 0
     },
     {
@@ -6142,11 +6142,11 @@
       "this_month": 0
     }
   },
-  "last_checked": "2026-11-05T07:52:16Z",
+  "last_checked": "2026-11-06T07:52:50Z",
   "meta_fetch_status": {
     "ok": false,
-    "checked_at": "2026-11-05T07:52:16Z",
-    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Wednesday, 04-Nov-26 23:52:16 PST. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=AJavkjEQ-Yr3tMSt_81ZvY3",
+    "checked_at": "2026-11-06T07:52:50Z",
+    "message": "Meta API HTTP 400: Error validating access token: Session has expired on Friday, 17-Jul-26 20:07:38 PDT. The current time is Thursday, 05-Nov-26 23:52:50 PST. / type=OAuthException / code=190 / subcode=463 / fbtrace_id=Aajkv9kwTpu0w8s04E75a_S",
     "note": "Meta API の取得に失敗したため、前回成功時のMeta数値を保持しています。"
   }
 }
